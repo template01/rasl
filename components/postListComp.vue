@@ -1,8 +1,6 @@
 <template>
 <div class="mt-80">
-  <p class="has-text-centered is-size-3 mb-80">
-    Posts from store
-  </p>
+
   <ul>
     {{display}}
     <li class="has-text-centered is-size-5" v-for="item in display">

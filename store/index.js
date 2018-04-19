@@ -1,8 +1,9 @@
 import axios from 'axios'
+import _ from 'lodash'
 
 export const state = () => ({
   appinitated: true,
-  apiRoot: 'http://194.61.64.171/backend/?rest_route=',
+  apiRoot: 'http://194.61.64.171/backend/index.php/wp-json',
   posts: [],
   contenttypes: [],
   tags: [],
@@ -10,6 +11,8 @@ export const state = () => ({
   featuredPosts: [],
   reflectivePosts: [],
   previewData: [],
+  filterby:'',
+
 })
 
 //
@@ -24,6 +27,10 @@ export const state = () => ({
 
 
 export const getters = {
+
+  GET_FILTERBY(state) {
+    return state.filterby
+  },
 
   GET_APP_INITIATED(state) {
     return state.appinitated
@@ -60,62 +67,13 @@ export const getters = {
 
 export const mutations = {
 
-  //
-  //
-  // SET_FILTERCONTENTBYTAG(state, taginput) {
-  //   //
-  //   // axios.get('/user?ID=12345')
-  //   //   .then(function (response) {
-  //   //     console.log(response);
-  //   //   })
-  //   //
-  //   // const [reflective, pratice ] = await Promise.all([getPraticePosts(), getReflectivePosts()])
-  //   // state.reflectivePosts = reflective.data
-  //   // state.praticePosts = pratice.data
-  //
-  //   function getReflectivePosts() {
-  //     return axios.get(state.apiRoot + '/wp/v2/reflective' + '&filter[tag]=future');
-  //   }
-  //
-  //   function getPraticePosts() {
-  //     return axios.get(state.apiRoot + '/wp/v2/pratice' + '&filter[tag]=future');
-  //   }
-  //
-  //   axios.all([getReflectivePosts(), getPraticePosts()])
-  //     .then(axios.spread(function(reflective, pratice) {
-  //       // Both requests are now complete
-  //       state.reflectivePosts = reflective.data
-  //       state.praticePosts = pratice.data
-  //     }));
-  //
-  //
-  //
-  // },
-
-  // async SET_FILTERCONTENTBYTAG(state,taginput) {
-  //   function getReflectivePosts() {
-  //     return axios.get(state.apiRoot + '/wp/v2/reflective'+'&filter[tag]=future');
-  //   }
-  //
-  //   function getPraticePosts() {
-  //     return axios.get(state.apiRoot + '/wp/v2/pratice'+'&filter[tag]=future');
-  //   }
-  //
-  //   const [reflective, pratice ] = await Promise.all([getPraticePosts(), getReflectivePosts()])
-  //   state.reflectivePosts = reflective.data
-  //   state.praticePosts = pratice.data
-  // },
-  //
-
-  SET_FILTERREFLECTIVEBYTAG(state, taginput) {
-    state.reflectivePosts = taginput
+  SET_FILTERREFLECTIVEBY(state, filterinput) {
+    state.reflectivePosts = filterinput
   },
 
-  SET_PRATICEBYTAG(state, taginput) {
-    state.praticePosts = taginput
+  SET_PRATICEBY(state, filterinput) {
+    state.praticePosts = filterinput
   },
-
-
 
   SET_PREVIEWDATA(state, previewData) {
     state.previewData = previewData;
@@ -127,6 +85,10 @@ export const mutations = {
 
   SET_APPINITIATED(state, toggle) {
     state.appinitated = toggle;
+  },
+
+  SET_FILTERBY(state, name) {
+    state.filterby = name;
   }
 
 }
@@ -135,26 +97,49 @@ export const mutations = {
 export const actions = {
 
 
-  TRIGGER_FILTERCONTENTBYTAG({
+
+  TRIGGER_SEARCHBYCOLUMNS({
     commit,
     state
-  }, input) {
+  }, query) {
 
     function getReflectivePosts() {
-      return axios.get(state.apiRoot + '/wp/v2/reflective' + '&filter[tag]=' + input);
+      return axios.get(state.apiRoot + '/swp_api/search?s='+query.searchquery+'&post_type=reflective');
     }
 
+
     function getPraticePosts() {
-      return axios.get(state.apiRoot + '/wp/v2/pratice' + '&filter[tag]=' + input);
+      return axios.get(state.apiRoot + '/swp_api/search?s='+query.searchquery+'&post_type=pratice');
     }
 
     axios.all([getReflectivePosts(), getPraticePosts()])
       .then(axios.spread(function(reflective, pratice) {
-        // Both requests are now complete
-        // state.reflectivePosts = reflective.data
-        // state.praticePosts = pratice.data
-        commit('SET_FILTERREFLECTIVEBYTAG', reflective.data)
-        commit('SET_PRATICEBYTAG', pratice.data)
+        commit('SET_FILTERREFLECTIVEBY', reflective.data)
+        commit('SET_PRATICEBY', pratice.data)
+      }));
+
+  },
+
+
+
+
+  TRIGGER_FILTERCONTENTBY({
+    commit,
+    state
+  }, filter) {
+
+    function getReflectivePosts() {
+      return axios.get(state.apiRoot + '/wp/v2/reflective' + '?filter[' + filter.name + ']=' + filter.items);
+    }
+
+    function getPraticePosts() {
+      return axios.get(state.apiRoot + '/wp/v2/pratice' + '?filter[' + filter.name + ']=' + filter.items);
+    }
+
+    axios.all([getReflectivePosts(), getPraticePosts()])
+      .then(axios.spread(function(reflective, pratice) {
+        commit('SET_FILTERREFLECTIVEBY', reflective.data)
+        commit('SET_PRATICEBY', pratice.data)
       }));
 
   },
@@ -214,8 +199,16 @@ export const actions = {
     const [reflective, pratice, contenttypes, tags] = await Promise.all([getPraticePosts(), getReflectivePosts(), getContentTypes(), getTags()])
     state.reflectivePosts = reflective.data
     state.praticePosts = pratice.data
-    state.contenttypes = contenttypes.data
-    state.tags = tags.data
+
+    // FILTER OUT contenttypes WITH NO ATTACHED POSTS (COUNT:0)
+    state.contenttypes = _.filter(contenttypes.data, function(v) {
+      return v.count > 0
+    });
+
+    // FILTER OUT tags WITH NO ATTACHED POSTS (COUNT:0)
+    state.tags = _.filter(tags.data, function(v) {
+      return v.count > 0
+    });
 
   },
 

@@ -1,8 +1,8 @@
 <template>
 <div class="">
   <div v-for="filteritem in filtertype">
-    <label v-html="filteritem.name"></label>
-    <input v-model="selectedItems" :value="filteritem.slug" id="checkBox" type="checkbox">
+    <label @click="setfilterby(filtername)" v-html="filteritem.name"></label>
+    <input @click="setfilterby(filtername)" v-model="selectedItems" :value="filteritem.slug" id="checkBox" type="checkbox">
   </div>
   slected: {{selectedItems}}
 </div>
@@ -22,15 +22,31 @@ export default {
       selectedItems: [],
     }
   },
-  methods: {},
+  methods: {
+    setfilterby(filtername){
+       this.$store.commit('SET_FILTERBY',filtername)
+    }
+  },
   watch: {
+    'filterby':function(){
+      if(this.filterby != this.filtername){
+        this.selectedItems = []
+      }
+    },
     'selectedItems': function() {
-      this.$store.dispatch('TRIGGER_FILTERCONTENTBYTAG',this.selectedItems)
+      // console.log(this.filterby)
+      console.log(this.filtername)
+
+
+      if(this.filterby === this.filtername){
+        this.$store.dispatch('TRIGGER_FILTERCONTENTBY',{'items':this.selectedItems,'name':this.filtername})
+      }
     }
   },
   computed: {
     ...mapGetters({
       appinitated: "GET_APP_INITIATED",
+      filterby: "GET_FILTERBY",
     }),
   },
 

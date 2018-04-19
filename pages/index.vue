@@ -2,6 +2,9 @@
 <div class="">
   <div class="columns">
     <div class="column">
+      <p class="has-text-centered is-size-3 mb-80">
+        featured
+      </p>
       <postlistcomp :display="featuredPosts"></postlistcomp>
 
 
@@ -11,9 +14,15 @@
     <filters></filters>
     <div class="columns">
       <div class="column">
+        <p class="has-text-centered is-size-3 mb-80">
+          reflective
+        </p>
         <postlistcomp :display="reflectivePosts"></postlistcomp>
       </div>
       <div class="column">
+        <p class="has-text-centered is-size-3 mb-80">
+          pratice
+        </p>
         <postlistcomp :display="praticePosts"></postlistcomp>
       </div>
     </div>
