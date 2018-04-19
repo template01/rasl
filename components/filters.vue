@@ -19,6 +19,14 @@
         search
       </p>
       <search></search>
+
+    </div>
+    <div class="column">
+      <p class="is-size-3">
+        selected
+      </p>
+      <selected></selected>
+
     </div>
   </div>
 </div>
@@ -26,6 +34,7 @@
 <script>
 import singlefilter from '~/components/singlefilter.vue'
 import search from '~/components/search.vue'
+import selected from '~/components/selected.vue'
 
 import {
   mapGetters
@@ -36,7 +45,8 @@ export default {
   props: [],
   components: {
     singlefilter,
-    search
+    search,
+    selected
   },
   data: function() {
     return {

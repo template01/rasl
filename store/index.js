@@ -1,4 +1,5 @@
 import axios from 'axios'
+var URI = require('urijs');
 import _ from 'lodash'
 
 export const state = () => ({
@@ -11,8 +12,8 @@ export const state = () => ({
   featuredPosts: [],
   reflectivePosts: [],
   previewData: [],
-  filterby:'',
-
+  filterby: '',
+  selected: []
 })
 
 //
@@ -62,7 +63,11 @@ export const getters = {
 
   GET_CONTENTTYPES(state) {
     return state.contenttypes
-  }
+  },
+
+  GET_SELECTED(state) {
+    return state.selected
+  },
 }
 
 export const mutations = {
@@ -89,6 +94,13 @@ export const mutations = {
 
   SET_FILTERBY(state, name) {
     state.filterby = name;
+  },
+
+  SET_SELECTED(state, input) {
+    var tempState = state.selected
+    tempState.push(input);
+    tempState = _.uniq(tempState);
+    state.selected = tempState;
   }
 
 }
@@ -98,24 +110,48 @@ export const actions = {
 
 
 
+    TRIGGER_SELECTED({
+      commit,
+      state
+    }, selectedItem) {
+
+      commit('SET_SELECTED', selectedItem.item)
+
+      var url = new URI(window.location.search).removeSearch("selected").query({
+        selected: state.selected
+      });
+      window.history.replaceState({}, '', '?' + url._parts.query);
+
+    },
+
+
+
   TRIGGER_SEARCHBYCOLUMNS({
     commit,
     state
   }, query) {
 
     function getReflectivePosts() {
-      return axios.get(state.apiRoot + '/swp_api/search?s='+query.searchquery+'&post_type=reflective');
+      return axios.get(state.apiRoot + '/swp_api/search?s=' + query.searchquery + '&post_type=reflective');
     }
 
 
     function getPraticePosts() {
-      return axios.get(state.apiRoot + '/swp_api/search?s='+query.searchquery+'&post_type=pratice');
+      return axios.get(state.apiRoot + '/swp_api/search?s=' + query.searchquery + '&post_type=pratice');
     }
 
     axios.all([getReflectivePosts(), getPraticePosts()])
       .then(axios.spread(function(reflective, pratice) {
         commit('SET_FILTERREFLECTIVEBY', reflective.data)
         commit('SET_PRATICEBY', pratice.data)
+
+        var url = new URI(window.location.search).query({
+          search: query.searchquery,
+          selected: state.selected
+        });
+        window.history.replaceState({}, '', '?' + url._parts.query);
+
+
       }));
 
   },
@@ -140,6 +176,17 @@ export const actions = {
       .then(axios.spread(function(reflective, pratice) {
         commit('SET_FILTERREFLECTIVEBY', reflective.data)
         commit('SET_PRATICEBY', pratice.data)
+
+
+
+        var url = new URI(window.location.search).removeSearch("filter").removeSearch("filters").removeSearch("search").addSearch({
+          filter: filter.name,
+          filters: filter.items
+        }).addSearch({
+          selected: state.selected
+        });
+        window.history.replaceState({}, '', '?' + url._parts.query);
+
       }));
 
   },

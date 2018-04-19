@@ -91,6 +91,10 @@ module.exports = {
       ssr: false
     },
     {
+      src: '~/plugins/urijs-plugin.js',
+      ssr: false
+    },
+    {
       src: '~/plugins/lazyload.js',
       ssr: false
     },

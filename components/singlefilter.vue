@@ -8,6 +8,7 @@
 </div>
 </template>
 <script>
+var URI = require('urijs');
 import {
   mapGetters,
   mapMutations
@@ -25,6 +26,7 @@ export default {
   methods: {
     setfilterby(filtername){
        this.$store.commit('SET_FILTERBY',filtername)
+
     }
   },
   watch: {
