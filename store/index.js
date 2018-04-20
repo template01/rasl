@@ -14,6 +14,8 @@ export const state = () => ({
   previewData: [],
   filterby: '',
   selected: []
+  // MOCK SELECTED
+  // selected: [{'postid': 1801,'posttype': 'pratice'}]
 })
 
 //
@@ -96,11 +98,18 @@ export const mutations = {
     state.filterby = name;
   },
 
-  SET_SELECTED(state, input) {
-    var tempState = state.selected
-    tempState.push(input);
-    tempState = _.uniq(tempState);
-    state.selected = tempState;
+  SET_ADDSELECTED(state, input) {
+    state.selected.push(input);
+    state.selected = _.uniqBy(state.selected, 'postid', 'posttype');
+
+    // _.union(state.selected, [input]);
+    // state.selected = _.union(state.selected,[input]);
+  },
+
+  SET_REMOVESELECTED(state, input) {
+    state.selected = _.remove(state.selected, function(e) {
+      return e.postid != input.postid && e.posttype != input.posttype;
+    });
   }
 
 }
@@ -110,19 +119,42 @@ export const actions = {
 
 
 
-    TRIGGER_SELECTED({
-      commit,
-      state
-    }, selectedItem) {
+  TRIGGER_ADDSELECTED({
+    commit,
+    state
+  }, selectedItems) {
 
-      commit('SET_SELECTED', selectedItem.item)
+    commit('SET_ADDSELECTED', {
+      'postid': selectedItems.postid,
+      'posttype': selectedItems.posttype
+    })
+    var url = new URI(window.location.search).addSearch({
+      selected: selectedItems.postid + ',' + selectedItems.posttype
+    })
+    window.history.replaceState({}, '', '?' + url._parts.query);
+  },
 
-      var url = new URI(window.location.search).removeSearch("selected").query({
-        selected: state.selected
-      });
-      window.history.replaceState({}, '', '?' + url._parts.query);
+  TRIGGER_REMOVESELECTED({
+    commit,
+    state
+  }, selectedItems) {
 
-    },
+    commit('SET_REMOVESELECTED', {
+      'postid': selectedItems.postid,
+      'posttype': selectedItems.posttype
+    })
+
+    var url = new URI(window.location.search).removeSearch({
+      selected: selectedItems.postid + ',' + selectedItems.posttype
+    })
+    window.history.replaceState({}, '', '?' + url._parts.query);
+
+    // var url = new URI(window.location.search).removeSearch("selected").addSearch({
+    //   selected: state.selected[0].id
+    // })
+    // window.history.replaceState({}, '', '?' + url._parts.query);
+  },
+
 
 
 
@@ -145,9 +177,8 @@ export const actions = {
         commit('SET_FILTERREFLECTIVEBY', reflective.data)
         commit('SET_PRATICEBY', pratice.data)
 
-        var url = new URI(window.location.search).query({
+        var url = new URI(window.location.search).removeSearch("filter").removeSearch("filters").removeSearch("search").addSearch({
           search: query.searchquery,
-          selected: state.selected
         });
         window.history.replaceState({}, '', '?' + url._parts.query);
 
@@ -182,9 +213,7 @@ export const actions = {
         var url = new URI(window.location.search).removeSearch("filter").removeSearch("filters").removeSearch("search").addSearch({
           filter: filter.name,
           filters: filter.items
-        }).addSearch({
-          selected: state.selected
-        });
+        })
         window.history.replaceState({}, '', '?' + url._parts.query);
 
       }));
@@ -195,10 +224,51 @@ export const actions = {
   // LOAD INITIAL DATA (SSR)
   async nuxtServerInit({
     commit,
-    state
+    state,
+
   }, {
-    req
+    req,
+    route
   }) {
+
+    // GET ALL QUERIES
+    const querys = URI(route.fullPath).query(true)
+
+    // SET ACTIVE SELECTED POSTS
+    var selected = ''
+    if (Array.isArray(querys['selected'])) {
+      selected = querys['selected']
+    } else {
+      selected = [querys['selected']]
+    }
+
+    if (querys['selected']) {
+      const tmpArray = []
+      for (var i in selected) {
+        const id = parseInt(selected[i].split(',')[0])
+        const type = selected[i].split(',')[1]
+        tmpArray.push({
+          'postid': id,
+          'posttype': type
+        })
+      }
+      state.selected = tmpArray
+    }
+
+    // SET ACTIVE FILTERS
+
+    var filterby = selected = querys['filter']
+    console.log(filterby)
+    var filters = selected = querys['filters']
+    console.log(filters)
+
+    // TO DO
+
+    // SET ACTIVE SEARCH
+
+    // TO DO
+
+
 
     // GET ALL FEATURED POSTS
     const featuredPostsRes = await axios.get(state.apiRoot + '/wp/v2/featured');
@@ -227,11 +297,17 @@ export const actions = {
 
 
     function getReflectivePosts() {
-      return axios.get(state.apiRoot + '/wp/v2/reflective');
+      return axios.get(state.apiRoot + '/wp/v2/reflective' + '?filter[' + '' + ']=' + '');
+
+      // return axios.get(state.apiRoot + '/wp/v2/reflective' + '?filter[' + filterby + ']=' + filters);
+      // return axios.get(state.apiRoot + '/wp/v2/reflective' + '?filter[' + 'tag' + ']=' + 'ai');
     }
 
     function getPraticePosts() {
-      return axios.get(state.apiRoot + '/wp/v2/pratice');
+      return axios.get(state.apiRoot + '/wp/v2/pratice' + '?filter[' + '' + ']=' + '');
+
+      // return axios.get(state.apiRoot + '/wp/v2/pratice' + '?filter[' + filterby + ']=' + filters);
+      // return axios.get(state.apiRoot + '/wp/v2/pratice' + '?filter[' + 'tag' + ']=' + 'ai');
     }
 
     function getContentTypes() {

@@ -2,7 +2,8 @@
   <div  class="">
     <p class="is-size-3">
       <div v-for="item in 3">
-        <input @click="addtoArray(item)" :value="item" id="checkBox" type="checkbox">
+        {{selectedItems}}
+        <input :value="item" id="checkBox" type="checkbox" v-model="selectedItems">
       </div>
 
     </p>
@@ -19,14 +20,20 @@ export default {
   props:[],
   data: function() {
     return {
-      genericData: 'generic component text'
+      genericData: 'generic component text',
+      selectedItems: []
     }
   },
-  methods:{
-    addtoArray: function(item){
-      this.$store.dispatch('TRIGGER_SELECTED',{'item':item})
+  watch: {
+    selectedItems: function(){
+      this.$store.dispatch('TRIGGER_SELECTED',{'item':this.selectedItems})
     }
   },
+  // methods:{
+  //   addtoArray: function(item){
+  //     this.$store.dispatch('TRIGGER_SELECTED',{'item':item})
+  //   }
+  // },
   computed: {
     ...mapGetters({
    selected: "GET_SELECTED",

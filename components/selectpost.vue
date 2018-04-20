@@ -1,39 +1,64 @@
 <template>
-<div class="mt-80">
-
-  <ul>
-    <!-- {{display}} -->
-    <li class="has-text-centered is-size-5" :key="postdata.id" v-for="postdata in display">
-      <postindex :postdata="postdata"></postindex>
-    </li>
-  </ul>
+<div class="">
+  <p class="is-size-3">
+    <input @click="toggleSelected()" id="checkBox" type="checkbox" :value="postid" v-model="isselected">
+  </p>
 </div>
 </template>
 <script>
-import postindex from '~/components/postIndex'
 import {
   mapGetters
 } from 'vuex'
+import _ from 'lodash'
 
 
 export default {
-  props: ['display'],
+  props: ['postid', 'posttype'],
   data: function() {
     return {
-      genericData: 'generic component text'
+      genericData: 'generic component text',
+      selectedItem: [],
+      isselected: [],
     }
   },
-  components:{
-    postindex
+  methods: {
+    checkIfSelected: function(){
+      var item = this.selected.find(item => item.postid === this.postid && item.posttype === this.posttype);
+      if (item != null){
+        this.isselected = [this.postid]
+      }else{
+        this.isselected = []
+      }
+    },
+    toggleSelected: function() {
+      if (this.isselected.length > 0) {
+
+        this.$store.dispatch('TRIGGER_REMOVESELECTED', {
+          'postid': this.postid,
+          'posttype': this.posttype
+        })
+      } else {
+        this.$store.dispatch('TRIGGER_ADDSELECTED', {
+          'postid': this.postid,
+          'posttype': this.posttype
+        })
+
+      }
+    }
   },
-  methods: {},
-  // computed: {
-  //   ...mapGetters({
-  //     featuredPosts: "GET_FEATUREDPOSTS",
-  //     reflectivePosts: "GET_REFLECTIVEPOSTS",
-  //     praticePosts: "GET_PRATICEPOSTS",
-  //   }),
-  // },
+  created(){
+    this.checkIfSelected()
+  },
+  watch: {
+    selected: function() {
+      this.checkIfSelected()
+    }
+  },
+  computed: {
+    ...mapGetters({
+      selected: "GET_SELECTED",
+    }),
+  },
 
 }
 </script>
