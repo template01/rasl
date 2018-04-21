@@ -6,13 +6,13 @@
       <p class="is-size-3">
         tags
       </p>
-      <singlefilter :filtertype="tags" :filtername="'tag'"></singlefilter>
+      <filtersingle :filtertype="tags" :filtername="'tag'"></filtersingle>
     </div>
     <div class="column">
       <p class="is-size-3">
         types
       </p>
-      <singlefilter :filtertype="contenttypes" :filtername="'contenttype'"></singlefilter>
+      <filtersingle :filtertype="contenttypes" :filtername="'contenttype'"></filtersingle>
     </div>
     <div class="column">
       <p class="is-size-3">
@@ -32,7 +32,7 @@
 </div>
 </template>
 <script>
-import singlefilter from '~/components/singlefilter.vue'
+import filtersingle from '~/components/filtersingle.vue'
 import search from '~/components/search.vue'
 // import selected from '~/components/selected.vue'
 
@@ -44,7 +44,7 @@ import {
 export default {
   props: [],
   components: {
-    singlefilter,
+    filtersingle,
     search,
     // selected
   },

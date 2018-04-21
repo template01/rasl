@@ -26,8 +26,18 @@ export default {
   methods: {
     setfilterby(filtername){
        this.$store.commit('SET_FILTERBY',filtername)
-
-    }
+    },
+    checkIfSelected: function(){
+      if(this.filterby === this.filtername){
+        var selected = ''
+        if (Array.isArray(this.filters)) {
+          selected =this.filters
+        } else {
+          selected = [this.filters]
+        }
+        this.selectedItems = selected
+      }
+    },
   },
   watch: {
     'filterby':function(){
@@ -45,10 +55,14 @@ export default {
       }
     }
   },
+  created(){
+    this.checkIfSelected()
+  },
   computed: {
     ...mapGetters({
       appinitated: "GET_APP_INITIATED",
       filterby: "GET_FILTERBY",
+      filters:"GET_FILTERS"
     }),
   },
 

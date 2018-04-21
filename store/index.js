@@ -13,6 +13,7 @@ export const state = () => ({
   reflectivePosts: [],
   previewData: [],
   filterby: '',
+  filters: [],
   selected: []
   // MOCK SELECTED
   // selected: [{'postid': 1801,'posttype': 'pratice'}]
@@ -33,6 +34,10 @@ export const getters = {
 
   GET_FILTERBY(state) {
     return state.filterby
+  },
+
+  GET_FILTERS(state) {
+    return state.filters
   },
 
   GET_APP_INITIATED(state) {
@@ -96,6 +101,10 @@ export const mutations = {
 
   SET_FILTERBY(state, name) {
     state.filterby = name;
+  },
+
+  SET_FILTERS(state, input) {
+    state.filters = input;
   },
 
   SET_ADDSELECTED(state, input) {
@@ -207,7 +216,7 @@ export const actions = {
       .then(axios.spread(function(reflective, pratice) {
         commit('SET_FILTERREFLECTIVEBY', reflective.data)
         commit('SET_PRATICEBY', pratice.data)
-
+        commit('SET_FILTERS',filter.items)
 
 
         var url = new URI(window.location.search).removeSearch("filter").removeSearch("filters").removeSearch("search").addSearch({
@@ -262,6 +271,15 @@ export const actions = {
     var filters = selected = querys['filters']
     console.log(filters)
 
+
+    if (filters != null) {
+      state.filters = filters
+    }
+
+    if (filterby != null) {
+      state.filterby = filterby
+    }
+
     // TO DO
 
     // SET ACTIVE SEARCH
@@ -297,15 +315,17 @@ export const actions = {
 
 
     function getReflectivePosts() {
-      return axios.get(state.apiRoot + '/wp/v2/reflective' + '?filter[' + '' + ']=' + '');
-
+      // console.log(state.apiRoot + '/wp/v2/reflective' + '?filter[' + state.filterby + ']=' + state.filters)
+      return axios.get(state.apiRoot + '/wp/v2/reflective' + '?filter[' + state.filterby + ']=' + state.filters);
+      // return axios.get(state.apiRoot + '/wp/v2/reflective');
       // return axios.get(state.apiRoot + '/wp/v2/reflective' + '?filter[' + filterby + ']=' + filters);
       // return axios.get(state.apiRoot + '/wp/v2/reflective' + '?filter[' + 'tag' + ']=' + 'ai');
     }
 
     function getPraticePosts() {
-      return axios.get(state.apiRoot + '/wp/v2/pratice' + '?filter[' + '' + ']=' + '');
-
+      // console.log(state.apiRoot + '/wp/v2/pratice' + '?filter[' + state.filterby + ']=' + state.filters)
+      return axios.get(state.apiRoot + '/wp/v2/pratice' + '?filter[' + state.filterby + ']=' + state.filters);
+      // return axios.get(state.apiRoot + '/wp/v2/pratice');
       // return axios.get(state.apiRoot + '/wp/v2/pratice' + '?filter[' + filterby + ']=' + filters);
       // return axios.get(state.apiRoot + '/wp/v2/pratice' + '?filter[' + 'tag' + ']=' + 'ai');
     }
@@ -319,7 +339,7 @@ export const actions = {
     }
 
 
-    const [reflective, pratice, contenttypes, tags] = await Promise.all([getPraticePosts(), getReflectivePosts(), getContentTypes(), getTags()])
+    const [reflective, pratice, contenttypes, tags] = await Promise.all([getReflectivePosts(), getPraticePosts(), getContentTypes(), getTags()])
     state.reflectivePosts = reflective.data
     state.praticePosts = pratice.data
 
