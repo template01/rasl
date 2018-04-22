@@ -36,7 +36,7 @@ module.exports = {
 
 
   router: {
-    middleware: ['closeReadmore', 'closeMenu'],
+    middleware: ['setSearchWindow','closeReadmore', 'closeMenu'],
     scrollBehavior: function(to, from, savedPosition) {
       if(to.path === '/about' && from.path === '/about'){
 

@@ -5,6 +5,7 @@ import _ from 'lodash'
 export const state = () => ({
   appinitated: true,
   apiRoot: 'http://194.61.64.171/backend/index.php/wp-json',
+  printServer: 'http://194.61.64.171:3001',
   posts: [],
   contenttypes: [],
   tags: [],
@@ -14,7 +15,9 @@ export const state = () => ({
   previewData: [],
   filterby: '',
   filters: [],
-  selected: []
+  selected: [],
+  searchquery: '',
+  windowsearch: ''
   // MOCK SELECTED
   // selected: [{'postid': 1801,'posttype': 'pratice'}]
 })
@@ -31,6 +34,14 @@ export const state = () => ({
 
 
 export const getters = {
+
+  GET_WINDOWSEARCH(state) {
+    return state.windowsearch
+  },
+
+  GET_SEARCHQUERY(state) {
+    return state.searchquery
+  },
 
   GET_FILTERBY(state) {
     return state.filterby
@@ -116,9 +127,15 @@ export const mutations = {
   },
 
   SET_REMOVESELECTED(state, input) {
+    console.log('remove: '+input.postid)
     state.selected = _.remove(state.selected, function(e) {
-      return e.postid != input.postid && e.posttype != input.posttype;
+      return e.postid != input.postid;
     });
+
+  },
+
+  SET_WINDOWSEARCH(state, input) {
+    state.windowsearch = input
   }
 
 }
@@ -126,7 +143,12 @@ export const mutations = {
 
 export const actions = {
 
-
+  // TRIGGER_SETWINDOWQUERY({
+  //   commit,
+  //   state,
+  //   router
+  // }){
+  // },
 
   TRIGGER_ADDSELECTED({
     commit,
@@ -141,6 +163,8 @@ export const actions = {
       selected: selectedItems.postid + ',' + selectedItems.posttype
     })
     window.history.replaceState({}, '', '?' + url._parts.query);
+    commit('SET_WINDOWSEARCH', location.search)
+
   },
 
   TRIGGER_REMOVESELECTED({
@@ -157,6 +181,7 @@ export const actions = {
       selected: selectedItems.postid + ',' + selectedItems.posttype
     })
     window.history.replaceState({}, '', '?' + url._parts.query);
+    commit('SET_WINDOWSEARCH', location.search)
 
     // var url = new URI(window.location.search).removeSearch("selected").addSearch({
     //   selected: state.selected[0].id
@@ -190,6 +215,8 @@ export const actions = {
           search: query.searchquery,
         });
         window.history.replaceState({}, '', '?' + url._parts.query);
+        commit('SET_WINDOWSEARCH', location.search)
+
 
 
       }));
@@ -216,7 +243,7 @@ export const actions = {
       .then(axios.spread(function(reflective, pratice) {
         commit('SET_FILTERREFLECTIVEBY', reflective.data)
         commit('SET_PRATICEBY', pratice.data)
-        commit('SET_FILTERS',filter.items)
+        commit('SET_FILTERS', filter.items)
 
 
         var url = new URI(window.location.search).removeSearch("filter").removeSearch("filters").removeSearch("search").addSearch({
@@ -224,6 +251,7 @@ export const actions = {
           filters: filter.items
         })
         window.history.replaceState({}, '', '?' + url._parts.query);
+        commit('SET_WINDOWSEARCH', location.search)
 
       }));
 
@@ -239,6 +267,9 @@ export const actions = {
     req,
     route
   }) {
+
+    // SET WINDOWSEARCH QUERY
+    commit('SET_WINDOWSEARCH', route.fullPath)
 
     // GET ALL QUERIES
     const querys = URI(route.fullPath).query(true)
@@ -266,9 +297,9 @@ export const actions = {
 
     // SET ACTIVE FILTERS
 
-    var filterby = selected = querys['filter']
+    var filterby = querys['filter']
     console.log(filterby)
-    var filters = selected = querys['filters']
+    var filters = querys['filters']
     console.log(filters)
 
 
@@ -280,11 +311,14 @@ export const actions = {
       state.filterby = filterby
     }
 
-    // TO DO
-
     // SET ACTIVE SEARCH
 
-    // TO DO
+
+    var searchquery = querys['search']
+
+    if (searchquery != null) {
+      state.searchquery = searchquery
+    }
 
 
 
@@ -315,19 +349,19 @@ export const actions = {
 
 
     function getReflectivePosts() {
-      // console.log(state.apiRoot + '/wp/v2/reflective' + '?filter[' + state.filterby + ']=' + state.filters)
-      return axios.get(state.apiRoot + '/wp/v2/reflective' + '?filter[' + state.filterby + ']=' + state.filters);
-      // return axios.get(state.apiRoot + '/wp/v2/reflective');
-      // return axios.get(state.apiRoot + '/wp/v2/reflective' + '?filter[' + filterby + ']=' + filters);
-      // return axios.get(state.apiRoot + '/wp/v2/reflective' + '?filter[' + 'tag' + ']=' + 'ai');
+      if (state.searchquery.length > 0) {
+        return axios.get(state.apiRoot + '/swp_api/search?s=' + state.searchquery + '&post_type=reflective');
+      } else {
+        return axios.get(state.apiRoot + '/wp/v2/reflective' + '?filter[' + state.filterby + ']=' + state.filters);
+      }
     }
 
     function getPraticePosts() {
-      // console.log(state.apiRoot + '/wp/v2/pratice' + '?filter[' + state.filterby + ']=' + state.filters)
-      return axios.get(state.apiRoot + '/wp/v2/pratice' + '?filter[' + state.filterby + ']=' + state.filters);
-      // return axios.get(state.apiRoot + '/wp/v2/pratice');
-      // return axios.get(state.apiRoot + '/wp/v2/pratice' + '?filter[' + filterby + ']=' + filters);
-      // return axios.get(state.apiRoot + '/wp/v2/pratice' + '?filter[' + 'tag' + ']=' + 'ai');
+      if (state.searchquery.length > 0) {
+        return axios.get(state.apiRoot + '/swp_api/search?s=' + state.searchquery + '&post_type=pratice');
+      } else {
+        return axios.get(state.apiRoot + '/wp/v2/pratice' + '?filter[' + state.filterby + ']=' + state.filters);
+      }
     }
 
     function getContentTypes() {

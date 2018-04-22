@@ -26,10 +26,16 @@ export default {
 
     }
   },
+  created(){
+    if(this.searchquerystate.length>0){
+      this.searchquery = this.searchquerystate
+    }
+  },
 
   computed: {
     ...mapGetters({
-     appinitated: "GET_APP_INITIATED",
+      appinitated: "GET_APP_INITIATED",
+     searchquerystate: "GET_SEARCHQUERY",
     }),
   },
 

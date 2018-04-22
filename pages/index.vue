@@ -1,11 +1,12 @@
 <template>
 <div class="">
+  <nuxt-link :to="'collection'+windowsearch">collection</nuxt-link>
   <div class="columns">
     <div class="column">
       <p class="has-text-centered is-size-3 mb-80">
         featured
       </p>
-      <postlistcomp :display="featuredPosts"></postlistcomp>
+      <postlist :display="featuredPosts"></postlist>
 
 
     </div>
@@ -17,13 +18,13 @@
         <p class="has-text-centered is-size-3 mb-80">
           reflective
         </p>
-        <postlistcomp :display="reflectivePosts"></postlistcomp>
+        <postlist :display="reflectivePosts"></postlist>
       </div>
       <div class="column">
         <p class="has-text-centered is-size-3 mb-80">
           pratice
         </p>
-        <postlistcomp :display="praticePosts"></postlistcomp>
+        <postlist :display="praticePosts"></postlist>
       </div>
     </div>
   </div>
@@ -35,7 +36,7 @@
 <script>
 // import genericcomp from '~/components/_genericComp.vue'
 import filters from '~/components/filters.vue'
-import postlistcomp from '~/components/postListComp.vue'
+import postlist from '~/components/postlist.vue'
 
 import axios from 'axios'
 import {
@@ -47,7 +48,7 @@ export default {
   components: {
     // genericcomp,
     filters,
-    postlistcomp
+    postlist
   },
   computed: {
     ...mapGetters({
@@ -55,8 +56,10 @@ export default {
       featuredPosts: "GET_FEATUREDPOSTS",
       reflectivePosts: "GET_REFLECTIVEPOSTS",
       praticePosts: "GET_PRATICEPOSTS",
+      windowsearch: "GET_WINDOWSEARCH"
     }),
   },
+
 
   async asyncData({
     params,
