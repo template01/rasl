@@ -1,47 +1,40 @@
 <template>
 <div class="">
-  <input placeholder="First name" v-debounce="400" v-model.lazy="searchquery" type="search">
+  <div v-if="type === 'pratice'">
+    {{praticecurrentpagina}}/{{praticetotalpagina}}
+    <button @click="fetchmorecontent()">load more</button>
+  </div>
+  <div  v-if="type === 'reflective'">
+    {{reflectivecurrentpagina}}/{{reflectivetotalpagina}}
+    <button @click="fetchmorecontent()">load more</button>
+  </div>
 </div>
 </template>
 <script>
-import debounce from 'v-debounce'
 import {
   mapGetters
 } from 'vuex'
 
 
 export default {
-  props: [],
+  props: ['type'],
   data: function() {
     return {
-      searchquery: '',
+      genericData: 'generic component text'
     }
   },
-  methods: {},
-  directives: {
-    debounce
-  },
-  watch: {
-    'searchquery': function() {
-      this.$store.commit('SET_FILTERBY', 'search')
-      this.$store.commit('SET_SEARCHQUERY', this.searchquery)
-      this.$store.dispatch('TRIGGER_SEARCHBYCOLUMNS', {
-        'searchquery': this.searchquery
-      })
+  methods: {
 
+    fetchmorecontent: function(){
+      this.$store.dispatch('TRIGGER_FETCHMORECONTENT',this.type)
     }
   },
-  created() {
-    console.log(this.searchquerystate)
-    if (this.searchquerystate.length > 0) {
-      this.searchquery = this.searchquerystate
-    }
-  },
-
   computed: {
     ...mapGetters({
-      appinitated: "GET_APP_INITIATED",
-      searchquerystate: "GET_SEARCHQUERY",
+      praticetotalpagina: "GET_PRATICETOTALPAGINA",
+      reflectivetotalpagina: "GET_REFLECTIVETOTALPAGINA",
+      praticecurrentpagina: "GET_PRATICECURRENTPAGINA",
+      reflectivecurrentpagina: "GET_REFLECTIVECURRENTPAGINA",
     }),
   },
 

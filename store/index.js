@@ -17,7 +17,11 @@ export const state = () => ({
   filters: [],
   selected: [],
   searchquery: '',
-  windowsearch: ''
+  windowsearch: '',
+  praticecurrentpagina: 1,
+  praticetotalpagina: 0,
+  reflectivecurrentpagina: 1,
+  reflectivetotalpagina: 0,
   // MOCK SELECTED
   // selected: [{'postid': 1801,'posttype': 'pratice'}]
 })
@@ -86,17 +90,58 @@ export const getters = {
   GET_SELECTED(state) {
     return state.selected
   },
+
+  GET_REFLECTIVECURRENTPAGINA(state) {
+    return state.reflectivecurrentpagina
+  },
+  GET_PRATICECURRENTPAGINA(state) {
+    return state.praticecurrentpagina
+  },
+
+  GET_REFLECTIVETOTALPAGINA(state) {
+    return state.reflectivetotalpagina
+  },
+  GET_PRATICETOTALPAGINA(state) {
+    return state.praticetotalpagina
+  }
 }
 
 export const mutations = {
+
+
+  SET_REFLECTIVECURRENTPAGINA(state, input) {
+    state.reflectivecurrentpagina = input
+  },
+
+  SET_PRATICECURRENTPAGINA(state, input) {
+    state.praticecurrentpagina = input
+  },
+
+  SET_REFLECTIVETOTALPAGINA(state, input) {
+    state.reflectivetotalpagina = input
+  },
+
+  SET_PRATICETOTALPAGINA(state, input) {
+    state.praticetotalpagina = input
+  },
 
   SET_FILTERREFLECTIVEBY(state, filterinput) {
     state.reflectivePosts = filterinput
   },
 
-  SET_PRATICEBY(state, filterinput) {
+  SET_FILTERPRATICEBY(state, filterinput) {
     state.praticePosts = filterinput
   },
+
+
+  SET_GETMOREREFLECTIVE(state, input) {
+    state.reflectivePosts = state.reflectivePosts.concat(input);
+  },
+
+  SET_GETMOREPRATICE(state, input) {
+    state.praticePosts = state.praticePosts.concat(input);
+  },
+
 
   SET_PREVIEWDATA(state, previewData) {
     state.previewData = previewData;
@@ -127,7 +172,6 @@ export const mutations = {
   },
 
   SET_REMOVESELECTED(state, input) {
-    console.log('remove: '+input.postid)
     state.selected = _.remove(state.selected, function(e) {
       return e.postid != input.postid;
     });
@@ -136,7 +180,11 @@ export const mutations = {
 
   SET_WINDOWSEARCH(state, input) {
     state.windowsearch = input
-  }
+  },
+
+  SET_SEARCHQUERY(state, input) {
+    state.searchquery = input;
+  },
 
 }
 
@@ -197,19 +245,38 @@ export const actions = {
     state
   }, query) {
 
+
+    // commit('SET_REFLECTIVETOTALPAGINA',reflective.headers['x-wp-totalpages'])
+    // commit('SET_PRATICETOTALPAGINA', pratice.headers['x-wp-totalpages'])
+    commit('SET_REFLECTIVETOTALPAGINA',1)
+    commit('SET_PRATICETOTALPAGINA', 1)
+    commit('SET_PRATICECURRENTPAGINA',1)
+    commit('SET_REFLECTIVECURRENTPAGINA',1)
+
     function getReflectivePosts() {
-      return axios.get(state.apiRoot + '/swp_api/search?s=' + query.searchquery + '&post_type=reflective');
+      return axios.get(state.apiRoot + '/wp/v2/reflective' + '?search='+ query.searchquery + '&per_page=10&page='+state.reflectivetotalpagina);
+      // return axios.get(state.apiRoot + '/swp_api/search?s=' + query.searchquery + '&post_type=reflective&posts_per_page=10');
     }
 
 
     function getPraticePosts() {
-      return axios.get(state.apiRoot + '/swp_api/search?s=' + query.searchquery + '&post_type=pratice');
+      return axios.get(state.apiRoot + '/wp/v2/pratice' + '?search='+ query.searchquery + '&per_page=10&page='+state.praticetotalpagina);
+      // return axios.get(state.apiRoot + '/swp_api/search?s=' + query.searchquery + '&post_type=pratice&posts_per_page=10');
     }
 
     axios.all([getReflectivePosts(), getPraticePosts()])
       .then(axios.spread(function(reflective, pratice) {
         commit('SET_FILTERREFLECTIVEBY', reflective.data)
-        commit('SET_PRATICEBY', pratice.data)
+        commit('SET_FILTERPRATICEBY', pratice.data)
+        console.log('SEARCH')
+        console.log(reflective.headers['x-wp-totalpages'])
+        console.log(reflective.headers)
+        console.log(reflective)
+        commit('SET_REFLECTIVETOTALPAGINA',reflective.headers['x-wp-totalpages'])
+        commit('SET_PRATICETOTALPAGINA', pratice.headers['x-wp-totalpages'])
+        // commit('SET_PRATICECURRENTPAGINA',1)
+        // commit('SET_REFLECTIVECURRENTPAGINA',1)
+
 
         var url = new URI(window.location.search).removeSearch("filter").removeSearch("filters").removeSearch("search").addSearch({
           search: query.searchquery,
@@ -225,6 +292,56 @@ export const actions = {
 
 
 
+  TRIGGER_FETCHMORECONTENT({
+    commit,
+    state
+  }, contenttype) {
+
+    console.log('trigger' + contenttype)
+    if (contenttype === 'pratice' && state.praticecurrentpagina < state.praticetotalpagina) {
+      commit('SET_PRATICECURRENTPAGINA', state.praticecurrentpagina + 1)
+      console.log('stat' + state.praticecurrentpagina)
+      console.log('stat' + state.praticetotalpagina)
+      axios.all([getPraticePosts(state.praticecurrentpagina)])
+        .then(axios.spread(function(content) {
+        commit('SET_GETMOREPRATICE', content.data)
+        }));
+
+    }
+    if (contenttype === 'reflective' && state.reflectivecurrentpagina < state.reflectivetotalpagina) {
+      commit('SET_REFLECTIVECURRENTPAGINA', state.reflectivecurrentpagina + 1)
+      console.log('stat' + state.reflectivecurrentpagina)
+      console.log('stat' + state.reflectivetotalpagina)
+      axios.all([getReflectivePosts(state.reflectivecurrentpagina)])
+        .then(axios.spread(function(content) {
+          commit('SET_GETMOREREFLECTIVE', content.data)
+        }));
+
+    }
+
+    function getReflectivePosts(page) {
+      return axios.get(state.apiRoot + '/wp/v2/reflective' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page='+page);
+    }
+    function getPraticePosts(page) {
+      return axios.get(state.apiRoot + '/wp/v2/pratice' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page='+page);
+    }
+
+
+    function getReflectivePostsSearch(page) {
+      return axios.get(state.apiRoot + '/wp/v2/reflective' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page='+page);
+      axios.get(state.apiRoot + '/swp_api/search?s=' + query.searchquery + '&post_type=pratice&posts_per_page=10');
+    }
+    function getPraticePostsSearch(page) {
+      return axios.get(state.apiRoot + '/wp/v2/pratice' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page='+page);
+      axios.get(state.apiRoot + '/swp_api/search?s=' + query.searchquery + '&post_type=pratice&posts_per_page=10');
+    }
+
+
+
+
+  },
+
+
 
   TRIGGER_FILTERCONTENTBY({
     commit,
@@ -232,18 +349,22 @@ export const actions = {
   }, filter) {
 
     function getReflectivePosts() {
-      return axios.get(state.apiRoot + '/wp/v2/reflective' + '?filter[' + filter.name + ']=' + filter.items);
+      return axios.get(state.apiRoot + '/wp/v2/reflective' + '?filter[' + filter.name + ']=' + filter.items + '&per_page=10&page=1');
     }
 
     function getPraticePosts() {
-      return axios.get(state.apiRoot + '/wp/v2/pratice' + '?filter[' + filter.name + ']=' + filter.items);
+      return axios.get(state.apiRoot + '/wp/v2/pratice' + '?filter[' + filter.name + ']=' + filter.items + '&per_page=10&page=1');
     }
 
     axios.all([getReflectivePosts(), getPraticePosts()])
       .then(axios.spread(function(reflective, pratice) {
         commit('SET_FILTERREFLECTIVEBY', reflective.data)
-        commit('SET_PRATICEBY', pratice.data)
+        commit('SET_FILTERPRATICEBY', pratice.data)
         commit('SET_FILTERS', filter.items)
+        commit('SET_REFLECTIVETOTALPAGINA',reflective.headers['x-wp-totalpages'])
+        commit('SET_PRATICETOTALPAGINA', pratice.headers['x-wp-totalpages'])
+        commit('SET_PRATICECURRENTPAGINA',1)
+        commit('SET_REFLECTIVECURRENTPAGINA',1)
 
 
         var url = new URI(window.location.search).removeSearch("filter").removeSearch("filters").removeSearch("search").addSearch({
@@ -269,7 +390,10 @@ export const actions = {
   }) {
 
     // SET WINDOWSEARCH QUERY
-    commit('SET_WINDOWSEARCH', route.fullPath)
+
+    var questionPos = route.fullPath.lastIndexOf('?');
+    var queryResult = route.fullPath.substring(questionPos + 1);
+    commit('SET_WINDOWSEARCH', '?' + queryResult)
 
     // GET ALL QUERIES
     const querys = URI(route.fullPath).query(true)
@@ -298,9 +422,7 @@ export const actions = {
     // SET ACTIVE FILTERS
 
     var filterby = querys['filter']
-    console.log(filterby)
     var filters = querys['filters']
-    console.log(filters)
 
 
     if (filters != null) {
@@ -317,7 +439,7 @@ export const actions = {
     var searchquery = querys['search']
 
     if (searchquery != null) {
-      state.searchquery = searchquery
+      commit('SET_SEARCHQUERY', searchquery)
     }
 
 
@@ -350,17 +472,21 @@ export const actions = {
 
     function getReflectivePosts() {
       if (state.searchquery.length > 0) {
-        return axios.get(state.apiRoot + '/swp_api/search?s=' + state.searchquery + '&post_type=reflective');
+        return axios.get(state.apiRoot + '/wp/v2/reflective' + '?search='+ state.searchquery + '&per_page=10');
+        // return axios.get(state.apiRoot + '/swp_api/search?s=' + state.searchquery + '&post_type=reflective&posts_per_page=10');
+
       } else {
-        return axios.get(state.apiRoot + '/wp/v2/reflective' + '?filter[' + state.filterby + ']=' + state.filters);
+        return axios.get(state.apiRoot + '/wp/v2/reflective' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page=1');
       }
     }
 
     function getPraticePosts() {
       if (state.searchquery.length > 0) {
-        return axios.get(state.apiRoot + '/swp_api/search?s=' + state.searchquery + '&post_type=pratice');
+        return axios.get(state.apiRoot + '/wp/v2/pratice' + '?search='+ state.searchquery + '&per_page=10');
+        // return axios.get(state.apiRoot + '/swp_api/search?s=' + state.searchquery + '&post_type=pratice&posts_per_page=10');
+
       } else {
-        return axios.get(state.apiRoot + '/wp/v2/pratice' + '?filter[' + state.filterby + ']=' + state.filters);
+        return axios.get(state.apiRoot + '/wp/v2/pratice' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page=1');
       }
     }
 
@@ -376,6 +502,11 @@ export const actions = {
     const [reflective, pratice, contenttypes, tags] = await Promise.all([getReflectivePosts(), getPraticePosts(), getContentTypes(), getTags()])
     state.reflectivePosts = reflective.data
     state.praticePosts = pratice.data
+
+    state.praticetotalpagina = pratice.headers['x-wp-totalpages']
+    state.reflectivetotalpagina = reflective.headers['x-wp-totalpages']
+
+    console.log(reflective.headers)
 
     // FILTER OUT contenttypes WITH NO ATTACHED POSTS (COUNT:0)
     state.contenttypes = _.filter(contenttypes.data, function(v) {

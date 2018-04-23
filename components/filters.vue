@@ -21,13 +21,6 @@
       <search></search>
 
     </div>
-    <!-- <div class="column">
-      <p class="is-size-3">
-        selected
-      </p>
-      <selected></selected>
-
-    </div> -->
   </div>
 </div>
 </template>

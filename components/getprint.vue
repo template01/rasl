@@ -1,31 +1,16 @@
 <template>
 <div class="mt-80 mb-80 mr-20 ml-20">
-  <div v-if="appinitated" class="container">
-    <input v-model="sourceUrl" />
-
+  <div class="container">
     <button @click="getPdf()">get pdf print</button>
-    <!-- <span v-if="loadingpdf">making pdf...</span> -->
     <br />
     <br />
     <div class="progress">
       <div class="bar" :style="{'width':+progress+'%'}">
-
       </div>
     </div>
     <span v-if="error">Ups... Something went wrong!</span>
-    <!-- <a v-if="!loadingpdf && pdf" download="my document" :href="'data:application/pdf;base64,'+pdf.result.data" >Download pdf document</a> -->
   </div>
-  <div v-else class="container">
-    <div>
-      <div class="columns">
-        <div class="column">
-          <p class="is-size-3 has-text-danger">
-            Loading
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
+
 </div>
 </div>
 </template>
@@ -49,7 +34,7 @@ export default {
   },
   data: function() {
     return {
-      sourceUrl: 'rasl.nu',
+      sourceUrl: 'http://template-studio.nl:3002/collection/print',
       pdf: '',
       erros: [],
       error: false,
@@ -59,8 +44,9 @@ export default {
   },
   computed: {
     ...mapGetters({
-      appinitated: "GET_APP_INITIATED",
+      windowsearch: "GET_WINDOWSEARCH",
     }),
+
   },
   methods: {
     getPdf: function() {
@@ -92,7 +78,7 @@ export default {
           },
           "to": "pdf",
           "converter": {
-            "uri": this.sourceUrl,
+            "uri": this.sourceUrl+this.windowsearch,
             "extend": {
               "image-dpi":"300",
               // "grayscale":"",

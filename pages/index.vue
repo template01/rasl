@@ -19,12 +19,14 @@
           reflective
         </p>
         <postlist :display="reflectivePosts"></postlist>
+        <getmore type="reflective"></getmore>
       </div>
       <div class="column">
         <p class="has-text-centered is-size-3 mb-80">
           pratice
         </p>
         <postlist :display="praticePosts"></postlist>
+        <getmore type="pratice"></getmore>
       </div>
     </div>
   </div>
@@ -37,6 +39,7 @@
 // import genericcomp from '~/components/_genericComp.vue'
 import filters from '~/components/filters.vue'
 import postlist from '~/components/postlist.vue'
+import getmore from '~/components/getmore.vue'
 
 import axios from 'axios'
 import {
@@ -48,6 +51,7 @@ export default {
   components: {
     // genericcomp,
     filters,
+    getmore,
     postlist
   },
   computed: {

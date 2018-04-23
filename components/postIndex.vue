@@ -1,6 +1,9 @@
 <template>
 <div class="">
       {{postdata.title.rendered}}
+      <br />
+      {{postdata.id}}
+      <br />
       {{postdata.type}}
       <selectpost :posttype="postdata.type" :postid="postdata.id"></selectpost>
 </div>

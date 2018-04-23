@@ -21,10 +21,12 @@ export default {
     return {
       genericData: 'generic component text',
       selectedItems: [],
+      active: false
     }
   },
   methods: {
     setfilterby(filtername){
+        this.active = true
        this.$store.commit('SET_FILTERBY',filtername)
     },
     checkIfSelected: function(){
@@ -46,11 +48,7 @@ export default {
       }
     },
     'selectedItems': function() {
-      // console.log(this.filterby)
-      console.log(this.filtername)
-
-
-      if(this.filterby === this.filtername){
+      if(this.filterby === this.filtername && this.active){
         this.$store.dispatch('TRIGGER_FILTERCONTENTBY',{'items':this.selectedItems,'name':this.filtername})
       }
     }

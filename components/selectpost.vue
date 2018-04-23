@@ -24,7 +24,6 @@ export default {
   methods: {
     checkIfSelected: function(){
       var item = this.selected.find(item => item.postid === this.postid && item.posttype === this.posttype);
-      console.log(item)
       if (item != null){
         this.isselected = [this.postid]
       }else{
