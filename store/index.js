@@ -163,6 +163,12 @@ export const mutations = {
     state.filters = input;
   },
 
+
+  SET_SELECTED(state, input) {
+    state.selected = input;
+  },
+
+
   SET_ADDSELECTED(state, input) {
     state.selected.push(input);
     state.selected = _.uniqBy(state.selected, 'postid', 'posttype');
@@ -197,6 +203,30 @@ export const actions = {
   //   router
   // }){
   // },
+
+
+    TRIGGER_SELECTED({
+      commit,
+      state
+    }, selectedItems) {
+
+
+       commit('SET_SELECTED',selectedItems)
+
+      // commit('SET_ADDSELECTED', {
+      //   'postid': selectedItems.postid,
+      //   'posttype': selectedItems.posttype
+      // })
+      // var url = new URI(window.location.search).addSearch({
+      //   selected: selectedItems.postid + ',' + selectedItems.posttype
+      // })
+      // window.history.replaceState({}, '', '?' + url._parts.query);
+      // commit('SET_WINDOWSEARCH', location.search)
+
+            // window.history.replaceState({}, '', '?' + url._parts.query);
+
+    },
+
 
   TRIGGER_ADDSELECTED({
     commit,

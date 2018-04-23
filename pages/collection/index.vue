@@ -5,7 +5,7 @@
       <p class="has-text-centered is-size-3 mb-80">
         selected
       </p>
-      <postlist :display="selectedPosts"></postlist>
+      <postlistdraggable :display="selectedPosts"></postlistdraggable>
       <getprint></getprint>
 
     </div>
@@ -17,7 +17,7 @@
 
 <script>
 // import genericcomp from '~/components/_genericComp.vue'
-import postlist from '~/components/postlist.vue'
+import postlistdraggable from '~/components/print/postlistdraggable.vue'
 import getprint from '~/components/getprint.vue'
 
 import axios from 'axios'
@@ -29,7 +29,7 @@ import {
 export default {
   components: {
     // genericcomp,
-    postlist,
+    postlistdraggable,
     getprint
   },
   computed: {

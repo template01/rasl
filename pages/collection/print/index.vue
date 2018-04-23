@@ -1,5 +1,6 @@
 <template>
 <div class="">
+
   <div class="columns">
     <div class="column">
       <printlist :display="selectedPosts"></printlist>

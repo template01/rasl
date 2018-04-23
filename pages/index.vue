@@ -63,6 +63,10 @@ export default {
       windowsearch: "GET_WINDOWSEARCH"
     }),
   },
+  //
+  // mounted(){
+  //   window.history.replaceState({}, '', this.$store.state.windowsearch.replace(/^\/+/g, ''));
+  // },
 
 
   async asyncData({
