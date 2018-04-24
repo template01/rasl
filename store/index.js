@@ -255,11 +255,6 @@ export const actions = {
     })
     window.history.replaceState({}, '', '?' + url._parts.query);
     commit('SET_WINDOWSEARCH', location.search)
-
-    // var url = new URI(window.location.search).removeSearch("selected").addSearch({
-    //   selected: state.selected[0].id
-    // })
-    // window.history.replaceState({}, '', '?' + url._parts.query);
   },
 
 
@@ -269,10 +264,6 @@ export const actions = {
     commit,
     state
   }, query) {
-
-
-    // commit('SET_REFLECTIVETOTALPAGINA',reflective.headers['x-wp-totalpages'])
-    // commit('SET_PRATICETOTALPAGINA', pratice.headers['x-wp-totalpages'])
     commit('SET_REFLECTIVETOTALPAGINA',1)
     commit('SET_PRATICETOTALPAGINA', 1)
     commit('SET_PRATICECURRENTPAGINA',1)
