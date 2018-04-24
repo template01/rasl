@@ -1,5 +1,5 @@
 <template>
-<div class="mt-80">
+<div class="">
 
   <ul>
     <!-- {{display}} -->

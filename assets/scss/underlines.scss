@@ -1,0 +1,7 @@
+@import "variables";
+
+.has-text-underline-dark{
+  -webkit-box-shadow: inset 0px -2px 0px 0px $brown;
+  -moz-box-shadow: inset 0px -2px 0px 0px $brown;
+  box-shadow: inset 0px -2px 0px 0px $brown;
+}

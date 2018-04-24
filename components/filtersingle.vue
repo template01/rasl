@@ -1,10 +1,15 @@
 <template>
-<div class="">
-  <div v-for="filteritem in filtertype">
-    <label @click="setfilterby(filtername)" v-html="filteritem.name"></label>
-    <input @click="setfilterby(filtername)" v-model="selectedItems" :value="filteritem.slug" id="checkBox" type="checkbox">
+<div class="pt-20">
+  <div  class="wrapper" v-for="filteritem in filtertype">
+    <div class="p-20 mb-10">
+    <label class="">
+        <input @click="setfilterby(filtername)" v-model="selectedItems" :value="filteritem.slug" id="checkBox" type="checkbox">
+        <span  class="p-20 outer-filter" v-html="filteritem.name"></span>
+
+    </label>
   </div>
-  slected: {{selectedItems}}
+  </div>
+  <!-- slected: {{selectedItems}} -->
 </div>
 </template>
 <script>
@@ -25,15 +30,15 @@ export default {
     }
   },
   methods: {
-    setfilterby(filtername){
-        this.active = true
-       this.$store.commit('SET_FILTERBY',filtername)
+    setfilterby(filtername) {
+      this.active = true
+      this.$store.commit('SET_FILTERBY', filtername)
     },
-    checkIfSelected: function(){
-      if(this.filterby === this.filtername){
+    checkIfSelected: function() {
+      if (this.filterby === this.filtername) {
         var selected = ''
         if (Array.isArray(this.filters)) {
-          selected =this.filters
+          selected = this.filters
         } else {
           selected = [this.filters]
         }
@@ -42,97 +47,49 @@ export default {
     },
   },
   watch: {
-    'filterby':function(){
-      if(this.filterby != this.filtername){
+    'filterby': function() {
+      if (this.filterby != this.filtername) {
         this.selectedItems = []
       }
     },
     'selectedItems': function() {
-      if(this.filterby === this.filtername && this.active){
-        this.$store.dispatch('TRIGGER_FILTERCONTENTBY',{'items':this.selectedItems,'name':this.filtername})
+      if (this.filterby === this.filtername && this.active) {
+        this.$store.dispatch('TRIGGER_FILTERCONTENTBY', {
+          'items': this.selectedItems,
+          'name': this.filtername
+        })
       }
     }
   },
-  created(){
+  created() {
     this.checkIfSelected()
   },
   computed: {
     ...mapGetters({
       appinitated: "GET_APP_INITIATED",
       filterby: "GET_FILTERBY",
-      filters:"GET_FILTERS"
+      filters: "GET_FILTERS"
     }),
   },
 
 }
 </script>
 <style scoped lang="scss">
-.VueToNuxtLogo {
-    display: inline-block;
-    animation: turn 2s linear forwards 1s;
-    transform: rotateX(180deg);
-    position: relative;
-    overflow: hidden;
-    height: 180px;
-    width: 245px;
+.wrapper{
+  float: left;
 }
-
-.Triangle {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 0;
+input{
+  display: none;
 }
+input[type=checkbox]:checked + .outer-filter {
+  background: $white;
+  border: 2px solid $white;
 
-.Triangle--one {
-    border-left: 105px solid transparent;
-    border-right: 105px solid transparent;
-    border-bottom: 180px solid #41B883;
 }
+.outer-filter{
+  min-width: 50px;
+  border: 2px solid $black;
+  border-radius: 100px;
 
-.Triangle--two {
-    top: 30px;
-    left: 35px;
-    animation: goright 0.5s linear forwards 3.5s;
-    border-left: 87.5px solid transparent;
-    border-right: 87.5px solid transparent;
-    border-bottom: 150px solid #3B8070;
-}
-
-.Triangle--three {
-    top: 60px;
-    left: 35px;
-    animation: goright 0.5s linear forwards 3.5s;
-    border-left: 70px solid transparent;
-    border-right: 70px solid transparent;
-    border-bottom: 120px solid #35495E;
-}
-
-.Triangle--four {
-    top: 120px;
-    left: 70px;
-    animation: godown 0.5s linear forwards 3s;
-    border-left: 35px solid transparent;
-    border-right: 35px solid transparent;
-    border-bottom: 60px solid #fff;
-}
-
-@keyframes turn {
-    100% {
-        transform: rotateX(0deg);
-    }
-}
-
-@keyframes godown {
-    100% {
-        top: 180px;
-    }
-}
-
-@keyframes goright {
-    100% {
-        left: 70px;
-    }
 }
 </style>

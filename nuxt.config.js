@@ -36,7 +36,7 @@ module.exports = {
 
 
   router: {
-    middleware: ['setSearchWindow','closeReadmore', 'closeMenu'],
+    middleware: ['setSearchWindow', 'closeReadmore', 'closeMenu'],
     // scrollBehavior: function(to, from, savedPosition) {
     //   if(to.path === '/about' && from.path === '/about'){
     //
@@ -120,10 +120,12 @@ module.exports = {
     vendor: ['axios', 'lodash'],
 
 
-   styleResources: {
-      scss: './assets/sass/variables.scss'
-    },
-
+    styleResources: {
+       scss: './assets/scss/variables.scss',
+       scss: './assets/scss/colors.scss',
+       scss: './assets/scss/main.scss',
+       // scss: './assets/scss/underlines.scss'
+     },
 
     postcss: {
       plugins: {

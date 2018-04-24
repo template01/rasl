@@ -1,6 +1,6 @@
 <template>
 <div class="">
-  <input placeholder="First name" v-debounce="400" v-model.lazy="searchquery" type="search">
+  <input placeholder="Type here" v-debounce="400" v-model.lazy="searchquery" type="search">
 </div>
 </template>
 <script>

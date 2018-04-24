@@ -1,7 +1,7 @@
 <template>
-<div class="container pb-60">
+<div class="">
 
-  <div class="columns">
+  <div class="columns is-marginless">
     <div class="column">
       <p class="is-size-3">
         tags
