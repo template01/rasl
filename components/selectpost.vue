@@ -1,6 +1,6 @@
 <template>
 <div class="">
-  <p class="is-size-3">
+  <p class="">
     <input @click="toggleSelected()" id="checkBox" type="checkbox" :value="postid" v-model="isselected">
   </p>
 </div>

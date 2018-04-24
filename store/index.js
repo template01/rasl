@@ -209,22 +209,17 @@ export const actions = {
       commit,
       state
     }, selectedItems) {
-
-
-       commit('SET_SELECTED',selectedItems)
-
-      // commit('SET_ADDSELECTED', {
-      //   'postid': selectedItems.postid,
-      //   'posttype': selectedItems.posttype
-      // })
-      // var url = new URI(window.location.search).addSearch({
-      //   selected: selectedItems.postid + ',' + selectedItems.posttype
-      // })
-      // window.history.replaceState({}, '', '?' + url._parts.query);
-      // commit('SET_WINDOWSEARCH', location.search)
-
-            // window.history.replaceState({}, '', '?' + url._parts.query);
-
+       var tempSelectedArray = []
+       var url = new URI(window.location.search).removeSearch('selected')
+       selectedItems.forEach(function(element) {
+         url.addSearch({
+           selected: element.id + ',' + element.type
+         })
+         tempSelectedArray.push({'postid':element.id,'posttype':element.type})
+       });
+       commit('SET_SELECTED',tempSelectedArray)
+       window.history.replaceState({}, '', '?' + url._parts.query);
+       commit('SET_WINDOWSEARCH', location.search)
     },
 
 
@@ -298,16 +293,8 @@ export const actions = {
       .then(axios.spread(function(reflective, pratice) {
         commit('SET_FILTERREFLECTIVEBY', reflective.data)
         commit('SET_FILTERPRATICEBY', pratice.data)
-        console.log('SEARCH')
-        console.log(reflective.headers['x-wp-totalpages'])
-        console.log(reflective.headers)
-        console.log(reflective)
         commit('SET_REFLECTIVETOTALPAGINA',reflective.headers['x-wp-totalpages'])
         commit('SET_PRATICETOTALPAGINA', pratice.headers['x-wp-totalpages'])
-        // commit('SET_PRATICECURRENTPAGINA',1)
-        // commit('SET_REFLECTIVECURRENTPAGINA',1)
-
-
         var url = new URI(window.location.search).removeSearch("filter").removeSearch("filters").removeSearch("search").addSearch({
           search: query.searchquery,
         });
@@ -327,11 +314,8 @@ export const actions = {
     state
   }, contenttype) {
 
-    console.log('trigger' + contenttype)
     if (contenttype === 'pratice' && state.praticecurrentpagina < state.praticetotalpagina) {
       commit('SET_PRATICECURRENTPAGINA', state.praticecurrentpagina + 1)
-      console.log('stat' + state.praticecurrentpagina)
-      console.log('stat' + state.praticetotalpagina)
       axios.all([getPraticePosts(state.praticecurrentpagina)])
         .then(axios.spread(function(content) {
         commit('SET_GETMOREPRATICE', content.data)
@@ -340,8 +324,6 @@ export const actions = {
     }
     if (contenttype === 'reflective' && state.reflectivecurrentpagina < state.reflectivetotalpagina) {
       commit('SET_REFLECTIVECURRENTPAGINA', state.reflectivecurrentpagina + 1)
-      console.log('stat' + state.reflectivecurrentpagina)
-      console.log('stat' + state.reflectivetotalpagina)
       axios.all([getReflectivePosts(state.reflectivecurrentpagina)])
         .then(axios.spread(function(content) {
           commit('SET_GETMOREREFLECTIVE', content.data)
@@ -535,8 +517,6 @@ export const actions = {
 
     state.praticetotalpagina = pratice.headers['x-wp-totalpages']
     state.reflectivetotalpagina = reflective.headers['x-wp-totalpages']
-
-    console.log(reflective.headers)
 
     // FILTER OUT contenttypes WITH NO ATTACHED POSTS (COUNT:0)
     state.contenttypes = _.filter(contenttypes.data, function(v) {

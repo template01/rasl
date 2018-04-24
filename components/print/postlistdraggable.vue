@@ -2,15 +2,20 @@
 <div class="mt-80">
   <div class="">
     <draggable @start="drag=true" v-model="myArray" @end="drag=false">
-      <div class="columns is-size-5" :key="postdata.id" v-for="postdata in myArray">
-        <div class="column is-1 sort">
-          =
+      <transition-group name="list-complete">
+        <div class="columns is-size-5 list-complete-item" :key="postdata.id" v-for="postdata in myArray">
+          <div class="column is-1 sort">
+            =
+          </div>
+          <div class="column is-10">
+            {{postdata.title.rendered}}
+            <!-- <postindex :postdata="postdata"></postindex> -->
+          </div>
+          <div class="column is-1">
+            <selectpost :posttype="postdata.type" :postid="postdata.id"></selectpost>
+          </div>
         </div>
-        <div class="column is-11">
-
-          <postindex :postdata="postdata"></postindex>
-        </div>
-      </div>
+      </transition-group>
     </draggable>
 
   </div class="container">
@@ -19,6 +24,8 @@
 <script>
 import postindex from '~/components/postIndex'
 import draggable from 'vuedraggable'
+import selectpost from '~/components/selectpost'
+
 var URI = require('urijs');
 
 
@@ -32,51 +39,21 @@ export default {
   data: function() {
     return {
       myArray: [],
-      prepareforstoreselected:[],
+      prepareforstoreselected: [],
       genericData: 'generic component text'
     }
   },
   components: {
     postindex,
-    draggable
+    draggable,
+    selectpost
   },
   created() {
     this.myArray = this.display
   },
   watch: {
     'myArray': function() {
-      console.log('change')
-      var url = new URI(window.location.search).removeSearch('selected')
-
-      var vm = this
-      vm.prepareforstoreselected = []
-      this.myArray.forEach(function(element) {
-        url.addSearch({
-          selected: element.id + ',' + element.type
-        })
-        vm.prepareforstoreselected.push({'postid':element.id,'posttype':element.type})
-      });
-      window.history.replaceState({}, '', '?' + url._parts.query);
-
-      this.$store.commit('SET_WINDOWSEARCH', location.search)
-      // this.$store.commit('SET_SELECTED',this.prepareforstoreselected)
-      this.$store.dispatch('TRIGGER_SELECTED',this.prepareforstoreselected)
-
-      // const results = (await axios.all(
-      //   featuredPosts.map(
-      //     function(featuredPostSingle) {
-      //       // CHECK IF POSTS HAS A LINK
-      //       if ('ID' in featuredPostSingle.acf.postlink) {
-      //         return axios.get(state.apiRoot + `/wp/v2/${featuredPostSingle.acf.postlink.post_type}/${featuredPostSingle.acf.postlink.ID}`)
-      //       } else {
-      //         return {}
-      //       }
-      //     }
-      //   )
-      // )).map(result => result.data)
-
-
-
+      this.$store.dispatch('TRIGGER_SELECTED', this.myArray)
     }
   },
   methods: {},
@@ -92,4 +69,15 @@ export default {
 .sort {
     cursor: move;
 }
+.list-complete-item {
+  padding: 4px;
+  margin-top: 4px;
+  border: solid 1px;
+  transition: all 0.25s;
+}
+
+.list-complete-enter, .list-complete-leave-active {
+  opacity: 0;
+}
+
 </style>

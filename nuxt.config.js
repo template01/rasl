@@ -37,30 +37,30 @@ module.exports = {
 
   router: {
     middleware: ['setSearchWindow','closeReadmore', 'closeMenu'],
-    scrollBehavior: function(to, from, savedPosition) {
-      if(to.path === '/about' && from.path === '/about'){
-
-      }else{
-
-        if (savedPosition) {
-          window.setTimeout(function() {
-            window.scroll(0, savedPosition.y)
-          }, 10)
-          window.setTimeout(function() {
-            window.scroll(0, savedPosition.y)
-          }, 50)
-          window.setTimeout(function() {
-            window.scroll(0, savedPosition.y)
-          }, 100)
-          // return savedPosition
-        } else {
-          return {
-            x: 0,
-            y: 0
-          }
-        }
-      }
-    }
+    // scrollBehavior: function(to, from, savedPosition) {
+    //   if(to.path === '/about' && from.path === '/about'){
+    //
+    //   }else{
+    //
+    //     if (savedPosition) {
+    //       window.setTimeout(function() {
+    //         window.scroll(0, savedPosition.y)
+    //       }, 10)
+    //       window.setTimeout(function() {
+    //         window.scroll(0, savedPosition.y)
+    //       }, 50)
+    //       window.setTimeout(function() {
+    //         window.scroll(0, savedPosition.y)
+    //       }, 100)
+    //       // return savedPosition
+    //     } else {
+    //       return {
+    //         x: 0,
+    //         y: 0
+    //       }
+    //     }
+    //   }
+    // }
   },
 
   modules: [
@@ -73,7 +73,9 @@ module.exports = {
     // '~/mixins/computedresizerglobalmixin.js',
 
     '~/plugins/lodash-plugin.js',
-
+    {
+      src: '~/plugins/dragorderlist.js',
+    },
     {
       src: '~/plugins/vuemq.js',
       ssr: false
