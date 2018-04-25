@@ -1,10 +1,10 @@
 <template>
 <div class="">
-  <div v-if="type === 'pratice'">
+  <div v-if="type === 'pratice' && praticecurrentpagina<reflectivetotalpagina">
     {{praticecurrentpagina}}/{{praticetotalpagina}}
     <button @click="fetchmorecontent()">load more</button>
   </div>
-  <div  v-if="type === 'reflective'">
+  <div  v-if="type === 'reflective' && reflectivecurrentpagina<reflectivetotalpagina">
     {{reflectivecurrentpagina}}/{{reflectivetotalpagina}}
     <button @click="fetchmorecontent()">load more</button>
   </div>

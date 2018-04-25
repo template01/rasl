@@ -1,10 +1,10 @@
 <template>
 <div class="pt-20">
   <div  class="wrapper" v-for="filteritem in filtertype">
-    <div class="p-20 mb-10">
+    <div class="pr-10 mb-10">
     <label class="">
         <input @click="setfilterby(filtername)" v-model="selectedItems" :value="filteritem.slug" id="checkBox" type="checkbox">
-        <span  class="p-20 outer-filter" v-html="filteritem.name"></span>
+        <span  class="pr-10 pl-10 pt-5 pb-5 outer-filter is-size-4" v-html="filteritem.name"></span>
 
     </label>
   </div>
@@ -82,14 +82,14 @@ input{
   display: none;
 }
 input[type=checkbox]:checked + .outer-filter {
-  background: $white;
-  border: 2px solid $white;
+  background: $black;
+  color: white;
+  // border: 2px solid $white;
 
 }
 .outer-filter{
   min-width: 50px;
   border: 2px solid $black;
   border-radius: 100px;
-
 }
 </style>

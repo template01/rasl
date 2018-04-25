@@ -1,6 +1,6 @@
 <template>
   <div  class="">
-    <p class="is-size-3">
+    <p class="is-size-4">
       <span v-html="genericData"></span>
     </p>
   </div>

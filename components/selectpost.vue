@@ -1,8 +1,11 @@
 <template>
 <div class="">
-  <p class="">
-    <input @click="toggleSelected()" id="checkBox" type="checkbox" :value="postid" v-model="isselected">
-  </p>
+  <div class="pointer hoverselect">
+    <input @click="toggleSelected()" id="checkBox" type="checkbox" :value="postid" :id="postid" v-model="isselected">
+    <label v-if="isselected.length===0" :for="postid" class=""><img class="rasl-icon pointer" :src="'icons/rasl_plus.svg'" /></label>
+    <label v-else :for="postid"><img class="rasl-icon pointer" :src="'icons/rasl_minus.svg'" /></label>
+    <span v-if="isselected.length===0" class="addtoselection" style=""><span class=" ml-5 pr-10 pl-10" style="padding-top:0px; padding-bottom:5px">add to section </span></span>
+  </div>
 </div>
 </template>
 <script>
@@ -63,72 +66,29 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-.VueToNuxtLogo {
-    display: inline-block;
-    animation: turn 2s linear forwards 1s;
-    transform: rotateX(180deg);
-    position: relative;
-    overflow: hidden;
-    height: 180px;
-    width: 245px;
+input{
+  display: none;
 }
+.hoverselect{
 
-.Triangle {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 0;
-}
-
-.Triangle--one {
-    border-left: 105px solid transparent;
-    border-right: 105px solid transparent;
-    border-bottom: 180px solid #41B883;
-}
-
-.Triangle--two {
-    top: 30px;
-    left: 35px;
-    animation: goright 0.5s linear forwards 3.5s;
-    border-left: 87.5px solid transparent;
-    border-right: 87.5px solid transparent;
-    border-bottom: 150px solid #3B8070;
-}
-
-.Triangle--three {
-    top: 60px;
-    left: 35px;
-    animation: goright 0.5s linear forwards 3.5s;
-    border-left: 70px solid transparent;
-    border-right: 70px solid transparent;
-    border-bottom: 120px solid #35495E;
-}
-
-.Triangle--four {
-    top: 120px;
-    left: 70px;
-    animation: godown 0.5s linear forwards 3s;
-    border-left: 35px solid transparent;
-    border-right: 35px solid transparent;
-    border-bottom: 60px solid #fff;
-}
-
-@keyframes turn {
-    100% {
-        transform: rotateX(0deg);
+  &:hover{
+    .addtoselection{
+      max-width: 200px;
     }
-}
+    // display: none;
+  }
 
-@keyframes godown {
-    100% {
-        top: 180px;
-    }
 }
-
-@keyframes goright {
-    100% {
-        left: 70px;
-    }
+.addtoselection{
+  max-width: 0px;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: max-width 0.5s ease-in-out;
+  display: inline-block;
+  height: 40px;
+  span{
+    border: 2px solid $black;
+    border-radius: 20px;
+  }
 }
 </style>

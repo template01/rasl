@@ -1,7 +1,7 @@
 <template>
-<div class="">
-  <input placeholder="Type here" v-debounce="400" v-model.lazy="searchquery" type="search">
-</div>
+<span class="">
+  <input type="text" class="is-size-4" placeholder="..." v-debounce="400" v-model.lazy="searchquery" >
+</span>
 </template>
 <script>
 import debounce from 'v-debounce'
@@ -48,72 +48,34 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-.VueToNuxtLogo {
-    display: inline-block;
-    animation: turn 2s linear forwards 1s;
-    transform: rotateX(180deg);
-    position: relative;
-    overflow: hidden;
-    height: 180px;
-    width: 245px;
-}
+input{
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid $black;
+  outline: none;
+  &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: $black;
+      opacity: 1; /* Firefox */
+  }
 
-.Triangle {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 0;
-}
+  &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+      color: $black;
+  }
 
-.Triangle--one {
-    border-left: 105px solid transparent;
-    border-right: 105px solid transparent;
-    border-bottom: 180px solid #41B883;
-}
-
-.Triangle--two {
-    top: 30px;
-    left: 35px;
-    animation: goright 0.5s linear forwards 3.5s;
-    border-left: 87.5px solid transparent;
-    border-right: 87.5px solid transparent;
-    border-bottom: 150px solid #3B8070;
-}
-
-.Triangle--three {
-    top: 60px;
-    left: 35px;
-    animation: goright 0.5s linear forwards 3.5s;
-    border-left: 70px solid transparent;
-    border-right: 70px solid transparent;
-    border-bottom: 120px solid #35495E;
-}
-
-.Triangle--four {
-    top: 120px;
-    left: 70px;
-    animation: godown 0.5s linear forwards 3s;
-    border-left: 35px solid transparent;
-    border-right: 35px solid transparent;
-    border-bottom: 60px solid #fff;
-}
-
-@keyframes turn {
-    100% {
-        transform: rotateX(0deg);
-    }
-}
-
-@keyframes godown {
-    100% {
-        top: 180px;
-    }
-}
-
-@keyframes goright {
-    100% {
-        left: 70px;
-    }
+  &::-ms-input-placeholder { /* Microsoft Edge */
+      color: $black;
+  }
+ //  width: 130px;
+ // box-sizing: border-box;
+ // border: 2px solid #ccc;
+ // border-radius: 4px;
+ // font-size: 16px;
+ // background-color: white;
+ // // background-image: url('searchicon.png');
+ // background-position: 10px 10px;
+ // background-repeat: no-repeat;
+ // padding: 12px 20px 12px 40px;
+ // -webkit-transition: width 0.4s ease-in-out;
+ // transition: width 0.4s ease-in-out;
 }
 </style>

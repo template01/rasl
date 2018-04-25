@@ -1,12 +1,24 @@
 <template>
-<div class="">
-      {{postdata.title.rendered}}
-      <br />
-      {{postdata.id}}
-      <br />
-      {{postdata.type}}
-      <selectpost :posttype="postdata.type" :postid="postdata.id"></selectpost>
-</div>
+  <div>
+
+    <div class="column" :style="left ? {'padding-left':0}:{'padding-right':0}">
+      <div class="columns">
+        <div class="column">
+          <div class="hoverselect">
+
+            <selectpost class="pointer  is-pulled-left mr-5" :posttype="postdata.type" :postid="postdata.id"></selectpost>
+            
+          </div>
+          <nuxt-link class=" is-pulled-left mr-5" :to="'collection'+windowsearch"><img class="rasl-icon" :src="'icons/rasl_arrow_right.svg'" /></nuxt-link>
+        </div>
+      </div>
+      <h1 class="is-size-3" v-html="postdata.title.rendered">
+      </h1>
+      <p class="is-size-4" v-html="postdata.title.rendered">
+      </p>
+      <hr class="mb-0" />
+    </div>
+  </div>
 </template>
 <script>
 import {
@@ -16,7 +28,7 @@ import selectpost from '~/components/selectpost'
 
 
 export default {
-  props: ['postdata'],
+  props: ['postdata','left'],
   data: function() {
     return {
       genericData: 'generic component text'
@@ -37,72 +49,26 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-.VueToNuxtLogo {
-    display: inline-block;
-    animation: turn 2s linear forwards 1s;
-    transform: rotateX(180deg);
-    position: relative;
+  .addtoselection{
+    max-width: 0px;
     overflow: hidden;
-    height: 180px;
-    width: 245px;
-}
-
-.Triangle {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 0;
-}
-
-.Triangle--one {
-    border-left: 105px solid transparent;
-    border-right: 105px solid transparent;
-    border-bottom: 180px solid #41B883;
-}
-
-.Triangle--two {
-    top: 30px;
-    left: 35px;
-    animation: goright 0.5s linear forwards 3.5s;
-    border-left: 87.5px solid transparent;
-    border-right: 87.5px solid transparent;
-    border-bottom: 150px solid #3B8070;
-}
-
-.Triangle--three {
-    top: 60px;
-    left: 35px;
-    animation: goright 0.5s linear forwards 3.5s;
-    border-left: 70px solid transparent;
-    border-right: 70px solid transparent;
-    border-bottom: 120px solid #35495E;
-}
-
-.Triangle--four {
-    top: 120px;
-    left: 70px;
-    animation: godown 0.5s linear forwards 3s;
-    border-left: 35px solid transparent;
-    border-right: 35px solid transparent;
-    border-bottom: 60px solid #fff;
-}
-
-@keyframes turn {
-    100% {
-        transform: rotateX(0deg);
+    white-space: nowrap;
+    transition: max-width 0.5s ease-in-out;
+    display: inline-block;
+    height: 40px;
+    span{
+      border: 2px solid $black;
+      border-radius: 20px;
     }
-}
+  }
+  .hoverselect{
 
-@keyframes godown {
-    100% {
-        top: 180px;
+    &:hover{
+      .addtoselection{
+        max-width: 200px;
+      }
+      // display: none;
     }
-}
 
-@keyframes goright {
-    100% {
-        left: 70px;
-    }
-}
+  }
 </style>

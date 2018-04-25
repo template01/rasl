@@ -22,6 +22,7 @@ export const state = () => ({
   praticetotalpagina: 0,
   reflectivecurrentpagina: 1,
   reflectivetotalpagina: 0,
+  showfiltersdesktop: false,
   // MOCK SELECTED
   // selected: [{'postid': 1801,'posttype': 'pratice'}]
 })
@@ -38,6 +39,10 @@ export const state = () => ({
 
 
 export const getters = {
+
+  GET_SHOWFILTERSDESKTOP(state){
+    return state.showfiltersdesktop
+  },
 
   GET_WINDOWSEARCH(state) {
     return state.windowsearch
@@ -108,6 +113,10 @@ export const getters = {
 
 export const mutations = {
 
+
+  SET_SHOWFILTERSDESKTOP(state, input) {
+    state.showfiltersdesktop = input
+  },
 
   SET_REFLECTIVECURRENTPAGINA(state, input) {
     state.reflectivecurrentpagina = input
@@ -424,7 +433,12 @@ export const actions = {
 
     // SET ACTIVE FILTERS
 
-    var filterby = querys['filter']
+    if(querys['filter']){
+      var filterby = querys['filter']
+    }
+    if(querys['search']){
+      var filterby = querys['search']
+    }
     var filters = querys['filters']
 
 
@@ -435,6 +449,8 @@ export const actions = {
     if (filterby != null) {
       state.filterby = filterby
     }
+
+      commit('SET_SHOWFILTERSDESKTOP',  state.filterby)
 
     // SET ACTIVE SEARCH
 
