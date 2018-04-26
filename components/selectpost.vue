@@ -4,7 +4,7 @@
     <input @click="toggleSelected()" id="checkBox" type="checkbox" :value="postid" :id="postid" v-model="isselected">
     <label v-if="isselected.length===0" :for="postid" class=""><img class="rasl-icon pointer" :src="'icons/rasl_plus.svg'" /></label>
     <label v-else :for="postid"><img class="rasl-icon pointer" :src="'icons/rasl_minus.svg'" /></label>
-    <span v-if="isselected.length===0" class="addtoselection" style=""><span class=" ml-5 pr-10 pl-10" style="padding-top:0px; padding-bottom:5px">add to section </span></span>
+    <span :class="isselected.length===0 ? '':'hideit' " class="addtoselection" style=""><span class=" ml-5 pr-10 pl-10" style="padding-top:0px; padding-bottom:5px">add to section </span></span>
   </div>
 </div>
 </template>
@@ -74,7 +74,11 @@ input{
   &:hover{
     .addtoselection{
       max-width: 200px;
+      &.hideit{
+        max-width: 0px;
+      }
     }
+
     // display: none;
   }
 

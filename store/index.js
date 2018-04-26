@@ -23,6 +23,8 @@ export const state = () => ({
   reflectivecurrentpagina: 1,
   reflectivetotalpagina: 0,
   showfiltersdesktop: false,
+  // savedPos: [0,0],
+  // camefrom:['','']
   // MOCK SELECTED
   // selected: [{'postid': 1801,'posttype': 'pratice'}]
 })
@@ -113,6 +115,13 @@ export const getters = {
 
 export const mutations = {
 
+  // SET_CAMEFROM(state, input) {
+  //   state.camefrom = [state.camefrom[1],input]
+  // },
+  //
+  // SET_SCROLLPOS(state, input) {
+  //   state.savedPos = [state.savedPos[1],input]
+  // },
 
   SET_SHOWFILTERSDESKTOP(state, input) {
     state.showfiltersdesktop = input

@@ -4,7 +4,7 @@
     <div class="pr-10 mb-10">
     <label class="">
         <input @click="setfilterby(filtername)" v-model="selectedItems" :value="filteritem.slug" id="checkBox" type="checkbox">
-        <span  class="pr-10 pl-10 pt-5 pb-5 outer-filter is-size-4" v-html="filteritem.name"></span>
+        <span  class="pr-10 pl-10 pb-5 outer-filter is-size-4" style="padding-top:3px" v-html="filteritem.name"></span>
 
     </label>
   </div>

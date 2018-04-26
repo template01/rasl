@@ -37,30 +37,23 @@ module.exports = {
 
   router: {
     middleware: ['setSearchWindow', 'closeReadmore', 'closeMenu'],
-    // scrollBehavior: function(to, from, savedPosition) {
-    //   if(to.path === '/about' && from.path === '/about'){
-    //
-    //   }else{
-    //
-    //     if (savedPosition) {
-    //       window.setTimeout(function() {
-    //         window.scroll(0, savedPosition.y)
-    //       }, 10)
-    //       window.setTimeout(function() {
-    //         window.scroll(0, savedPosition.y)
-    //       }, 50)
-    //       window.setTimeout(function() {
-    //         window.scroll(0, savedPosition.y)
-    //       }, 100)
-    //       // return savedPosition
-    //     } else {
-    //       return {
-    //         x: 0,
-    //         y: 0
-    //       }
-    //     }
-    //   }
-    // }
+    scrollBehavior: function(to, from, savedPosition) {
+
+      if(to.path != '/'){
+            window.setTimeout(function() {
+              window.scroll(0,0)
+            }, 10)
+            window.setTimeout(function() {
+              window.scroll(0,0)
+            }, 50)
+            window.setTimeout(function() {
+              window.scroll(0,0)
+            }, 100)
+      }else{
+
+      }
+
+    }
   },
 
   modules: [
@@ -75,6 +68,9 @@ module.exports = {
     '~/plugins/lodash-plugin.js',
     {
       src: '~/plugins/dragorderlist.js',
+    },
+    {
+      src: '~/plugins/setscrollpos.js',
     },
     {
       src: '~/plugins/vuemq.js',
@@ -121,11 +117,11 @@ module.exports = {
 
 
     styleResources: {
-       scss: './assets/scss/variables.scss',
-       scss: './assets/scss/colors.scss',
-       scss: './assets/scss/main.scss',
-       // scss: './assets/scss/underlines.scss'
-     },
+      scss: './assets/scss/variables.scss',
+      scss: './assets/scss/colors.scss',
+      scss: './assets/scss/main.scss',
+      // scss: './assets/scss/underlines.scss'
+    },
 
     postcss: {
       plugins: {

@@ -1,5 +1,10 @@
 <template>
-<span class="outer"><span :class="scale?'scaleit':''" class="overlay is-size-5" style="padding-left: 7px; padding-top:6px">{{selected.length}}</span><img class=" rasl-icon" :src="'icons/rasl_folder.svg'" /></span>
+  <span  class="outer">
+      <span class="overlay is-size-5" style="padding-left: 7px; padding-top:6px">{{selected.length}}</span>
+      <transition name="bounce">
+    <img  v-if="!update" class=" rasl-icon" :src="'icons/rasl_folder.svg'" />
+  </transition>
+  </span>
 </template>
 <script>
 import {
@@ -12,7 +17,7 @@ export default {
   data: function() {
     return {
       genericData: 'generic component text',
-      scale: false,
+      update: false,
     }
   },
   methods: {},
@@ -21,19 +26,51 @@ export default {
       selected: "GET_SELECTED",
     }),
   },
-  watch:{
-    selected:function(){
+  watch: {
+    selected: function() {
       var vm = this
-      this.scale = true
-      setTimeout(function(){
-        vm.scale=false
-      },250)
+      this.update = true
+      setTimeout(function() {
+        vm.update = false
+      }, 250)
     }
   }
 
 }
 </script>
 <style scoped lang="scss">
+.bounce-enter-active {
+  // animation: bounce-in 2s;
+  animation: blink-animation 0.3s;
+-webkit-animation: blink-animation 0.3s
+}
+.bounce-leave-active {
+  animation: blink-animation 0.3s reverse;
+-webkit-animation: blink-animation 0.3s reverse
+  // animation: bounce-in 2s reverse;
+  // animation: blink-animation 0.5s infinite;
+// -webkit-animation: blink-animation 0.5s infinite
+}
+
+@keyframes blink-animation {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes blink-animation {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
 .outer {
     position: relative;
 }
@@ -45,9 +82,8 @@ export default {
     text-align: center;
     transition: all 0.25s;
 
-    &.scaleit{
-      transform: scale(1.1);
+    &.scaleit {
+        transform: scale(1.1);
     }
 }
-
 </style>

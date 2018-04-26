@@ -65,6 +65,7 @@ input{
   &::-ms-input-placeholder { /* Microsoft Edge */
       color: $black;
   }
+  max-width: 200px;
  //  width: 130px;
  // box-sizing: border-box;
  // border: 2px solid #ccc;

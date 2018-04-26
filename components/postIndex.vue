@@ -2,19 +2,19 @@
   <div>
 
     <div class="column" :style="left ? {'padding-left':0}:{'padding-right':0}">
-      <div class="columns">
-        <div class="column">
+      <div class="columns" style="margin-bottom:0;">
+        <div class="column mt-10">
           <div class="hoverselect">
-
             <selectpost class="pointer  is-pulled-left mr-5" :posttype="postdata.type" :postid="postdata.id"></selectpost>
-            
           </div>
-          <nuxt-link class=" is-pulled-left mr-5" :to="'collection'+windowsearch"><img class="rasl-icon" :src="'icons/rasl_arrow_right.svg'" /></nuxt-link>
+          <nuxt-link class=" is-pulled-left mr-5" :to="'read/'+postdata.type+'/'+postdata.slug+windowsearch"><img class="rasl-icon" :src="'icons/rasl_arrow_right.svg'" /></nuxt-link>
         </div>
       </div>
       <h1 class="is-size-3" v-html="postdata.title.rendered">
       </h1>
-      <p class="is-size-4" v-html="postdata.title.rendered">
+      <p class="is-size-4 mt-20" v-html="postdata.title.rendered">
+      </p>
+      <p class="is-size-4 mt-20" v-html="'By: ' + author">
       </p>
       <hr class="mb-0" />
     </div>
@@ -31,20 +31,19 @@ export default {
   props: ['postdata','left'],
   data: function() {
     return {
-      genericData: 'generic component text'
+      genericData: 'generic component text',
+      author: 'Alain Thompson'
     }
   },
   methods: {},
   components:{
     selectpost
-  }
-  // computed: {
-  //   ...mapGetters({
-  //     featuredPosts: "GET_FEATUREDPOSTS",
-  //     reflectivePosts: "GET_REFLECTIVEPOSTS",
-  //     praticePosts: "GET_PRATICEPOSTS",
-  //   }),
-  // },
+  },
+  computed: {
+    ...mapGetters({
+      windowsearch: "GET_WINDOWSEARCH",
+    }),
+  },
 
 }
 </script>
