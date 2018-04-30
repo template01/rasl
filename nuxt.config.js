@@ -36,24 +36,7 @@ module.exports = {
 
 
   router: {
-    middleware: ['setSearchWindow', 'closeReadmore', 'closeMenu'],
-    scrollBehavior: function(to, from, savedPosition) {
-
-      if(to.path != '/'){
-            window.setTimeout(function() {
-              window.scroll(0,0)
-            }, 10)
-            window.setTimeout(function() {
-              window.scroll(0,0)
-            }, 50)
-            window.setTimeout(function() {
-              window.scroll(0,0)
-            }, 100)
-      }else{
-
-      }
-
-    }
+    middleware: ['setSearchWindow','scrollposbefore']
   },
 
   modules: [

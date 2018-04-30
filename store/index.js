@@ -23,7 +23,8 @@ export const state = () => ({
   reflectivecurrentpagina: 1,
   reflectivetotalpagina: 0,
   showfiltersdesktop: false,
-  // savedPos: [0,0],
+  scrollpos: [],
+  viewing: ''
   // camefrom:['','']
   // MOCK SELECTED
   // selected: [{'postid': 1801,'posttype': 'pratice'}]
@@ -42,7 +43,7 @@ export const state = () => ({
 
 export const getters = {
 
-  GET_SHOWFILTERSDESKTOP(state){
+  GET_SHOWFILTERSDESKTOP(state) {
     return state.showfiltersdesktop
   },
 
@@ -119,9 +120,35 @@ export const mutations = {
   //   state.camefrom = [state.camefrom[1],input]
   // },
   //
-  // SET_SCROLLPOS(state, input) {
-  //   state.savedPos = [state.savedPos[1],input]
-  // },
+  SET_VIEWING(state, input) {
+    state.viewing = input
+  },
+
+  SET_SCROLLPOS(state, input) {
+
+    _.replace = function(collection, identity, replacement) {
+      var index = _.indexOf(collection, _.find(collection, identity));
+      collection.splice(index, 1, replacement);
+    };
+
+
+    if (_.indexOf(state.scrollpos, _.find(state.scrollpos, {
+        'path': input.path
+      })) > -1) {
+      _.replace(state.scrollpos, {
+        'path': input.path
+      }, {
+        'path': input.path,
+        'posy': input.posy
+      });
+    } else {
+      state.scrollpos.push({
+        'path': input.path,
+        'posy': input.posy
+      });
+    }
+
+  },
 
   SET_SHOWFILTERSDESKTOP(state, input) {
     state.showfiltersdesktop = input
@@ -223,22 +250,25 @@ export const actions = {
   // },
 
 
-    TRIGGER_SELECTED({
-      commit,
-      state
-    }, selectedItems) {
-       var tempSelectedArray = []
-       var url = new URI(window.location.search).removeSearch('selected')
-       selectedItems.forEach(function(element) {
-         url.addSearch({
-           selected: element.id + ',' + element.type
-         })
-         tempSelectedArray.push({'postid':element.id,'posttype':element.type})
-       });
-       commit('SET_SELECTED',tempSelectedArray)
-       window.history.replaceState({}, '', '?' + url._parts.query);
-       commit('SET_WINDOWSEARCH', location.search)
-    },
+  TRIGGER_SELECTED({
+    commit,
+    state
+  }, selectedItems) {
+    var tempSelectedArray = []
+    var url = new URI(window.location.search).removeSearch('selected')
+    selectedItems.forEach(function(element) {
+      url.addSearch({
+        selected: element.id + ',' + element.type
+      })
+      tempSelectedArray.push({
+        'postid': element.id,
+        'posttype': element.type
+      })
+    });
+    commit('SET_SELECTED', tempSelectedArray)
+    window.history.replaceState({}, '', '?' + url._parts.query);
+    commit('SET_WINDOWSEARCH', location.search)
+  },
 
 
   TRIGGER_ADDSELECTED({
@@ -282,19 +312,19 @@ export const actions = {
     commit,
     state
   }, query) {
-    commit('SET_REFLECTIVETOTALPAGINA',1)
+    commit('SET_REFLECTIVETOTALPAGINA', 1)
     commit('SET_PRATICETOTALPAGINA', 1)
-    commit('SET_PRATICECURRENTPAGINA',1)
-    commit('SET_REFLECTIVECURRENTPAGINA',1)
+    commit('SET_PRATICECURRENTPAGINA', 1)
+    commit('SET_REFLECTIVECURRENTPAGINA', 1)
 
     function getReflectivePosts() {
-      return axios.get(state.apiRoot + '/wp/v2/reflective' + '?search='+ query.searchquery + '&per_page=10&page='+state.reflectivetotalpagina);
+      return axios.get(state.apiRoot + '/wp/v2/reflective' + '?search=' + query.searchquery + '&per_page=10&page=' + state.reflectivetotalpagina);
       // return axios.get(state.apiRoot + '/swp_api/search?s=' + query.searchquery + '&post_type=reflective&posts_per_page=10');
     }
 
 
     function getPraticePosts() {
-      return axios.get(state.apiRoot + '/wp/v2/pratice' + '?search='+ query.searchquery + '&per_page=10&page='+state.praticetotalpagina);
+      return axios.get(state.apiRoot + '/wp/v2/practice' + '?search=' + query.searchquery + '&per_page=10&page=' + state.praticetotalpagina);
       // return axios.get(state.apiRoot + '/swp_api/search?s=' + query.searchquery + '&post_type=pratice&posts_per_page=10');
     }
 
@@ -302,7 +332,7 @@ export const actions = {
       .then(axios.spread(function(reflective, pratice) {
         commit('SET_FILTERREFLECTIVEBY', reflective.data)
         commit('SET_FILTERPRATICEBY', pratice.data)
-        commit('SET_REFLECTIVETOTALPAGINA',reflective.headers['x-wp-totalpages'])
+        commit('SET_REFLECTIVETOTALPAGINA', reflective.headers['x-wp-totalpages'])
         commit('SET_PRATICETOTALPAGINA', pratice.headers['x-wp-totalpages'])
         var url = new URI(window.location.search).removeSearch("filter").removeSearch("filters").removeSearch("search").addSearch({
           search: query.searchquery,
@@ -327,7 +357,7 @@ export const actions = {
       commit('SET_PRATICECURRENTPAGINA', state.praticecurrentpagina + 1)
       axios.all([getPraticePosts(state.praticecurrentpagina)])
         .then(axios.spread(function(content) {
-        commit('SET_GETMOREPRATICE', content.data)
+          commit('SET_GETMOREPRATICE', content.data)
         }));
 
     }
@@ -341,19 +371,21 @@ export const actions = {
     }
 
     function getReflectivePosts(page) {
-      return axios.get(state.apiRoot + '/wp/v2/reflective' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page='+page);
+      return axios.get(state.apiRoot + '/wp/v2/reflective' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page=' + page);
     }
+
     function getPraticePosts(page) {
-      return axios.get(state.apiRoot + '/wp/v2/pratice' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page='+page);
+      return axios.get(state.apiRoot + '/wp/v2/practice' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page=' + page);
     }
 
 
     function getReflectivePostsSearch(page) {
-      return axios.get(state.apiRoot + '/wp/v2/reflective' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page='+page);
+      return axios.get(state.apiRoot + '/wp/v2/reflective' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page=' + page);
       axios.get(state.apiRoot + '/swp_api/search?s=' + query.searchquery + '&post_type=pratice&posts_per_page=10');
     }
+
     function getPraticePostsSearch(page) {
-      return axios.get(state.apiRoot + '/wp/v2/pratice' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page='+page);
+      return axios.get(state.apiRoot + '/wp/v2/practice' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page=' + page);
       axios.get(state.apiRoot + '/swp_api/search?s=' + query.searchquery + '&post_type=pratice&posts_per_page=10');
     }
 
@@ -374,7 +406,7 @@ export const actions = {
     }
 
     function getPraticePosts() {
-      return axios.get(state.apiRoot + '/wp/v2/pratice' + '?filter[' + filter.name + ']=' + filter.items + '&per_page=10&page=1');
+      return axios.get(state.apiRoot + '/wp/v2/practice' + '?filter[' + filter.name + ']=' + filter.items + '&per_page=10&page=1');
     }
 
     axios.all([getReflectivePosts(), getPraticePosts()])
@@ -382,10 +414,10 @@ export const actions = {
         commit('SET_FILTERREFLECTIVEBY', reflective.data)
         commit('SET_FILTERPRATICEBY', pratice.data)
         commit('SET_FILTERS', filter.items)
-        commit('SET_REFLECTIVETOTALPAGINA',reflective.headers['x-wp-totalpages'])
+        commit('SET_REFLECTIVETOTALPAGINA', reflective.headers['x-wp-totalpages'])
         commit('SET_PRATICETOTALPAGINA', pratice.headers['x-wp-totalpages'])
-        commit('SET_PRATICECURRENTPAGINA',1)
-        commit('SET_REFLECTIVECURRENTPAGINA',1)
+        commit('SET_PRATICECURRENTPAGINA', 1)
+        commit('SET_REFLECTIVECURRENTPAGINA', 1)
 
 
         var url = new URI(window.location.search).removeSearch("filter").removeSearch("filters").removeSearch("search").addSearch({
@@ -412,9 +444,9 @@ export const actions = {
 
     // SET WINDOWSEARCH QUERY
 
-    var questionPos = route.fullPath.lastIndexOf('?');
-    var queryResult = route.fullPath.substring(questionPos + 1);
-    commit('SET_WINDOWSEARCH', '?' + queryResult)
+    // var questionPos = route.fullPath.lastIndexOf('?');
+    // var queryResult = route.fullPath.substring(questionPos + 1);
+    // commit('SET_WINDOWSEARCH', '?' + queryResult)
 
     // GET ALL QUERIES
     const querys = URI(route.fullPath).query(true)
@@ -442,10 +474,10 @@ export const actions = {
 
     // SET ACTIVE FILTERS
 
-    if(querys['filter']){
+    if (querys['filter']) {
       var filterby = querys['filter']
     }
-    if(querys['search']){
+    if (querys['search']) {
       var filterby = querys['search']
     }
     var filters = querys['filters']
@@ -459,7 +491,7 @@ export const actions = {
       state.filterby = filterby
     }
 
-      commit('SET_SHOWFILTERSDESKTOP',  state.filterby)
+    commit('SET_SHOWFILTERSDESKTOP', state.filterby)
 
     // SET ACTIVE SEARCH
 
@@ -500,7 +532,7 @@ export const actions = {
 
     function getReflectivePosts() {
       if (state.searchquery.length > 0) {
-        return axios.get(state.apiRoot + '/wp/v2/reflective' + '?search='+ state.searchquery + '&per_page=10');
+        return axios.get(state.apiRoot + '/wp/v2/reflective' + '?search=' + state.searchquery + '&per_page=10');
         // return axios.get(state.apiRoot + '/swp_api/search?s=' + state.searchquery + '&post_type=reflective&posts_per_page=10');
 
       } else {
@@ -510,11 +542,11 @@ export const actions = {
 
     function getPraticePosts() {
       if (state.searchquery.length > 0) {
-        return axios.get(state.apiRoot + '/wp/v2/pratice' + '?search='+ state.searchquery + '&per_page=10');
+        return axios.get(state.apiRoot + '/wp/v2/practice' + '?search=' + state.searchquery + '&per_page=10');
         // return axios.get(state.apiRoot + '/swp_api/search?s=' + state.searchquery + '&post_type=pratice&posts_per_page=10');
 
       } else {
-        return axios.get(state.apiRoot + '/wp/v2/pratice' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page=1');
+        return axios.get(state.apiRoot + '/wp/v2/practice' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page=1');
       }
     }
 
