@@ -34,7 +34,7 @@ export default {
   //   ...mapGetters({
   //     featuredPosts: "GET_FEATUREDPOSTS",
   //     reflectivePosts: "GET_REFLECTIVEPOSTS",
-  //     praticePosts: "GET_PRATICEPOSTS",
+  //     practicePosts: "GET_PRATICEPOSTS",
   //   }),
   // },
 

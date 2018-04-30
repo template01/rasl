@@ -26,3 +26,14 @@
 .Aligner-item--bottom {
   align-self: flex-end;
 }
+
+hr {
+    background: $black !important;
+    height: 2px;
+    border-radius: 2px;
+    opacity: 0.8;
+}
+
+.headerheight{
+  max-height: 60px;
+}

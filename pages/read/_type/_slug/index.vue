@@ -2,6 +2,7 @@
 <div class="">
   <div class="columns">
     <div class="column">
+      <nuxt-link :to="'/collection'+windowsearch"><span class="mr-10"><buttoncounter></buttoncounter></span></nuxt-link>
       <p class="has-text-centered is-size-4 mb-80">
         single
       </p>
@@ -15,7 +16,6 @@
       <br />
       <br />
 
-      <nuxt-link :to="'/collection'+windowsearch"><span class="mr-10">collection</span></nuxt-link>
       <!-- <postlistdraggable :display="selectedPosts"></postlistdraggable>
       <getprint></getprint> -->
 
@@ -30,6 +30,8 @@
 // import genericcomp from '~/components/_genericComp.vue'
 // import postlistdraggable from '~/components/print/postlistdraggable.vue'
 // import getprint from '~/components/getprint.vue'
+import buttoncounter from '~/components/buttoncounter'
+
 
 import axios from 'axios'
 import {
@@ -39,6 +41,7 @@ import {
 
 export default {
   components: {
+    buttoncounter
     // genericcomp,
     // postlistdraggable,
     // getprint
@@ -69,15 +72,15 @@ export default {
 
     function getGeneric() {
       return null
-      // return axios.get(store.state.apiRoot + '/wp/v2/pratice');
+      // return axios.get(store.state.apiRoot + '/wp/v2/practice');
     }
 
     return axios.all([getPost(), getGeneric()])
       .then(axios.spread(function(post, generic) {
         // commit('SET_FILTERREFLECTIVEBY', reflective.data)
-        // commit('SET_FILTERPRATICEBY', pratice.data)
+        // commit('SET_FILTERPRATICEBY', practice.data)
         // commit('SET_REFLECTIVETOTALPAGINA',reflective.headers['x-wp-totalpages'])
-        // commit('SET_PRATICETOTALPAGINA', pratice.headers['x-wp-totalpages'])
+        // commit('SET_PRATICETOTALPAGINA', practice.headers['x-wp-totalpages'])
         // var url = new URI(window.location.search).removeSearch("filter").removeSearch("filters").removeSearch("search").addSearch({
         //   search: query.searchquery,
         // });

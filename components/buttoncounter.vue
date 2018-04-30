@@ -2,7 +2,7 @@
   <span  class="outer">
       <span class="overlay is-size-5" style="padding-left: 7px; padding-top:6px">{{selected.length}}</span>
       <transition name="bounce">
-    <img  v-if="!update" class=" rasl-icon" :src="'icons/rasl_folder.svg'" />
+    <img  v-if="!update" class=" rasl-icon" :src="'/icons/rasl_folder.svg'" />
   </transition>
   </span>
 </template>

@@ -1,8 +1,7 @@
 <template>
-<div>
-  <hr class="m-0" />
+<div >
   <div class="columns is-marginless">
-    <div v-if="!showfilters" class="column is-8 is-offset-2 ">
+    <div  v-if="!showfilters" class="column is-8 is-offset-2 ">
       <p class="has-text-centered is-size-4">
         Library
       </p>
@@ -26,8 +25,8 @@
 
       </p>
     </div>
-    <div class="column">
-      <p class="has-text-right is-size-4">
+    <div class="column headerheight">
+      <p class="has-text-right is-size-4 ">
         <span><nuxt-link :to="'collection'+windowsearch"><span class="mr-10"><buttoncounter></buttoncounter></span></nuxt-link>
         </span>
         <span v-if="!showfilters" @click=" $store.commit('SET_SHOWFILTERSDESKTOP', true);"><img class="rasl-icon" :src="'icons/rasl_filter.svg'" /></span>
@@ -52,6 +51,7 @@
 <script>
 import _ from 'lodash'
 
+
 import filtersingle from '~/components/filtersingle.vue'
 import filters from '~/components/filters'
 import search from '~/components/search'
@@ -69,6 +69,7 @@ export default {
     filters,
     buttoncounter
   },
+
   data: function() {
     return {
       filterby: [],
@@ -126,6 +127,15 @@ export default {
 }
 </script>
 <style scoped lang="scss">
+
+// .navigation{
+//   opacity: 0;
+//   transition: opacity 0.25s ease-in-out;
+//
+// }
+// .top-sticky .navigation{
+//   opacity: 1
+// }
 
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.25s, max-height .5s ease-in-out;

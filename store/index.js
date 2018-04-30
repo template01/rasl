@@ -9,7 +9,7 @@ export const state = () => ({
   posts: [],
   contenttypes: [],
   tags: [],
-  praticePosts: [],
+  practicePosts: [],
   featuredPosts: [],
   reflectivePosts: [],
   previewData: [],
@@ -18,8 +18,8 @@ export const state = () => ({
   selected: [],
   searchquery: '',
   windowsearch: '',
-  praticecurrentpagina: 1,
-  praticetotalpagina: 0,
+  practicecurrentpagina: 1,
+  practicetotalpagina: 0,
   reflectivecurrentpagina: 1,
   reflectivetotalpagina: 0,
   showfiltersdesktop: false,
@@ -27,7 +27,7 @@ export const state = () => ({
   viewing: ''
   // camefrom:['','']
   // MOCK SELECTED
-  // selected: [{'postid': 1801,'posttype': 'pratice'}]
+  // selected: [{'postid': 1801,'posttype': 'practice'}]
 })
 
 //
@@ -68,7 +68,7 @@ export const getters = {
   },
 
   GET_PRATICEPOSTS(state) {
-    return state.praticePosts
+    return state.practicePosts
   },
 
   GET_REFLECTIVEPOSTS(state) {
@@ -103,14 +103,14 @@ export const getters = {
     return state.reflectivecurrentpagina
   },
   GET_PRATICECURRENTPAGINA(state) {
-    return state.praticecurrentpagina
+    return state.practicecurrentpagina
   },
 
   GET_REFLECTIVETOTALPAGINA(state) {
     return state.reflectivetotalpagina
   },
   GET_PRATICETOTALPAGINA(state) {
-    return state.praticetotalpagina
+    return state.practicetotalpagina
   }
 }
 
@@ -159,7 +159,7 @@ export const mutations = {
   },
 
   SET_PRATICECURRENTPAGINA(state, input) {
-    state.praticecurrentpagina = input
+    state.practicecurrentpagina = input
   },
 
   SET_REFLECTIVETOTALPAGINA(state, input) {
@@ -167,7 +167,7 @@ export const mutations = {
   },
 
   SET_PRATICETOTALPAGINA(state, input) {
-    state.praticetotalpagina = input
+    state.practicetotalpagina = input
   },
 
   SET_FILTERREFLECTIVEBY(state, filterinput) {
@@ -175,7 +175,7 @@ export const mutations = {
   },
 
   SET_FILTERPRATICEBY(state, filterinput) {
-    state.praticePosts = filterinput
+    state.practicePosts = filterinput
   },
 
 
@@ -184,7 +184,7 @@ export const mutations = {
   },
 
   SET_GETMOREPRATICE(state, input) {
-    state.praticePosts = state.praticePosts.concat(input);
+    state.practicePosts = state.practicePosts.concat(input);
   },
 
 
@@ -324,16 +324,16 @@ export const actions = {
 
 
     function getPraticePosts() {
-      return axios.get(state.apiRoot + '/wp/v2/practice' + '?search=' + query.searchquery + '&per_page=10&page=' + state.praticetotalpagina);
-      // return axios.get(state.apiRoot + '/swp_api/search?s=' + query.searchquery + '&post_type=pratice&posts_per_page=10');
+      return axios.get(state.apiRoot + '/wp/v2/practice' + '?search=' + query.searchquery + '&per_page=10&page=' + state.practicetotalpagina);
+      // return axios.get(state.apiRoot + '/swp_api/search?s=' + query.searchquery + '&post_type=practice&posts_per_page=10');
     }
 
     axios.all([getReflectivePosts(), getPraticePosts()])
-      .then(axios.spread(function(reflective, pratice) {
+      .then(axios.spread(function(reflective, practice) {
         commit('SET_FILTERREFLECTIVEBY', reflective.data)
-        commit('SET_FILTERPRATICEBY', pratice.data)
+        commit('SET_FILTERPRATICEBY', practice.data)
         commit('SET_REFLECTIVETOTALPAGINA', reflective.headers['x-wp-totalpages'])
-        commit('SET_PRATICETOTALPAGINA', pratice.headers['x-wp-totalpages'])
+        commit('SET_PRATICETOTALPAGINA', practice.headers['x-wp-totalpages'])
         var url = new URI(window.location.search).removeSearch("filter").removeSearch("filters").removeSearch("search").addSearch({
           search: query.searchquery,
         });
@@ -353,9 +353,9 @@ export const actions = {
     state
   }, contenttype) {
 
-    if (contenttype === 'pratice' && state.praticecurrentpagina < state.praticetotalpagina) {
-      commit('SET_PRATICECURRENTPAGINA', state.praticecurrentpagina + 1)
-      axios.all([getPraticePosts(state.praticecurrentpagina)])
+    if (contenttype === 'practice' && state.practicecurrentpagina < state.practicetotalpagina) {
+      commit('SET_PRATICECURRENTPAGINA', state.practicecurrentpagina + 1)
+      axios.all([getPraticePosts(state.practicecurrentpagina)])
         .then(axios.spread(function(content) {
           commit('SET_GETMOREPRATICE', content.data)
         }));
@@ -381,12 +381,12 @@ export const actions = {
 
     function getReflectivePostsSearch(page) {
       return axios.get(state.apiRoot + '/wp/v2/reflective' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page=' + page);
-      axios.get(state.apiRoot + '/swp_api/search?s=' + query.searchquery + '&post_type=pratice&posts_per_page=10');
+      axios.get(state.apiRoot + '/swp_api/search?s=' + query.searchquery + '&post_type=practice&posts_per_page=10');
     }
 
     function getPraticePostsSearch(page) {
       return axios.get(state.apiRoot + '/wp/v2/practice' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page=' + page);
-      axios.get(state.apiRoot + '/swp_api/search?s=' + query.searchquery + '&post_type=pratice&posts_per_page=10');
+      axios.get(state.apiRoot + '/swp_api/search?s=' + query.searchquery + '&post_type=practice&posts_per_page=10');
     }
 
 
@@ -410,12 +410,12 @@ export const actions = {
     }
 
     axios.all([getReflectivePosts(), getPraticePosts()])
-      .then(axios.spread(function(reflective, pratice) {
+      .then(axios.spread(function(reflective, practice) {
         commit('SET_FILTERREFLECTIVEBY', reflective.data)
-        commit('SET_FILTERPRATICEBY', pratice.data)
+        commit('SET_FILTERPRATICEBY', practice.data)
         commit('SET_FILTERS', filter.items)
         commit('SET_REFLECTIVETOTALPAGINA', reflective.headers['x-wp-totalpages'])
-        commit('SET_PRATICETOTALPAGINA', pratice.headers['x-wp-totalpages'])
+        commit('SET_PRATICETOTALPAGINA', practice.headers['x-wp-totalpages'])
         commit('SET_PRATICECURRENTPAGINA', 1)
         commit('SET_REFLECTIVECURRENTPAGINA', 1)
 
@@ -543,7 +543,7 @@ export const actions = {
     function getPraticePosts() {
       if (state.searchquery.length > 0) {
         return axios.get(state.apiRoot + '/wp/v2/practice' + '?search=' + state.searchquery + '&per_page=10');
-        // return axios.get(state.apiRoot + '/swp_api/search?s=' + state.searchquery + '&post_type=pratice&posts_per_page=10');
+        // return axios.get(state.apiRoot + '/swp_api/search?s=' + state.searchquery + '&post_type=practice&posts_per_page=10');
 
       } else {
         return axios.get(state.apiRoot + '/wp/v2/practice' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page=1');
@@ -559,11 +559,11 @@ export const actions = {
     }
 
 
-    const [reflective, pratice, contenttypes, tags] = await Promise.all([getReflectivePosts(), getPraticePosts(), getContentTypes(), getTags()])
+    const [reflective, practice, contenttypes, tags] = await Promise.all([getReflectivePosts(), getPraticePosts(), getContentTypes(), getTags()])
     state.reflectivePosts = reflective.data
-    state.praticePosts = pratice.data
+    state.practicePosts = practice.data
 
-    state.praticetotalpagina = pratice.headers['x-wp-totalpages']
+    state.practicetotalpagina = practice.headers['x-wp-totalpages']
     state.reflectivetotalpagina = reflective.headers['x-wp-totalpages']
 
     // FILTER OUT contenttypes WITH NO ATTACHED POSTS (COUNT:0)

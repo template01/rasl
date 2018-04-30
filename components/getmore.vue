@@ -1,7 +1,7 @@
 <template>
 <div class="">
-  <div v-if="type === 'pratice' && praticecurrentpagina<reflectivetotalpagina">
-    {{praticecurrentpagina}}/{{praticetotalpagina}}
+  <div v-if="type === 'practice' && practicecurrentpagina<reflectivetotalpagina">
+    {{practicecurrentpagina}}/{{practicetotalpagina}}
     <button @click="fetchmorecontent()">load more</button>
   </div>
   <div  v-if="type === 'reflective' && reflectivecurrentpagina<reflectivetotalpagina">
@@ -31,9 +31,9 @@ export default {
   },
   computed: {
     ...mapGetters({
-      praticetotalpagina: "GET_PRATICETOTALPAGINA",
+      practicetotalpagina: "GET_PRATICETOTALPAGINA",
       reflectivetotalpagina: "GET_REFLECTIVETOTALPAGINA",
-      praticecurrentpagina: "GET_PRATICECURRENTPAGINA",
+      practicecurrentpagina: "GET_PRATICECURRENTPAGINA",
       reflectivecurrentpagina: "GET_REFLECTIVECURRENTPAGINA",
     }),
   },

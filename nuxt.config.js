@@ -53,6 +53,10 @@ module.exports = {
       src: '~/plugins/dragorderlist.js',
     },
     {
+      src: '~/plugins/sticky.js',
+      ssr: false
+    },
+    {
       src: '~/plugins/setscrollpos.js',
     },
     {

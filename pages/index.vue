@@ -1,78 +1,98 @@
 <template>
 <div class="">
   <!-- <nuxt-link :to="'collection'+windowsearch">collection</nuxt-link> -->
-  <div class="columns">
+  <div sticky-container class="columns">
     <div class="column">
-      <p class="has-text-centered is-size-4 mb-80">
-        featured
-      </p>
-      <postlist :display="featuredPosts"></postlist>
-
-
+      <indexheader></indexheader>
+      <div class="pl-40 pr-40">
+        <div class="columns">
+        <postlist  :display="featuredPosts"></postlist>
+      </div>
+      </div>
     </div>
   </div>
-  <div class="library pt-40">
-    <div class="pl-40 pr-40 ">
-      <librarynav></librarynav>
-    </div>
-    <div class="pl-40 pr-40">
-      <hr class="m-0" />
-      <div class="columns is-marginless">
-        <div class="column is-marginless green-background">
-          <p class="has-text-centered is-size-4">
-            reflective
-          </p>
-        </div>
-        <div class="column is-marginless pink-background">
-          <p class="has-text-centered is-size-4">
-            pratice
-          </p>
-        </div>
+  <div>
+
+
+    <div sticky-container class="pt-40" id="library">
+      <div class=" pl-40 pr-40 ">
+        <hr class="m-0" />
       </div>
-      <hr class="m-0" />
-    </div>
-
-    <div class="pl-40 pr-40">
-      <div class="columns is-marginless">
-        <div class="column is-marginless is-paddingless green-background">
-          <div class="green-background ">
-            <ul>
-              <li class="is-size-4" :key="postdata.id" v-for="postdata in reflectivePosts">
-                <postindex :left="true" :postdata="postdata"></postindex>
-              </li>
-            </ul>
-
-            <getmore type="reflective"></getmore>
+      <div v-sticky sticky-offset="0" sticky-side="top" class="librarynavwrapper pl-40 pr-40 ">
+        <librarynav></librarynav>
+        <hr class="m-0" />
+      </div>
+      <div class="pl-40 pr-40">
+        <div class="columns is-marginless">
+          <div class="column is-marginless green-background">
+            <p class="has-text-centered is-size-4">
+              reflective
+            </p>
+          </div>
+          <div class="column is-marginless pink-background">
+            <p class="has-text-centered is-size-4">
+              practice
+            </p>
           </div>
         </div>
-        <div class="column is-marginless is-paddingless pink-background">
-          <div class="pink-background ">
-            <ul>
-              <li class="is-size-4" :key="postdata.id" v-for="postdata in praticePosts">
-                <postindex :left="false" :postdata="postdata"></postindex>
-              </li>
-            </ul>
+        <hr class="m-0" />
+      </div>
 
-            <getmore type="pratice"></getmore>
+      <div class="pl-40 pr-40">
+        <div class="columns is-marginless">
+          <div class="column is-marginless is-paddingless green-background">
+            <div class="green-background ">
+              <ul>
+                <li class="is-size-4" :key="postdata.id" v-for="postdata in reflectivePosts">
+                  <postindex :left="true" :postdata="postdata"></postindex>
+                </li>
+              </ul>
+
+              <getmore type="reflective"></getmore>
+            </div>
+          </div>
+          <div class="column is-marginless is-paddingless pink-background">
+            <div class="pink-background ">
+              <ul>
+                <li class="is-size-4" :key="postdata.id" v-for="postdata in practicePosts">
+                  <postindex :left="false" :postdata="postdata"></postindex>
+                </li>
+              </ul>
+
+              <getmore type="practice"></getmore>
+            </div>
           </div>
         </div>
+
       </div>
 
     </div>
 
   </div>
+
 
 </div>
 </div>
 </template>
 
 <script>
+// if (process.browser) {
+// import Sticky from 'vue-sticky-directive'
+// };
+// var URI = require('urijs');
+
+
+if (process.browser) {
+  var Sticky = require('vue-sticky-directive')
+}
+
 // import genericcomp from '~/components/_genericComp.vue'
 import filters from '~/components/filters.vue'
 import postlist from '~/components/postlist.vue'
 import postindex from '~/components/postIndex'
 import getmore from '~/components/getmore.vue'
 import librarynav from '~/components/librarynav.vue'
+import indexheader from '~/components/indexheader.vue'
 
 import axios from 'axios'
 import {
@@ -87,21 +107,27 @@ export default {
     getmore,
     postlist,
     postindex,
-    librarynav
+    librarynav,
+    indexheader
   },
   computed: {
     ...mapGetters({
       appinitated: "GET_APP_INITIATED",
       featuredPosts: "GET_FEATUREDPOSTS",
       reflectivePosts: "GET_REFLECTIVEPOSTS",
-      praticePosts: "GET_PRATICEPOSTS",
+      practicePosts: "GET_PRATICEPOSTS",
       windowsearch: "GET_WINDOWSEARCH"
     }),
   },
+  directives: {
+    Sticky
+  },
+
   //
-  // mounted(){
-  //   window.history.replaceState({}, '', this.$store.state.windowsearch.replace(/^\/+/g, ''));
-  // },
+  mounted() {
+
+
+  },
 
 
   async asyncData({
@@ -131,13 +157,7 @@ export default {
 </script>
 
 <style lang="scss">
-.library {
-    hr {
-        background: $black !important;
-        height: 2px;
-        border-radius: 2px;
-        opacity: 0.8;
-    }
+#library {
 
     .options-wrapper {
         position: absolute;
@@ -145,8 +165,11 @@ export default {
         height: 100%;
     }
 
-
-
     background: linear-gradient(to right, $green 50%,$pink 50%);
+
+    .librarynavwrapper {
+        background: linear-gradient(to right, $green 50%,$pink 50%);
+
+    }
 }
 </style>
