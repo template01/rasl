@@ -10,7 +10,7 @@ export default function({
     $nuxt.$loading.start()
     return new Promise((resolve) => {
       // Wait 1 second between each route
-      setTimeout(resolve, 300);
+      setTimeout(resolve, 500);
     })
   }
 }

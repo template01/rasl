@@ -43,10 +43,10 @@ export default {
           vm.startanimationII = false
         }, Math.floor(Math.random() * Math.floor(250)))
 
-      }, 750)
+      }, 250)
       setTimeout(function() {
         vm.loading = false
-      }, 1500)
+      }, 800)
     }
   }
 }
@@ -55,11 +55,11 @@ export default {
 <style scoped lang="scss">
 
 .fade-enter-active {
-    transition: all 0.25s;
+    transition: transform 0.4s;
     transform: translate3d(0%,0,0);
 }
 .fade-leave-active{
-  transition: all 0.25s;
+  transition: all 0.5s;
   transform: translate3d(100%,0,0);
 
 }
