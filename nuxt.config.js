@@ -36,7 +36,7 @@ module.exports = {
 
 
   router: {
-    middleware: ['setSearchWindow','scrollposbefore']
+    middleware: ['setSearchWindow','scrollposbefore','delaypagetransition']
   },
 
   modules: [
@@ -92,10 +92,12 @@ module.exports = {
   /*
    ** Customize the progress bar color
    */
-  loading: {
-    color: '#091540'
-  },
+   // loading: {
+   //   color: 'blue',
+   //   height: '100vh'
+   // },
 
+   loading: '~/components/loading.vue',
   /*
    ** Build configuration
    */

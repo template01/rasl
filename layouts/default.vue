@@ -15,7 +15,17 @@ import {
 
 
 export default {
-
+  // transition (to, from) {
+  //
+  //   if (!from) return 'slide-left'
+  //   return +to.query.page < +from.query.page ? 'slide-right' : 'slide-left'
+  // }
+  transition: 'test',
+  methods:{
+    beforeLeave:function(){
+      alert('befire leave')
+    }
+  }
 }
 </script>
 

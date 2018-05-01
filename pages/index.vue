@@ -3,7 +3,7 @@
   <!-- <nuxt-link :to="'collection'+windowsearch">collection</nuxt-link> -->
   <div sticky-container class="columns">
     <div class="column">
-      <indexheader></indexheader>
+      <pageheader title="Featured"></pageheader>
       <div class="pl-40 pr-40">
         <div class="columns">
         <postlist  :display="featuredPosts"></postlist>
@@ -92,7 +92,7 @@ import postlist from '~/components/postlist.vue'
 import postindex from '~/components/postIndex'
 import getmore from '~/components/getmore.vue'
 import librarynav from '~/components/librarynav.vue'
-import indexheader from '~/components/indexheader.vue'
+import pageheader from '~/components/pageheader.vue'
 
 import axios from 'axios'
 import {
@@ -108,7 +108,7 @@ export default {
     postlist,
     postindex,
     librarynav,
-    indexheader
+    pageheader
   },
   computed: {
     ...mapGetters({

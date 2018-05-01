@@ -1,24 +1,28 @@
 <template>
-<div class="mt-80">
-  <div class="">
-    <draggable @start="drag=true" v-model="myArray" @end="drag=false">
-      <transition-group name="list-complete">
-        <div class="columns is-size-5 list-complete-item" :key="postdata.id" v-for="postdata in myArray">
+<div class="">
+  <draggable @start="drag=true" v-model="myArray" @end="drag=false">
+    <transition-group name="list-complete">
+      <div class="singleitem list-complete-item" :key="postdata.id" v-for="(postdata, index) in myArray">
+        <hr v-if="index === 0"/>
+        <div class="singleitemInner columns is-marginless is-size-5   ">
           <div class="column is-1 sort">
-            =
+            <img class="rasl-icon" :src="'/icons/rasl_drag.svg'" />
           </div>
-          <div class="column is-10">
-            {{postdata.title.rendered}}
-            <!-- <postindex :postdata="postdata"></postindex> -->
+          <div class="column is-10 Aligner Aligner-left">
+            <p class="is-size-4">
+              {{postdata.title.rendered}}
+            </p>
           </div>
           <div class="column is-1">
-            <selectpost :posttype="postdata.type" :postid="postdata.id"></selectpost>
+            <selectpost class="is-pulled-right" :hidehelpers="true" v-on:removeprintitem="removethis(index)" :posttype="postdata.type" :postid="postdata.id"></selectpost>
           </div>
         </div>
-      </transition-group>
-    </draggable>
+        <hr />
+      </div>
 
-  </div class="container">
+    </transition-group>
+  </draggable>
+
 </div>
 </template>
 <script>
@@ -51,15 +55,21 @@ export default {
   created() {
     this.myArray = this.display
   },
+  methods: {
+
+    removethis: function(index) {
+      this.myArray.splice(index, 1);
+    }
+  },
   watch: {
     'myArray': function() {
       this.$store.dispatch('TRIGGER_SELECTED', this.myArray)
     }
   },
-  methods: {},
   computed: {
     ...mapGetters({
       windowsearch: "GET_WINDOWSEARCH",
+      selectedStore: "GET_SELECTED"
     }),
   },
 
@@ -70,14 +80,24 @@ export default {
     cursor: move;
 }
 .list-complete-item {
-  padding: 4px;
-  margin-top: 4px;
-  border: solid 1px;
-  transition: all 0.25s;
+    transition: all 0.25s;
 }
 
-.list-complete-enter, .list-complete-leave-active {
-  opacity: 0;
+.list-complete-enter,
+.list-complete-leave-active {
+    opacity: 0;
+}
+.sortable-chosen{
+ background: wheat !important;
+}
+.singleitem{
+  background: $white;
+  hr{
+    margin:  0 !important;
+  }
+  .singleitemInner{
+    margin-bottom: 0 !important;
+  }
 }
 
 </style>

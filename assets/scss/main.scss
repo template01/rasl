@@ -2,7 +2,7 @@
 
 .rasl-icon{
   width: 40px;
-  // vertical-align: baseline;
+  vertical-align: middle;
 }
 
 .pointer{
@@ -25,6 +25,9 @@
 
 .Aligner-item--bottom {
   align-self: flex-end;
+}
+.Aligner-left{
+      justify-content: end;
 }
 
 hr {

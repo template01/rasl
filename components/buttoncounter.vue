@@ -1,5 +1,6 @@
 <template>
   <span  class="outer">
+    <!-- {{selectedLength}} -->
       <span class="overlay is-size-5" style="padding-left: 7px; padding-top:6px">{{selected.length}}</span>
       <transition name="bounce">
     <img  v-if="!update" class=" rasl-icon" :src="'/icons/rasl_folder.svg'" />
@@ -18,6 +19,7 @@ export default {
     return {
       genericData: 'generic component text',
       update: false,
+      selectedLength: 0
     }
   },
   methods: {},
@@ -26,13 +28,27 @@ export default {
       selected: "GET_SELECTED",
     }),
   },
+  mounted(){
+    this.selectedLength = this.selected.length
+  },
   watch: {
     selected: function() {
-      var vm = this
-      this.update = true
-      setTimeout(function() {
-        vm.update = false
-      }, 250)
+      console.log( this.selected.length)
+        console.log('giiiiiii')
+        var vm = this
+        if(this.selectedLength === this.selected.length){
+          this.update = false
+
+        }else{
+
+          this.update = true
+        }
+        // this.selectedLength = this.selected.length
+
+
+        setTimeout(function() {
+          vm.update = false
+        }, 250)
     }
   }
 

@@ -1,10 +1,10 @@
 <template>
 <div class="">
   <div class="pointer hoverselect">
-    <input @click="toggleSelected()" id="checkBox" type="checkbox" :value="postid" :id="postid" v-model="isselected">
-    <label v-if="isselected.length===0" :for="postid" class=""><img class="rasl-icon pointer" :src="'icons/rasl_plus.svg'" /></label>
-    <label v-else :for="postid"><img class="rasl-icon pointer" :src="'icons/rasl_minus.svg'" /></label>
-    <span :class="isselected.length===0 ? '':'hideit' " class="addtoselection" style=""><span class=" ml-5 pr-10 pl-10" style="padding-top:0px; padding-bottom:5px">add to section </span></span>
+    <input @click="toggleSelected(); $emit('removeprintitem')" id="checkBox" type="checkbox" :value="postid" :id="postid" v-model="isselected">
+    <label v-if="isselected.length===0" :for="postid" class=""><img class="rasl-icon pointer" :src="'/icons/rasl_plus.svg'" /></label>
+    <label v-else :for="postid"><img class="rasl-icon pointer" :src="'/icons/rasl_minus.svg'" /></label>
+    <span v-if="!hidehelpers" :class="isselected.length===0 ? '':'hideit' " class="addtoselection" style=""><span class=" ml-5 pr-10 pl-10" style="padding-top:0px; padding-bottom:5px">add to section </span></span>
   </div>
 </div>
 </template>
@@ -16,7 +16,7 @@ import _ from 'lodash'
 
 
 export default {
-  props: ['postid', 'posttype'],
+  props: ['postid', 'posttype','hidehelpers'],
   data: function() {
     return {
       genericData: 'generic component text',
@@ -84,6 +84,7 @@ input{
 
 }
 .addtoselection{
+  vertical-align: middle;
   max-width: 0px;
   overflow: hidden;
   white-space: nowrap;

@@ -4,9 +4,7 @@
     <div class="column" :style="left ? {'padding-left':0}:{'padding-right':0}">
       <div class="columns" style="margin-bottom:0;">
         <div class="column mt-10">
-          <div class="hoverselect">
             <selectpost class="pointer  is-pulled-left mr-5" :posttype="postdata.type" :postid="postdata.id"></selectpost>
-          </div>
           <nuxt-link class=" is-pulled-left mr-5" :to="'read/'+postdata.type+'/'+postdata.slug+windowsearch"><img class="rasl-icon" :src="'icons/rasl_arrow_right.svg'" /></nuxt-link>
         </div>
       </div>

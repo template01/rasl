@@ -444,9 +444,11 @@ export const actions = {
 
     // SET WINDOWSEARCH QUERY
 
-    // var questionPos = route.fullPath.lastIndexOf('?');
-    // var queryResult = route.fullPath.substring(questionPos + 1);
-    // commit('SET_WINDOWSEARCH', '?' + queryResult)
+    var questionPos = route.fullPath.lastIndexOf('?');
+    if(questionPos>0){
+      var queryResult = route.fullPath.substring(questionPos + 1);
+      commit('SET_WINDOWSEARCH', '?' + queryResult)
+    }
 
     // GET ALL QUERIES
     const querys = URI(route.fullPath).query(true)

@@ -1,20 +1,20 @@
 <template>
 <div class="">
-  <div class="columns">
+  <div sticky-container class="columns">
     <div class="column">
-      <nuxt-link :to="'/collection'+windowsearch"><span class="mr-10"><buttoncounter></buttoncounter></span></nuxt-link>
-      <p class="has-text-centered is-size-4 mb-80">
-        single
-      </p>
-      {{postdata}}
-      {{postdata}}
-      {{postdata}}
-      {{postdata}}
-      {{postdata}}
-      {{postdata}}
-      {{postdata}}
-      <br />
-      <br />
+      <pageheader :title="postdata.title.rendered" ></pageheader>
+      <div class=" pr-40 pl-40">
+        <div class="columns is-marginless">
+          <div class="column">
+            <selectpost class="pointer mr-5" :posttype="postdata.type" :postid="postdata.id"></selectpost>
+            {{postdata}} {{postdata}} {{postdata}} {{postdata}} {{postdata}} {{postdata}} {{postdata}}
+            <br />
+            <br />
+          </div>
+        </div>
+
+      </div>
+
 
       <!-- <postlistdraggable :display="selectedPosts"></postlistdraggable>
       <getprint></getprint> -->
@@ -31,6 +31,8 @@
 // import postlistdraggable from '~/components/print/postlistdraggable.vue'
 // import getprint from '~/components/getprint.vue'
 import buttoncounter from '~/components/buttoncounter'
+import selectpost from '~/components/selectpost'
+import pageheader from '~/components/pageheader.vue'
 
 
 import axios from 'axios'
@@ -41,7 +43,9 @@ import {
 
 export default {
   components: {
-    buttoncounter
+    buttoncounter,
+    selectpost,
+    pageheader
     // genericcomp,
     // postlistdraggable,
     // getprint
@@ -65,7 +69,7 @@ export default {
 
 
     function getPost() {
-      return axios.get(store.state.apiRoot + '/wp/v2/'+route.params.type+'?slug='+route.params.slug);
+      return axios.get(store.state.apiRoot + '/wp/v2/' + route.params.type + '?slug=' + route.params.slug);
       // return axios.get(state.apiRoot + '/swp_api/search?s=' + query.searchquery + '&post_type=reflective&posts_per_page=10');
     }
 
@@ -88,7 +92,7 @@ export default {
         // commit('SET_WINDOWSEARCH', location.search)
 
         return {
-          postdata: post.data
+          postdata: post.data[0]
         }
 
       }));
