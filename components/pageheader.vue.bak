@@ -1,17 +1,20 @@
 <template>
-<div class="indexheader p-40">
-  <div class="indexheaderInner">
+<div class="columns p-40">
+  <div class="column is-2" >
+    <img v-show="!hideLogo" class="" :src="'/rasllogow.svg'" />
 
+  </div>
 
-    <div class="hr-header">
-      <hr :style="{'width':widthHr+'px'}" class="m-0" />
+  <div class="column is-10 ">
+    <div class=" ">
+      <hr class="m-0" />
     </div>
     <div class="indexheaderSticky" v-sticky sticky-offset="0" sticky-side="top">
       <div class="columns is-marginless">
         <div class="column is-2  logoWrapper">
           <nuxt-link :to="'/'+windowsearch">
-            <img class="logoHeader" :class="!hideLogo ? 'noDelay':'fadeDelay'" :src="'/rasllogow.svg'" />
-            <p :class="hideLogo ? 'noDelay':'fadeDelay'" class="is-size-4 logoText">
+            <!-- <img v-show="!hideLogo" class="logoHeader" :src="'/rasllogow.svg'" /> -->
+            <p class="is-size-4 logoText">
               <span class="valign-middle">
               RASL
             </span>
@@ -37,8 +40,8 @@
           </p>
         </div>
       </div>
-      <div class="hr-header">
-        <hr :style="{'width':widthHr+'px'}" class="m-0" />
+      <div class=" s">
+        <hr class="m-0" />
       </div>
     </div>
 
@@ -50,8 +53,8 @@
       </div>
 
     </div>
-    <div class="hr-header">
-      <hr :style="{'width':widthHr+'px'}" class="m-0" />
+    <div class=" ">
+      <hr class="m-0" />
     </div>
   </div>
 </div>
@@ -79,12 +82,7 @@ export default {
 
   data: function() {
     return {
-      hideLogo: false,
-      widthHr: 800,
-      widthHeaderInit: 0,
-      widthLogoInit: 0,
-      widthHeader: 0,
-      widthLogo: 0,
+      hideLogo: false
 
     }
   },
@@ -97,33 +95,13 @@ export default {
   },
   mounted() {
     window.addEventListener('scroll', this.handleWindowResize);
-    this.widthHeaderInit = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
-    this.widthLogoInit = this.$el.querySelector('.logoHeader').getBoundingClientRect().width
-    this.widthHeader = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
-    this.widthLogo = this.$el.querySelector('.logoHeader').getBoundingClientRect().width
-    this.setWidthHr()
   },
   methods: {
-    setWidthHr: function() {
-      this.widthHr = this.widthHeader - this.widthLogo
-    },
-
     handleWindowResize: _.throttle(function(arg) {
-      if (window.scrollY > 40) {
+      if (window.scrollY > 100) {
         this.hideLogo = true
-        this.widthHeader = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
-        this.widthLogo = this.$el.querySelector('.logoHeader').getBoundingClientRect().width
-        this.setWidthHr()
-
       } else {
         this.hideLogo = false
-        this.widthHeader = this.widthHeaderInit
-        this.widthLogo = this.widthLogoInit
-        this.setWidthHr()
-        var vm = this
-        setTimeout(function() {
-          vm.setWidthHr()
-        }, 100)
       }
     }, 150)
     //   scrollHandle: function(){
@@ -144,24 +122,14 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-.hr-header {
-    position: relative;
-    hr {
-        width: 900px;
-        position: absolute;
-        right: 0;
-        transition: width 0.20s;
-    }
-}
 .indexheaderSticky {
-  transition: background 0.10s ease-in-out;
-    // background: $white;
+    background: $white;
 }
 .logoWrapper {
     position: relative;
 }
 .logoHeader {
-    // background: $white;
+    background: $white;
     padding: 20px 30px 20px 0;
     // padding-left: 10px;
     // padding-right: 15px;
@@ -175,38 +143,18 @@ export default {
     height: 124px;
     opacity: 1;
     max-height: 124px;
+    transition: opacity 0.10s ease-in-out, max-height 0.10s ease-in-out;
     overflow: hidden;
-    transition: opacity 0.10s ease-in-out;
-    transition-delay: 0.5s;
-    &.fadeDelay {
-        opacity: 0;
-        width: 0;
-        padding: 0;
-
-    }
 }
 
 .logoText {
-    &.fadeDelay {
-        opacity: 0;
-        transition-delay: 0.2s;
-        width: 0;
-        padding: 0;
-        transition: opacity 0.1s ease-in-out;
-
-    }
-    &.noDelay {
-        transition: opacity 0.1s ease-in-out;
-        transition-delay: 1s !important;
-
-    }
+    opacity: 0;
+    transition: opacity 0.10s ease-in-out;
 }
 
 .top-sticky {
-    background: $white;
-
     .logoHeader {
-        // opacity: 0;
+        opacity: 0;
         // max-height: 0px;
 
     }

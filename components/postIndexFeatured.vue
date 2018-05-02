@@ -1,21 +1,23 @@
 <template>
-  <div>
+  <div class="pb-80">
 
-    <div class="column" :style="getPaddingStyle">
-      <div class="columns" style="margin-bottom:0;">
-        <div class="column mt-10">
-            <selectpost class="pointer  is-pulled-left mr-5" :posttype="postdata.type" :postid="postdata.id"></selectpost>
+      <div class="columns is-size-4" style="margin-bottom:0;">
+        <!-- <div class="column mt-10 ">
+        </div> -->
+        <div class="column mt-10 ">
+          <p class="is-size-4 is-pulled-left mr-10" style="text-transform:capitalize"v-html="postdata.type">
+          </p>
+          <selectpost class="pointer  is-pulled-left mr-5" :posttype="postdata.type" :postid="postdata.id"></selectpost>
           <nuxt-link class=" is-pulled-left mr-5" :to="'read/'+postdata.type+'/'+postdata.slug+windowsearch"><img class="rasl-icon" :src="'icons/rasl_arrow_right.svg'" /></nuxt-link>
         </div>
       </div>
-      <h1 class="is-size-3 uppercase" v-html="postdata.title.rendered">
+
+
+      <h1 class="is-size-1 uppercase" v-html="postdata.title.rendered">
       </h1>
-      <p class="is-size-4 mt-20" v-html="postdata.title.rendered">
-      </p>
+
       <p class="is-size-4 mt-20" v-html="'By: ' + author">
       </p>
-      <hr class="mb-0" />
-    </div>
   </div>
 </template>
 <script>
@@ -26,7 +28,7 @@ import selectpost from '~/components/selectpost'
 
 
 export default {
-  props: ['postdata','left', 'ignorepadding'],
+  props: ['postdata'],
   data: function() {
     return {
       genericData: 'generic component text',
@@ -38,21 +40,7 @@ export default {
     selectpost
   },
   computed: {
-    getPaddingStyle: function(){
-      if(this.left){
-        if(this.ignorepadding){
-          return {'padding-left':0, 'padding-right':0}
-        }else{
-          return {'padding-left':0}
-        }
-      }else{
-        if(this.ignorepadding){
-          return {'padding-left':0, 'padding-right':0}
-        }else{
-          return {'padding-right':0}
-        }
-      }
-    },
+
     ...mapGetters({
       windowsearch: "GET_WINDOWSEARCH",
     }),

@@ -3,16 +3,18 @@
   <div class="columns is-marginless">
     <div  v-if="!showfilters" class="column is-8 is-offset-2 ">
       <p class="has-text-centered is-size-4">
-        Library
+        <span class="valign-middle">
+          Library
+        </span>
       </p>
     </div>
 
     <div v-if="showfilters" class="column is-6 ">
       <p class="is-size-4">
-        <span class="pr-10">FILTER:</span>
+        <span class="pr-10 valign-middle">FILTER:</span>
         <!-- <input type="checkbox" id="mike" v-model="checkedNames"> -->
         <!-- <label for="mike">Mike</label> -->
-        <span v-for="filter in filtertypes" class="pr-10">
+        <span v-for="filter in filtertypes" class="pr-10 valign-middle">
             <input :id="'filter'+filter.name" @click="filterby=[]" v-model="filterby" :value="{name:filter.name}"  type="checkbox">
             <label :for="'filter'+filter.name" v-html="filter.prettyname"></label>
         </span>
@@ -20,7 +22,7 @@
     </div>
     <div v-if="showfilters" class="column">
       <p class="is-size-4">
-        <span class="pr-10">SEARCH:</span>
+        <span class="pr-10 valign-middle">SEARCH:</span>
         <search></search>
 
       </p>

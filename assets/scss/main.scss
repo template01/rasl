@@ -1,5 +1,19 @@
 @import "variables";
 
+
+.white-background{
+  background-color: $white;
+}
+
+.pink-background{
+  background-color: $pink;
+}
+
+.green-background{
+  background-color: $green;
+}
+
+
 .rasl-icon{
   width: 40px;
   vertical-align: middle;
@@ -7,6 +21,10 @@
 
 .pointer{
   cursor: pointer;
+}
+
+.valign-middle{
+  vertical-align: middle;
 }
 
 .Aligner {
@@ -39,4 +57,11 @@ hr {
 
 .headerheight{
   max-height: 60px;
+}
+
+
+// TYPO
+
+.uppercase{
+  text-transform: uppercase;
 }
