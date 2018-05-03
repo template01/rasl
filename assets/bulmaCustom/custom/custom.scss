@@ -1,14 +1,15 @@
 // 1. Import the initial variables
 @import "../sass/utilities/initial-variables";
 @import "../sass/utilities/functions";
+@import "../../scss/variables.scss";
 
 
 $desktop: 1280px;
 
 $body-line-height: 1.4;
 
-$text: #091540;
-$link: #091540;
+$text: $black;
+$link: $black;
 // 2. Set your own initial variables
 // Update blue
 $blue: #72d0eb;
@@ -16,7 +17,7 @@ $blue: #72d0eb;
 $pink: #ffb3b3;
 $pink-invert: #fff;
 // Add a serif family
-$family-serif: "Okomito", sans;
+$family-serif: "TeXGyreHeros", sans;
 
 // 3. Set the derived variables
 // Use the new pink as the primary color

@@ -1,6 +1,6 @@
 @import "variables";
 
-
+// COLORS
 .white-background{
   background-color: $white;
 }
@@ -14,9 +14,10 @@
 }
 
 
-.rasl-icon{
-  width: 40px;
-  vertical-align: middle;
+// HELPERS
+
+.ignore-mb{
+  margin-bottom: 0 !important
 }
 
 .pointer{
@@ -55,13 +56,27 @@ hr {
     opacity: 0.8;
 }
 
+
+// MISC
+
 .headerheight{
   max-height: 60px;
 }
+
+.rasl-icon{
+  width: 40px;
+  vertical-align: middle;
+}
+
 
 
 // TYPO
 
 .uppercase{
   text-transform: uppercase;
+}
+
+.is-size-1{
+  line-height: 1;
+  letter-spacing: -1px;
 }

@@ -43,6 +43,10 @@ export const state = () => ({
 
 export const getters = {
 
+  GET_APIROOT(state) {
+    return state.apiRoot
+  },
+
   GET_SHOWFILTERSDESKTOP(state) {
     return state.showfiltersdesktop
   },

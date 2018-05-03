@@ -1,10 +1,11 @@
 <template>
 <div class="">
-  <div class="pointer hoverselect">
+  <div class="pointer hoverselect is-size-4">
     <input @click="toggleSelected(); $emit('removeprintitem')" id="checkBox" type="checkbox" :value="postid" :id="postid" v-model="isselected">
     <label v-if="isselected.length===0" :for="postid" class=""><img class="rasl-icon pointer" :src="'/icons/rasl_plus.svg'" /></label>
     <label v-else :for="postid"><img class="rasl-icon pointer" :src="'/icons/rasl_minus.svg'" /></label>
-    <span v-if="!hidehelpers" :class="isselected.length===0 ? '':'hideit' " class="addtoselection" style=""><span class=" ml-5 pr-10 pl-10" style="padding-top:0px; padding-bottom:5px">add to section </span></span>
+    <span v-if="!hidehelpers" :class="isselected.length===0 ? '':'hideit' " class="addtoselection" style=""><span class="hinter ml-5 pr-10 pl-10" style=""><span class="inner">add to section</span></span>
+    </span>
   </div>
 </div>
 </template>
@@ -16,7 +17,7 @@ import _ from 'lodash'
 
 
 export default {
-  props: ['postid', 'posttype','hidehelpers'],
+  props: ['postid', 'posttype', 'hidehelpers'],
   data: function() {
     return {
       genericData: 'generic component text',
@@ -25,11 +26,11 @@ export default {
     }
   },
   methods: {
-    checkIfSelected: function(){
+    checkIfSelected: function() {
       var item = this.selected.find(item => item.postid === this.postid && item.posttype === this.posttype);
-      if (item != null){
+      if (item != null) {
         this.isselected = [this.postid]
-      }else{
+      } else {
         this.isselected = []
       }
     },
@@ -49,7 +50,7 @@ export default {
       }
     }
   },
-  created(){
+  created() {
     this.checkIfSelected()
   },
   watch: {
@@ -66,34 +67,44 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-input{
-  display: none;
+input {
+    display: none;
 }
-.hoverselect{
+.hoverselect {
 
-  &:hover{
-    .addtoselection{
-      max-width: 200px;
-      &.hideit{
-        max-width: 0px;
-      }
+    &:hover {
+
+        .addtoselection {
+            max-width: 200px;
+
+            // transition-delay: 2s;
+
+            &.hideit {
+                max-width: 0px;
+            }
+        }
+
+        // display: none;
     }
 
-    // display: none;
-  }
-
 }
-.addtoselection{
-  vertical-align: middle;
-  max-width: 0px;
-  overflow: hidden;
-  white-space: nowrap;
-  transition: max-width 0.5s ease-in-out;
-  display: inline-block;
-  height: 40px;
-  span{
-    border: 2px solid $black;
-    border-radius: 20px;
-  }
+.addtoselection {
+    max-width: 0;
+    vertical-align: middle;
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-flex;
+    transition: max-width 0.5s ease-in-out;
+    transition-delay: 0.5s;
+
+    height: 40px;
+    .hinter {
+        border: 2px solid $black;
+        border-radius: 20px;
+        .inner {
+            vertical-align: top;
+            line-height: 30px;
+        }
+    }
 }
 </style>

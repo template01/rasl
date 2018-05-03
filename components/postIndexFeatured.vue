@@ -5,10 +5,12 @@
         <!-- <div class="column mt-10 ">
         </div> -->
         <div class="column mt-10 ">
-          <p class="is-size-4 is-pulled-left mr-10" style="text-transform:capitalize"v-html="postdata.type">
-          </p>
           <selectpost class="pointer  is-pulled-left mr-5" :posttype="postdata.type" :postid="postdata.id"></selectpost>
-          <nuxt-link class=" is-pulled-left mr-5" :to="'read/'+postdata.type+'/'+postdata.slug+windowsearch"><img class="rasl-icon" :src="'icons/rasl_arrow_right.svg'" /></nuxt-link>
+          <nuxt-link class=" is-pulled-left mr-5" :to="'read/'+postdata.type+'/'+postdata.slug+windowsearch"><img class="rasl-icon" :src="'/icons/rasl_arrow_right.svg'" /></nuxt-link>
+        </div>
+        <div class="column mt-10 ">
+          <p class="is-size-4  mr-10" style="text-transform:capitalize"v-html="postdata.type">
+          </p>
         </div>
       </div>
 

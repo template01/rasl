@@ -31,7 +31,8 @@ module.exports = {
   css: [
     '~assets/css/marginpaddinghelpers.css',
     '~assets/bulmaCustom/custom/custom.css',
-    '~assets/fonts/okomito/stylesheet.css',
+    '~assets/fonts/texgyrefont/stylesheet.css',
+    // '~assets/fonts/okomito/stylesheet.css',
   ],
 
 

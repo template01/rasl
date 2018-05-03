@@ -44,10 +44,16 @@
 
     <div class="columns is-marginless">
       <div class="column is-8 is-offset-2 ">
-        <p class="has-text-centered is-size-4" v-html="title">
+        <p class="has-text-centered is-size-4" >
+          <span v-html="title"></span>
+          <selectpost v-if="selectpost" class=" pointer" :posttype="selectpost.type" :postid="selectpost.id"></selectpost>
 
         </p>
+
       </div>
+      <!-- <div class="column is-2">
+
+      </div> -->
 
     </div>
     <div class="hr-header">
@@ -61,6 +67,7 @@ import _ from 'lodash'
 if (process.browser) {
   var Sticky = require('vue-sticky-directive')
 }
+import selectpost from '~/components/selectpost'
 
 import buttoncounter from '~/components/buttoncounter'
 import {
@@ -69,9 +76,10 @@ import {
 
 
 export default {
-  props: ['title'],
+  props: ['title','selectpost'],
   components: {
-    buttoncounter
+    buttoncounter,
+    selectpost
   },
   directives: {
     Sticky
@@ -80,7 +88,7 @@ export default {
   data: function() {
     return {
       hideLogo: false,
-      widthHr: 800,
+      widthHr: 0,
       widthHeaderInit: 0,
       widthLogoInit: 0,
       widthHeader: 0,

@@ -2,17 +2,29 @@
 <div class="">
   <div sticky-container class="columns">
     <div class="column">
-      <pageheader :title="postdata.title.rendered" ></pageheader>
+      <pageheader :selectpost="{'type':postdata.type,'id':postdata.id}" :title="postdata.title.rendered"></pageheader>
       <div class=" pr-40 pl-40">
-        <div class="columns is-marginless">
+        <div class="columns pb-40 is-marginless">
           <div class="column">
-            <selectpost class="pointer mr-5" :posttype="postdata.type" :postid="postdata.id"></selectpost>
-            {{postdata}} {{postdata}} {{postdata}} {{postdata}} {{postdata}} {{postdata}} {{postdata}}
-            <br />
-            <br />
+            <!-- <selectpost class="pointer mr-5" :posttype="postdata.type" :postid="postdata.id"></selectpost> -->
+            <div class="mt-40 is-size-4">
+
+              Title: {{postdata.title.rendered}}
+              <br />
+              tags: {{tagSlugs}}
+              <br />
+              <br />
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
           </div>
         </div>
 
+        <relatedposts :excludeid="postdata.id" :tags="tagSlugs"></relatedposts>
       </div>
 
 
@@ -20,6 +32,7 @@
       <getprint></getprint> -->
 
     </div>
+
   </div>
 
 </div>
@@ -32,9 +45,9 @@
 // import getprint from '~/components/getprint.vue'
 import buttoncounter from '~/components/buttoncounter'
 import selectpost from '~/components/selectpost'
+import relatedposts from '~/components/read/relatedposts.vue'
 import pageheader from '~/components/pageheader.vue'
-
-
+import _ from 'lodash'
 import axios from 'axios'
 import {
   mapGetters
@@ -45,15 +58,28 @@ export default {
   components: {
     buttoncounter,
     selectpost,
+    relatedposts,
     pageheader
     // genericcomp,
     // postlistdraggable,
     // getprint
   },
+
   computed: {
     ...mapGetters({
       windowsearch: "GET_WINDOWSEARCH"
     }),
+    tagSlugs: function(){
+      if(this.postdata.pure_taxonomies.tags){
+        var slugs=[]
+        for (var i = 0, len = this.postdata.pure_taxonomies.tags.length; i < len; i++) {
+          slugs.push(this.postdata.pure_taxonomies.tags[i].slug)
+        }
+        return slugs
+      }else{
+        return []
+      }
+    }
   },
 
   async asyncData({
@@ -79,6 +105,15 @@ export default {
       // return axios.get(store.state.apiRoot + '/wp/v2/practice');
     }
 
+
+    function getReflectivePosts() {
+      return axios.get(state.apiRoot + '/wp/v2/reflective' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page=1');
+    }
+
+    function getPraticePosts() {
+      return axios.get(state.apiRoot + '/wp/v2/practice' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page=1');
+    }
+
     return axios.all([getPost(), getGeneric()])
       .then(axios.spread(function(post, generic) {
         // commit('SET_FILTERREFLECTIVEBY', reflective.data)
@@ -96,23 +131,6 @@ export default {
         }
 
       }));
-    //
-    // return axios.get(`https://my-api/posts/${params.id}`)
-    //   .then((res) => {
-    //     return {
-    //       title: res.data.title
-    //     }
-    //   })
-
-    // const results = (await axios.all(
-    //   store.state.selected.map(
-    //     function(selectedPostSingle) {
-    //         return axios.get(store.state.apiRoot + '/wp/v2/' + selectedPostSingle.posttype + '/' + selectedPostSingle.postid);
-    //     }
-    //   )
-    // )).map(result => result.data)
-    //
-    // return { selectedPosts: results }
 
 
   },
