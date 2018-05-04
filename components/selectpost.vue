@@ -1,10 +1,10 @@
 <template>
 <div class="">
-  <div class="pointer hoverselect is-size-4">
-    <input @click="toggleSelected(); $emit('removeprintitem')" id="checkBox" type="checkbox" :value="postid" :id="postid" v-model="isselected">
+  <div @click="toggleSelected(); $emit('removeprintitem')" class="pointer hoverselect is-size-4">
+    <input  id="checkBox" type="checkbox" :value="postid" :id="postid" v-model="isselected">
     <label v-if="isselected.length===0" :for="postid" class=""><img class="rasl-icon pointer" :src="'/icons/rasl_plus.svg'" /></label>
     <label v-else :for="postid"><img class="rasl-icon pointer" :src="'/icons/rasl_minus.svg'" /></label>
-    <span v-if="!hidehelpers" :class="isselected.length===0 ? '':'hideit' " class="addtoselection" style=""><span class="hinter ml-5 pr-10 pl-10" style=""><span class="inner">add to section</span></span>
+    <span v-if="!hidehelpers" :class="isselected.length===0 ? '':'hideit' " class="addtoselection" style=""><span class="hinter ml-5 pr-10 pl-10 is-size-5" style=""><span class="inner">add to selection</span></span>
     </span>
   </div>
 </div>
@@ -103,7 +103,7 @@ input {
         border-radius: 20px;
         .inner {
             vertical-align: top;
-            line-height: 30px;
+            line-height: 34px;
         }
     }
 }

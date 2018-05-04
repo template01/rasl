@@ -6,19 +6,21 @@
         </div> -->
         <div class="column mt-10 ">
           <selectpost class="pointer  is-pulled-left mr-5" :posttype="postdata.type" :postid="postdata.id"></selectpost>
-          <nuxt-link class=" is-pulled-left mr-5" :to="'read/'+postdata.type+'/'+postdata.slug+windowsearch"><img class="rasl-icon" :src="'/icons/rasl_arrow_right.svg'" /></nuxt-link>
+          <nuxt-link class=" is-pulled-left mr-5  hover-animate-chilren-right" :to="'read/'+postdata.type+'/'+postdata.slug+windowsearch"><img class="rasl-icon" :src="'/icons/rasl_arrow_right.svg'" /></nuxt-link>
         </div>
-        <div class="column mt-10 ">
+        <!-- <div class="column mt-10 ">
           <p class="is-size-4  mr-10" style="text-transform:capitalize"v-html="postdata.type">
           </p>
-        </div>
+        </div> -->
       </div>
 
 
-      <h1 class="is-size-1 uppercase" v-html="postdata.title.rendered">
-      </h1>
+        <h1 class="is-size-1 hover-animate-skew  uppercase" ><nuxt-link v-html="postdata.title.rendered" class="" :to="'read/'+postdata.type+'/'+postdata.slug+windowsearch">  </nuxt-link>
+        </h1>
 
-      <p class="is-size-4 mt-20" v-html="'By: ' + author">
+        <p class="is-size-4  mt-20" style="text-transform:capitalize"v-html="postdata.type">
+        </p>
+      <p class="is-size-4 " v-html="'By: ' + author">
       </p>
   </div>
 </template>

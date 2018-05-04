@@ -1,20 +1,23 @@
 <template>
 <div>
-  <main>
+  <loadinginit ></loadinginit>
     <nuxt/>
-  </main>
 </div>
 </template>
 
 
 
 <script>
+import loadinginit from '~/components/loadinginit'
 import {
   mapGetters
 } from 'vuex'
 
 
 export default {
+  components:{
+    loadinginit
+  },
 
 }
 </script>

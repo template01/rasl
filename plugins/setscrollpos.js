@@ -21,7 +21,7 @@ export default ({ route, app: { router,store } }) => {
       window.setTimeout(function(){
         scrollToY()
         if(store.state.scrollpos.length === 0){
-          if (route.query.filter != null ||route.query.search != null) {
+          if ((route.query.filter != null ||route.query.search != null) && route.path === '/') {
             var elmnt = document.getElementById("library");
             elmnt.scrollIntoView();
           }

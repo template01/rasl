@@ -58,9 +58,7 @@
 
 
             </p>
-            <!-- <p @click="showBothColumns()" class="has-text-centered is-size-4">
-              x
-            </p> -->
+
           </div>
           <div class="column is-marginless ">
             <p class="has-text-centered is-size-4">
@@ -79,9 +77,6 @@
 
 
             </p>
-            <!-- <p @click="showBothColumns()" class="has-text-centered is-size-4">
-              x
-            </p> -->
 
           </div>
         </div>
@@ -91,14 +86,16 @@
       <div class="pl-40 pr-40">
 
         <!-- {{practiceHide}} -->
-        <div class="animateWidthColumns columns is-marginless" :style="getColumnStyle">
+        <div class="animateWidthColumns pb-40 columns is-marginless" :style="getColumnStyle">
           <!-- REFLECTIVE COLUMN -->
           <div class="column is-marginless is-paddingless ">
             <div v-if="!reflectiveHide" class=" ">
               <ul>
-                <li class="is-size-4" :key="postdata.id" v-for="postdata in reflectivePosts">
-                  <postindex :ignorepadding="ignorepadding" :left="true" :postdata="postdata"></postindex>
-                </li>
+                <transition-group name="list-complete">
+                  <li class="is-size-4 list-complete-item" :key="postdata.id" v-for="postdata in reflectivePosts">
+                    <postindex :ignorepadding="ignorepadding" :left="true" :postdata="postdata"></postindex>
+                  </li>
+                </transition-group>
               </ul>
 
               <getmore type="reflective"></getmore>
@@ -108,9 +105,11 @@
           <div class="column is-marginless is-paddingless ">
             <div v-if="!practiceHide" class=" ">
               <ul>
-                <li class="is-size-4" :key="postdata.id" v-for="postdata in practicePosts">
-                  <postindex :ignorepadding="ignorepadding" :left="false" :postdata="postdata"></postindex>
-                </li>
+                <transition-group name="list-complete">
+                  <li class="is-size-4 list-complete-item" :key="postdata.id" v-for="postdata in practicePosts">
+                    <postindex :ignorepadding="ignorepadding" :left="false" :postdata="postdata"></postindex>
+                  </li>
+                </transition-group>
               </ul>
 
               <getmore type="practice"></getmore>
@@ -306,6 +305,15 @@ export default {
 </script>
 
 <style lang="scss">
+.list-complete-item {
+    transition: all 0.25s;
+}
+
+.list-complete-enter,
+.list-complete-leave-active {
+    opacity: 0;
+}
+
 #library {
     position: relative;
 

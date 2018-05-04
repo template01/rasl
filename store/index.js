@@ -3,7 +3,7 @@ var URI = require('urijs');
 import _ from 'lodash'
 
 export const state = () => ({
-  appinitated: true,
+  appinitated: false,
   apiRoot: 'http://194.61.64.171/backend/index.php/wp-json',
   printServer: 'http://194.61.64.171:3001',
   posts: [],
@@ -375,23 +375,33 @@ export const actions = {
     }
 
     function getReflectivePosts(page) {
-      return axios.get(state.apiRoot + '/wp/v2/reflective' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page=' + page);
+
+      if (state.searchquery.length > 0) {
+        return axios.get(state.apiRoot + '/wp/v2/practice' + '?search=' + state.searchquery + '&per_page=10&page='+ page);
+      } else {
+        return axios.get(state.apiRoot + '/wp/v2/reflective' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page=' + page);
+      }
     }
 
     function getPraticePosts(page) {
-      return axios.get(state.apiRoot + '/wp/v2/practice' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page=' + page);
-    }
 
-
-    function getReflectivePostsSearch(page) {
-      return axios.get(state.apiRoot + '/wp/v2/reflective' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page=' + page);
-      axios.get(state.apiRoot + '/swp_api/search?s=' + query.searchquery + '&post_type=practice&posts_per_page=10');
+      if (state.searchquery.length > 0) {
+        return axios.get(state.apiRoot + '/wp/v2/practice' + '?search=' + state.searchquery + '&per_page=10&page='+ page);
+      } else {
+        return axios.get(state.apiRoot + '/wp/v2/practice' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page=' + page);
+      }
     }
-
-    function getPraticePostsSearch(page) {
-      return axios.get(state.apiRoot + '/wp/v2/practice' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page=' + page);
-      axios.get(state.apiRoot + '/swp_api/search?s=' + query.searchquery + '&post_type=practice&posts_per_page=10');
-    }
+    //
+    //
+    // function getReflectivePostsSearch(page) {
+    //   return axios.get(state.apiRoot + '/wp/v2/reflective' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page=' + page);
+    //   axios.get(state.apiRoot + '/swp_api/search?s=' + query.searchquery + '&post_type=practice&posts_per_page=10');
+    // }
+    //
+    // function getPraticePostsSearch(page) {
+    //   return axios.get(state.apiRoot + '/wp/v2/practice' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page=' + page);
+    //   axios.get(state.apiRoot + '/swp_api/search?s=' + query.searchquery + '&post_type=practice&posts_per_page=10');
+    // }
 
 
 

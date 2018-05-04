@@ -283,7 +283,7 @@ a {
   a strong {
     color: currentColor; }
   a:hover {
-    color: #363636; }
+    color: inherit; }
 
 code {
   background-color: whitesmoke;
@@ -1053,7 +1053,7 @@ a.box:active {
     margin-right: calc(-0.375em - 1px); }
   .button:hover, .button.is-hovered {
     border-color: #b5b5b5;
-    color: #363636; }
+    color: inherit; }
   .button:focus, .button.is-focused {
     border-color: #72d0eb;
     color: #363636; }
@@ -3690,7 +3690,7 @@ a.tag:hover {
     justify-content: center;
     padding: 0 0.75em; }
     .breadcrumb a:hover {
-      color: #363636; }
+      color: inherit; }
   .breadcrumb li {
     align-items: center;
     display: flex; }
@@ -5121,7 +5121,7 @@ a.navbar-item,
   .pagination-next:hover,
   .pagination-link:hover {
     border-color: #b5b5b5;
-    color: #363636; }
+    color: inherit; }
   .pagination-previous:focus,
   .pagination-next:focus,
   .pagination-link:focus {

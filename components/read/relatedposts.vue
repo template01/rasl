@@ -16,7 +16,7 @@
           <div class="columns ignore-mb">
             <div class="column">
               <selectpost class="pointer  is-pulled-left mr-5" :posttype="item.type" :postid="item.id"></selectpost>
-              <nuxt-link class=" is-pulled-left mr-5" :to="'/read/'+item.type+'/'+item.slug+windowsearch"><img class="rasl-icon" :src="'/icons/rasl_arrow_right.svg'" /></nuxt-link>
+              <nuxt-link class=" is-pulled-left mr-5 hover-animate-chilren-right" :to="'/read/'+item.type+'/'+item.slug+windowsearch"><img class="rasl-icon" :src="'/icons/rasl_arrow_right.svg'" /></nuxt-link>
             </div>
           </div>
           <div class="columns">

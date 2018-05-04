@@ -42,13 +42,17 @@
       </div>
     </div>
 
-    <div class="columns is-marginless">
-      <div class="column is-8 is-offset-2 ">
-        <p class="has-text-centered is-size-4" >
+    <div class="columns headerheight  is-marginless">
+      <div class="column pageheaderTitle is-12">
+        <p class="has-text-centered is-size-4">
           <span v-html="title"></span>
-          <selectpost v-if="selectpost" class=" pointer" :posttype="selectpost.type" :postid="selectpost.id"></selectpost>
-
         </p>
+        <span class="column pageheaderTitleSelect">
+
+          <selectpost v-if="selectpost" class=" pointer" :posttype="selectpost.type" :postid="selectpost.id"></selectpost>
+        </span>
+        <!-- <p class="is-size-4 pageheaderTitleSelectWrapper">
+        </p> -->
 
       </div>
       <!-- <div class="column is-2">
@@ -76,7 +80,7 @@ import {
 
 
 export default {
-  props: ['title','selectpost'],
+  props: ['title', 'selectpost','initload'],
   components: {
     buttoncounter,
     selectpost
@@ -101,10 +105,12 @@ export default {
   },
 
   beforeDestroy: function() {
-    window.removeEventListener('scroll', this.handleWindowResize)
+    window.removeEventListener('scroll', this.handleWindowScroll)
+    window.removeEventListener('resize', this.handleWindowResize)
   },
   mounted() {
-    window.addEventListener('scroll', this.handleWindowResize);
+    window.addEventListener('scroll', this.handleWindowScroll);
+    window.addEventListener('resize', this.handleWindowResize);
     this.widthHeaderInit = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
     this.widthLogoInit = this.$el.querySelector('.logoHeader').getBoundingClientRect().width
     this.widthHeader = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
@@ -117,6 +123,17 @@ export default {
     },
 
     handleWindowResize: _.throttle(function(arg) {
+          this.widthHeader = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
+          this.widthLogo = this.$el.querySelector('.logoHeader').getBoundingClientRect().width
+          if (window.scrollY < 40) {
+            this.widthHeaderInit = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
+            this.widthLogoInit = this.$el.querySelector('.logoHeader').getBoundingClientRect().width
+          }
+          this.setWidthHr()
+
+    }, 50),
+
+    handleWindowScroll: _.throttle(function(arg) {
       if (window.scrollY > 40) {
         this.hideLogo = true
         this.widthHeader = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
@@ -125,24 +142,23 @@ export default {
 
       } else {
         this.hideLogo = false
+
         this.widthHeader = this.widthHeaderInit
         this.widthLogo = this.widthLogoInit
         this.setWidthHr()
         var vm = this
         setTimeout(function() {
+          vm.widthHeaderInit = vm.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
+          vm.widthLogoInit = vm.$el.querySelector('.logoHeader').getBoundingClientRect().width
+          vm.widthHeader = vm.widthHeaderInit
+          vm.widthLogo = vm.widthLogoInit
           vm.setWidthHr()
         }, 100)
       }
     }, 150)
-    //   scrollHandle: function(){
-    //
-    // }, 200)
-    // }
+
   },
   computed: {
-    // filterbyset:function(){
-    //   return !_.isEmpty(this.filterby)
-    // },
     ...mapGetters({
       windowsearch: "GET_WINDOWSEARCH"
     }),
@@ -152,6 +168,17 @@ export default {
 }
 </script>
 <style scoped lang="scss">
+.pageheaderTitle {
+    position: relative;
+    .pageheaderTitleSelect {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .pageheaderTitleSelectWrapper {
+        position: relative;
+    }
+}
 .hr-header {
     position: relative;
     hr {
@@ -162,7 +189,7 @@ export default {
     }
 }
 .indexheaderSticky {
-  transition: background 0.10s ease-in-out;
+    transition: background 0.10s ease-in-out;
     // background: $white;
 }
 .logoWrapper {

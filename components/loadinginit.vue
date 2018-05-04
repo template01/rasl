@@ -1,0 +1,124 @@
+<template>
+<transition name="fade">
+  <div v-if="!appinitated" class="loadinginit">
+    <div class="indexheader p-40">
+      <div class="indexheaderInner">
+
+
+        <div class="hr-header">
+          <!-- <hr :style="{'width':widthHr+'px'}" class="m-0" /> -->
+        </div>
+        <div class="indexheaderSticky">
+          <div class="columns is-marginless">
+            <div class="column is-2  logoWrapper">
+              <!-- <nuxt-link :to="'/'+windowsearch"> -->
+              <img class="logoHeader" :class="" :src="'/rasllogow.svg'" />
+              <!-- <p :class="hideLogo ? 'noDelay':'fadeDelay'" class="is-size-4 logoText">
+                <span class="valign-middle">
+                RASL
+              </span>
+              </p>
+            </nuxt-link> -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</transition>
+</template>
+<script>
+import pageheader from '~/components/pageheader'
+import {
+  mapGetters
+} from 'vuex'
+
+
+export default {
+  props: [],
+  components: {
+    pageheader
+  },
+  data: function() {
+    return {
+      genericData: 'generic component text'
+    }
+  },
+  methods: {},
+  computed: {
+    ...mapGetters({
+      appinitated: "GET_APP_INITIATED",
+    }),
+  },
+  mounted() {
+    var vm = this
+    setTimeout(function() {
+      vm.$store.commit('SET_APPINITIATED', true)
+    }, 500)
+  }
+
+}
+</script>
+<style scoped lang="scss">
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.25s;
+}
+/* .fade-leave-active below version 2.1.8 */
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
+}
+
+.loadinginit {
+    background: $white;
+    z-index: 99999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.logoWrapper {
+    position: relative;
+}
+
+.logoHeader {
+    // background: $white;
+    padding: 20px 30px 20px 0;
+    // padding-left: 10px;
+    // padding-right: 15px;
+    position: absolute;
+    z-index: 9999;
+    // left: 0px;
+    // top:0px;
+    // height: 60px;
+    left: 0;
+    top: -2px;
+    height: 124px;
+    opacity: 1;
+    max-height: 124px;
+    overflow: hidden;
+}
+
+.logoHeader {
+    animation-name: example;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+@keyframes example {
+    from {
+      // transform: translate3d(0px,0,0);
+      opacity: 0
+    }
+
+    to {
+      // transform: translate3d(0,-5px,0);
+      opacity: 1
+    }
+}
+</style>
