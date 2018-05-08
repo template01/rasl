@@ -2,23 +2,9 @@
   <transition name="slidedown">
   <div class="loading-page" v-if="loading">
     <div class="loading-page-inner p-40">
-      <div class="columns is-marginless">
-        <div class="column">
-      <span class="loadingLetters is-size-1">
-
-      </span>
-    </div>
-    <div class="column">
-  <span class="loadingLetters is-size-1">
-     LOADING
-  </span>
-</div>
-<div class="column">
-<span class="loadingLetters is-size-1">
-
-</span>
-</div>
-      </div>
+      <p class="loadingLetters is-size-1">
+         <span :class="item.animated ? 'slant':''" v-for="item in loadingLetters" v-html="item.letter" ></span>
+      </p>
       <!-- <div class="columns is-marginless">
 
         <div class="column animateLoading animateLoading1">
@@ -90,11 +76,41 @@ export default {
       return Math.floor(Math.random() * Math.floor(250));
     },
 
+    fireAnimation: function(input) {
+      var vm = this
 
+      var multiplyFactor = input+ 1
+
+      setTimeout(function() {
+        console.log(input)
+        // console.log(vm.loadingLetters[i]);
+        // console.log(vm.loadingLetters);
+        // console.log(input);
+        vm.loadingLetters[input].animated = true
+      }, 125*multiplyFactor)
+      setTimeout(function() {
+        console.log(input + ' END')
+
+        // console.log(vm.loadingLetters[i]);
+        // console.log(vm.loadingLetters);
+        // console.log(input);
+        vm.loadingLetters[input].animated = false
+      }, 250*multiplyFactor)
+
+    },
     start() {
       this.loading = true
       this.$store.commit('SET_LOADING', true)
+      var vm = this
+      for (var i = 0, len = vm.loadingLetters.length; i < len; i++) {
+        vm.fireAnimation(i)
+      }
+      setInterval(function() {
+        for (var i = 0, len = vm.loadingLetters.length; i < len; i++) {
+          vm.fireAnimation(i)
+        }
 
+      }, 250 * vm.loadingLetters.length)
       // setTimeout(function() {
       //   vm.startanimationI =  true
       // }, Math.floor(Math.random() * Math.floor(250)))
@@ -117,7 +133,7 @@ export default {
       setTimeout(function() {
         vm.loading = false
         vm.$store.commit('SET_LOADING', false)
-      }, 800)
+      }, 80000)
 
     }
   }
@@ -154,20 +170,13 @@ export default {
 
 .loadingLetters {
     color: $white;
-    align-self: center;
-    transition: 0.25s transform;
-    animation-name: example;
-    animation-duration: 0.5s;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-    display: inline-block;
-    width: 100%;
-    span {
-        display: inline-block;
-        transition: 0.75s transform;
+    span{
+      display: inline-block;
+      transition: .75s transform;
+
     }
-    .slant {
-        transform: skewX(-30deg);
+    .slant{
+      transform: skewX(-30deg);
     }
     // @for $i from 1 through 10 {
     //     span:nth-child(#{$i}) {
@@ -182,21 +191,21 @@ export default {
     //     animation-direction: alternate;
     //     display: inline-block;
     // }
-    @keyframes example {
-        0% {
-            // opacity: 0;
-
-            // transform: translate3d(0px,0,0);
-            transform: skewX(0deg);
-        }
-
-        100% {
-            // opacity: 1;
-
-            // transform: translate3d(0,-5px,0);
-            transform: skewX(-20deg);
-        }
-    }
+    // @keyframes example {
+    //     0% {
+    //               // opacity: 0;
+    //
+    //         // transform: translate3d(0px,0,0);
+    //           transform: skewX(0deg);
+    //     }
+    //
+    //     100% {
+    //               // opacity: 1;
+    //
+    //         // transform: translate3d(0,-5px,0);
+    //           transform: skewX(-5deg);
+    //     }
+    // }
 }
 
 .loading-page {

@@ -186,7 +186,8 @@ export default {
       featuredPosts: "GET_FEATUREDPOSTS",
       reflectivePosts: "GET_REFLECTIVEPOSTS",
       practicePosts: "GET_PRATICEPOSTS",
-      windowsearch: "GET_WINDOWSEARCH"
+      windowsearch: "GET_WINDOWSEARCH",
+      loadingPage: "GET_LOADING",
     }),
 
     getBackgroundStyleI: function() {
@@ -305,6 +306,16 @@ export default {
 </script>
 
 <style lang="scss">
+.fader-enter-active,
+.fader-leave-active {
+    transition: opacity 0.5s;
+}
+/* .fade-leave-active below version 2.1.8 */
+.fader-enter,
+.fader-leave-to {
+    opacity: 0;
+}
+
 .list-complete-item {
     transition: all 0.25s;
 }

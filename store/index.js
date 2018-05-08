@@ -24,7 +24,8 @@ export const state = () => ({
   reflectivetotalpagina: 0,
   showfiltersdesktop: false,
   scrollpos: [],
-  viewing: ''
+  viewing: '',
+  loading: false
   // camefrom:['','']
   // MOCK SELECTED
   // selected: [{'postid': 1801,'posttype': 'practice'}]
@@ -42,6 +43,10 @@ export const state = () => ({
 
 
 export const getters = {
+
+  GET_LOADING(state){
+    return state.loading
+  },
 
   GET_APIROOT(state) {
     return state.apiRoot
@@ -124,6 +129,10 @@ export const mutations = {
   //   state.camefrom = [state.camefrom[1],input]
   // },
   //
+  SET_LOADING(state,input){
+    state.loading = input
+  },
+
   SET_VIEWING(state, input) {
     state.viewing = input
   },
