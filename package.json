@@ -22,7 +22,7 @@
 		"document-offset": "^1.0.4",
 		"downloadjs": "^1.4.7",
 		"lodash": "^4.17.4",
-		"node-sass": "^4.7.2",
+		
 		"nuxt": "latest",
 		"sass-loader": "^6.0.6",
 		"smoothscroll-polyfill": "^0.4.0",
@@ -38,6 +38,8 @@
 		"vuedraggable": "^2.16.0"
 	},
 	"devDependencies": {
+		"node-sass": "^4.7.2",
+		"sass-loader": "^6.0.6",
 		"babel-eslint": "^7.2.3",
 		"eslint": "^4.15.0",
 		"eslint-config-standard": "^10.2.1",
