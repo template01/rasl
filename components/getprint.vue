@@ -34,7 +34,7 @@ export default {
   },
   data: function() {
     return {
-      sourceUrl: 'http://template-studio.nl:3002/collection/print',
+      sourceUrl: 'http://194.61.64.171:3002/collection/print',
       pdf: '',
       erros: [],
       error: false,
