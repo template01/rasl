@@ -22,6 +22,7 @@ import {
 
 
 export default {
+  layout: 'print',
   components: {
     printlist
   },
