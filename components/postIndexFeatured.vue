@@ -1,34 +1,36 @@
 <template>
-  <div class="pb-80">
+<div class="pb-80">
 
-      <div class="columns is-size-4" style="margin-bottom:0;">
-        <!-- <div class="column mt-10 ">
+  <div class="columns is-size-4" style="margin-bottom:0;">
+    <!-- <div class="column mt-10 ">
         </div> -->
-        <div class="column mt-10 ">
-          <selectpost class="pointer  is-pulled-left mr-5" :posttype="postdata.type" :postid="postdata.id"></selectpost>
-          <nuxt-link class=" is-pulled-left mr-5  hover-animate-chilren-right" :to="'read/'+postdata.type+'/'+postdata.slug+windowsearch"><img class="rasl-icon" :src="'/icons/rasl_arrow_right.svg'" /></nuxt-link>
-        </div>
-        <!-- <div class="column mt-10 ">
+    <div class="column mt-10 ">
+      <selectpost class="pointer  is-pulled-left mr-5" :posttype="postdata.type" :postid="postdata.id"></selectpost>
+      <nuxt-link class=" is-pulled-left mr-5  hover-animate-chilren-right" :to="'read/'+postdata.type+'/'+postdata.slug+windowsearch"><img class="rasl-icon" :src="'/icons/rasl_arrow_right.svg'" /></nuxt-link>
+    </div>
+    <!-- <div class="column mt-10 ">
           <p class="is-size-4  mr-10" style="text-transform:capitalize"v-html="postdata.type">
           </p>
         </div> -->
-      </div>
+  </div>
 
 
-        <h1 class="is-size-1 hover-animate-skew  uppercase" ><nuxt-link v-html="postdata.title.rendered" class="" :to="'read/'+postdata.type+'/'+postdata.slug+windowsearch">  </nuxt-link>
+  <h1 class="is-size-1 hover-animate-skew dont-break-out uppercase"><nuxt-link v-html="postdata.title.rendered" class="" :to="'read/'+postdata.type+'/'+postdata.slug+windowsearch">  </nuxt-link>
         </h1>
 
-        <p class="is-size-4  mt-20" style="text-transform:capitalize"v-html="postdata.type">
-        </p>
-      <p class="is-size-4 " v-html="'By: ' + author">
-      </p>
-  </div>
+  <p class="is-size-4  mt-20" style="text-transform:capitalize" v-html="postdata.type">
+  </p>
+  <p v-show="postdata.acf.author" class="is-size-4 ">
+    <authorlinks :authors="postdata.acf.author"></authorlinks>
+  </p>
+</div>
 </template>
 <script>
 import {
   mapGetters
 } from 'vuex'
 import selectpost from '~/components/selectpost'
+import authorlinks from '~/components/authorLinks'
 
 
 export default {
@@ -36,12 +38,12 @@ export default {
   data: function() {
     return {
       genericData: 'generic component text',
-      author: 'Alain Thompson'
     }
   },
   methods: {},
-  components:{
-    selectpost
+  components: {
+    selectpost,
+    authorlinks
   },
   computed: {
 
@@ -53,26 +55,46 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-  .addtoselection{
-    max-width: 0px;
+.dont-break-out {
+
+    /* These are technically the same, but use both */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    -ms-word-break: break-all;
+    /* This is the dangerous one in WebKit, as it breaks things wherever */
+    word-break: break-all;
+    /* Instead use this non-standard one: */
+    word-break: break-word;
+
+    /* Adds a hyphen where the word breaks, if supported (No Blink) */
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+
+}
+
+.addtoselection {
+    max-width: 0;
     overflow: hidden;
     white-space: nowrap;
     transition: max-width 0.5s ease-in-out;
     display: inline-block;
     height: 40px;
-    span{
-      border: 2px solid $black;
-      border-radius: 20px;
+    span {
+        border: 2px solid $black;
+        border-radius: 20px;
     }
-  }
-  .hoverselect{
+}
+.hoverselect {
 
-    &:hover{
-      .addtoselection{
-        max-width: 200px;
-      }
-      // display: none;
+    &:hover {
+        .addtoselection {
+            max-width: 200px;
+        }
+        // display: none;
     }
 
-  }
+}
 </style>

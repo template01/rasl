@@ -12,8 +12,10 @@
     </h1>
     <p class="is-size-4 mt-20" v-html="postdata.title.rendered">
     </p>
-    <p class="is-size-4 mt-20" v-html="'By: ' + author">
+    <p v-show="postdata.acf.author" class="is-size-4 ">
+       <authorlinks :authors="postdata.acf.author"></authorlinks> 
     </p>
+
     <hr class="mb-0" />
   </div>
 </div>
@@ -23,6 +25,7 @@ import {
   mapGetters
 } from 'vuex'
 import selectpost from '~/components/selectpost'
+import authorlinks from '~/components/authorLinks'
 
 
 export default {
@@ -35,7 +38,8 @@ export default {
   },
   methods: {},
   components: {
-    selectpost
+    selectpost,
+    authorlinks
   },
   computed: {
     getPaddingStyle: function() {

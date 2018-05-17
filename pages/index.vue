@@ -1,6 +1,6 @@
 <template>
 <div class="">
-  <circles></circles>
+  <!-- <circles></circles> -->
   <!-- <nuxt-link :to="'collection'+windowsearch">collection</nuxt-link> -->
   <div sticky-container class="columns  pb-40" style="margin-bottom:0">
     <div class="column">

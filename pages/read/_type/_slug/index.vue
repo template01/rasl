@@ -8,7 +8,8 @@
           <div class="column">
             <!-- <selectpost class="pointer mr-5" :posttype="postdata.type" :postid="postdata.id"></selectpost> -->
             <div class="mt-40 is-size-4">
-
+              <authorlinks :authors="postdata.acf.author"></authorlinks>
+              <br />
               Title: {{postdata.title.rendered}}
               <br />
               tags: {{tagSlugs}}
@@ -45,6 +46,7 @@
 // import getprint from '~/components/getprint.vue'
 import buttoncounter from '~/components/buttoncounter'
 import selectpost from '~/components/selectpost'
+import authorlinks from '~/components/authorLinks'
 import relatedposts from '~/components/read/relatedposts.vue'
 import pageheader from '~/components/pageheader.vue'
 import _ from 'lodash'
@@ -58,6 +60,7 @@ export default {
   components: {
     buttoncounter,
     selectpost,
+    authorlinks,
     relatedposts,
     pageheader
     // genericcomp,
