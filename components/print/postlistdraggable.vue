@@ -2,18 +2,18 @@
 <div class="">
   <draggable @start="drag=true" v-model="myArray" @end="drag=false">
     <transition-group name="list-complete">
-      <div class="singleitem list-complete-item" :key="postdata.id" v-for="(postdata, index) in myArray">
+      <div class="sort singleitem list-complete-item" :key="postdata.id" v-for="(postdata, index) in myArray">
         <!-- <hr v-if="index === 0"/> -->
         <div class="singleitemInner columns is-marginless is-size-5   ">
-          <div class="column is-1 sort">
+          <div class="column is-2 ">
             <img class="rasl-icon" :src="'/icons/rasl_drag.svg'" />
           </div>
-          <div class="column is-10 Aligner Aligner-left">
-            <p class="is-size-4">
+          <div class="column is-8 Aligner Aligner-left">
+            <p class="is-size-5">
               {{postdata.title.rendered}}
             </p>
           </div>
-          <div class="column is-1">
+          <div class="column is-2">
             <selectpost class="is-pulled-right" :hidehelpers="true" v-on:removeprintitem="removethis(index)" :posttype="postdata.type" :postid="postdata.id"></selectpost>
           </div>
         </div>
