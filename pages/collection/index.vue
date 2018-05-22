@@ -2,21 +2,25 @@
 <div class="">
   <div sticky-container class="columns">
     <div class="column">
-      <pageheader title="Print Selection"></pageheader>
+      <pageheader title="Collection"></pageheader>
+
       <div class="pr-40 pl-40">
-        <div class="columns pt-80">
-          <div class="column is-6">
+        <div class="columns">
+          <div class="column is-6 is-size-1 has-border-right">
+            <p class="is-size-1">
+              Collection
+            </p>
             <p class="is-size-4">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
           </div>
+
           <div class="column is-6">
             <postlistdraggable :display="selectedPosts"></postlistdraggable>
             <getprint></getprint>
           </div>
         </div>
       </div>
-
 
     </div>
   </div>

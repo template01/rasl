@@ -15,6 +15,9 @@
 .ignore-mb {
   margin-bottom: 0 !important;
 }
+.has-border-right {
+    border-right: 2px solid $black;
+}
 
 .pointer {
   cursor: pointer;

@@ -27,16 +27,32 @@
         </div>
         <div class="column headerheight">
           <p class="has-text-right is-size-4 ">
-            <span><nuxt-link :to="'/'+windowsearch"><img class="rasl-icon mr-10" :src="'/icons/rasl_library.svg'" /></nuxt-link>
-        </span>
             <span><nuxt-link :to="'/collection'+windowsearch"><span class="mr-10"><buttoncounter></buttoncounter></span></nuxt-link>
             </span>
-            <span><nuxt-link :to="'/collection'+windowsearch"><img class="rasl-icon" :src="'/icons/rasl_about.svg'" /></nuxt-link>
-        </span>
-            <!-- <span><nuxt-link :to="'collection'+windowsearch"><span class="mr-10"><buttoncounter></buttoncounter></span></nuxt-link></span> -->
+            <span>
+              <span class="pointer" v-if="!menuOpen" @click="openMenu()"><img class="rasl-icon" :src="'/icons/rasl_menu.svg'" /> </span>
+              <span class="pointer" v-else @click="closeMenu()"><img class="rasl-icon" :src="'/icons/rasl_close.svg'" /></span>
+            </span>
           </p>
         </div>
       </div>
+
+      <transition name="fadeHeight" mode="out-in">
+      <div class="menuWrapper" v-if="menuOpen">
+
+        <div class="hr-header">
+          <hr :style="{'width':widthHr+'px'}" class="m-0" />
+        </div>
+
+        <div class="columns is-marginless">
+          <div class="column is-12 is-size-4">
+            <menucontent>
+            </menucontent>
+          </div>
+        </div>
+      </div>
+      </transition>
+
       <div class="hr-header">
         <hr :style="{'width':widthHr+'px'}" class="m-0" />
       </div>
@@ -51,14 +67,7 @@
 
           <selectpost v-if="selectpost" class=" pointer" :posttype="selectpost.type" :postid="selectpost.id"></selectpost>
         </span>
-        <!-- <p class="is-size-4 pageheaderTitleSelectWrapper">
-        </p> -->
-
       </div>
-      <!-- <div class="column is-2">
-
-      </div> -->
-
     </div>
     <div class="hr-header">
       <hr :style="{'width':widthHr+'px'}" class="m-0" />
@@ -74,6 +83,7 @@ if (process.browser) {
 import selectpost from '~/components/selectpost'
 
 import buttoncounter from '~/components/buttoncounter'
+import menucontent from '~/components/menucontent'
 import {
   mapGetters
 } from 'vuex'
@@ -83,7 +93,8 @@ export default {
   props: ['title', 'selectpost','initload'],
   components: {
     buttoncounter,
-    selectpost
+    selectpost,
+    menucontent
   },
   directives: {
     Sticky
@@ -97,6 +108,7 @@ export default {
       widthLogoInit: 0,
       widthHeader: 0,
       widthLogo: 0,
+      menuOpen: false
 
     }
   },
@@ -118,6 +130,26 @@ export default {
     this.setWidthHr()
   },
   methods: {
+    openMenu: function () {
+      this.menuOpen = true
+      this.hideLogo = true
+      this.widthHeader = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
+      this.widthLogo = 0
+      this.setWidthHr()
+    },
+    closeMenu: function () {
+      this.menuOpen = false
+      if (window.scrollY < 40) {
+        this.hideLogo = false
+        this.widthHeader = this.widthHeaderInit
+        this.widthLogo = this.widthLogoInit
+      }else{
+        this.widthHeader = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
+        this.widthLogo = 0
+      }
+      this.setWidthHr()
+    },
+
     setWidthHr: function() {
       this.widthHr = this.widthHeader - this.widthLogo
     },
@@ -134,27 +166,33 @@ export default {
     }, 50),
 
     handleWindowScroll: _.throttle(function(arg) {
-      if (window.scrollY > 40) {
-        this.hideLogo = true
-        this.widthHeader = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
-        this.widthLogo = this.$el.querySelector('.logoHeader').getBoundingClientRect().width
-        this.setWidthHr()
 
-      } else {
-        this.hideLogo = false
+      if(!this.menuOpen){
 
-        this.widthHeader = this.widthHeaderInit
-        this.widthLogo = this.widthLogoInit
-        this.setWidthHr()
-        var vm = this
-        setTimeout(function() {
-          vm.widthHeaderInit = vm.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
-          vm.widthLogoInit = vm.$el.querySelector('.logoHeader').getBoundingClientRect().width
-          vm.widthHeader = vm.widthHeaderInit
-          vm.widthLogo = vm.widthLogoInit
-          vm.setWidthHr()
-        }, 100)
+        if (window.scrollY > 40) {
+          this.hideLogo = true
+          this.widthHeader = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
+          this.widthLogo = this.$el.querySelector('.logoHeader').getBoundingClientRect().width
+          this.setWidthHr()
+
+        } else {
+          this.hideLogo = false
+
+          this.widthHeader = this.widthHeaderInit
+          this.widthLogo = this.widthLogoInit
+          this.setWidthHr()
+          var vm = this
+          setTimeout(function() {
+            vm.widthHeaderInit = vm.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
+            vm.widthLogoInit = vm.$el.querySelector('.logoHeader').getBoundingClientRect().width
+            vm.widthHeader = vm.widthHeaderInit
+            vm.widthLogo = vm.widthLogoInit
+            vm.setWidthHr()
+          }, 100)
+        }
+
       }
+
     }, 150)
 
   },
@@ -283,4 +321,22 @@ input[type=checkbox]:checked + label {
     // border: 2px solid $white;
 
 }
+
+.fadeHeight-enter-active,
+.fadeHeight-leave-active {
+  transition: max-height 0.5s ease-in-out;
+  max-height: 100vh;
+}
+.fadeHeight-enter,
+.fadeHeight-leave-to
+{
+  opacity: 0;
+  max-height: 0px;
+}
+
+.menuWrapper{
+  overflow: hidden;
+  // background: red
+}
+
 </style>

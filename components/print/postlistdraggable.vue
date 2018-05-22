@@ -3,7 +3,7 @@
   <draggable @start="drag=true" v-model="myArray" @end="drag=false">
     <transition-group name="list-complete">
       <div class="singleitem list-complete-item" :key="postdata.id" v-for="(postdata, index) in myArray">
-        <hr v-if="index === 0"/>
+        <!-- <hr v-if="index === 0"/> -->
         <div class="singleitemInner columns is-marginless is-size-5   ">
           <div class="column is-1 sort">
             <img class="rasl-icon" :src="'/icons/rasl_drag.svg'" />

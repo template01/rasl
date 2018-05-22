@@ -26,7 +26,7 @@ export default ({ route, app: { router,store } }) => {
             elmnt.scrollIntoView();
           }
         }
-      },100)
+      },1000)
     })
   })
 }
