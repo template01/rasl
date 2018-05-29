@@ -1,9 +1,9 @@
 <template>
 <div class="">
-  <div @click="toggleSelected(); $emit('removeprintitem')" class="pointer hoverselect is-size-4">
+  <div  class="pointer hoverselect is-size-4">
     <input  id="checkBox" type="checkbox" :value="postid" :id="postid" v-model="isselected">
-    <label v-if="isselected.length===0" :for="postid" class=""><img class="rasl-icon pointer" :src="'/icons/rasl_plus.svg'" /></label>
-    <label v-else :for="postid"><img class="rasl-icon pointer" :src="'/icons/rasl_minus.svg'" /></label>
+    <label @click="toggleSelected(); $emit('removeprintitem')" v-if="isselected.length===0" :for="postid" class=""><img class="rasl-icon pointer" :src="'/icons/rasl_plus.svg'" /></label>
+    <label @click="toggleSelected(); $emit('removeprintitem')" v-else :for="postid"><img class="rasl-icon pointer" :src="'/icons/rasl_minus.svg'" /></label>
     <span v-if="!hidehelpers" :class="isselected.length===0 ? '':'hideit' " class="addtoselection" style=""><span class="hinter ml-5 pr-10 pl-10 is-size-5" style=""><span class="inner">add to selection</span></span>
     </span>
   </div>
@@ -26,6 +26,9 @@ export default {
     }
   },
   methods: {
+    test: function(){
+      console.log('clicked')
+    },
     checkIfSelected: function() {
       var item = this.selected.find(item => item.postid === this.postid && item.posttype === this.posttype);
       if (item != null) {
@@ -35,6 +38,7 @@ export default {
       }
     },
     toggleSelected: function() {
+      console.log('toggle ')
       if (this.isselected.length > 0) {
 
         this.$store.dispatch('TRIGGER_REMOVESELECTED', {
