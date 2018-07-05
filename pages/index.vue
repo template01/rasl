@@ -1,11 +1,14 @@
 <template>
 <div class="">
-  <!-- <circles></circles> -->
   <!-- <nuxt-link :to="'collection'+windowsearch">collection</nuxt-link> -->
-  <div sticky-container class="columns  pb-40" style="margin-bottom:0">
+
+  <indexintro></indexintro>
+  <div sticky-container class="columns" style="margin-bottom:0;margin-top:0;">
     <div class="column">
-      <pageheader title="Featured"></pageheader>
-      <div class="pl-40 pr-40">
+      <pageheader></pageheader>
+      <postlistfeatured :displaydata="featuredPosts"></postlistfeatured>
+
+      <!-- <div class="pl-40 pr-40">
         <div class="columns ">
           <div class="column">
             <postlist :featured="true" :display="featuredPostsUneven"></postlist>
@@ -16,7 +19,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
   <div>
@@ -141,9 +144,10 @@ if (process.browser) {
 }
 
 // import genericcomp from '~/components/_genericComp.vue'
-import circles from '~/components/circles.vue'
+import indexintro from '~/components/indexintro.vue'
 import filters from '~/components/filters.vue'
 import postlist from '~/components/postlist.vue'
+import postlistfeatured from '~/components/postlistfeatured.vue'
 import postindex from '~/components/postIndex'
 import getmore from '~/components/getmore.vue'
 import librarynav from '~/components/librarynav.vue'
@@ -158,10 +162,11 @@ import {
 export default {
   components: {
     // genericcomp,
-    circles,
+    indexintro,
     filters,
     getmore,
     postlist,
+    postlistfeatured,
     postindex,
     librarynav,
     pageheader
@@ -180,6 +185,9 @@ export default {
         return i % 2 == 0;
       });
       return uneven;
+    },
+    featuredPostsFirst: function(){
+
     },
     ...mapGetters({
       appinitated: "GET_APP_INITIATED",

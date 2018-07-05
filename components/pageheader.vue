@@ -1,37 +1,38 @@
 <template>
-<div class="indexheader p-40">
+<div class="indexheader ">
   <div class="indexheaderInner">
 
 
-    <div class="hr-header">
+    <!-- <div class="hr-header">
       <hr :style="{'width':widthHr+'px'}" class="m-0" />
-    </div>
-    <div class="indexheaderSticky" v-sticky sticky-offset="0" sticky-side="top">
+    </div> -->
+    <!-- <div class="indexheaderSticky" v-sticky sticky-offset="0" sticky-side="top"> -->
+    <div class="stickyContent pl-40 pr-40" v-sticky sticky-offset="0" sticky-side="top">
       <div class="columns is-marginless">
-        <div class="column is-2  logoWrapper">
+        <div class="column is-8  logoWrapper">
           <nuxt-link :to="'/'+windowsearch">
-            <img class="logoHeader" :class="!hideLogo ? 'noDelay':'fadeDelay'" :src="'/rasllogow.svg'" />
-            <p :class="hideLogo ? 'noDelay':'fadeDelay'" class="is-size-4 logoText">
-              <span class="valign-middle">
-              RASL
+            <!-- <img class="logoHeader" :class="!hideLogo ? 'noDelay':'fadeDelay'" :src="'/rasllogow.svg'" /> -->
+            <p class="is-size-3 logoText">
+              <span class="">
+              PUBLICATIONS.RASL.NU
             </span>
             </p>
           </nuxt-link>
         </div>
-        <div class="column is-6 is-offset-1">
+        <!-- <div class="column is-6 is-offset-1">
           <p class="has-text-centered is-size-4">
             <span class="valign-middle">
             COMPOSITIONS
           </span>
           </p>
-        </div>
+        </div> -->
         <div class="column headerheight">
           <p class="has-text-right is-size-4 ">
             <span><nuxt-link :to="'/collection'+windowsearch"><span class="mr-10"><buttoncounter></buttoncounter></span></nuxt-link>
             </span>
             <span>
-              <span class="pointer" v-if="!menuOpen" @click="openMenu()"><img class="rasl-icon" :src="'/icons/rasl_menu.svg'" /> </span>
-              <span class="pointer" v-else @click="closeMenu()"><img class="rasl-icon" :src="'/icons/rasl_close.svg'" /></span>
+              <span class="pointer" v-if="!menuOpen" @click="menuOpen = true"><img class="rasl-icon" :src="'/icons/rasl_menu.svg'" /> </span>
+              <span class="pointer" v-else @click="menuOpen = false"><img class="rasl-icon" :src="'/icons/rasl_close.svg'" /></span>
             </span>
           </p>
         </div>
@@ -40,9 +41,9 @@
       <transition name="fadeHeight" mode="out-in">
       <div class="menuWrapper" v-if="menuOpen">
 
-        <div class="hr-header">
+        <!-- <div class="hr-header">
           <hr :style="{'width':widthHr+'px'}" class="m-0" />
-        </div>
+        </div> -->
 
         <div class="columns is-marginless">
           <div class="column is-12 is-size-4">
@@ -52,13 +53,13 @@
         </div>
       </div>
       </transition>
-
+<!--
       <div class="hr-header">
         <hr :style="{'width':widthHr+'px'}" class="m-0" />
-      </div>
+      </div> -->
     </div>
 
-    <div class="columns headerheight  is-marginless">
+    <!-- <div class="columns headerheight  is-marginless">
       <div class="column pageheaderTitle is-12">
         <p class="has-text-centered is-size-4">
           <span v-html="title"></span>
@@ -71,7 +72,7 @@
     </div>
     <div class="hr-header">
       <hr :style="{'width':widthHr+'px'}" class="m-0" />
-    </div>
+    </div> -->
   </div>
 </div>
 </template>
@@ -117,83 +118,83 @@ export default {
   },
 
   beforeDestroy: function() {
-    window.removeEventListener('scroll', this.handleWindowScroll)
-    window.removeEventListener('resize', this.handleWindowResize)
+    // window.removeEventListener('scroll', this.handleWindowScroll)
+    // window.removeEventListener('resize', this.handleWindowResize)
   },
   mounted() {
-    window.addEventListener('scroll', this.handleWindowScroll);
-    window.addEventListener('resize', this.handleWindowResize);
-    this.widthHeaderInit = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
-    this.widthLogoInit = this.$el.querySelector('.logoHeader').getBoundingClientRect().width
-    this.widthHeader = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
-    this.widthLogo = this.$el.querySelector('.logoHeader').getBoundingClientRect().width
-    this.setWidthHr()
+    // window.addEventListener('scroll', this.handleWindowScroll);
+    // window.addEventListener('resize', this.handleWindowResize);
+    // this.widthHeaderInit = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
+    // this.widthLogoInit = this.$el.querySelector('.logoHeader').getBoundingClientRect().width
+    // this.widthHeader = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
+    // this.widthLogo = this.$el.querySelector('.logoHeader').getBoundingClientRect().width
+    // this.setWidthHr()
   },
   methods: {
-    openMenu: function () {
-      this.menuOpen = true
-      this.hideLogo = true
-      this.widthHeader = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
-      this.widthLogo = 0
-      this.setWidthHr()
-    },
-    closeMenu: function () {
-      this.menuOpen = false
-      if (window.scrollY < 40) {
-        this.hideLogo = false
-        this.widthHeader = this.widthHeaderInit
-        this.widthLogo = this.widthLogoInit
-      }else{
-        this.widthHeader = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
-        this.widthLogo = 0
-      }
-      this.setWidthHr()
-    },
-
-    setWidthHr: function() {
-      this.widthHr = this.widthHeader - this.widthLogo
-    },
-
-    handleWindowResize: _.throttle(function(arg) {
-          this.widthHeader = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
-          this.widthLogo = this.$el.querySelector('.logoHeader').getBoundingClientRect().width
-          if (window.scrollY < 40) {
-            this.widthHeaderInit = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
-            this.widthLogoInit = this.$el.querySelector('.logoHeader').getBoundingClientRect().width
-          }
-          this.setWidthHr()
-
-    }, 50),
-
-    handleWindowScroll: _.throttle(function(arg) {
-
-      if(!this.menuOpen){
-
-        if (window.scrollY > 40) {
-          this.hideLogo = true
-          this.widthHeader = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
-          this.widthLogo = this.$el.querySelector('.logoHeader').getBoundingClientRect().width
-          this.setWidthHr()
-
-        } else {
-          this.hideLogo = false
-
-          this.widthHeader = this.widthHeaderInit
-          this.widthLogo = this.widthLogoInit
-          this.setWidthHr()
-          var vm = this
-          setTimeout(function() {
-            vm.widthHeaderInit = vm.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
-            vm.widthLogoInit = vm.$el.querySelector('.logoHeader').getBoundingClientRect().width
-            vm.widthHeader = vm.widthHeaderInit
-            vm.widthLogo = vm.widthLogoInit
-            vm.setWidthHr()
-          }, 100)
-        }
-
-      }
-
-    }, 150)
+    // openMenu: function () {
+    //   this.menuOpen = true
+    //   this.hideLogo = true
+    //   this.widthHeader = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
+    //   this.widthLogo = 0
+    //   this.setWidthHr()
+    // },
+    // closeMenu: function () {
+    //   this.menuOpen = false
+    //   if (window.scrollY < 40) {
+    //     this.hideLogo = false
+    //     this.widthHeader = this.widthHeaderInit
+    //     this.widthLogo = this.widthLogoInit
+    //   }else{
+    //     this.widthHeader = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
+    //     this.widthLogo = 0
+    //   }
+    //   this.setWidthHr()
+    // },
+    //
+    // setWidthHr: function() {
+    //   this.widthHr = this.widthHeader - this.widthLogo
+    // },
+    //
+    // handleWindowResize: _.throttle(function(arg) {
+    //       this.widthHeader = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
+    //       this.widthLogo = this.$el.querySelector('.logoHeader').getBoundingClientRect().width
+    //       if (window.scrollY < 40) {
+    //         this.widthHeaderInit = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
+    //         this.widthLogoInit = this.$el.querySelector('.logoHeader').getBoundingClientRect().width
+    //       }
+    //       this.setWidthHr()
+    //
+    // }, 50),
+    //
+    // handleWindowScroll: _.throttle(function(arg) {
+    //
+    //   if(!this.menuOpen){
+    //
+    //     if (window.scrollY > 40) {
+    //       this.hideLogo = true
+    //       this.widthHeader = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
+    //       this.widthLogo = this.$el.querySelector('.logoHeader').getBoundingClientRect().width
+    //       this.setWidthHr()
+    //
+    //     } else {
+    //       this.hideLogo = false
+    //
+    //       this.widthHeader = this.widthHeaderInit
+    //       this.widthLogo = this.widthLogoInit
+    //       this.setWidthHr()
+    //       var vm = this
+    //       setTimeout(function() {
+    //         vm.widthHeaderInit = vm.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
+    //         vm.widthLogoInit = vm.$el.querySelector('.logoHeader').getBoundingClientRect().width
+    //         vm.widthHeader = vm.widthHeaderInit
+    //         vm.widthLogo = vm.widthLogoInit
+    //         vm.setWidthHr()
+    //       }, 100)
+    //     }
+    //
+    //   }
+    //
+    // }, 150)
 
   },
   computed: {
@@ -206,6 +207,22 @@ export default {
 }
 </script>
 <style scoped lang="scss">
+.indexheader{
+  // transform: translateY(-40px);
+  position: absolute;
+  width: 100%;
+
+}
+.stickyContent{
+  opacity: 0;
+  transition: opacity 0.25s ease-in-out;
+  transform: translateY(-40px);
+  &.top-sticky{
+    opacity: 1;
+    transform: translateY(0px);
+
+  }
+}
 .pageheaderTitle {
     position: relative;
     .pageheaderTitleSelect {
@@ -226,6 +243,12 @@ export default {
         transition: width 0.20s;
     }
 }
+
+
+// .indexheaderFixed{
+//   // position: fixed;
+//   width: 100%;
+// }
 .indexheaderSticky {
     transition: background 0.10s ease-in-out;
     // background: $white;
