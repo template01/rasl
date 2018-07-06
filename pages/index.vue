@@ -336,8 +336,9 @@ export default {
 }
 
 #library {
-    position: relative;
 
+    position: relative;
+    min-height: 110vh;
     .backgroundBlockI,
     .backgroundBlockII {
         position: absolute;

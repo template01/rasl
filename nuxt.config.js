@@ -28,16 +28,37 @@ module.exports = {
 
   // mode: 'spa',
 
-  css: [
-    '~assets/css/marginpaddinghelpers.css',
-    '~assets/bulmaCustom/custom/custom.css',
-    '~assets/fonts/texgyrefont/stylesheet.css',
-    // '~assets/fonts/okomito/stylesheet.css',
+
+      //
+      // styleResources: {
+      //   scss: './assets/scss/variables.scss',
+      //   // scss: './assets/scss/colors.scss',
+      //   scss: './assets/scss/main.scss',
+      //   // scss: './assets/scss/underlines.scss'
+      // },
+
+
+  css: [{
+      src: '~assets/css/marginpaddinghelpers.css',
+      lang: 'css'
+    },
+    {
+      src: '~assets/scss/variables.scss',
+      lang: 'sass'
+    },
+    {
+      src: '~assets/scss/main.scss',
+      lang: 'sass'
+    },
+    {
+      src: '~assets/fonts/texgyrefont/stylesheet.css',
+      lang: 'css'
+    }
   ],
 
 
   router: {
-    middleware: ['setSearchWindow','scrollposbefore','delaypagetransition']
+    middleware: ['setSearchWindow', 'scrollposbefore', 'delaypagetransition']
   },
 
   modules: [
@@ -93,12 +114,12 @@ module.exports = {
   /*
    ** Customize the progress bar color
    */
-   // loading: {
-   //   color: 'blue',
-   //   height: '100vh'
-   // },
+  // loading: {
+  //   color: 'blue',
+  //   height: '100vh'
+  // },
 
-   loading: '~/components/loading.vue',
+  loading: '~/components/loading.vue',
   /*
    ** Build configuration
    */
@@ -109,7 +130,7 @@ module.exports = {
     styleResources: {
       scss: './assets/scss/variables.scss',
       // scss: './assets/scss/colors.scss',
-      scss: './assets/scss/main.scss',
+      // scss: './assets/scss/main.scss',
       // scss: './assets/scss/underlines.scss'
     },
 

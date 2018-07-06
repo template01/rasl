@@ -10,10 +10,10 @@
     </div>
     <h1 class="is-size-3 uppercase" ><nuxt-link v-html="postdata.title.rendered" class="" :to="'read/'+postdata.type+'/'+postdata.slug+windowsearch">  </nuxt-link>
     </h1>
-    <p class="is-size-4 mt-20" v-html="postdata.title.rendered">
+    <p class="ml-30 is-size-4 mt-20" v-html="postdata.title.rendered">
     </p>
-    <p v-show="postdata.acf.author" class="is-size-4 ">
-       <authorlinks :authors="postdata.acf.author"></authorlinks> 
+    <p v-show="postdata.acf.author" class="mt-10 is-size-4 ">
+       <authorlinks :authors="postdata.acf.author"></authorlinks>
     </p>
 
     <hr class="mb-0" />
