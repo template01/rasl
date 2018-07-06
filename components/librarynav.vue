@@ -27,12 +27,11 @@
 
       </p>
     </div>
-    <div class="column headerheight">
+    <div class="column navButtons ">
       <p class="has-text-right is-size-4 ">
-        <span><nuxt-link :to="'collection'+windowsearch"><span class="mr-10"><buttoncounter></buttoncounter></span></nuxt-link>
-        </span>
-        <span v-if="!showfilters" @click=" $store.commit('SET_SHOWFILTERSDESKTOP', true);"><img class="rasl-icon" :src="'icons/rasl_filter.svg'" /></span>
-        <span v-else @click=" $store.commit('SET_SHOWFILTERSDESKTOP', false);"><img class="rasl-icon" :src="'icons/rasl_close.svg'" /></span>
+        <span  class="mr-10" v-if="!showfilters" @click=" $store.commit('SET_SHOWFILTERSDESKTOP', true);"><img class="pointer rasl-icon" :src="'icons/rasl_filter.svg'" /></span>
+        <span  class="mr-10" v-else @click=" $store.commit('SET_SHOWFILTERSDESKTOP', false);"><img class="pointer rasl-icon" :src="'icons/rasl_close.svg'" /></span>
+        <span><img class="opacity0 disable rasl-icon" :src="'icons/rasl_close.svg'" /></span>
       </p>
     </div>
   </div>
@@ -160,5 +159,17 @@ input[type=checkbox]:checked + label {
     // color: white;
     // border: 2px solid $white;
 
+}
+
+.navButtons{
+  opacity: 0;
+  transition: opacity 0.25s;
+
+}
+
+.top-sticky{
+  .navButtons{
+    opacity: 1;
+  }
 }
 </style>

@@ -52,6 +52,12 @@
   }
 }
 
+.disable{
+   pointer-events: none;
+}
+.opacity0{
+  opacity: 0
+}
 .valign-middle {
   vertical-align: middle;
 }
@@ -76,6 +82,10 @@
 
 .Aligner-left {
   justify-content: end;
+}
+
+.Aligner-right {
+  justify-content: flex-end;
 }
 
 hr {

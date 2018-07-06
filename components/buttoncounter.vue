@@ -32,24 +32,24 @@ export default {
     this.selectedLength = this.selected.length
   },
   watch: {
-    selected: function() {
-      console.log( this.selected.length)
-        console.log('giiiiiii')
-        var vm = this
-        if(this.selectedLength === this.selected.length){
-          this.update = false
-
-        }else{
-
-          this.update = true
-        }
-        // this.selectedLength = this.selected.length
-
-
-        setTimeout(function() {
-          vm.update = false
-        }, 250)
-    }
+    // selected: function() {
+    //   console.log( this.selected.length)
+    //     console.log('giiiiiii')
+    //     var vm = this
+    //     if(this.selectedLength === this.selected.length){
+    //       this.update = false
+    //
+    //     }else{
+    //
+    //       this.update = true
+    //     }
+    //     // this.selectedLength = this.selected.length
+    //
+    //
+    //     setTimeout(function() {
+    //       vm.update = false
+    //     }, 250)
+    // }
   }
 
 }

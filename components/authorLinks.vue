@@ -1,6 +1,6 @@
 <template>
 <span class="">
-    By:
+    <!-- By: -->
     <nuxt-link v-for="(author, index) in authors" :to="'/authors/'+author.post_name+windowsearch">
       <span v-if="index===authors.length-1 && authors.length>1"> and </span>
       <span v-if="index>0 && index<authors.length-1">, </span>

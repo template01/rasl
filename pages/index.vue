@@ -2,10 +2,12 @@
 <div class="">
   <!-- <nuxt-link :to="'collection'+windowsearch">collection</nuxt-link> -->
 
-  <indexintro></indexintro>
-  <div sticky-container class="columns" style="margin-bottom:0;margin-top:0;">
-    <div class="column">
-      <pageheader></pageheader>
+  <div>
+  <!-- <div sticky-container> -->
+    <pageheader></pageheader>
+    <indexintro></indexintro>
+    <div class="" style="display:flex; margin-bottom:0;margin-top:0;">
+
       <postlistfeatured :displaydata="featuredPosts"></postlistfeatured>
 
       <!-- <div class="pl-40 pr-40">
@@ -20,7 +22,7 @@
           </div>
         </div>
       </div> -->
-    </div>
+  </div>
   </div>
   <div>
     <div sticky-container class="pt-40" id="library">

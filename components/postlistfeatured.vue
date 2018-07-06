@@ -3,7 +3,7 @@
 
 <div class="featuredPosts" :style="{'transform':'translateX('+slidepos+')','width':100*displaydata.length+'vw'}">
   <div class="featuredItem" :style="{'width':slidewidth}" v-for="(postdata, index) in displaydata">
-      <div class="contentWrapper">
+      <div class="contentWrapper column">
         <div class=" pl-40 pr-40">
           <!-- <div class="postcontentWrapperOuter"> -->
             <div class="pt-20 pb-20">
@@ -29,8 +29,10 @@
     </li>
   </ul> -->
 </div>
-<div class="nav" >
-  <button @click="slideTo('next')">next</button>
+<div  @click="slideTo('next')" class="nav pointer Aligner Aligner-right" >
+  <p class="is-size-4">
+    NEXT
+  </p>
 </div>
 
 </div>
@@ -53,7 +55,7 @@ export default {
       genericData: 'generic component text',
       slidepos: '0px',
       slidelocked: false,
-      slidewidth: '100vw',
+      slidewidth: '80vw',
       slideindex: 0
     }
   },
@@ -69,12 +71,12 @@ export default {
       this.slidelocked = true
       if(dir === 'next'){
         if(this.slideindex === 0){
-          this.slidepos = '0px'
+          this.slidepos = '0vw'
         }
-        this.slidepos = (this.slidepos.replace("px", "") - this.slidewidth.replace("px", "")) +'px'
+        this.slidepos = (this.slidepos.replace("vw", "") - this.slidewidth.replace("vw", "")) +'vw'
         this.slideindex = this.slideindex+1
         if( this.slideindex >= this.displaydata.length){
-          this.slidepos = '0px'
+          this.slidepos = '0vw'
            this.slideindex = 0
         }
         // if(this.slidepos.includes("px")){
@@ -124,7 +126,7 @@ export default {
   this.removeScrollHandle()
   },
   mounted() {
-    this.slidewidth = document.body.clientWidth + 'px'
+    // this.slidewidth = document.body.clientWidth * 0.80 + 'px'
     window.addEventListener('scroll', this.handleWindowScroll);
   },
 
@@ -133,12 +135,28 @@ export default {
 <style scoped lang="scss">
 .featuredPostsOuter{
   position: relative;
+  background: white;
+  overflow-x: hidden;
+  &:hover{
+    .nav{
+      opacity: 1;
+    }
+  }
 }
 .nav{
+  transition: opacity 0.25s;
+  opacity: 0;
   position: absolute;
-  left: 0;
+  left:80vw;
   bottom: 0;
-  width: 100vw;
+  width: 20vw;
+  height: 100%;
+   background: linear-gradient(to left, white 60% , transparent);
+   p{
+     margin-right: 53px;
+     transform: rotate(90deg);
+     user-select: none;
+   }
 }
 .featuredPosts {
     transition: transform 0.25s;
@@ -152,15 +170,17 @@ export default {
 }
 .featuredItem {
     float: left;
+    background: white;
+
     width: 100%;
-    min-height: 500px;
+    min-height: 600px;
     .columnWrapper{
 
     }
     .contentWrapper{
       width: 50%;
       float: left;
-      min-height: 500px;
+      min-height: 600px;
       position: relative;
 
       .contentColumnAuthor{
@@ -173,7 +193,7 @@ export default {
 .featuredImageWrapper{
   width: 50%;
   float: left;
-  min-height: 500px;
+  min-height: 600px;
   overflow: hidden;
   height: 100%;
 
@@ -184,11 +204,11 @@ export default {
   position: absolute;
   height: 100%;
   width: 100%;
-   background-size: contain, cover;
-   background-position: center;
+   background-size: cover;
+   background-position: center center;
   overflow: hidden;
-  padding: 0.75rem;
-  margin-left: -0.75rem;
+  // padding: 0.75rem;
+  // margin-left: -0.75rem;
   left: 0;
   top: 0;
 }

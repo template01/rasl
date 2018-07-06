@@ -1,0 +1,366 @@
+<template>
+<div class="indexheader ">
+
+  <div class="indexheaderInner">
+
+
+    <!-- <div class="hr-header">
+      <hr :style="{'width':widthHr+'px'}" class="m-0" />
+    </div> -->
+    <!-- <div class="indexheaderSticky" v-sticky sticky-offset="0" sticky-side="top"> -->
+    <div class="stickyContent pl-40 pr-40" v-sticky sticky-offset="0" sticky-side="top">
+      <div class="columns is-marginless">
+        <div class="column is-8  logoWrapper">
+          <nuxt-link :to="'/'+windowsearch">
+            <!-- <img class="logoHeader" :class="!hideLogo ? 'noDelay':'fadeDelay'" :src="'/rasllogow.svg'" /> -->
+            <p class="is-size-3 logoText">
+              <span class="">
+              PUBLICATIONS.RASL.NU
+            </span>
+            </p>
+          </nuxt-link>
+        </div>
+        <!-- <div class="column is-6 is-offset-1">
+          <p class="has-text-centered is-size-4">
+            <span class="valign-middle">
+            COMPOSITIONS
+          </span>
+          </p>
+        </div> -->
+        <div class="column headerheight">
+          <p class="has-text-right is-size-4 ">
+            <span><nuxt-link :to="'/collection'+windowsearch"><span class="mr-10"><buttoncounter></buttoncounter></span></nuxt-link>
+            </span>
+            <span>
+              <span class="pointer" v-if="!menuOpen" @click="menuOpen = true"><img class="rasl-icon" :src="'/icons/rasl_menu.svg'" /> </span>
+              <span class="pointer" v-else @click="menuOpen = false"><img class="rasl-icon" :src="'/icons/rasl_close.svg'" /></span>
+            </span>
+          </p>
+        </div>
+      </div>
+
+      <transition name="fadeHeight" mode="out-in">
+      <div class="menuWrapper" v-if="menuOpen">
+
+        <!-- <div class="hr-header">
+          <hr :style="{'width':widthHr+'px'}" class="m-0" />
+        </div> -->
+
+        <div class="columns is-marginless">
+          <div class="column is-12 is-size-4">
+            <menucontent>
+            </menucontent>
+          </div>
+        </div>
+      </div>
+      </transition>
+<!--
+      <div class="hr-header">
+        <hr :style="{'width':widthHr+'px'}" class="m-0" />
+      </div> -->
+    </div>
+
+    <!-- <div class="columns headerheight  is-marginless">
+      <div class="column pageheaderTitle is-12">
+        <p class="has-text-centered is-size-4">
+          <span v-html="title"></span>
+        </p>
+        <span class="column pageheaderTitleSelect">
+
+          <selectpost v-if="selectpost" class=" pointer" :posttype="selectpost.type" :postid="selectpost.id"></selectpost>
+        </span>
+      </div>
+    </div>
+    <div class="hr-header">
+      <hr :style="{'width':widthHr+'px'}" class="m-0" />
+    </div> -->
+  </div>
+</div>
+</template>
+<script>
+import _ from 'lodash'
+if (process.browser) {
+  var Sticky = require('vue-sticky-directive')
+}
+import selectpost from '~/components/selectpost'
+
+import buttoncounter from '~/components/buttoncounter'
+import menucontent from '~/components/menucontent'
+import {
+  mapGetters
+} from 'vuex'
+
+
+export default {
+  props: ['title', 'selectpost','initload'],
+  components: {
+    buttoncounter,
+    selectpost,
+    menucontent
+  },
+  directives: {
+    Sticky
+  },
+
+  data: function() {
+    return {
+      hideLogo: false,
+      widthHr: 0,
+      widthHeaderInit: 0,
+      widthLogoInit: 0,
+      widthHeader: 0,
+      widthLogo: 0,
+      menuOpen: false
+
+    }
+  },
+  watch: {
+
+  },
+
+  beforeDestroy: function() {
+    // window.removeEventListener('scroll', this.handleWindowScroll)
+    // window.removeEventListener('resize', this.handleWindowResize)
+  },
+  mounted() {
+    // window.addEventListener('scroll', this.handleWindowScroll);
+    // window.addEventListener('resize', this.handleWindowResize);
+    // this.widthHeaderInit = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
+    // this.widthLogoInit = this.$el.querySelector('.logoHeader').getBoundingClientRect().width
+    // this.widthHeader = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
+    // this.widthLogo = this.$el.querySelector('.logoHeader').getBoundingClientRect().width
+    // this.setWidthHr()
+  },
+  methods: {
+    // openMenu: function () {
+    //   this.menuOpen = true
+    //   this.hideLogo = true
+    //   this.widthHeader = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
+    //   this.widthLogo = 0
+    //   this.setWidthHr()
+    // },
+    // closeMenu: function () {
+    //   this.menuOpen = false
+    //   if (window.scrollY < 40) {
+    //     this.hideLogo = false
+    //     this.widthHeader = this.widthHeaderInit
+    //     this.widthLogo = this.widthLogoInit
+    //   }else{
+    //     this.widthHeader = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
+    //     this.widthLogo = 0
+    //   }
+    //   this.setWidthHr()
+    // },
+    //
+    // setWidthHr: function() {
+    //   this.widthHr = this.widthHeader - this.widthLogo
+    // },
+    //
+    // handleWindowResize: _.throttle(function(arg) {
+    //       this.widthHeader = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
+    //       this.widthLogo = this.$el.querySelector('.logoHeader').getBoundingClientRect().width
+    //       if (window.scrollY < 40) {
+    //         this.widthHeaderInit = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
+    //         this.widthLogoInit = this.$el.querySelector('.logoHeader').getBoundingClientRect().width
+    //       }
+    //       this.setWidthHr()
+    //
+    // }, 50),
+    //
+    // handleWindowScroll: _.throttle(function(arg) {
+    //
+    //   if(!this.menuOpen){
+    //
+    //     if (window.scrollY > 40) {
+    //       this.hideLogo = true
+    //       this.widthHeader = this.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
+    //       this.widthLogo = this.$el.querySelector('.logoHeader').getBoundingClientRect().width
+    //       this.setWidthHr()
+    //
+    //     } else {
+    //       this.hideLogo = false
+    //
+    //       this.widthHeader = this.widthHeaderInit
+    //       this.widthLogo = this.widthLogoInit
+    //       this.setWidthHr()
+    //       var vm = this
+    //       setTimeout(function() {
+    //         vm.widthHeaderInit = vm.$el.querySelector('.indexheaderInner').getBoundingClientRect().width
+    //         vm.widthLogoInit = vm.$el.querySelector('.logoHeader').getBoundingClientRect().width
+    //         vm.widthHeader = vm.widthHeaderInit
+    //         vm.widthLogo = vm.widthLogoInit
+    //         vm.setWidthHr()
+    //       }, 100)
+    //     }
+    //
+    //   }
+    //
+    // }, 150)
+
+  },
+  computed: {
+    ...mapGetters({
+      windowsearch: "GET_WINDOWSEARCH"
+    }),
+  },
+
+
+}
+</script>
+<style scoped lang="scss">
+.indexheader{
+  // transform: translateY(-40px);
+  position: absolute;
+  width: 100%;
+
+}
+.stickyContent{
+  // opacity: 0;
+  // transition: opacity 0.25s ease-in-out;
+  // transform: translateY(-40px);
+  &.top-sticky{
+    opacity: 1;
+    transform: translateY(0px);
+
+  }
+}
+.pageheaderTitle {
+    position: relative;
+    .pageheaderTitleSelect {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .pageheaderTitleSelectWrapper {
+        position: relative;
+    }
+}
+.hr-header {
+    position: relative;
+    hr {
+        width: 900px;
+        position: absolute;
+        right: 0;
+        transition: width 0.20s;
+    }
+}
+
+
+// .indexheaderFixed{
+//   // position: fixed;
+//   width: 100%;
+// }
+.indexheaderSticky {
+    transition: background 0.10s ease-in-out;
+    // background: $white;
+}
+.logoWrapper {
+    position: relative;
+}
+.logoHeader {
+    // background: $white;
+    padding: 20px 30px 20px 0;
+    // padding-left: 10px;
+    // padding-right: 15px;
+    position: absolute;
+    z-index: 9999;
+    // left: 0px;
+    // top:0px;
+    // height: 60px;
+    left: 0;
+    top: -2px;
+    height: 124px;
+    opacity: 1;
+    max-height: 124px;
+    overflow: hidden;
+    transition: opacity 0.10s ease-in-out;
+    transition-delay: 0.5s;
+    &.fadeDelay {
+        opacity: 0;
+        width: 0;
+        padding: 0;
+
+    }
+}
+
+.logoText {
+    &.fadeDelay {
+        opacity: 0;
+        transition-delay: 0.2s;
+        width: 0;
+        padding: 0;
+        transition: opacity 0.1s ease-in-out;
+
+    }
+    &.noDelay {
+        transition: opacity 0.1s ease-in-out;
+        transition-delay: 1s !important;
+
+    }
+}
+
+.top-sticky {
+    // background: $white;
+
+    .logoHeader {
+        // opacity: 0;
+        // max-height: 0px;
+
+    }
+    .logoText {
+        opacity: 1;
+    }
+}
+// .navigation{
+//   opacity: 0;
+//   transition: opacity 0.25s ease-in-out;
+//
+// }
+// .top-sticky .navigation{
+//   opacity: 1
+// }
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.25s, max-height 0.5s ease-in-out;
+    overflow: hidden;
+    max-height: 300px;
+}
+/* .fade-leave-active below version 2.1.8 */
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
+    overflow: hidden;
+    max-height: 0;
+    transition: opacity 0.25s, max-height 0.3s ease-in-out;
+}
+
+input {
+    display: none;
+}
+input[type=checkbox]:checked + label {
+    border-bottom: 2px solid $black;
+    // background: $black;
+    // color: white;
+    // border: 2px solid $white;
+
+}
+
+.fadeHeight-enter-active,
+.fadeHeight-leave-active {
+  transition: max-height 0.5s ease-in-out;
+  max-height: 100vh;
+}
+.fadeHeight-enter,
+.fadeHeight-leave-to
+{
+  opacity: 0;
+  max-height: 0px;
+}
+
+.menuWrapper{
+  overflow: hidden;
+  // background: red
+}
+
+</style>

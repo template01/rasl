@@ -1,17 +1,12 @@
 <template>
-<div class="indexheader ">
+<div class="indexheader pr-40 pl-40">
+
   <div class="indexheaderInner">
 
-
-    <!-- <div class="hr-header">
-      <hr :style="{'width':widthHr+'px'}" class="m-0" />
-    </div> -->
-    <!-- <div class="indexheaderSticky" v-sticky sticky-offset="0" sticky-side="top"> -->
-    <div class="stickyContent pl-40 pr-40" v-sticky sticky-offset="0" sticky-side="top">
+    <div>
       <div class="columns is-marginless">
         <div class="column is-8  logoWrapper">
           <nuxt-link :to="'/'+windowsearch">
-            <!-- <img class="logoHeader" :class="!hideLogo ? 'noDelay':'fadeDelay'" :src="'/rasllogow.svg'" /> -->
             <p class="is-size-3 logoText">
               <span class="">
               PUBLICATIONS.RASL.NU
@@ -19,68 +14,20 @@
             </p>
           </nuxt-link>
         </div>
-        <!-- <div class="column is-6 is-offset-1">
-          <p class="has-text-centered is-size-4">
-            <span class="valign-middle">
-            COMPOSITIONS
-          </span>
-          </p>
-        </div> -->
-        <div class="column headerheight">
-          <p class="has-text-right is-size-4 ">
-            <span><nuxt-link :to="'/collection'+windowsearch"><span class="mr-10"><buttoncounter></buttoncounter></span></nuxt-link>
-            </span>
-            <span>
-              <span class="pointer" v-if="!menuOpen" @click="menuOpen = true"><img class="rasl-icon" :src="'/icons/rasl_menu.svg'" /> </span>
-              <span class="pointer" v-else @click="menuOpen = false"><img class="rasl-icon" :src="'/icons/rasl_close.svg'" /></span>
-            </span>
-          </p>
-        </div>
+
+
       </div>
 
-      <transition name="fadeHeight" mode="out-in">
-      <div class="menuWrapper" v-if="menuOpen">
 
-        <!-- <div class="hr-header">
-          <hr :style="{'width':widthHr+'px'}" class="m-0" />
-        </div> -->
-
-        <div class="columns is-marginless">
-          <div class="column is-12 is-size-4">
-            <menucontent>
-            </menucontent>
-          </div>
-        </div>
-      </div>
-      </transition>
-<!--
-      <div class="hr-header">
-        <hr :style="{'width':widthHr+'px'}" class="m-0" />
-      </div> -->
     </div>
 
-    <!-- <div class="columns headerheight  is-marginless">
-      <div class="column pageheaderTitle is-12">
-        <p class="has-text-centered is-size-4">
-          <span v-html="title"></span>
-        </p>
-        <span class="column pageheaderTitleSelect">
 
-          <selectpost v-if="selectpost" class=" pointer" :posttype="selectpost.type" :postid="selectpost.id"></selectpost>
-        </span>
-      </div>
-    </div>
-    <div class="hr-header">
-      <hr :style="{'width':widthHr+'px'}" class="m-0" />
-    </div> -->
   </div>
 </div>
 </template>
 <script>
 import _ from 'lodash'
-if (process.browser) {
-  var Sticky = require('vue-sticky-directive')
-}
+
 import selectpost from '~/components/selectpost'
 
 import buttoncounter from '~/components/buttoncounter'
@@ -98,7 +45,6 @@ export default {
     menucontent
   },
   directives: {
-    Sticky
   },
 
   data: function() {
@@ -109,7 +55,6 @@ export default {
       widthLogoInit: 0,
       widthHeader: 0,
       widthLogo: 0,
-      menuOpen: false
 
     }
   },
@@ -210,156 +155,13 @@ export default {
 .indexheader{
   // transform: translateY(-40px);
   position: absolute;
+  z-index: 100;
   width: 100%;
-
-}
-.stickyContent{
-  opacity: 0;
-  transition: opacity 0.25s ease-in-out;
-  transform: translateY(-40px);
-  &.top-sticky{
-    opacity: 1;
-    transform: translateY(0px);
-
+  .fixedMenu{
+    position: fixed;
+    right: calc(40px + 0.75rem)
   }
 }
-.pageheaderTitle {
-    position: relative;
-    .pageheaderTitleSelect {
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
-    .pageheaderTitleSelectWrapper {
-        position: relative;
-    }
-}
-.hr-header {
-    position: relative;
-    hr {
-        width: 900px;
-        position: absolute;
-        right: 0;
-        transition: width 0.20s;
-    }
-}
 
-
-// .indexheaderFixed{
-//   // position: fixed;
-//   width: 100%;
-// }
-.indexheaderSticky {
-    transition: background 0.10s ease-in-out;
-    // background: $white;
-}
-.logoWrapper {
-    position: relative;
-}
-.logoHeader {
-    // background: $white;
-    padding: 20px 30px 20px 0;
-    // padding-left: 10px;
-    // padding-right: 15px;
-    position: absolute;
-    z-index: 9999;
-    // left: 0px;
-    // top:0px;
-    // height: 60px;
-    left: 0;
-    top: -2px;
-    height: 124px;
-    opacity: 1;
-    max-height: 124px;
-    overflow: hidden;
-    transition: opacity 0.10s ease-in-out;
-    transition-delay: 0.5s;
-    &.fadeDelay {
-        opacity: 0;
-        width: 0;
-        padding: 0;
-
-    }
-}
-
-.logoText {
-    &.fadeDelay {
-        opacity: 0;
-        transition-delay: 0.2s;
-        width: 0;
-        padding: 0;
-        transition: opacity 0.1s ease-in-out;
-
-    }
-    &.noDelay {
-        transition: opacity 0.1s ease-in-out;
-        transition-delay: 1s !important;
-
-    }
-}
-
-.top-sticky {
-    background: $white;
-
-    .logoHeader {
-        // opacity: 0;
-        // max-height: 0px;
-
-    }
-    .logoText {
-        opacity: 1;
-    }
-}
-// .navigation{
-//   opacity: 0;
-//   transition: opacity 0.25s ease-in-out;
-//
-// }
-// .top-sticky .navigation{
-//   opacity: 1
-// }
-
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 0.25s, max-height 0.5s ease-in-out;
-    overflow: hidden;
-    max-height: 300px;
-}
-/* .fade-leave-active below version 2.1.8 */
-.fade-enter,
-.fade-leave-to {
-    opacity: 0;
-    overflow: hidden;
-    max-height: 0;
-    transition: opacity 0.25s, max-height 0.3s ease-in-out;
-}
-
-input {
-    display: none;
-}
-input[type=checkbox]:checked + label {
-    border-bottom: 2px solid $black;
-    // background: $black;
-    // color: white;
-    // border: 2px solid $white;
-
-}
-
-.fadeHeight-enter-active,
-.fadeHeight-leave-active {
-  transition: max-height 0.5s ease-in-out;
-  max-height: 100vh;
-}
-.fadeHeight-enter,
-.fadeHeight-leave-to
-{
-  opacity: 0;
-  max-height: 0px;
-}
-
-.menuWrapper{
-  overflow: hidden;
-  // background: red
-}
 
 </style>
