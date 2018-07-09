@@ -7,7 +7,7 @@
     <!-- </div> -->
   <!-- </transition> -->
   <transition name="fade">
-  <div v-if="appinitated" class="menuToggle">
+  <div v-if="appinitated" class="menuToggle pt-20">
 
     <div class="column ">
         <span class="fixedMenu">
@@ -24,7 +24,7 @@
     </div>
   </div>
   </transition>
-  <div class="menu" :style="{'z-index':zindexMenu,'opacity':opacity}">
+  <div class="menu " :style="{'z-index':zindexMenu,'opacity':opacity}">
     <menucontent>
 
     </menucontent>

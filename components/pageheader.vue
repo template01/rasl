@@ -1,6 +1,6 @@
 <template>
     <transition name="fade">
-<div v-show="appinitated" class="indexheader pr-40 pl-40">
+<div v-show="appinitated" class="indexheader pr-40 pl-40 pt-20">
 
   <div class="indexheaderInner">
 

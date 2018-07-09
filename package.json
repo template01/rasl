@@ -23,7 +23,7 @@
 		"document-offset": "^1.0.4",
 		"downloadjs": "^1.4.7",
 		"lodash": "^4.17.4",
-		"nuxt": "^1.4.1",
+		"nuxt-edge": "^2.0.0-25513462.d31aeaa",
 		"sass-loader": "^6.0.6",
 		"smoothscroll-polyfill": "^0.4.0",
 		"urijs": "^1.19.1",

@@ -6,9 +6,13 @@
   </div>
   <div class="contentWrapperIntro pb-20 pt-40">
     <h1 class="" :class="!appinitated ? 'animateHeight':''">
-      <span  v-if="readyPos" :class="runspantransition ? 'resetSpan':''" :style="{'transform':'translateY('+randomPositions[index]+')'}" v-for="(letter,index) in introword">{{letter}}</span>
-    </h1>
-    <!-- <img class="" src="/rasllogow.svg"/> -->
+        <!-- <transition name="fade"> -->
+            <span v-bind:key="index" :class="runspantransition ? 'resetSpan':''" :style="{'opacity':opacityItem,'transform':'translateY('+randomPositions[index]+')'}" v-for="(letter,index) in introword">{{letter}}</span>
+            <span class="imageSpan" :class="runspantransition ? 'resetSpan':''"  :style="{'opacity':opacityItem,'transform':'translateY('+randomPositions[1]+')'}">
+              <img class="" src="/rasllogow.svg"/>
+            </span>
+          </h1>
+
   </div>
 </div>
 </template>
@@ -26,12 +30,12 @@ export default {
       introword: ['P', 'U', 'B', 'L', 'I', 'C', 'A', 'T', 'I', 'O', 'N', 'S'],
       randomPositions: [],
       readyPos: false,
+      opacityItem: 0,
       genericData: 'generic component text'
     }
   },
   methods: {
-    randomPos: function() {
-    }
+    randomPos: function() {}
   },
   created() {
     var vm = this
@@ -40,7 +44,7 @@ export default {
       var rand = positions[Math.floor(Math.random() * positions.length)];
       // return rand + '%';
       // return arr[index] = num * 2;
-      vm.randomPositions.push(rand+'%')
+      vm.randomPositions.push(rand + '%')
 
     });
     // this.readyPos = true
@@ -54,33 +58,40 @@ export default {
     var vm = this
     this.readyPos = true
     setTimeout(function() {
+      vm.opacityItem=1
+    }, 300)
+    setTimeout(function() {
       vm.runspantransition = true
-    }, 1500)
+    }, 1000)
     setTimeout(function() {
       vm.$store.commit('SET_APPINITIATED', true)
-    }, 3500)
+    }, 3000)
   }
 
 }
 </script>
 <style scoped lang="scss">
 .indexintro {
+
     .contentWrapperIntro {
         display: inline-block;
         h1 {
             float: left;
             span {
+              // float: left;
                 line-height: 1;
                 display: inline-block;
-                transition: transform 1s;
+                transition: transform 1s,opacity 0.5s;
+                &.imageSpan{
+                  float: right;
+                }
+                img {
+                  width: 9.5vw;
+                  margin-left: 1vw;
+                  // margin-bottom: -1.3vw;
+                  padding-top: 1vw;
+                }
             }
-        }
-        img {
-            float: left;
-            width: 10vw;
-            margin-left: 1.5vw;
-            margin-bottom: -1.3vw;
-            padding-top: 1.3vw;
         }
     }
     position: relative;
@@ -108,26 +119,39 @@ export default {
         letter-spacing: -0.5vw;
     }
     .animateHeight {
-        line-height: 90vh;
+        line-height: 80vh;
+        padding-bottom: 20vh;
         animation-name: example;
-        animation-duration: 1s;
-        animation-delay: 3s;
+        animation-duration: .5s;
+        animation-delay: 2.5s;
         animation-fill-mode: forwards;
 
     }
 
-    .resetSpan {
-        transform: translateY(0) !important;
-    }
     @keyframes example {
         from {
-            line-height: 90vh;
+            line-height: 80vh;
+            padding-bottom: 20vh;
 
         }
         to {
             line-height: 9vw;
+            padding-bottom: 0;
 
         }
+    }
+    .resetSpan {
+        transform: translateY(0) !important;
+    }
+
+    .fade-enter-active,
+    .fade-leave-active {
+        transition: opacity 5s;
+    }
+    /* .fade-leave-active below version 2.1.8 */
+    .fade-enter,
+    .fade-leave-to {
+        opacity: 0;
     }
 
 }
