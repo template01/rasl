@@ -46,6 +46,10 @@ $family-primary: $family-serif;
 .green-background {
   background-color: $green;
 }
+
+.fullHeight{
+  min-height: 100vh;
+}
 // HELPERS
 .ignore-mb {
   margin-bottom: 0 !important;

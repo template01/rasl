@@ -1,11 +1,11 @@
 <template>
-<div class="">
+<div class="fullHeight">
   <!-- <nuxt-link :to="'collection'+windowsearch">collection</nuxt-link> -->
 
   <div>
   <!-- <div sticky-container> -->
     <pageheader></pageheader>
-    <indexintro></indexintro>
+    <indexintro v-once></indexintro>
     <div class="" style="display:flex; margin-bottom:0;margin-top:0;">
 
       <postlistfeatured :displaydata="featuredPosts"></postlistfeatured>

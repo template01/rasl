@@ -2,7 +2,7 @@
 <div class="pt-20">
   <div  class="wrapper" v-for="filteritem in filtertype">
     <div class="pr-10 mb-10">
-    <label class="">
+    <label class="pointer">
         <input @click="setfilterby(filtername)" v-model="selectedItems" :value="filteritem.slug" id="checkBox" type="checkbox">
         <span  class="pr-10 pl-10 pb-5 outer-filter is-size-4" style="padding-top:3px" v-html="filteritem.name"></span>
 
@@ -68,7 +68,7 @@ export default {
     ...mapGetters({
       appinitated: "GET_APP_INITIATED",
       filterby: "GET_FILTERBY",
-      filters: "GET_FILTERS"
+      filters: "GET_FILTERS",
     }),
   },
 

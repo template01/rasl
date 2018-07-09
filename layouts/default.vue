@@ -6,17 +6,12 @@
       <!-- <nuxt/> -->
     <!-- </div> -->
   <!-- </transition> -->
-  <div class="menuToggle">
+  <transition name="fade">
+  <div v-if="appinitated" class="menuToggle">
 
     <div class="column ">
         <span class="fixedMenu">
           <transition name="slide-fade" mode="out-in">
-           <!-- <p v-if="update" key="1">
-             hello
-           </p>
-           <p v-else key="2">
-             damng
-           </p> -->
            <span key="1" class="pointer" v-if="update" @click="$store.commit('menu/SET_TOGGLE',true); layerMenu($store.state.menu.toggle)">
              <buttoncounter  ></buttoncounter>
            </span>
@@ -28,7 +23,8 @@
         </span>
     </div>
   </div>
-  <div class="menu" :style="{'z-index':zindexMenu}">
+  </transition>
+  <div class="menu" :style="{'z-index':zindexMenu,'opacity':opacity}">
     <menucontent>
 
     </menucontent>
@@ -61,25 +57,34 @@ export default {
     ...mapGetters({
       loading: "GET_LOADING",
       selected: "GET_SELECTED",
-
+      appinitated: "GET_APP_INITIATED"
     }),
   },
   data: function(){
     return{
       zindexMenu :-1,
       update: false,
+      opacity:0
     }
   },
   methods:{
     layerMenu: function(isOpen){
       var vm = this
     if(isOpen){
+
+      this.opacity=1
       setTimeout(function(){
         vm.zindexMenu = 100
       },250)
     }else{
+      this.opacity=0
       vm.zindexMenu = -1
     }
+    }
+  },
+  created(){
+    if(this.$route.path != '/'){
+      this.$store.commit('SET_APPINITIATED', true)
     }
   },
   watch:{
@@ -122,6 +127,7 @@ export default {
   &.zindex-reset{
     z-index: 100;
   }
+box-shadow: inset 10px 0px 20px -10px rgba(0,0,0,1);
 }
 .menuToggle{
   position: fixed;
@@ -135,15 +141,18 @@ export default {
 }
 
 .main{
+  box-shadow: 10px 0px 20px -10px rgba(0,0,0,1);
   z-index: 100;
+  min-height: 100vh;
   // background: white;
   transition: transform 0.25s;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 .slideLeft{
   transform: translateX(-50%);
   user-select: none;
-  pointer-events: none
+  pointer-events: none;
   // margin-right: 50%;
 }
 /* Enter and leave animations can use different */
@@ -159,18 +168,10 @@ export default {
   transform: translateY(-100px);
   opacity: 0;
 }
-
-.fader-enter-active,
-.fader-leave-active {
-    transition: all 1s;
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
 }
-.fader-enter-to,.fader-leave-to{
-  max-height: 100vh;
-  min-height: 100vh;
-}
-.fader-enter,
-.fader-leave-to {
-    transform: translate3d(0,100%,0);
-
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>

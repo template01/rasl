@@ -1,5 +1,6 @@
 <template>
-<div class="indexheader pr-40 pl-40">
+    <transition name="fade">
+<div v-show="appinitated" class="indexheader pr-40 pl-40">
 
   <div class="indexheaderInner">
 
@@ -24,6 +25,7 @@
 
   </div>
 </div>
+</transition>
 </template>
 <script>
 import _ from 'lodash'
@@ -144,7 +146,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      windowsearch: "GET_WINDOWSEARCH"
+      windowsearch: "GET_WINDOWSEARCH",
+      appinitated: "GET_APP_INITIATED",
     }),
   },
 
@@ -163,5 +166,10 @@ export default {
   }
 }
 
-
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 </style>

@@ -14,17 +14,18 @@
         <span class="pr-10 valign-middle">FILTER:</span>
         <!-- <input type="checkbox" id="mike" v-model="checkedNames"> -->
         <!-- <label for="mike">Mike</label> -->
-        <span v-for="filter in filtertypes" class="pr-10 valign-middle">
+        <span v-for="filter in filtertypes" class="pr-10 valign-middle pointer">
             <input :id="'filter'+filter.name" @click="filterby=[]" v-model="filterby" :value="{name:filter.name}"  type="checkbox">
-            <label :for="'filter'+filter.name" v-html="filter.prettyname"></label>
+            <label class="pointer" :for="'filter'+filter.name" v-html="filter.prettyname"></label>
         </span>
+        <loadingindicator v-if="loadingContent"></loadingindicator>
+
       </p>
     </div>
-    <div v-if="showfilters" class="column">
+    <div v-if="showfilters" class="column is-4">
       <p class="is-size-4">
         <span class="pr-10 valign-middle">SEARCH:</span>
         <search></search>
-
       </p>
     </div>
     <div class="column navButtons ">
@@ -57,6 +58,7 @@ import filtersingle from '~/components/filtersingle.vue'
 import filters from '~/components/filters'
 import search from '~/components/search'
 import buttoncounter from '~/components/buttoncounter'
+import loadingindicator from '~/components/loadingindicator'
 import {
   mapGetters
 } from 'vuex'
@@ -66,6 +68,7 @@ export default {
   props: [],
   components: {
     filtersingle,
+    loadingindicator,
     search,
     filters,
     buttoncounter
@@ -77,11 +80,18 @@ export default {
       filterbyset: false,
       filtertypes: [],
       genericData: 'generic component text',
+      loadingContent:false
 
 
     }
   },
   watch: {
+    'filtersstore':function(){
+      this.loadingContent=true
+    },
+    'windowsearch': function(){
+      this.loadingContent=false
+    },
     'filterbystore': function() {
       if (this.filterbystore === 'search') {
         // this.showfilters=false
@@ -100,7 +110,7 @@ export default {
       filterbystore: "GET_FILTERBY",
       filtersstore: "GET_FILTERS",
       showfilters: "GET_SHOWFILTERSDESKTOP",
-      windowsearch: "GET_WINDOWSEARCH"
+      windowsearch: "GET_WINDOWSEARCH",
     }),
   },
   created() {
@@ -162,7 +172,7 @@ input[type=checkbox]:checked + label {
 }
 
 .navButtons{
-  opacity: 0;
+  // opacity: 0;
   transition: opacity 0.25s;
 
 }

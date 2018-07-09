@@ -1,8 +1,8 @@
 <template>
-<div class="">
-  <div sticky-container class="columns">
+<div class="white-background fullHeight">
+  <pageheader></pageheader>
+  <div  class="columns is-marginless pt-60">
     <div class="column">
-      <pageheader title="Author Page"></pageheader>
       <div class="pr-40 pl-40">
         <div class="columns">
           <div class="column is-6">

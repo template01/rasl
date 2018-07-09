@@ -14,17 +14,20 @@
 
     </p>
   </div> -->
-  <div class="column is-size-1">
-    <p>
-      <nuxt-link :to="'/authors'+windowsearch">Authors</nuxt-link>
-    </p>
-    <p>
-      <nuxt-link :to="'/'+windowsearch">Library</nuxt-link>
-    </p>
-    <p>
-      <nuxt-link :to="'/collection'+windowsearch">Collection ({{selected.length}})</nuxt-link>
-    </p>
-    <!-- <nuxt-link :to="'/authors'+windowsearch">Authors</nuxt-link> -->
+  <div class="column is-size-1  ">
+    <div class="pl-10">
+
+      <p>
+        <nuxt-link :to="'/authors'+windowsearch">Authors</nuxt-link>
+      </p>
+      <p>
+        <nuxt-link :to="'/'+windowsearch">Library</nuxt-link>
+      </p>
+      <p>
+        <nuxt-link :to="'/collection'+windowsearch">Collection ({{selected.length}})</nuxt-link>
+      </p>
+      <!-- <nuxt-link :to="'/authors'+windowsearch">Authors</nuxt-link> -->
+    </div>
 
   </div>
 </div>

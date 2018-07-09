@@ -424,6 +424,8 @@ export const actions = {
     state
   }, filter) {
 
+    commit('SET_FILTERS', filter.items)
+    
     function getReflectivePosts() {
       return axios.get(state.apiRoot + '/wp/v2/reflective' + '?filter[' + filter.name + ']=' + filter.items + '&per_page=10&page=1');
     }
@@ -436,7 +438,6 @@ export const actions = {
       .then(axios.spread(function(reflective, practice) {
         commit('SET_FILTERREFLECTIVEBY', reflective.data)
         commit('SET_FILTERPRATICEBY', practice.data)
-        commit('SET_FILTERS', filter.items)
         commit('SET_REFLECTIVETOTALPAGINA', reflective.headers['x-wp-totalpages'])
         commit('SET_PRATICETOTALPAGINA', practice.headers['x-wp-totalpages'])
         commit('SET_PRATICECURRENTPAGINA', 1)

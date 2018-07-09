@@ -1,10 +1,13 @@
 <template>
 <span class="">
   <input type="text" class="is-size-4 valign-middle" placeholder="..." v-debounce="400" v-model.lazy="searchquery" >
+  <!-- <loadingindicator ></loadingindicator> -->
+  <loadingindicator v-if="loadingContent"></loadingindicator>
 </span>
 </template>
 <script>
 import debounce from 'v-debounce'
+import loadingindicator from '~/components/loadingindicator'
 import {
   mapGetters
 } from 'vuex'
@@ -15,14 +18,23 @@ export default {
   data: function() {
     return {
       searchquery: '',
+      loadingContent: false
     }
+  },
+  components:{
+    loadingindicator
   },
   methods: {},
   directives: {
     debounce
   },
   watch: {
+      'windowsearch': function(){
+        this.loadingContent=false
+      },
+
     'searchquery': function() {
+      this.loadingContent = true
       this.$store.commit('SET_FILTERBY', 'search')
       this.$store.commit('SET_SEARCHQUERY', this.searchquery)
       this.$store.dispatch('TRIGGER_SEARCHBYCOLUMNS', {
@@ -40,6 +52,7 @@ export default {
 
   computed: {
     ...mapGetters({
+      windowsearch: "GET_WINDOWSEARCH",
       appinitated: "GET_APP_INITIATED",
       searchquerystate: "GET_SEARCHQUERY",
     }),

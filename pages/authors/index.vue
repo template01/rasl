@@ -1,40 +1,35 @@
 <template>
-<div class="">
-  <div sticky-container class="columns">
+<div class="white-background fullHeight">
+  <pageheader></pageheader>
+  <div class="columns pt-60 is-marginless">
     <div class="column">
-      <pageheader title="Authors"></pageheader>
       <div class="pr-40 pl-40">
         <div class="columns ">
           <div class="column">
-            <div v-for="(author, index) in raslAuthorsEven" >
+            <div v-for="(author, index) in raslAuthorsEven">
               <div class="column">
                 <nuxt-link class="is-size-1" :to="'/authors/'+author.slug+windowsearch">
-                  <img :src="author.acf.featured_image.sizes.large"/>
+                  <img :src="author.acf.featured_image.sizes.large" />
                   <p v-html="author.title.rendered"></p>
                 </nuxt-link>
               </div>
-              <!-- <hr /> -->
             </div>
           </div>
           <div class="column">
-            <div v-for="(author, index) in raslAuthorsUneven" >
+            <div v-for="(author, index) in raslAuthorsUneven">
               <div class="column">
                 <nuxt-link class="is-size-1" :to="'/authors/'+author.slug+windowsearch">
-                  <img :src="author.acf.featured_image.sizes.large"/>
+                  <img :src="author.acf.featured_image.sizes.large" />
                   <p v-html="author.title.rendered"></p>
                 </nuxt-link>
               </div>
-              <!-- <hr /> -->
             </div>
           </div>
         </div>
       </div>
-
-
     </div>
   </div>
 
-</div>
 </div>
 </template>
 
@@ -74,13 +69,24 @@ export default {
       return uneven;
     },
 
-    raslAuthorsAlpha: function(){
+    raslAuthorsAlpha: function() {
       // return this.raslAuthors
-      const users = [
-        { name: 'A', age: 48 },
-        { name: 'B', age: 34 },
-        { name: 'b', age: 40 },
-        { name: 'a', age: 36 }
+      const users = [{
+          name: 'A',
+          age: 48
+        },
+        {
+          name: 'B',
+          age: 34
+        },
+        {
+          name: 'b',
+          age: 40
+        },
+        {
+          name: 'a',
+          age: 36
+        }
       ];
 
 
@@ -144,8 +150,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  hr{
+hr {
     color: $black;
-    margin: 0px !important;
-  }
+    margin: 0 !important;
+}
 </style>

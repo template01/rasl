@@ -1,8 +1,7 @@
 <template>
 <div class="">
   <div v-if="type === 'practice'">
-
-    <p v-if="practicecurrentpagina<reflectivetotalpagina" class="pointer pt-20 is-size-4 has-text-centered" @click="fetchmorecontent()">LOAD MORE</p>
+    <p v-if="practicecurrentpagina<practicetotalpagina" class="pointer pt-20 is-size-4 has-text-centered" @click="fetchmorecontent()">LOAD MORE</p>
     <p v-else class="pt-20 is-size-4 has-text-centered">THE END</p>
   </div>
   <div  v-if="type === 'reflective'">

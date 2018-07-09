@@ -1,8 +1,8 @@
 <template>
-<div class="">
-  <div sticky-container class="columns">
+<div class="fullHeight white-background">
+  <pageheader :selectpost="{'type':postdata.type,'id':postdata.id}" :title="postdata.title.rendered"></pageheader>
+  <div class="columns is-marginless pt-60">
     <div class="column">
-      <pageheader :selectpost="{'type':postdata.type,'id':postdata.id}" :title="postdata.title.rendered"></pageheader>
       <div class=" pr-40 pl-40">
         <div class="columns pb-40 is-marginless">
           <div class="column">

@@ -1,10 +1,10 @@
 <template>
-<div class="">
-  <div sticky-container class="columns">
+<div class="fullHeight white-background">
+  <pageheader title="Collection"></pageheader>
+  <div  class="columns is-marginless  pt-60">
     <div class="column">
-      <pageheader title="Collection"></pageheader>
 
-      <div class="pr-40 pl-40 pullUp40">
+      <div class="pr-40 pl-40">
         <div class="columns">
           <div class="column  is-6 has-border-right">
             <p class="is-size-1 pb-20">
