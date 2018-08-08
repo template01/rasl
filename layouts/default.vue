@@ -8,7 +8,6 @@
   <!-- </transition> -->
   <transition name="fade">
   <div v-if="appinitated" class="menuToggle pt-20">
-
     <div class="column ">
         <span class="fixedMenu">
           <transition name="slide-fade" mode="out-in">
@@ -24,13 +23,15 @@
     </div>
   </div>
   </transition>
-  <div class="menu " :style="{'z-index':zindexMenu,'opacity':opacity}">
+    <div class="menu " :style="{'z-index':zindexMenu}">
+
     <menucontent>
 
     </menucontent>
   </div>
   <div class="main" :class="$store.state.menu.toggle ? 'slideLeft':''">
     <nuxt/>
+    <pagefooter></pagefooter>
   </div>
 
 </div>
@@ -42,6 +43,7 @@
 import menucontent from '~/components/menucontent'
 import loadinginit from '~/components/loadinginit'
 import buttoncounter from '~/components/buttoncounter'
+import pagefooter from '~/components/pagefooter'
 import {
   mapGetters
 } from 'vuex'
@@ -51,6 +53,7 @@ export default {
   components: {
     loadinginit,
     buttoncounter,
+    pagefooter,
     menucontent,
   },
   computed: {
@@ -116,8 +119,8 @@ export default {
 <style scoped lang="scss">
 
 .menu{
-  width: 50%;
-  background: $green;
+  width: 800px;
+  // background: $green;
   float: left;
   position: fixed;
   height: 100%;
@@ -125,9 +128,9 @@ export default {
   top: 0;
   z-index: -1;
   &.zindex-reset{
-    z-index: 100;
+    // z-index: 100;
   }
-box-shadow: inset 10px 0px 20px -10px rgba(0,0,0,1);
+// box-shadow: inset 10px 0px 20px -10px rgba(0,0,0,1);
 }
 .menuToggle{
   position: fixed;
@@ -141,7 +144,7 @@ box-shadow: inset 10px 0px 20px -10px rgba(0,0,0,1);
 }
 
 .main{
-  box-shadow: 10px 0px 20px -10px rgba(0,0,0,1);
+  // box-shadow: 10px 0px 20px -10px rgba(0,0,0,1);
   z-index: 100;
   min-height: 100vh;
   // background: white;
@@ -150,7 +153,7 @@ box-shadow: inset 10px 0px 20px -10px rgba(0,0,0,1);
   overflow-y: hidden;
 }
 .slideLeft{
-  transform: translateX(-50%);
+  transform: translateX(-800px);
   user-select: none;
   pointer-events: none;
   // margin-right: 50%;

@@ -4,7 +4,7 @@
   <div class="column" :style="getPaddingStyle">
     <div class="columns" style="margin-bottom:0;">
       <div class="column mt-10">
-        <selectpost class="pointer  is-pulled-left mr-5" :posttype="postdata.type" :postid="postdata.id"></selectpost>
+        <selectpost class="pointer  is-pulled-left mr-0" :posttype="postdata.type" :postid="postdata.id"></selectpost>
         <nuxt-link class=" is-pulled-left mr-5 hover-animate-chilren-right" :to="'/read/'+postdata.type+'/'+postdata.slug+windowsearch"><img class="rasl-icon" :src="'/icons/rasl_arrow_right.svg'" /></nuxt-link>
       </div>
     </div>

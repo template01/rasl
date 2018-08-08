@@ -1,15 +1,16 @@
 <template>
 <div >
   <div class="columns is-marginless">
-    <div  v-if="!showfilters" class="column is-8 is-offset-2 ">
+    <!-- <div  v-if="!showfilters" class="column is-8 is-offset-2 ">
       <p class="has-text-centered is-size-4">
         <span class="valign-middle">
           Library
         </span>
       </p>
-    </div>
+    </div> -->
 
-    <div v-if="showfilters" class="column is-6 ">
+    <!-- <div v-if="showfilters" class="column is-6 "> -->
+    <div class="column is-6 ">
       <p class="is-size-4">
         <span class="pr-10 valign-middle">FILTER:</span>
         <!-- <input type="checkbox" id="mike" v-model="checkedNames"> -->
@@ -22,23 +23,24 @@
 
       </p>
     </div>
-    <div v-if="showfilters" class="column is-4">
+    <!-- <div v-if="showfilters" class="column is-4"> -->
+    <div class="column is-4">
       <p class="is-size-4">
         <span class="pr-10 valign-middle">SEARCH:</span>
         <search></search>
       </p>
     </div>
     <div class="column navButtons ">
-      <p class="has-text-right is-size-4 ">
+      <!-- <p class="has-text-right is-size-4 ">
         <span  class="mr-10" v-if="!showfilters" @click=" $store.commit('SET_SHOWFILTERSDESKTOP', true);"><img class="pointer rasl-icon" :src="'icons/rasl_filter.svg'" /></span>
         <span  class="mr-10" v-else @click=" $store.commit('SET_SHOWFILTERSDESKTOP', false);"><img class="pointer rasl-icon" :src="'icons/rasl_close.svg'" /></span>
         <span><img class="opacity0 disable rasl-icon" :src="'icons/rasl_close.svg'" /></span>
-      </p>
+      </p> -->
     </div>
   </div>
   <transition name="fade">
-  <template v-if="filterby.length>0 && showfilters">
-    <div class="filters" :class="filterby.length>0 && showfilters ?'visible':''">
+  <template v-if="filterby.length>0">
+    <div class="filters" :class="filterby.length>0 ">
     <hr class="m-0" />
       <div class="columns pb-10">
         <div class="column">

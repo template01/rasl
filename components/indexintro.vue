@@ -7,10 +7,14 @@
   <div class="contentWrapperIntro pb-20 pt-40">
     <h1 class="" :class="!appinitated ? 'animateHeight':''">
         <!-- <transition name="fade"> -->
-            <span v-bind:key="index" :class="runspantransition ? 'resetSpan':''" :style="{'opacity':opacityItem,'transform':'translateY('+randomPositions[index]+')'}" v-for="(letter,index) in introword">{{letter}}</span>
+        <span>PUBLICATIONS</span>
+          <span class="">
+            <img class="" src="/rasllogow.svg"/>
+          </span>
+            <!-- <span v-bind:key="index" :class="runspantransition ? 'resetSpan':''" :style="{'opacity':opacityItem,'transform':'translateY('+randomPositions[index]+')'}" v-for="(letter,index) in introword">{{letter}}</span>
             <span class="imageSpan" :class="runspantransition ? 'resetSpan':''"  :style="{'opacity':opacityItem,'transform':'translateY('+randomPositions[1]+')'}">
               <img class="" src="/rasllogow.svg"/>
-            </span>
+            </span> -->
           </h1>
 
   </div>
@@ -65,7 +69,7 @@ export default {
     }, 1000)
     setTimeout(function() {
       vm.$store.commit('SET_APPINITIATED', true)
-    }, 3000)
+    }, 2500)
   }
 
 }
@@ -82,12 +86,10 @@ export default {
                 line-height: 1;
                 display: inline-block;
                 transition: transform 1s,opacity 0.5s;
-                &.imageSpan{
-                  float: right;
-                }
+
                 img {
-                  width: 9.5vw;
-                  margin-left: 1vw;
+                  width: 8.6vw;
+                  margin-left: 0vw;
                   // margin-bottom: -1.3vw;
                   padding-top: 1vw;
                 }
@@ -114,7 +116,7 @@ export default {
     }
 
     h1 {
-        font-size: 12vw;
+        font-size: 10vw;
         line-height: 9vw;
         letter-spacing: -0.5vw;
     }

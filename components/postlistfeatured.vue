@@ -5,7 +5,7 @@
   <div class="featuredItem" :style="{'width':slidewidth}" v-for="(postdata, index) in displaydata">
       <div class="contentWrapper column">
         <div class=" pl-40 pr-40">
-          <!-- <div class="postcontentWrapperOuter"> -->
+ 
             <div class="pt-20 pb-20">
               <postsingleindexfeatured :postdata="postdata"></postsingleindexfeatured>
             </div>
@@ -17,9 +17,10 @@
       </div>
       <div class="featuredImageWrapper" >
 
-          <div class="featuredImage" v-bind:style="{ 'background-image': 'url(' + 'http://placehold.it/400x400' + ')' }">
-
-        </div>
+            <div v-if="postdata.acf.featured_image" class="featuredImage" v-bind:style="{ 'background-image': 'url(' + postdata.acf.featured_image.sizes.large + ')' }">
+            </div>
+            <div v-else class="featuredImage" v-bind:style="{ 'background-image': 'url(' + 'http://placehold.it/400x400' + ')' }">
+            </div>
       </div>
   </div>
   <!-- <ul>
@@ -151,7 +152,7 @@ export default {
   bottom: 0;
   width: 20vw;
   height: 100%;
-   background: linear-gradient(to left, white 60% , transparent);
+   background: linear-gradient(to left, rgba(255,255,255,0.95) 60% , transparent);
    p{
      margin-right: 53px;
      transform: rotate(90deg);

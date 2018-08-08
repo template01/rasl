@@ -25,19 +25,20 @@
   </div>
   </div>
   <div>
-    <div sticky-container class="pt-40" id="library">
-
+    <div sticky-container class="" id="library">
       <div class="backgroundBlockI" :style="getBackgroundStyleI">
       </div>
       <div class="backgroundBlockII" :style="getBackgroundStyleII">
       </div>
 
-
       <div class=" pl-40 pr-40 ">
-        <hr class="m-0" />
+        <h1 class="huge-letters uppercase ">Library</h1>
       </div>
+      <!-- <div class=" pl-40 pr-40 ">
+        <hr class="m-0" />
+      </div> -->
       <div v-sticky sticky-offset="0" sticky-side="top" class="librarynavwrapper pl-40 pr-40 ">
-        <librarynav></librarynav>
+        <librarynav class="pt-20"></librarynav>
         <hr class="m-0" />
         <div class="backgroundBlockI" :style="getBackgroundStyleI">
         </div>

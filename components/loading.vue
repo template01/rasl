@@ -9,7 +9,7 @@
       </span>
     </div>
     <div class="column">
-  <span class="loadingLetters is-size-1">
+  <span class="huge-letters loadingLetters">
      LOADING
   </span>
 </div>
@@ -126,17 +126,17 @@ export default {
 
 <style scoped lang="scss">
 .slidedown-enter-active {
-    transition: transform 1s;
+    transition: transform 0.5s;
     transform: translate3d(0%,0,0);
 }
 .slidedown-leave-active {
-    transition: all 1s;
-    transform: translate3d(0,-100%,0);
+    transition: all 0.5s;
+    transform: translate3d(100%,0%,0);
 
 }
 ,
 .slidedown-enter {
-    transform: translate3d(0,-100%,0);
+    transform: translate3d(-100%,0,0);
     // transform: translate3d(0,-100%,0);
 }
 
@@ -154,49 +154,38 @@ export default {
 
 .loadingLetters {
     color: $white;
-    align-self: center;
-    transition: 0.25s transform;
-    animation-name: example;
-    animation-duration: 0.5s;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
     display: inline-block;
-    width: 100%;
-    span {
-        display: inline-block;
-        transition: 0.75s transform;
-    }
-    .slant {
-        transform: skewX(-30deg);
-    }
-    // @for $i from 1 through 10 {
-    //     span:nth-child(#{$i}) {
-    //         animation-delay: $i*0.25+s;
+    align-self: center;
+    font-style: italic;
+    // transition: 0.25s transform;
+    // animation-name: example;
+    // animation-duration: 0.5s;
+    // animation-iteration-count: infinite;
+    // animation-direction: alternate;
+    // width: 100%;
+    // span {
+    //     display: inline-block;
+    //     transition: 0.75s transform;
+    // }
+    // .slant {
+    //     transform: skewX(-30deg);
+    // }
+    //
+    // @keyframes example {
+    //     0% {
+    //         // opacity: 0;
+    //
+    //         // transform: translate3d(0px,0,0);
+    //         transform: skewX(0deg);
+    //     }
+    //
+    //     100% {
+    //         // opacity: 1;
+    //
+    //         // transform: translate3d(0,-5px,0);
+    //         transform: skewX(-20deg);
     //     }
     // }
-    // span {
-    //   transition: 0.25s transform;
-    //     animation-name: example;
-    //     animation-duration: 0.5s;
-    //     animation-iteration-count: infinite;
-    //     animation-direction: alternate;
-    //     display: inline-block;
-    // }
-    @keyframes example {
-        0% {
-            // opacity: 0;
-
-            // transform: translate3d(0px,0,0);
-            transform: skewX(0deg);
-        }
-
-        100% {
-            // opacity: 1;
-
-            // transform: translate3d(0,-5px,0);
-            transform: skewX(-20deg);
-        }
-    }
 }
 
 .loading-page {
