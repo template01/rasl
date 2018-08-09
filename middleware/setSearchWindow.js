@@ -1,10 +1,14 @@
 var URI = require('urijs');
 
-export default function ({ route, redirect, store }) {
+export default function({
+  route,
+  redirect,
+  store
+}) {
 
   // ON NAVIGATING BACK AND FORTH REMEMBER QUERYIES
 
-  if(process.browser){
+  if (process.browser) {
 
     // var url = new URI(window.location.search).removeSearch('selected')
     //
@@ -16,6 +20,7 @@ export default function ({ route, redirect, store }) {
     // });
     console.log(store.state.windowsearch)
 
+    // window.history.replaceState({}, '', , '');
     window.history.replaceState({}, '', '?' + store.state.windowsearch.replace(/^\/+/g, ''));
   }
 

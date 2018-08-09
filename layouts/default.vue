@@ -23,7 +23,7 @@
     </div>
   </div>
   </transition>
-    <div class="menu " :style="{'z-index':zindexMenu}">
+    <div class="menu lightgrey-background" :style="{'z-index':zindexMenu}">
 
     <menucontent>
 
@@ -60,7 +60,8 @@ export default {
     ...mapGetters({
       loading: "GET_LOADING",
       selected: "GET_SELECTED",
-      appinitated: "GET_APP_INITIATED"
+      appinitated: "GET_APP_INITIATED",
+      menuOpen: "menu/GET_TOGGLE"
     }),
   },
   data: function(){
@@ -110,6 +111,14 @@ export default {
     },
     '$route':function(){
       this.$store.commit('menu/SET_TOGGLE',false);
+      // console.log(this.$route.query)
+      if(this.$route.query.library){
+        setTimeout(function(){
+          window.scroll({ top: document.querySelector('#library').offsetTop, left: 0, behavior: 'smooth' });
+        },1500)
+      }
+    },
+    menuOpen:function(state){
       this.layerMenu(this.$store.state.menu.toggle)
     }
   }

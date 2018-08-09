@@ -1,6 +1,6 @@
 <template>
 <div>
-  <hr />
+  <!-- <hr />
   <div class="columns is-marginless">
     <div class="column">
       <p class="is-size-4  has-text-centered ">
@@ -9,10 +9,12 @@
     </div>
 
   </div>
-  <hr />
-  <div class="columns  pt-40">
+  <hr /> -->
+  <div class="columns">
     <template v-if="!nofound">
-        <div v-if="loaded" v-for="item in mergedExclude" class="column">
+        <div v-if="loaded" v-for="item in mergedExclude" class="column" :class="[item.type === 'practice' ? 'pink-background':'lightblue-background', item.type === 'practice' ? 'has-text-danger':'has-text-success']">
+          <div class=" p-50">
+
           <div class="columns ignore-mb">
             <div class="column">
               <selectpost class="pointer  is-pulled-left mr-5" :posttype="item.type" :postid="item.id"></selectpost>
@@ -26,19 +28,21 @@
             </div>
           </div>
         </div>
-        <div v-if="!loaded" class="column">
+
+        </div>
+        <!-- <div v-if="!loaded" class="column">
           <p class="has-text-centered is-size-4">
             Loading
           </p>
-        </div>
+        </div> -->
       </template>
-    <template v-else>
+    <!-- <template v-else>
         <div class="column">
           <p class="has-text-centered is-size-4">
             No related articles found
           </p>
         </div>
-      </template>
+      </template> -->
   </div>
 </div>
 </template>

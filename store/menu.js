@@ -9,6 +9,9 @@ export const getters = {
   GET_COUNTER(state){
     return state.counter
   },
+  GET_TOGGLE (state) {
+    return state.toggle
+  }
 }
 
 export const mutations = {

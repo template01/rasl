@@ -1,42 +1,47 @@
 <template>
-<div class="fullHeight white-background">
-  <pageheader :selectpost="{'type':postdata.type,'id':postdata.id}" :title="postdata.title.rendered"></pageheader>
-  <div class="columns is-marginless pt-60">
-    <div class="column">
-      <div class=" pr-40 pl-40">
-        <div class="columns pb-40 is-marginless">
-          <div class="column">
-            <!-- <selectpost class="pointer mr-5" :posttype="postdata.type" :postid="postdata.id"></selectpost> -->
-            <div class="mt-40 is-size-4">
-              <authorlinks :authors="postdata.acf.author"></authorlinks>
-              <br />
-              Title: {{postdata.title.rendered}}
-              <br />
-              tags: {{tagSlugs}}
-              <br />
-              <br />
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
+<div>
+
+  <div :class="postdata.type === 'practice' ? 'pink-background':'green-background'">
+    <pageheader :selectpost="{'type':postdata.type,'id':postdata.id}" :title="postdata.title.rendered"></pageheader>
+    <div class="columns is-marginless pt-60">
+      <div class="column is-marginless">
+        <div class=" pr-40 pl-40">
+          <div class="columns pb-40 is-marginless">
+            <div :class="postdata.type === 'practice' ? 'has-text-danger':'has-text-info'">
+              <div class="mt-40">
+                <h1 class="huge-letters pb-80" v-html="postdata.title.rendered"></h1>
+                <div class="pt-80 is-size-2">
+                  <span>By</span>
+                  <authorlinks :authors="postdata.acf.author"></authorlinks>
+                </div>
+              </div>
             </div>
           </div>
+
         </div>
 
-        <relatedposts :excludeid="postdata.id" :tags="tagSlugs"></relatedposts>
       </div>
 
+    </div>
+  </div>
+  <div class="pb-40 pt-40 white-background">
 
-      <!-- <postlistdraggable :display="selectedPosts"></postlistdraggable>
-      <getprint></getprint> -->
+    <div class="columns is-marginless ">
+      <div class="column is-marginless">
+        <div class=" pr-40 pl-40">
+          <!-- <div class="columns is-marginless"> -->
+            <readcontent :contentlayout="postdata.acf.layout_picker" :content="postdata.acf.content"></readcontent>
+          <!-- </div> -->
+
+        </div>
+
+      </div>
 
     </div>
 
   </div>
+  <relatedposts :excludeid="postdata.id" :tags="tagSlugs"></relatedposts>
 
-</div>
 </div>
 </template>
 
@@ -44,6 +49,7 @@
 // import genericcomp from '~/components/_genericComp.vue'
 // import postlistdraggable from '~/components/print/postlistdraggable.vue'
 // import getprint from '~/components/getprint.vue'
+import readcontent from '~/components/read/readcontent'
 import buttoncounter from '~/components/buttoncounter'
 import selectpost from '~/components/selectpost'
 import authorlinks from '~/components/authorLinks'
@@ -59,6 +65,7 @@ import {
 export default {
   components: {
     buttoncounter,
+    readcontent,
     selectpost,
     authorlinks,
     relatedposts,
@@ -72,14 +79,14 @@ export default {
     ...mapGetters({
       windowsearch: "GET_WINDOWSEARCH"
     }),
-    tagSlugs: function(){
-      if(this.postdata.pure_taxonomies.tags){
-        var slugs=[]
+    tagSlugs: function() {
+      if (this.postdata.pure_taxonomies.tags) {
+        var slugs = []
         for (var i = 0, len = this.postdata.pure_taxonomies.tags.length; i < len; i++) {
           slugs.push(this.postdata.pure_taxonomies.tags[i].slug)
         }
         return slugs
-      }else{
+      } else {
         return []
       }
     }

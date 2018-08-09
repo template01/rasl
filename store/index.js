@@ -280,7 +280,7 @@ export const actions = {
     });
     commit('SET_SELECTED', tempSelectedArray)
     window.history.replaceState({}, '', '?' + url._parts.query);
-    commit('SET_WINDOWSEARCH', location.search)
+    commit('SET_WINDOWSEARCH', location.search.replace("library=true", ""))
   },
 
 
@@ -297,7 +297,7 @@ export const actions = {
       selected: selectedItems.postid + ',' + selectedItems.posttype
     })
     window.history.replaceState({}, '', '?' + url._parts.query);
-    commit('SET_WINDOWSEARCH', location.search)
+    commit('SET_WINDOWSEARCH', location.search.replace("library=true", ""))
 
   },
 
@@ -315,7 +315,7 @@ export const actions = {
       selected: selectedItems.postid + ',' + selectedItems.posttype
     })
     window.history.replaceState({}, '', '?' + url._parts.query);
-    commit('SET_WINDOWSEARCH', location.search)
+    commit('SET_WINDOWSEARCH', location.search.replace("library=true", ""))
   },
 
 
@@ -351,7 +351,7 @@ export const actions = {
           search: query.searchquery,
         });
         window.history.replaceState({}, '', '?' + url._parts.query);
-        commit('SET_WINDOWSEARCH', location.search)
+        commit('SET_WINDOWSEARCH', location.search.replace("library=true", ""))
 
 
 
@@ -425,7 +425,7 @@ export const actions = {
   }, filter) {
 
     commit('SET_FILTERS', filter.items)
-    
+
     function getReflectivePosts() {
       return axios.get(state.apiRoot + '/wp/v2/reflective' + '?filter[' + filter.name + ']=' + filter.items + '&per_page=10&page=1');
     }
@@ -449,7 +449,7 @@ export const actions = {
           filters: filter.items
         })
         window.history.replaceState({}, '', '?' + url._parts.query);
-        commit('SET_WINDOWSEARCH', location.search)
+        commit('SET_WINDOWSEARCH', location.search.replace("library=true", ""))
 
       }));
 

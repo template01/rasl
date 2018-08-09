@@ -6,16 +6,23 @@
 
     <div>
       <div class="columns is-marginless">
-        <div class="column is-8  logoWrapper">
+        <div class="column  logoWrapper">
           <nuxt-link :to="'/'+windowsearch">
             <p class="is-size-3 logoText">
               <span class="">
               PUBLICATIONS.RASL.NU
             </span>
             </p>
-          </nuxt-link>
-        </div>
 
+          </nuxt-link>
+          </p>
+        </div>
+        <div v-if="$route.params.type ==='reflective' || $route.params.type ==='practice'" class="column  logoWrapper">
+
+          <p class="is-size-3 has-text-right logoText">
+            <selectpost class="pointer mr-40 pr-5" :posttype="selectpost.type" :postid="selectpost.id"></selectpost>
+          </p>
+        </div>
 
       </div>
 

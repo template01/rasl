@@ -24,7 +24,9 @@ $family-serif: "TeXGyreHeros", sans;
 $primary: $pink;
 $primary-invert: $pink-invert;
 // Use the existing orange as the danger color
-$danger: $orange;
+$danger: $red;
+$success: $green;
+$info: $lightblue;
 // Use the new serif family
 $family-primary: $family-serif;
 
@@ -45,6 +47,12 @@ $family-primary: $family-serif;
 
 .green-background {
   background-color: $green;
+}
+.lightblue-background {
+  background-color: $lightblue;
+}
+.lightgrey-background {
+  background-color: $lightgrey;
 }
 
 .fullHeight{
@@ -159,4 +167,5 @@ hr {
 }
 .huge-letters{
   font-size: 10vw;
+  line-height: 1
 }
