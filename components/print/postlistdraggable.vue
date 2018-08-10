@@ -1,7 +1,32 @@
 <template>
 <div class="">
+  <template v-if="myArray.length===0">
+    <div class=" columns is-marginless is-size-5   ">
+      <div class="column ">
+        <p  class="has-text-centered">
+          No articles colleted.
+        </p>
+      </div>
+    </div>
+
+  </template>
+  <template v-else>
+    <div class=" columns is-marginless is-size-5 pb-10  ">
+      <div class="column is-2 ">
+        ORDER
+      </div>
+      <div class="column is-8 Aligner Aligner-left">
+        TITLE
+      </div>
+      <div class="column is-2 has-text-right">
+        REMOVE
+      </div>
+
+    </div>
+    <hr/>
   <draggable @start="drag=true" v-model="myArray" @end="drag=false">
     <transition-group name="list-complete">
+
       <div class="sort singleitem list-complete-item" :key="postdata.id" v-for="(postdata, index) in myArray">
         <!-- <hr v-if="index === 0"/> -->
         <div class="singleitemInner columns is-marginless is-size-5   ">
@@ -9,20 +34,21 @@
             <img class="rasl-icon" :src="'/icons/rasl_drag.svg'" />
           </div>
           <div class="column is-8 Aligner Aligner-left">
-            <p class="is-size-5">
-              {{postdata.title.rendered}}
+            <p class="is-size-4 uppercase">
+              <nuxt-link :to="'/read/'+postdata.type+'/'+postdata.slug">{{postdata.title.rendered}}</nuxt-link>
+
             </p>
           </div>
           <div class="column is-2">
             <selectpost class="is-pulled-right" :hidehelpers="true" v-on:removeprintitem="removethis(index)" :posttype="postdata.type" :postid="postdata.id"></selectpost>
           </div>
         </div>
-        <hr />
+        <hr v-if="index < myArray.length - 1"/>
       </div>
 
     </transition-group>
   </draggable>
-
+</template>
 </div>
 </template>
 <script>
@@ -87,17 +113,16 @@ export default {
 .list-complete-leave-active {
     opacity: 0;
 }
-.sortable-chosen{
- background: wheat !important;
+.sortable-chosen {
+    background: $lightgrey !important;
 }
-.singleitem{
-  background: $white;
-  hr{
-    margin:  0 !important;
-  }
-  .singleitemInner{
-    margin-bottom: 0 !important;
-  }
+hr {
+  margin: 0 !important;
 }
-
+.singleitem {
+    background: $white;
+    .singleitemInner {
+        margin-bottom: 0 !important;
+    }
+}
 </style>

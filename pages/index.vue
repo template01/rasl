@@ -25,7 +25,7 @@
   </div>
   </div>
   <div>
-    <div sticky-container class="" id="library">
+    <div sticky-container class="pt-40" id="library">
       <div class="backgroundBlockI" :style="getBackgroundStyleI">
       </div>
       <div class="backgroundBlockII" :style="getBackgroundStyleII">
@@ -339,7 +339,7 @@ export default {
 #library {
 
     position: relative;
-    min-height: 110vh;
+    // min-height: 110vh;
     .backgroundBlockI,
     .backgroundBlockII {
         position: absolute;

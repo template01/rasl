@@ -14,7 +14,7 @@
 
     </p>
   </div> -->
-  <div class="column is-size-1  ">
+  <div class="column is-size-1 uppercase ">
     <div class="pl-10">
 
       <p>

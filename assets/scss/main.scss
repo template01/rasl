@@ -160,6 +160,11 @@ hr {
   text-transform: uppercase;
 }
 
+.underline {
+  border-bottom: 2px solid;
+  border-color: inherit;
+}
+
 .is-size-1 {
   font-size: 4rem !important;
   line-height: 1;
@@ -167,5 +172,6 @@ hr {
 }
 .huge-letters{
   font-size: 10vw;
-  line-height: 1
+  line-height: 0.86;
+  text-transform: uppercase;
 }

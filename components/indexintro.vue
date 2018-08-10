@@ -4,7 +4,7 @@
   </div>
   <div class="backgroundBlockII">
   </div>
-  <div class="contentWrapperIntro pb-20 pt-40">
+  <div class="contentWrapperIntro pb-20 pt-60">
     <h1 class="" :class="!appinitated ? 'animateHeight':''">
         <!-- <transition name="fade"> -->
         <span>PUBLICATIONS</span>

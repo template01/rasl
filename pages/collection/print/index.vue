@@ -13,7 +13,7 @@
 
 <script>
 // import genericcomp from '~/components/_genericComp.vue'
-import printlist from '~/components/printlist.vue'
+import printlist from '~/components/print/printlist.vue'
 
 import axios from 'axios'
 import {

@@ -11,12 +11,12 @@
     <div class="column ">
         <span class="fixedMenu">
           <transition name="slide-fade" mode="out-in">
-           <span key="1" class="pointer" v-if="update" @click="$store.commit('menu/SET_TOGGLE',true); layerMenu($store.state.menu.toggle)">
+           <span key="1" class="pointer" v-if="update" @click="$store.commit('menu/SET_TOGGLE',true)">
              <buttoncounter  ></buttoncounter>
            </span>
            <span key="2" v-else>
-         <span class="pointer" v-if="!$store.state.menu.toggle" @click="$store.commit('menu/SET_TOGGLE',true); layerMenu($store.state.menu.toggle)"><img class="rasl-icon" :src="'/icons/rasl_menu.svg'" /> </span>
-         <span class="pointer" v-else @click=" $store.commit('menu/SET_TOGGLE',false); layerMenu($store.state.menu.toggle)"><img class="rasl-icon" :src="'/icons/rasl_close.svg'" /></span>
+         <span class="pointer" v-if="!$store.state.menu.toggle" @click="$store.commit('menu/SET_TOGGLE',true)"><img class="rasl-icon" :src="'/icons/rasl_menu.svg'" /> </span>
+         <span class="pointer" v-else @click=" $store.commit('menu/SET_TOGGLE',false)"><img class="rasl-icon" :src="'/icons/rasl_close.svg'" /></span>
          </span>
        </transition>
         </span>
@@ -29,7 +29,7 @@
 
     </menucontent>
   </div>
-  <div class="main" :class="$store.state.menu.toggle ? 'slideLeft':''">
+  <div class="main" @click=" $store.commit('menu/SET_TOGGLE',false)" :class="$store.state.menu.toggle ? 'slideLeft':''">
     <nuxt/>
     <pagefooter></pagefooter>
   </div>
@@ -163,8 +163,8 @@ export default {
 }
 .slideLeft{
   transform: translateX(-800px);
-  user-select: none;
-  pointer-events: none;
+  // user-select: none;
+  // pointer-events: none;
   // margin-right: 50%;
 }
 /* Enter and leave animations can use different */
