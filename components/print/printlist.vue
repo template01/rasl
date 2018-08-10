@@ -43,6 +43,6 @@ export default {
 }
 
 *{
-  font-family: monospace !important;
+  font-family: arial !important;
 }
 </style>
