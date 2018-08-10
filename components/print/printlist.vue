@@ -43,6 +43,6 @@ export default {
 }
 
 *{
-  font-family: DejaVuSansMono !important;
+  font-family: monospace !important;
 }
 </style>
