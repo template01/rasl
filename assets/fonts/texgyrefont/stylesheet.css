@@ -1,63 +1,55 @@
 @font-face {
     font-family: 'TeXGyreHeros';
-    src: local('TeXGyreHeros-Regular'),
-        url('hinted-TeXGyreHeros-Regular.woff2') format('woff2');
+    src: url('hinted-TeXGyreHeros-Regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'TeXGyreHeros';
-    src: local('TeXGyreHeros-BoldItalic'),
-        url('hinted-TeXGyreHeros-BoldItalic.woff2') format('woff2');
+    src: url('hinted-TeXGyreHeros-BoldItalic.woff2') format('woff2');
     font-weight: bold;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'TeXGyreHeros';
-    src: local('TeXGyreHeros-Italic'),
-        url('hinted-TeXGyreHeros-Italic.woff2') format('woff2');
+    src: url('hinted-TeXGyreHeros-Italic.woff2') format('woff2');
     font-weight: normal;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'TeXGyreHeros';
-    src: local('TeXGyreHeros-BoldItalic'),
-        url('hinted-TeXGyreHeros-BoldItalic.woff2') format('woff2');
+    src: url('hinted-TeXGyreHeros-BoldItalic.woff2') format('woff2');
     font-weight: bold;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'TeXGyreHeros';
-    src: local('TeXGyreHeros-Bold'),
-        url('hinted-TeXGyreHeros-Bold.woff2') format('woff2');
+    src: url('hinted-TeXGyreHeros-Bold.woff2') format('woff2');
     font-weight: bold;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'TeXGyreHeros';
-    src: local('TeXGyreHeros-Italic'),
-        url('hinted-TeXGyreHeros-Italic.woff2') format('woff2');
+    src: url('hinted-TeXGyreHeros-Italic.woff2') format('woff2');
     font-weight: normal;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'TeXGyreHeros';
-    src: local('TeXGyreHeros-Regular'),
-        url('hinted-TeXGyreHeros-Regular.woff2') format('woff2');
+    src: url('hinted-TeXGyreHeros-Regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'TeXGyreHeros';
-    src: local('TeXGyreHeros-Bold'),
-        url('hinted-TeXGyreHeros-Bold.woff2') format('woff2');
+    src: url('hinted-TeXGyreHeros-Bold.woff2') format('woff2');
     font-weight: bold;
     font-style: normal;
 }
