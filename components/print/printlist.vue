@@ -43,6 +43,6 @@ export default {
 }
 
 *{
-  font-family: arial !important;
+  font-family: TeX Gyre Heros !important;
 }
 </style>
