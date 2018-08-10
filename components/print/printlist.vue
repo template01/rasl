@@ -41,4 +41,8 @@ export default {
 .outerprintpost:not(:last-child) {
     page-break-after: always;
 }
+
+*{
+  font-family: DejaVuSansMono !important;
+}
 </style>
