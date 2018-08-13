@@ -1,10 +1,10 @@
 <template>
 <div class="">
   <template v-if="myArray.length===0">
-    <div class=" columns is-marginless is-size-5   ">
+    <div class=" columns is-marginless is-size-4   ">
       <div class="column ">
         <p  class="has-text-centered">
-          No articles colleted.
+          No articles collected.
         </p>
       </div>
     </div>

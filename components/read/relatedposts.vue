@@ -12,42 +12,15 @@
   <hr /> -->
   <div class="columns">
     <template v-if="!nofound">
-        <div v-if="loaded" v-for="item in mergedExclude" class="column" :class="[item.type === 'practice' ? 'pink-background':'lightblue-background', item.type === 'practice' ? 'has-text-danger':'has-text-success']">
-          <div class=" p-50">
-
-          <div class="columns ignore-mb">
-            <div class="column">
-              <selectpost class="pointer  is-pulled-left mr-5" :posttype="item.type" :postid="item.id"></selectpost>
-              <nuxt-link class=" is-pulled-left mr-5 hover-animate-chilren-right" :to="'/read/'+item.type+'/'+item.slug+windowsearch"><img class="rasl-icon" :src="'/icons/rasl_arrow_right.svg'" /></nuxt-link>
-            </div>
-          </div>
-          <div class="columns">
-            <div class="column">
-              <p class="is-size-4  mr-10" style="text-transform:capitalize" v-html="item.title.rendered">
-              </p>
-            </div>
-          </div>
-        </div>
-
-        </div>
-        <!-- <div v-if="!loaded" class="column">
-          <p class="has-text-centered is-size-4">
-            Loading
-          </p>
-        </div> -->
+      <template v-if="loaded" >
+      <relatedItem  v-for="item in mergedExclude" :itemcontent="item" ></relatedItem>
       </template>
-    <!-- <template v-else>
-        <div class="column">
-          <p class="has-text-centered is-size-4">
-            No related articles found
-          </p>
-        </div>
-      </template> -->
+    </template>
   </div>
 </div>
 </template>
 <script>
-import selectpost from '~/components/selectpost'
+import relatedItem from '~/components/read/relatedItem'
 
 import axios from 'axios'
 import _ from 'lodash'
@@ -67,7 +40,7 @@ export default {
     }
   },
   components: {
-    selectpost,
+    relatedItem,
   },
 
   methods: {

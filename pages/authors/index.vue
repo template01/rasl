@@ -1,17 +1,36 @@
 <template>
 <div class="white-background fullHeight">
   <pageheader></pageheader>
-  <div class="columns pt-60 is-marginless">
+  <div class="columns is-marginless  pt-60">
     <div class="column">
+
       <div class="pr-40 pl-40">
-        <div class="columns ">
-          <div class="column">
+        <div class="columns pb-40 is-marginless">
+          <div class="">
+            <div class="mt-40">
+              <h1 class="huge-letters pb-80">Authors</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pb-80">
+    <div class="columns is-marginless" v-for="(author, index) in raslAuthors">
+
+      <div class="column is-12 pr-40 pl-40 ">
+        <authorListSingle :slug="author.slug" :id="author.id" :title="author.title.rendered"></authorListSingle>
+        <!-- <nuxt-link class="" :to="'/authors/'+author.slug+windowsearch">
+          <p class="is-size-3 has-text-centered" v-html="author.title.rendered">
+
+          </p>
+          {{getArticles(author.id)}}
+        </nuxt-link> -->
+        <!-- <div class="column">
             <div v-for="(author, index) in raslAuthorsEven">
               <div class="column">
-                <nuxt-link class="is-size-1" :to="'/authors/'+author.slug+windowsearch">
                   <img :src="author.acf.featured_image.sizes.large" />
                   <p v-html="author.title.rendered"></p>
-                </nuxt-link>
               </div>
             </div>
           </div>
@@ -23,11 +42,11 @@
                   <p v-html="author.title.rendered"></p>
                 </nuxt-link>
               </div>
-            </div>
-          </div>
-        </div>
+            </div> -->
+        <!-- </div> -->
       </div>
     </div>
+
   </div>
 
 </div>
@@ -36,6 +55,7 @@
 <script>
 // import genericcomp from '~/components/_genericComp.vue'
 import pageheader from '~/components/pageheader.vue'
+import authorListSingle from '~/components/authorListSingle.vue'
 import _ from 'lodash'
 
 import axios from 'axios'
@@ -48,6 +68,7 @@ export default {
   components: {
     // genericcomp,
     pageheader,
+    authorListSingle
   },
   computed: {
     ...mapGetters({
@@ -97,6 +118,10 @@ export default {
       // return this.raslAuthors;
 
     }
+  },
+
+  methods: {
+
   },
 
   async asyncData({

@@ -29,7 +29,7 @@
 
     </menucontent>
   </div>
-  <div class="main" @click=" $store.commit('menu/SET_TOGGLE',false)" :class="$store.state.menu.toggle ? 'slideLeft':''">
+  <div class="main " @click=" $store.commit('menu/SET_TOGGLE',false)" :class="$store.state.menu.toggle ? 'slideLeft':''">
     <nuxt/>
     <pagefooter></pagefooter>
   </div>

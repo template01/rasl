@@ -1,6 +1,6 @@
 <template>
 <transition name="fade">
-  <div v-if="footerContent" v-show="appinitated" class="pagefooter white-background pr-40 pl-40 pt-20 pb-20">
+  <div v-if="footerContent" v-show="appinitated" class="pagefooter lightgrey-background pr-40 pl-40 pt-20 pb-20">
 
     <div class="">
 
