@@ -17,5 +17,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+*{
+   background: white;
+}
 </style>

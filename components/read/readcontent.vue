@@ -1,6 +1,6 @@
 <template>
 <div class="readcontent columns">
-  <div class="column is-6 is-offset-3" v-if="contentlayout === 'simple'">
+  <div :class="printversion ? 'is-12':'is-6 is-offset-3'" class="column" v-if="contentlayout === 'simple'">
     <div class="is-size-4" v-html="content">
     </div>
   </div>
@@ -13,7 +13,7 @@ import {
 
 
 export default {
-  props: ['content', 'contentlayout'],
+  props: ['content', 'contentlayout','printversion'],
   data: function() {
     return {
       genericData: 'generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text '
