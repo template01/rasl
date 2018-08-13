@@ -43,6 +43,6 @@ export default {
 }
 
 *{
-  // font-family: Arial !important;
+  font-family: sans-serif !important;
 }
 </style>
