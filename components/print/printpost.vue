@@ -49,6 +49,7 @@ export default {
     margin: 0 auto;
     max-width: 12cm;
     text-align: left;
+    column-count: 2;
   }
 }
 </style>
