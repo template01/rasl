@@ -1,7 +1,7 @@
 <template>
 <div class="">
   <template v-if="myArray.length===0">
-    <div class=" columns is-marginless is-size-4   ">
+    <div class=" columns is-marginless is-size-4-desktop is-size-5-touch   ">
       <div class="column ">
         <p  class="has-text-centered">
           No articles collected.
@@ -34,7 +34,7 @@
             <img class="rasl-icon" :src="'/icons/rasl_drag.svg'" />
           </div>
           <div class="column is-8 Aligner Aligner-left">
-            <p class="is-size-4 uppercase">
+            <p class="is-size-4-desktop is-size-5-touch uppercase">
               <nuxt-link :to="'/read/'+postdata.type+'/'+postdata.slug">{{postdata.title.rendered}}</nuxt-link>
 
             </p>

@@ -4,7 +4,7 @@
     <div class="columns">
       <!-- <div class="column has-border-right">
 
-      <p class="is-size-4">
+      <p class="is-size-4-desktop is-size-5-touch">
 
       Erasmus University Rotterdam (EUR), Codarts Rotterdam and Willem de Kooning Academy Rotterdam are collaborating more intensively and joined forces in the Rotterdam Arts and Sciences Lab (RASL). The goal of this collaboration is to, firstly, advance the
       exchange of knowledge on education and research. Secondly, to offer students the possibility to develop their skills in accordance with the changing artistic professional practices and societal issues. The three institutes aim to become a central
@@ -14,7 +14,7 @@
 
     </p>
   </div> -->
-  <div class="column is-size-1 uppercase ">
+  <div class="column is-size-1-desktop is-size-2-touch-desktop is-size-2-touch uppercase ">
     <div class="pl-10">
 
       <p>

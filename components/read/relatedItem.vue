@@ -10,7 +10,7 @@
     </div>
     <div class="columns">
       <div class="column">
-        <p class="is-size-4  mr-10" style="text-transform:capitalize" v-html="itemcontent.title.rendered">
+        <p class="is-size-3-desktop is-size-5-touch  uppercase mr-10" v-html="itemcontent.title.rendered">
         </p>
       </div>
     </div>

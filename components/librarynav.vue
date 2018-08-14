@@ -2,7 +2,7 @@
 <div >
   <div class="columns is-marginless">
     <!-- <div  v-if="!showfilters" class="column is-8 is-offset-2 ">
-      <p class="has-text-centered is-size-4">
+      <p class="has-text-centered is-size-4-desktop is-size-5-touch">
         <span class="valign-middle">
           Library
         </span>
@@ -11,7 +11,7 @@
 
     <!-- <div v-if="showfilters" class="column is-6 "> -->
     <div class="column is-6 ">
-      <p class="is-size-4">
+      <p class="is-size-4-desktop is-size-5-touch">
         <span class="pr-10 valign-middle">FILTER:</span>
         <!-- <input type="checkbox" id="mike" v-model="checkedNames"> -->
         <!-- <label for="mike">Mike</label> -->
@@ -25,13 +25,13 @@
     </div>
     <!-- <div v-if="showfilters" class="column is-4"> -->
     <div class="column is-4">
-      <p class="is-size-4">
+      <p class="is-size-4-desktop is-size-5-touch">
         <span class="pr-10 valign-middle">SEARCH:</span>
         <search></search>
       </p>
     </div>
     <div class="column navButtons ">
-      <!-- <p class="has-text-right is-size-4 ">
+      <!-- <p class="has-text-right is-size-4-desktop is-size-5-touch ">
         <span  class="mr-10" v-if="!showfilters" @click=" $store.commit('SET_SHOWFILTERSDESKTOP', true);"><img class="pointer rasl-icon" :src="'icons/rasl_filter.svg'" /></span>
         <span  class="mr-10" v-else @click=" $store.commit('SET_SHOWFILTERSDESKTOP', false);"><img class="pointer rasl-icon" :src="'icons/rasl_close.svg'" /></span>
         <span><img class="opacity0 disable rasl-icon" :src="'icons/rasl_close.svg'" /></span>

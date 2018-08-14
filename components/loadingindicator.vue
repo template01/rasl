@@ -1,5 +1,5 @@
 <template>
-    <span class="loadingindicator is-size-4">
+    <span class="loadingindicator is-size-4-desktop is-size-5-touch">
       &nbsp;
     </span>
 </template>

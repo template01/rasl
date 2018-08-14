@@ -8,11 +8,11 @@
         <nuxt-link class=" is-pulled-left mr-5 hover-animate-chilren-right" :to="'/read/'+postdata.type+'/'+postdata.slug+windowsearch"><img class="rasl-icon" :src="'/icons/rasl_arrow_right.svg'" /></nuxt-link>
       </div>
     </div>
-    <h1 class="is-size-3 uppercase" ><nuxt-link v-html="postdata.title.rendered" class="" :to="'read/'+postdata.type+'/'+postdata.slug+windowsearch">  </nuxt-link>
+    <h1 class="is-size-2-desktop is-size-3-touch uppercase" ><nuxt-link v-html="postdata.title.rendered" class="" :to="'read/'+postdata.type+'/'+postdata.slug+windowsearch">  </nuxt-link>
     </h1>
-    <p class="ml-30 is-size-4 mt-20" v-html="postdata.title.rendered">
+    <p class="ml-30 is-size-4-desktop is-size-5-touch mt-20" v-html="postdata.title.rendered">
     </p>
-    <p v-show="postdata.acf.author" class="mt-10 is-size-4 ">
+    <p v-show="postdata.acf.author" class="mt-10 is-size-4-desktop is-size-5-touch ">
        <authorlinks :authors="postdata.acf.author"></authorlinks>
     </p>
 

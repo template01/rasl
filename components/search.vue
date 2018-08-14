@@ -1,6 +1,6 @@
 <template>
 <span class="">
-  <input type="text" class="is-size-4 valign-middle" placeholder="..." v-debounce="400" v-model.lazy="searchquery" >
+  <input type="text" class="is-size-4-desktop is-size-5-touch valign-middle" placeholder="..." v-debounce="400" v-model.lazy="searchquery" >
   <!-- <loadingindicator ></loadingindicator> -->
   <loadingindicator v-if="loadingContent"></loadingindicator>
 </span>

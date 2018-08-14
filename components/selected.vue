@@ -1,6 +1,6 @@
 <template>
   <div  class="">
-    <p class="is-size-4">
+    <p class="is-size-4-desktop is-size-5-touch">
       <div v-for="item in 3">
         {{selectedItems}}
         <input :value="item" id="checkBox" type="checkbox" v-model="selectedItems">

@@ -1,8 +1,8 @@
 <template>
 <div class="printpost">
-      <p class="is-size-1" v-html="postdata.title.rendered">
+      <p class="is-size-1-desktop is-size-2-touch-desktop is-size-2-touch" v-html="postdata.title.rendered">
       </p>
-      <p class="is-size-3" v-html="postdata.type">
+      <p class="is-size-3-desktop is-size-5-touch" v-html="postdata.type">
       </p>
       <!-- {{postdata}} -->
       <div class="inner-content">
@@ -49,7 +49,6 @@ export default {
     margin: 0 auto;
     max-width: 12cm;
     text-align: left;
-    column-count: 2;
   }
 }
 </style>

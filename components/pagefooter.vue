@@ -4,10 +4,10 @@
 
     <div class="">
 
-      <div class="columns is-marginless is-size-4">
+      <div class="columns is-marginless is-size-4-desktop is-size-5-touch">
         <div class="column">
           <!-- <nuxt-link :to="'/'+windowsearch">
-            <p class="is-size-3 logoText">
+            <p class="is-size-3-desktop is-size-5-touch logoText">
               <span class="">
               PUBLICATIONS.RASL.NU
             </span>
@@ -19,7 +19,7 @@
 
 
       </div>
-      <div class="columns is-marginless is-size-4">
+      <div class="columns is-marginless is-size-4-desktop is-size-5-touch">
         <div class="column">
           <div class="logoWrapperOuter">
             <span class="logo mr-40" v-for="link in footerContent.acf.logoslinks">

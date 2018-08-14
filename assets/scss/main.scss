@@ -2,7 +2,12 @@
 @import '~bulma/sass/utilities/functions';
 // customize styles
 $desktop: 1280px;
-$size-3: 40px;
+$size-3: 2rem;
+
+// /* Smartphones (portrait and landscape) ----------- */
+// @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+// /* Styles */
+// }
 
 $body-line-height: 1.4;
 

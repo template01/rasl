@@ -1,7 +1,7 @@
 <template>
 <div class="readcontent columns">
   <div :class="printversion ? 'is-12':'is-6 is-offset-3'" class="column" v-if="contentlayout === 'simple'">
-    <div class="is-size-4" v-html="content">
+    <div class="is-size-4-desktop is-size-5-touch" v-html="content">
     </div>
   </div>
 </div>

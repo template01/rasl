@@ -4,7 +4,7 @@
     <div class="loading-page-inner p-40">
       <div class="columns is-marginless">
         <div class="column">
-      <span class="loadingLetters is-size-1">
+      <span class="loadingLetters is-size-1-desktop is-size-2-touch-desktop is-size-2-touch">
 
       </span>
     </div>
@@ -14,7 +14,7 @@
   </span>
 </div>
 <div class="column">
-<span class="loadingLetters is-size-1">
+<span class="loadingLetters is-size-1-desktop is-size-2-touch-desktop is-size-2-touch">
 
 </span>
 </div>
@@ -22,22 +22,22 @@
       <!-- <div class="columns is-marginless">
 
         <div class="column animateLoading animateLoading1">
-          <p v-for="item in loadingItems" class="is-size-1">
+          <p v-for="item in loadingItems" class="is-size-1-desktop is-size-2-touch-desktop is-size-2-touch">
             LOADING
           </p>
         </div>
         <div class="column animateLoading animateLoading2">
-          <p v-for="item in loadingItems" class="is-size-1">
+          <p v-for="item in loadingItems" class="is-size-1-desktop is-size-2-touch-desktop is-size-2-touch">
             LOADING
           </p>
         </div>
         <div class="column animateLoading animateLoading3">
-          <p v-for="item in loadingItems" class="is-size-1">
+          <p v-for="item in loadingItems" class="is-size-1-desktop is-size-2-touch-desktop is-size-2-touch">
             LOADING
           </p>
         </div>
         <div class="column animateLoading animateLoading4">
-          <p v-for="item in loadingItems" class="is-size-1">
+          <p v-for="item in loadingItems" class="is-size-1-desktop is-size-2-touch-desktop is-size-2-touch">
             LOADING
           </p>
         </div>

@@ -2,7 +2,7 @@
 <div class="">
   <div class="columns">
     <div class="column">
-      <p class="has-text-centered is-size-4 mb-80">
+      <p class="has-text-centered is-size-4-desktop is-size-5-touch mb-80">
         selected
       </p>
       <postlistdraggable :display="selectedPosts"></postlistdraggable>

@@ -2,28 +2,28 @@
   <transition name="slidedown">
   <div class="loading-page" v-if="loading">
     <div class="loading-page-inner p-40">
-      <p class="loadingLetters is-size-1">
+      <p class="loadingLetters is-size-1-desktop is-size-2-touch-desktop is-size-2-touch">
          <span :class="item.animated ? 'slant':''" v-for="item in loadingLetters" v-html="item.letter" ></span>
       </p>
       <!-- <div class="columns is-marginless">
 
         <div class="column animateLoading animateLoading1">
-          <p v-for="item in loadingItems" class="is-size-1">
+          <p v-for="item in loadingItems" class="is-size-1-desktop is-size-2-touch-desktop is-size-2-touch">
             LOADING
           </p>
         </div>
         <div class="column animateLoading animateLoading2">
-          <p v-for="item in loadingItems" class="is-size-1">
+          <p v-for="item in loadingItems" class="is-size-1-desktop is-size-2-touch-desktop is-size-2-touch">
             LOADING
           </p>
         </div>
         <div class="column animateLoading animateLoading3">
-          <p v-for="item in loadingItems" class="is-size-1">
+          <p v-for="item in loadingItems" class="is-size-1-desktop is-size-2-touch-desktop is-size-2-touch">
             LOADING
           </p>
         </div>
         <div class="column animateLoading animateLoading4">
-          <p v-for="item in loadingItems" class="is-size-1">
+          <p v-for="item in loadingItems" class="is-size-1-desktop is-size-2-touch-desktop is-size-2-touch">
             LOADING
           </p>
         </div>

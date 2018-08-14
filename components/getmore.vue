@@ -1,13 +1,13 @@
 <template>
 <div class="">
   <div v-if="type === 'practice'">
-    <p v-if="practicecurrentpagina<practicetotalpagina" class="pointer pt-20 is-size-4 has-text-centered" @click="fetchmorecontent()">LOAD MORE</p>
-    <p v-else class="pt-20 is-size-4 has-text-centered">THE END</p>
+    <p v-if="practicecurrentpagina<practicetotalpagina" class="pointer pt-20 is-size-4-desktop is-size-5-touch has-text-centered" @click="fetchmorecontent()">LOAD MORE</p>
+    <p v-else class="pt-20 is-size-4-desktop is-size-5-touch has-text-centered">THE END</p>
   </div>
   <div  v-if="type === 'reflective'">
 
-    <p v-if="reflectivecurrentpagina<reflectivetotalpagina" class="pointer pt-20 is-size-4 has-text-centered" @click="fetchmorecontent()">LOAD MORE</p>
-    <p v-else class="pt-20 is-size-4 has-text-centered">THE END</p>
+    <p v-if="reflectivecurrentpagina<reflectivetotalpagina" class="pointer pt-20 is-size-4-desktop is-size-5-touch has-text-centered" @click="fetchmorecontent()">LOAD MORE</p>
+    <p v-else class="pt-20 is-size-4-desktop is-size-5-touch has-text-centered">THE END</p>
   </div>
 </div>
 </template>

@@ -21,7 +21,7 @@
       <div class="column is-12 pr-40 pl-40 ">
         <authorListSingle :slug="author.slug" :id="author.id" :title="author.title.rendered"></authorListSingle>
         <!-- <nuxt-link class="" :to="'/authors/'+author.slug+windowsearch">
-          <p class="is-size-3 has-text-centered" v-html="author.title.rendered">
+          <p class="is-size-3-desktop is-size-5-touch has-text-centered" v-html="author.title.rendered">
 
           </p>
           {{getArticles(author.id)}}
@@ -37,7 +37,7 @@
           <div class="column">
             <div v-for="(author, index) in raslAuthorsUneven">
               <div class="column">
-                <nuxt-link class="is-size-1" :to="'/authors/'+author.slug+windowsearch">
+                <nuxt-link class="is-size-1-desktop is-size-2-touch-desktop is-size-2-touch" :to="'/authors/'+author.slug+windowsearch">
                   <img :src="author.acf.featured_image.sizes.large" />
                   <p v-html="author.title.rendered"></p>
                 </nuxt-link>

@@ -5,11 +5,11 @@
   <div class="featuredItem" :style="{'width':slidewidth}" v-for="(postdata, index) in displaydata">
       <div class="contentWrapper column">
         <div class=" pl-40 pr-40">
- 
+
             <div class="pt-20 pb-20">
               <postsingleindexfeatured :postdata="postdata"></postsingleindexfeatured>
             </div>
-            <p v-show="postdata.acf.author" class="contentColumnAuthor is-size-3 pb-30">
+            <p v-show="postdata.acf.author" class="contentColumnAuthor is-size-2-desktop is-size-3-touch pb-30">
               <authorlinks :authors="postdata.acf.author"></authorlinks>
             </p>
         </div>
@@ -31,7 +31,7 @@
   </ul> -->
 </div>
 <div  @click="slideTo('next')" class="nav pointer Aligner Aligner-right" >
-  <p class="is-size-4">
+  <p class="is-size-4-desktop is-size-5-touch">
     NEXT
   </p>
 </div>

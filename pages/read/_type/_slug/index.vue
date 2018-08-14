@@ -10,7 +10,7 @@
             <div :class="postdata.type === 'practice' ? 'has-text-danger':'has-text-info'">
               <div class="mt-40">
                 <h1 class="huge-letters pb-80" v-html="postdata.title.rendered"></h1>
-                <div class="pt-80 is-size-2">
+                <div class="pt-80 is-size-2-desktop is-size-3-touch">
                   <span>By</span>
                   <authorlinks :authors="postdata.acf.author"></authorlinks>
                 </div>

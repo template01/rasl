@@ -3,7 +3,7 @@
   <!-- <hr />
   <div class="columns is-marginless">
     <div class="column">
-      <p class="is-size-4  has-text-centered ">
+      <p class="is-size-4-desktop is-size-5-touch  has-text-centered ">
         Related Articles
       </p>
     </div>

@@ -1,6 +1,6 @@
 <template>
 <div class="">
-  <div  class="pointer hoverselect is-size-4">
+  <div  class="pointer hoverselect is-size-4-desktop is-size-5-touch">
     <input  id="checkBox" type="checkbox" :value="postid" :id="postid" v-model="isselected">
     <label @click="toggleSelected(); $emit('removeprintitem')" v-if="isselected.length===0" :for="postid" class=""><img class="rasl-icon pointer" :src="'/icons/rasl_plus.svg'" /></label>
     <label @click="toggleSelected(); $emit('removeprintitem')" v-else :for="postid"><img class="rasl-icon pointer" :src="'/icons/rasl_minus.svg'" /></label>
