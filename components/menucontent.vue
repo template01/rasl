@@ -14,8 +14,8 @@
 
     </p>
   </div> -->
-  <div class="column is-size-1-desktop is-size-2-touch-desktop is-size-2-touch uppercase ">
-    <div class="pl-10">
+  <div class="column is-size-1-desktop  is-size-3-touch uppercase ">
+    <div :class="$mq != 'lg' ? '':'pl-10'" >
 
       <p>
         <nuxt-link :to="'/authors'+windowsearch">Authors</nuxt-link>

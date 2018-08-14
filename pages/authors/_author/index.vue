@@ -5,7 +5,7 @@
   <div class="columns is-marginless  pt-60">
     <div class="column">
 
-      <div class="pr-40 pl-40">
+      <div class="" :class="$mq != 'lg' ? 'pt-40':' pr-40 pl-40'">
         <div class="columns pb-40 is-marginless">
           <div class="">
             <div class="mt-40">

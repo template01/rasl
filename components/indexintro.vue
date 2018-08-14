@@ -5,7 +5,7 @@
   <div class="backgroundBlockII">
   </div>
   <div class="contentWrapperIntro pb-20 pt-60">
-    <h1 class="" :class="!appinitated ? 'animateHeight':''">
+    <h1 class="" :class="[!appinitated ? 'animateHeight':'', $mq!='lg' ? 'pt-80':'']">
         <!-- <transition name="fade"> -->
         <span>PUBLICATIONS</span>
           <span class="">

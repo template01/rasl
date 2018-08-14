@@ -1,5 +1,5 @@
 <template>
-<div>
+<div  v-if="mounted" >
   <!-- <loadinginit></loadinginit> -->
   <!-- <transition name="fader"> -->
     <!-- <div v-if="!loading"> -->
@@ -7,9 +7,9 @@
     <!-- </div> -->
   <!-- </transition> -->
   <transition name="fade">
-  <div v-if="appinitated" class="menuToggle pt-20">
-    <div class="column ">
-        <span class="fixedMenu">
+  <div v-if="appinitated" class="menuToggle pt-20" >
+    <div class="column " :class="$mq != 'lg' ? 'is-paddingless':''">
+        <span class="fixedMenu" :style="$mq != 'lg' ? {'margin-right':'12px'}: {'margin-right':'40px'}">
           <transition name="slide-fade" mode="out-in">
            <span key="1" class="pointer" v-if="update" @click="$store.commit('menu/SET_TOGGLE',true)">
              <buttoncounter  ></buttoncounter>
@@ -23,13 +23,13 @@
     </div>
   </div>
   </transition>
-    <div class="menu lightgrey-background" :style="{'z-index':zindexMenu}">
+    <div  :class="$mq!='lg' ? 'menuMobile':''" class="menu lightgrey-background" :style="{'z-index':zindexMenu}">
 
     <menucontent>
 
     </menucontent>
   </div>
-  <div class="main " @click=" $store.commit('menu/SET_TOGGLE',false)" :class="$store.state.menu.toggle ? 'slideLeft':''">
+  <div class="main "  @click=" $store.commit('menu/SET_TOGGLE',false)" :class="[$store.state.menu.toggle && $mq!='lg' ? 'slideLeftMobile':'', $store.state.menu.toggle && $mq==='lg' ? 'slideLeft':'']">
     <nuxt/>
     <pagefooter></pagefooter>
   </div>
@@ -68,7 +68,8 @@ export default {
     return{
       zindexMenu :-1,
       update: false,
-      opacity:0
+      opacity:0,
+      mounted: false
     }
   },
   methods:{
@@ -90,6 +91,9 @@ export default {
     if(this.$route.path != '/'){
       this.$store.commit('SET_APPINITIATED', true)
     }
+  },
+  mounted(){
+    this.mounted = true
   },
   watch:{
     selected: function() {
@@ -141,13 +145,18 @@ export default {
   }
 // box-shadow: inset 10px 0px 20px -10px rgba(0,0,0,1);
 }
+
+.menuMobile{
+  width: 300px;
+}
+
 .menuToggle{
   position: fixed;
   right: 0;
   top: 0;
   z-index: 101;
   .fixedMenu{
-    margin-right: 40px;
+    // margin-right: 40px;
   }
 
 }
@@ -166,6 +175,12 @@ export default {
   // user-select: none;
   // pointer-events: none;
   // margin-right: 50%;
+}
+
+
+.slideLeftMobile{
+  transform: translateX(-300px);
+
 }
 /* Enter and leave animations can use different */
 /* durations and timing functions.              */

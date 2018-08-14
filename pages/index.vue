@@ -26,10 +26,10 @@
 
   </div>
   <div>
-    <div sticky-container class="pt-40" id="library">
-      <div class="backgroundBlockI" :style="getBackgroundStyleI">
+    <div sticky-container class="pt-40" :class="$mq != 'lg' ? 'white-background':''" id="library">
+      <div class="backgroundBlockI is-hidden-touch" :style="getBackgroundStyleI">
       </div>
-      <div class="backgroundBlockII" :style="getBackgroundStyleII">
+      <div class="backgroundBlockII is-hidden-touch" :style="getBackgroundStyleII">
       </div>
 
       <div class=" pl-40 pr-40 ">
@@ -38,15 +38,15 @@
       <!-- <div class=" pl-40 pr-40 ">
         <hr class="m-0" />
       </div> -->
-      <div v-sticky sticky-offset="0" sticky-side="top" class="librarynavwrapper pl-40 pr-40 ">
+      <div v-sticky sticky-offset="0" sticky-side="top" class="librarynavwrapper pl-40 pr-40 "  :class="$mq != 'lg' ? 'white-background':''">
         <librarynav class="pt-20"></librarynav>
         <hr class="m-0" />
-        <div class="backgroundBlockI" :style="getBackgroundStyleI">
+        <div class="backgroundBlockI is-hidden-touch" :style="getBackgroundStyleI">
         </div>
-        <div class="backgroundBlockII" :style="getBackgroundStyleII">
+        <div class="backgroundBlockII is-hidden-touch" :style="getBackgroundStyleII">
         </div>
       </div>
-      <div class="pl-40 pr-40">
+      <div class="pl-40 pr-40 is-hidden-touch">
         <div class="animateWidthColumns columns is-marginless" :style="getColumnStyle">
           <div class="column is-marginless ">
             <p class="has-text-centered is-size-4-desktop is-size-5-touch">
@@ -90,13 +90,14 @@
         <hr class="m-0" />
       </div>
 
-      <div class="pl-40 pr-40">
+      <div :class="$mq != 'lg' ? '':'pl-40 pr-40'">
 
         <!-- {{practiceHide}} -->
-        <div class="animateWidthColumns pb-40 columns is-marginless" :style="getColumnStyle">
+        <div v-if="$mq === 'lg'" class="animateWidthColumns pb-40 columns is-marginless" :style="getColumnStyle">
           <!-- REFLECTIVE COLUMN -->
           <div class="column is-marginless is-paddingless ">
             <div v-if="!reflectiveHide" class=" ">
+              <!-- {{$mq}} -->
               <ul>
                 <transition-group name="list-complete">
                   <li class="is-size-4-desktop is-size-5-touch list-complete-item" :key="postdata.id" v-for="postdata in reflectivePosts">
@@ -105,7 +106,7 @@
                 </transition-group>
               </ul>
 
-              <getmore type="reflective"></getmore>
+              <!-- <getmore type="reflective"></getmore> -->
             </div>
           </div>
           <!-- PRACTICE COLUMN -->
@@ -119,10 +120,26 @@
                 </transition-group>
               </ul>
 
-              <getmore type="practice"></getmore>
+              <!-- <getmore type="practice"></getmore> -->
             </div>
           </div>
         </div>
+        <div class="columns is-marginless" v-else>
+            <div class="column is-marginless is-paddingless ">
+                <ul>
+                  <transition-group name="list-complete">
+                    <li class="is-size-4-desktop is-size-5-touch list-complete-item" :key="postdata.id" v-for="postdata in mergedOrderedPosts">
+                      <postindex :ignorepadding="ignorepadding" :left="true" :postdata="postdata"></postindex>
+                    </li>
+                  </transition-group>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <getmoreall></getmoreall>
+
 
       </div>
 
@@ -154,6 +171,7 @@ import postlist from '~/components/postlist.vue'
 import postlistfeatured from '~/components/postlistfeatured.vue'
 import postindex from '~/components/postIndex'
 import getmore from '~/components/getmore.vue'
+import getmoreall from '~/components/getmoreall.vue'
 import librarynav from '~/components/librarynav.vue'
 import pageheader from '~/components/pageheader.vue'
 
@@ -169,6 +187,7 @@ export default {
     indexintro,
     filters,
     getmore,
+    getmoreall,
     postlist,
     postlistfeatured,
     postindex,
@@ -176,6 +195,11 @@ export default {
     pageheader
   },
   computed: {
+    mergedOrderedPosts: function(){
+        const concatinated = _.concat(this.reflectivePosts, this.practicePosts);
+        return _.orderBy(concatinated, ['date'], ['desc']);
+
+    },
     featuredPostsEven: function() {
 
 

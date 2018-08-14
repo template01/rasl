@@ -1,14 +1,26 @@
 <template>
 <div class="">
 
-  <div class="columns is-size-4-desktop is-size-5-touch" style="margin-bottom:0;">
-    <div class="column mt-10 ">
-      <selectpost class="pointer  is-pulled-left " :posttype="postdata.type" :postid="postdata.id"></selectpost>
-      <nuxt-link class=" is-pulled-left mr-5  hover-animate-chilren-right" :to="'read/'+postdata.type+'/'+postdata.slug+windowsearch"><img class="rasl-icon" :src="'/icons/rasl_arrow_right.svg'" /></nuxt-link>
+  <div class="columns is-hidden-touch" style="margin-bottom:0;">
+    <div class="column mt-10">
+      <selectpost class="pointer  is-pulled-left mr-0" :posttype="postdata.type" :postid="postdata.id"></selectpost>
+      <nuxt-link class=" is-pulled-left mr-5 hover-animate-chilren-right" :to="'/read/'+postdata.type+'/'+postdata.slug+windowsearch"><img class="rasl-icon" :src="'/icons/rasl_arrow_right.svg'" /></nuxt-link>
     </div>
   </div>
+  <div class="columns is-marginless is-mobile">
+    <div class="column is-7 is-paddingless">
+
+      <h1 class="is-size-2-desktop is-size-3-touch uppercase" ><nuxt-link v-html="postdata.title.rendered" class="" :to="'read/'+postdata.type+'/'+postdata.slug+windowsearch">  </nuxt-link>
+      </h1>
+    </div>
+    <div class="column mt-5 is-5 is-paddingless is-hidden-desktop">
+      <nuxt-link class=" is-pulled-right hover-animate-chilren-right" :to="'/read/'+postdata.type+'/'+postdata.slug+windowsearch"><img class="rasl-icon" :src="'/icons/rasl_arrow_right.svg'" /></nuxt-link>
+      <selectpost class="pointer  is-pulled-right mr-5" :posttype="postdata.type" :postid="postdata.id"></selectpost>
+    </div>
+  </div>
+  <!--
   <h1 class="is-size-1-desktop is-size-2-touch-desktop is-size-2-touch hover-animate-skew dont-break-out uppercase"><nuxt-link v-html="postdata.title.rendered" class="" :to="'read/'+postdata.type+'/'+postdata.slug+windowsearch">  </nuxt-link>
-        </h1>
+        </h1> -->
   <!-- <p class="is-size-4-desktop is-size-5-touch  mt-20" style="text-transform:capitalize" v-html="postdata.type">
   </p>
   <p v-show="postdata.acf.author" class="is-size-4-desktop is-size-5-touch ">

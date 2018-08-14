@@ -5,7 +5,7 @@
     <pageheader :selectpost="{'type':postdata.type,'id':postdata.id}" :title="postdata.title.rendered"></pageheader>
     <div class="columns is-marginless pt-60">
       <div class="column is-marginless">
-        <div class=" pr-40 pl-40">
+        <div class="" :class="$mq != 'lg' ? 'pt-40':' pr-40 pl-40'">
           <div class="columns pb-40 is-marginless">
             <div :class="postdata.type === 'practice' ? 'has-text-danger':'has-text-info'">
               <div class="mt-40">

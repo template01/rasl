@@ -1,15 +1,24 @@
 <template>
-<div>
+<div  :class="[$mq != 'lg' ? 'pl-40 pr-40':'', postBackgroundColor]">
 
-  <div class="column" :style="getPaddingStyle">
-    <div class="columns" style="margin-bottom:0;">
+  <div class="column" :class="$mq != 'lg' ? 'is-paddingless':''" :style="$mq != 'lg' ? {'padding-left':0,'padding-right':0} : getPaddingStyle">
+    <div class="columns is-hidden-touch" style="margin-bottom:0;">
       <div class="column mt-10">
         <selectpost class="pointer  is-pulled-left mr-0" :posttype="postdata.type" :postid="postdata.id"></selectpost>
         <nuxt-link class=" is-pulled-left mr-5 hover-animate-chilren-right" :to="'/read/'+postdata.type+'/'+postdata.slug+windowsearch"><img class="rasl-icon" :src="'/icons/rasl_arrow_right.svg'" /></nuxt-link>
       </div>
     </div>
-    <h1 class="is-size-2-desktop is-size-3-touch uppercase" ><nuxt-link v-html="postdata.title.rendered" class="" :to="'read/'+postdata.type+'/'+postdata.slug+windowsearch">  </nuxt-link>
-    </h1>
+    <div :class="$mq != 'lg' ? 'pt-10':''" class="columns is-marginless is-mobile">
+      <div class="column is-8 is-paddingless">
+
+        <h1 class="is-size-2-desktop is-size-3-touch uppercase" ><nuxt-link v-html="postdata.title.rendered" class="" :to="'read/'+postdata.type+'/'+postdata.slug+windowsearch">  </nuxt-link>
+        </h1>
+      </div>
+      <div class="column mt-5 is-4 is-paddingless is-hidden-desktop">
+        <nuxt-link class=" is-pulled-right hover-animate-chilren-right" :to="'/read/'+postdata.type+'/'+postdata.slug+windowsearch"><img class="rasl-icon" :src="'/icons/rasl_arrow_right.svg'" /></nuxt-link>
+        <selectpost class="pointer  is-pulled-right mr-5" :posttype="postdata.type" :postid="postdata.id"></selectpost>
+      </div>
+    </div>
     <p class="ml-30 is-size-4-desktop is-size-5-touch mt-20" v-html="postdata.title.rendered">
     </p>
     <p v-show="postdata.acf.author" class="mt-10 is-size-4-desktop is-size-5-touch ">
@@ -42,6 +51,11 @@ export default {
     authorlinks
   },
   computed: {
+    postBackgroundColor: function(){
+      if(this.$mq != 'lg' && this.postdata){
+        return this.postdata.type === 'practice' ? 'pink-background':'green-background'
+      }
+    },
     getPaddingStyle: function() {
       if (this.left) {
         if (this.ignorepadding) {

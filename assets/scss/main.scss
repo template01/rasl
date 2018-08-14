@@ -1,47 +1,31 @@
 @import '~bulma/sass/utilities/initial-variables';
-@import '~bulma/sass/utilities/functions';
-// customize styles
-$desktop: 1280px;
-$size-3: 2rem;
-
-// /* Smartphones (portrait and landscape) ----------- */
+@import '~bulma/sass/utilities/functions'; // customize styles
+$tablet: 1024px;
+$mobile: 1024px;
+$desktop: 1024px;
+$size-3: 2rem; // /* Smartphones (portrait and landscape) ----------- */
 // @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
 // /* Styles */
 // }
-
 $body-line-height: 1.4;
-
 $link-hover: inherit;
-
 $text: $black;
-$link: $black;
-// 2. Set your own initial variables
+$link: $black; // 2. Set your own initial variables
 // Update blue
-$blue: #72d0eb;
-// Add pink and its invert
+$blue: #72d0eb; // Add pink and its invert
 $pink: #ffb3b3;
-$pink-invert: #fff;
-// Add a serif family
-$family-serif: "TeXGyreHeros", sans;
-
-// 3. Set the derived variables
+$pink-invert: #fff; // Add a serif family
+$family-serif: "TeXGyreHeros", sans; // 3. Set the derived variables
 // Use the new pink as the primary color
 $primary: $pink;
-$primary-invert: $pink-invert;
-// Use the existing orange as the danger color
+$primary-invert: $pink-invert; // Use the existing orange as the danger color
 $danger: $red;
 $success: $green;
-$info: $lightblue;
-// Use the new serif family
+$info: $lightblue; // Use the new serif family
 $family-primary: $family-serif;
-
-
 @import '~bulma';
+@import "variables"; // COLORS
 
-
-
-@import "variables";
-// COLORS
 .white-background {
   background-color: $white;
 }
@@ -53,46 +37,57 @@ $family-primary: $family-serif;
 .green-background {
   background-color: $green;
 }
+
 .lightblue-background {
   background-color: $lightblue;
 }
+
 .lightgrey-background {
   background-color: $lightgrey;
 }
 
-html{
-  background-color: $lightgrey
+html {
+  background-color: $lightgrey;
 }
 
-.fullHeight{
+.fullHeight {
   min-height: 100vh;
 }
 // HELPERS
+
 .ignore-mb {
   margin-bottom: 0 !important;
 }
+
 .has-border-right {
-    border-right: 2px solid $black;
+  border-right: 2px solid $black;
 }
 
-.is-size-3{
-  line-height: 1.1
+.is-size-1-touch,
+.is-size-1-desktop,
+.is-size-2-touch,
+.is-size-2-desktop,
+.is-size-3-touch,
+.is-size-3-desktop,
+.is-size-4-touch,
+.is-size-4-desktop {
+  line-height: 1.1;
 }
 
 .pointer {
   cursor: pointer;
 }
 
-.hover-animate-skew{
+.hover-animate-skew {
   display: inline-block;
   transition: 0.25s transform;
-  &:hover{
+
+  &:hover {
     transform: skewX(-5deg);
   }
 }
 
 .hover-animate-chilren-right {
-
   &:hover {
     * {
       animation-name: example;
@@ -112,12 +107,14 @@ html{
   }
 }
 
-.disable{
-   pointer-events: none;
+.disable {
+  pointer-events: none;
 }
-.opacity0{
-  opacity: 0
+
+.opacity0 {
+  opacity: 0;
 }
+
 .valign-middle {
   vertical-align: middle;
 }
@@ -155,6 +152,7 @@ hr {
   opacity: 0.8;
 }
 // MISC
+
 .headerheight {
   max-height: 60px;
   height: 60px;
@@ -164,7 +162,14 @@ hr {
   width: 40px;
   vertical-align: middle;
 }
+@media only screen and (max-width: 1024px) {
+  .rasl-icon {
+    width: 30px;
+    vertical-align: middle;
+  }
+}
 // TYPO
+
 .uppercase {
   text-transform: uppercase;
 }
@@ -179,7 +184,8 @@ hr {
   line-height: 1;
   letter-spacing: -1px;
 }
-.huge-letters{
+
+.huge-letters {
   font-size: 10vw;
   line-height: 0.86;
   text-transform: uppercase;

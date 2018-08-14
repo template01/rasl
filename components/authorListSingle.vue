@@ -1,6 +1,6 @@
 <template>
 <nuxt-link class="" :to="'/authors/'+slug+windowsearch">
-  <p class="is-size-1-desktop is-size-2-touch-desktop is-size-2-touch has-text-centered">
+  <p class="is-size-1-desktop is-size-3-touch has-text-centered">
     <span  v-html="title"></span>
     (<span  v-html="articlesWritten"></span>)
   </p>

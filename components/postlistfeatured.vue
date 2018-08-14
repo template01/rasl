@@ -1,21 +1,21 @@
 <template>
-  <div class="featuredPostsOuter">
+  <div v-show="mounted" class="featuredPostsOuter">
 
 <div class="featuredPosts" :style="{'transform':'translateX('+slidepos+')','width':100*displaydata.length+'vw'}">
-  <div class="featuredItem" :style="{'width':slidewidth}" v-for="(postdata, index) in displaydata">
-      <div class="contentWrapper column">
-        <div class=" pl-40 pr-40">
+  <div class="featuredItem" :class="$mq != 'lg' ? 'featuredItemMobile':''" :style="{'width':slidewidth}" v-for="(postdata, index) in displaydata">
+      <div class="contentWrapper column" :class="$mq != 'lg' ? 'contentWrapperMobile':''">
+        <div  :class="$mq != 'lg' ? '':' pl-40 pr-40'">
 
             <div class="pt-20 pb-20">
               <postsingleindexfeatured :postdata="postdata"></postsingleindexfeatured>
             </div>
-            <p v-show="postdata.acf.author" class="contentColumnAuthor is-size-2-desktop is-size-3-touch pb-30">
+            <p v-show="postdata.acf.author"  :class="$mq != 'lg' ? 'contentColumnAuthorclass':'contentColumnAuthorclass'" class="is-size-2-desktop is-size-3-touch pb-30">
               <authorlinks :authors="postdata.acf.author"></authorlinks>
             </p>
         </div>
 
       </div>
-      <div class="featuredImageWrapper" >
+      <div class="featuredImageWrapper"  :class="$mq != 'lg' ? 'featuredImageWrapperMobile':''">
 
             <div v-if="postdata.acf.featured_image" class="featuredImage" v-bind:style="{ 'background-image': 'url(' + postdata.acf.featured_image.sizes.large + ')' }">
             </div>
@@ -30,7 +30,7 @@
     </li>
   </ul> -->
 </div>
-<div  @click="slideTo('next')" class="nav pointer Aligner Aligner-right" >
+<div  @click="slideTo('next')" class="nav pointer Aligner Aligner-right"  :class="$mq != 'lg' ? 'navMobile':''">
   <p class="is-size-4-desktop is-size-5-touch">
     NEXT
   </p>
@@ -56,14 +56,26 @@ export default {
       genericData: 'generic component text',
       slidepos: '0px',
       slidelocked: false,
-      slidewidth: '80vw',
-      slideindex: 0
+      slidewidthDesktop: '80vw',
+      slidewidthMobile: '82vw',
+      slideindex: 0,
+      mounted: false,
     }
   },
   components: {
     postindex,
     postsingleindexfeatured,
     authorlinks
+  },
+  computed :{
+    slidewidth: function(){
+      if(this.$mq != 'lg'){
+        return this.slidewidthMobile
+      }else{
+        return this.slidewidthDesktop
+
+      }
+    }
   },
   methods: {
 
@@ -128,7 +140,9 @@ export default {
   },
   mounted() {
     // this.slidewidth = document.body.clientWidth * 0.80 + 'px'
+
     window.addEventListener('scroll', this.handleWindowScroll);
+    this.mounted = true
   },
 
 }
@@ -158,6 +172,20 @@ export default {
      transform: rotate(90deg);
      user-select: none;
    }
+}
+
+.navMobile{
+  width: 63px;
+  opacity: 1;
+  background:$lightgrey;
+  left:calc(100vw - 63px);
+  min-width: 63px;
+  p{
+    right: 5px;
+    position: absolute;
+    margin: 0;
+  }
+
 }
 .featuredPosts {
     transition: transform 0.25s;
@@ -190,6 +218,16 @@ export default {
       }
 
     }
+
+    .contentWrapperMobile{
+      width: 100%;
+      min-height: 300px;
+
+    }
+}
+
+.featuredItemMobile{
+  min-height: auto;
 }
 .featuredImageWrapper{
   width: 50%;
@@ -199,6 +237,12 @@ export default {
   height: 100%;
 
   position: relative;
+  // padding: 0.75rem 0 0.75rem 0 ;
+}
+
+.featuredImageWrapperMobile{
+  width: 100%;
+  min-height: 300px;
   // padding: 0.75rem 0 0.75rem 0 ;
 }
 .featuredImage{

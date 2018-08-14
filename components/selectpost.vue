@@ -1,10 +1,10 @@
 <template>
 <div class="">
-  <div  class="pointer hoverselect is-size-4-desktop is-size-5-touch">
+  <div  class="pointer hoverselect is-size-4-desktop is-size-6-touch">
     <input  id="checkBox" type="checkbox" :value="postid" :id="postid" v-model="isselected">
     <label @click="toggleSelected(); $emit('removeprintitem')" v-if="isselected.length===0" :for="postid" class=""><img class="rasl-icon pointer" :src="'/icons/rasl_plus.svg'" /></label>
     <label @click="toggleSelected(); $emit('removeprintitem')" v-else :for="postid"><img class="rasl-icon pointer" :src="'/icons/rasl_minus.svg'" /></label>
-    <span v-if="!hidehelpers" :class="isselected.length===0 ? '':'hideit' " class="addtoselection" style=""><span class="hinter mr-5 pr-10 pl-10 is-size-5" style=""><span class="inner">Collect Article</span></span>
+    <span v-if="!hidehelpers" :class="isselected.length===0 ? '':'hideit' " class="addtoselection is-hidden-touch" style=""><span class="hinter mr-5 pr-10 pl-10 is-size-5" style=""><span class="inner">Collect Article</span></span>
     </span>
   </div>
 </div>
@@ -100,8 +100,11 @@ input {
     display: inline-flex;
     transition: max-width 0.5s ease-in-out;
     transition-delay: 0.5s;
-
     height: 40px;
+
+    @media only screen and (max-width: 1024px) {
+      height: 30px;
+    }
     .hinter {
         border: 2px solid $black;
         border-radius: 20px;

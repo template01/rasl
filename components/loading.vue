@@ -2,7 +2,7 @@
   <transition name="slidedown">
   <div class="loading-page" v-if="loading">
     <div class="loading-page-inner p-40">
-      <div class="columns is-marginless">
+      <div class="columns is-mobile is-marginless">
         <div class="column">
       <span class="loadingLetters is-size-1-desktop is-size-2-touch-desktop is-size-2-touch">
 

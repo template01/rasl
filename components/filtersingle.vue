@@ -1,6 +1,6 @@
 <template>
 <div class="pt-20">
-  <div  class="wrapper" v-for="filteritem in filtertype">
+  <div  class="wrapper  mt-5 mb-5" v-for="filteritem in filtertype">
     <div class="pr-10 mb-10">
     <label class="pointer">
         <input @click="setfilterby(filtername)" v-model="selectedItems" :value="filteritem.slug" id="checkBox" type="checkbox">

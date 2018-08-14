@@ -2,7 +2,7 @@
 <div >
   <div class="columns is-marginless">
     <!-- <div  v-if="!showfilters" class="column is-8 is-offset-2 ">
-      <p class="has-text-centered is-size-4-desktop is-size-5-touch">
+      <p class="has-text-centered is-size-4-desktop is-size-6-touch">
         <span class="valign-middle">
           Library
         </span>
@@ -10,8 +10,8 @@
     </div> -->
 
     <!-- <div v-if="showfilters" class="column is-6 "> -->
-    <div class="column is-6 ">
-      <p class="is-size-4-desktop is-size-5-touch">
+    <div class="column is-6" :class="$mq!='lg' ? 'is-paddingless mb-5':''">
+      <p class="is-size-4-desktop is-size-6-touch">
         <span class="pr-10 valign-middle">FILTER:</span>
         <!-- <input type="checkbox" id="mike" v-model="checkedNames"> -->
         <!-- <label for="mike">Mike</label> -->
@@ -24,14 +24,14 @@
       </p>
     </div>
     <!-- <div v-if="showfilters" class="column is-4"> -->
-    <div class="column is-4">
-      <p class="is-size-4-desktop is-size-5-touch">
+    <div class="column is-5" :class="$mq!='lg' ? 'is-paddingless':''">
+      <p class="is-size-4-desktop is-size-6-touch">
         <span class="pr-10 valign-middle">SEARCH:</span>
         <search></search>
       </p>
     </div>
-    <div class="column navButtons ">
-      <!-- <p class="has-text-right is-size-4-desktop is-size-5-touch ">
+    <div class="column navButtons " :class="[$mq!='lg' ? 'is-paddingless ':'',filterby.length>0 && $mq!='lg' ? '':'mb-10' ]">
+      <!-- <p class="has-text-right is-size-4-desktop is-size-6-touch ">
         <span  class="mr-10" v-if="!showfilters" @click=" $store.commit('SET_SHOWFILTERSDESKTOP', true);"><img class="pointer rasl-icon" :src="'icons/rasl_filter.svg'" /></span>
         <span  class="mr-10" v-else @click=" $store.commit('SET_SHOWFILTERSDESKTOP', false);"><img class="pointer rasl-icon" :src="'icons/rasl_close.svg'" /></span>
         <span><img class="opacity0 disable rasl-icon" :src="'icons/rasl_close.svg'" /></span>
@@ -40,7 +40,7 @@
   </div>
   <transition name="fade">
   <template v-if="filterby.length>0">
-    <div class="filters" :class="filterby.length>0 ">
+    <div class="filters" :class="[filterby.length>0, $mq!='lg' ? 'is-inline-block ':''] ">
     <hr class="m-0" />
       <div class="columns pb-10">
         <div class="column">
@@ -161,7 +161,9 @@ export default {
   max-height: 0;
   transition: opacity 0.25s, max-height .3s ease-in-out;
 }
-
+.filters{
+  width: 100%;
+}
 input {
     display: none;
 }
