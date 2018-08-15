@@ -4,17 +4,12 @@
   </div>
   <div class="backgroundBlockII">
   </div>
-  <div class="contentWrapperIntro pb-20 pt-60">
-    <h1 class="" :class="[!appinitated ? 'animateHeight':'', $mq!='lg' ? 'pt-80':'']">
-        <!-- <transition name="fade"> -->
+  <div class="contentWrapperIntro pb-20 pt-60" :class="$mq != 'lg'? 'mt-40':''">
+    <h1 class="" :class="$mq != 'lg'? 'mt-5':''" >
         <span>PUBLICATIONS</span>
           <span class="">
             <img class="" src="/rasllogow.svg"/>
           </span>
-            <!-- <span v-bind:key="index" :class="runspantransition ? 'resetSpan':''" :style="{'opacity':opacityItem,'transform':'translateY('+randomPositions[index]+')'}" v-for="(letter,index) in introword">{{letter}}</span>
-            <span class="imageSpan" :class="runspantransition ? 'resetSpan':''"  :style="{'opacity':opacityItem,'transform':'translateY('+randomPositions[1]+')'}">
-              <img class="" src="/rasllogow.svg"/>
-            </span> -->
           </h1>
 
   </div>
@@ -59,17 +54,17 @@ export default {
     }),
   },
   mounted() {
-    var vm = this
-    this.readyPos = true
-    setTimeout(function() {
-      vm.opacityItem=1
-    }, 300)
-    setTimeout(function() {
-      vm.runspantransition = true
-    }, 1000)
-    setTimeout(function() {
-      vm.$store.commit('SET_APPINITIATED', true)
-    }, 2500)
+    // var vm = this
+    // this.readyPos = true
+    // setTimeout(function() {
+    //   vm.opacityItem=1
+    // }, 300)
+    // setTimeout(function() {
+    //   vm.runspantransition = true
+    // }, 1000)
+    // setTimeout(function() {
+    //   vm.$store.commit('SET_APPINITIATED', true)
+    // }, 2500)
   }
 
 }

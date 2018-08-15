@@ -2,16 +2,21 @@
   <div class="column" :class="[itemcontent.type === 'practice' ? 'pink-background':'lightblue-background', itemcontent.type === 'practice' ? 'has-text-danger':'has-text-success']">
     <div class=" p-50">
 
-    <div class="columns ignore-mb">
+    <div class="columns ignore-mb is-hidden-touch">
       <div class="column">
         <selectpost class="pointer  is-pulled-left mr-5" :posttype="itemcontent.type" :postid="itemcontent.id"></selectpost>
         <nuxt-link class=" is-pulled-left mr-5 hover-animate-chilren-right" :to="'/read/'+itemcontent.type+'/'+itemcontent.slug+windowsearch"><img class="rasl-icon" :src="'/icons/rasl_arrow_right.svg'" /></nuxt-link>
       </div>
     </div>
-    <div class="columns">
-      <div class="column">
-        <p class="is-size-3-desktop is-size-5-touch  uppercase mr-10" v-html="itemcontent.title.rendered">
-        </p>
+    <div class="columns is-mobile">
+      <div class="column is-8">
+
+          <nuxt-link class="" :to="'/read/'+itemcontent.type+'/'+itemcontent.slug+windowsearch"><p :class="[itemcontent.type === 'practice' ? 'has-text-danger':'has-text-success']" class="is-size-3-desktop is-size-4-touch  uppercase mr-10" v-html="itemcontent.title.rendered"></p></nuxt-link>
+
+      </div>
+      <div class="column is-hidden-desktop">
+        <nuxt-link class=" is-pulled-right hover-animate-chilren-right" :to="'/read/'+itemcontent.type+'/'+itemcontent.slug+windowsearch"><img class="rasl-icon" :src="'/icons/rasl_arrow_right.svg'" /></nuxt-link>
+        <selectpost class="pointer  is-pulled-right mr-5" :posttype="itemcontent.type" :postid="itemcontent.id"></selectpost>
       </div>
     </div>
   </div>

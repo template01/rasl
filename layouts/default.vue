@@ -1,39 +1,42 @@
 <template>
-<div  v-if="mounted" >
-  <!-- <loadinginit></loadinginit> -->
+<div>
+  <loadinginit></loadinginit>
   <!-- <transition name="fader"> -->
-    <!-- <div v-if="!loading"> -->
-      <!-- <nuxt/> -->
-    <!-- </div> -->
+  <!-- <div v-if="!loading"> -->
+  <!-- <nuxt/> -->
+  <!-- </div> -->
   <!-- </transition> -->
-  <transition name="fade">
-  <div v-if="appinitated" class="menuToggle pt-20" >
-    <div class="column " :class="$mq != 'lg' ? 'is-paddingless':''">
-        <span class="fixedMenu" :style="$mq != 'lg' ? {'margin-right':'12px'}: {'margin-right':'40px'}">
+  <div v-if="mounted">
+
+
+    <transition name="fade">
+      <div v-if="appinitated" class="menuToggle pt-20">
+        <div class="column " :class="$mq != 'lg' ? 'is-paddingless':''">
+          <span class="fixedMenu" :style="$mq != 'lg' ? {'margin-right':'12px'}: {'margin-right':'40px'}">
           <transition name="slide-fade" mode="out-in">
            <span key="1" class="pointer" v-if="update" @click="$store.commit('menu/SET_TOGGLE',true)">
              <buttoncounter  ></buttoncounter>
            </span>
-           <span key="2" v-else>
+          <span key="2" v-else>
          <span class="pointer" v-if="!$store.state.menu.toggle" @click="$store.commit('menu/SET_TOGGLE',true)"><img class="rasl-icon" :src="'/icons/rasl_menu.svg'" /> </span>
-         <span class="pointer" v-else @click=" $store.commit('menu/SET_TOGGLE',false)"><img class="rasl-icon" :src="'/icons/rasl_close.svg'" /></span>
-         </span>
-       </transition>
-        </span>
+          <span class="pointer" v-else @click=" $store.commit('menu/SET_TOGGLE',false)"><img class="rasl-icon" :src="'/icons/rasl_close.svg'" /></span>
+          </span>
+    </transition>
+    </span>
+    </div>
+    </div>
+    </transition>
+    <div :class="$mq!='lg' ? 'menuMobile':''" class="menu lightgrey-background" :style="{'z-index':zindexMenu}">
+
+      <menucontent>
+
+      </menucontent>
+    </div>
+    <div class="main " @click=" $store.commit('menu/SET_TOGGLE',false)" :class="[$store.state.menu.toggle && $mq!='lg' ? 'slideLeftMobile':'', $store.state.menu.toggle && $mq==='lg' ? 'slideLeft':'']">
+      <nuxt/>
+      <pagefooter></pagefooter>
     </div>
   </div>
-  </transition>
-    <div  :class="$mq!='lg' ? 'menuMobile':''" class="menu lightgrey-background" :style="{'z-index':zindexMenu}">
-
-    <menucontent>
-
-    </menucontent>
-  </div>
-  <div class="main "  @click=" $store.commit('menu/SET_TOGGLE',false)" :class="[$store.state.menu.toggle && $mq!='lg' ? 'slideLeftMobile':'', $store.state.menu.toggle && $mq==='lg' ? 'slideLeft':'']">
-    <nuxt/>
-    <pagefooter></pagefooter>
-  </div>
-
 </div>
 </template>
 
@@ -64,45 +67,45 @@ export default {
       menuOpen: "menu/GET_TOGGLE"
     }),
   },
-  data: function(){
-    return{
-      zindexMenu :-1,
+  data: function() {
+    return {
+      zindexMenu: -1,
       update: false,
-      opacity:0,
+      opacity: 0,
       mounted: false
     }
   },
-  methods:{
-    layerMenu: function(isOpen){
+  methods: {
+    layerMenu: function(isOpen) {
       var vm = this
-    if(isOpen){
+      if (isOpen) {
 
-      this.opacity=1
-      setTimeout(function(){
-        vm.zindexMenu = 100
-      },250)
-    }else{
-      this.opacity=0
-      vm.zindexMenu = -1
-    }
-    }
-  },
-  created(){
-    if(this.$route.path != '/'){
-      this.$store.commit('SET_APPINITIATED', true)
+        this.opacity = 1
+        setTimeout(function() {
+          vm.zindexMenu = 100
+        }, 250)
+      } else {
+        this.opacity = 0
+        vm.zindexMenu = -1
+      }
     }
   },
-  mounted(){
+  created() {
+    // if(this.$route.path != '/'){
+    //   this.$store.commit('SET_APPINITIATED', true)
+    // }
+  },
+  mounted() {
     this.mounted = true
   },
-  watch:{
+  watch: {
     selected: function() {
       console.log('giiiiiii')
       var vm = this
-      if(this.selectedLength === this.selected.length){
+      if (this.selectedLength === this.selected.length) {
         this.update = false
 
-      }else{
+      } else {
 
         this.update = true
       }
@@ -113,16 +116,20 @@ export default {
         vm.update = false
       }, 1000)
     },
-    '$route':function(){
-      this.$store.commit('menu/SET_TOGGLE',false);
+    '$route': function() {
+      this.$store.commit('menu/SET_TOGGLE', false);
       // console.log(this.$route.query)
-      if(this.$route.query.library){
-        setTimeout(function(){
-          window.scroll({ top: document.querySelector('#library').offsetTop, left: 0, behavior: 'smooth' });
-        },1500)
+      if (this.$route.query.library) {
+        setTimeout(function() {
+          window.scroll({
+            top: document.querySelector('#library').offsetTop,
+            left: 0,
+            behavior: 'smooth'
+          });
+        }, 1500)
       }
     },
-    menuOpen:function(state){
+    menuOpen: function(state) {
       this.layerMenu(this.$store.state.menu.toggle)
     }
   }
@@ -130,75 +137,77 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
-.menu{
-  width: 800px;
-  // background: $green;
-  float: left;
-  position: fixed;
-  height: 100%;
-  right: 0;
-  top: 0;
-  z-index: -1;
-  &.zindex-reset{
-    // z-index: 100;
-  }
-// box-shadow: inset 10px 0px 20px -10px rgba(0,0,0,1);
+.menu {
+    width: 800px;
+    // background: $green;
+    float: left;
+    position: fixed;
+    height: 100%;
+    right: 0;
+    top: 0;
+    z-index: -1;
+    &.zindex-reset {
+        // z-index: 100;
+    }
+    // box-shadow: inset 10px 0px 20px -10px rgba(0,0,0,1);
 }
 
-.menuMobile{
-  width: 300px;
+.menuMobile {
+    width: 300px;
 }
 
-.menuToggle{
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 101;
-  .fixedMenu{
-    // margin-right: 40px;
-  }
+.menuToggle {
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 101;
+    .fixedMenu {
+        // margin-right: 40px;
+    }
 
 }
 
-.main{
-  // box-shadow: 10px 0px 20px -10px rgba(0,0,0,1);
-  z-index: 100;
-  min-height: 100vh;
-  // background: white;
-  transition: transform 0.25s;
-  overflow-x: hidden;
-  overflow-y: hidden;
+.main {
+    // box-shadow: 10px 0px 20px -10px rgba(0,0,0,1);
+    z-index: 100;
+    min-height: 100vh;
+    // background: white;
+    transition: transform 0.25s;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
-.slideLeft{
-  transform: translateX(-800px);
-  // user-select: none;
-  // pointer-events: none;
-  // margin-right: 50%;
+.slideLeft {
+    transform: translateX(-800px);
+    // user-select: none;
+    // pointer-events: none;
+    // margin-right: 50%;
 }
 
-
-.slideLeftMobile{
-  transform: translateX(-300px);
+.slideLeftMobile {
+    transform: translateX(-300px);
 
 }
 /* Enter and leave animations can use different */
 /* durations and timing functions.              */
 .slide-fade-enter-active {
-  transition: all .25s ease;
+    transition: all 0.25s ease;
 }
 .slide-fade-leave-active {
-  transition: all .25s ease;
+    transition: all 0.25s ease;
 }
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active below version 2.1.8 */ {
-  transform: translateY(-100px);
-  opacity: 0;
+/* .slide-fade-leave-active below version 2.1.8 */
+.slide-fade-enter,
+.slide-fade-leave-to {
+    transform: translateY(-100px);
+    opacity: 0;
 }
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
+/* .fade-leave-active below version 2.1.8 */
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
 <div class="">
   <template v-if="myArray.length===0">
-    <div class=" columns is-marginless is-size-4-desktop is-size-5-touch   ">
+    <div class=" columns is-mobile is-marginless is-size-4-desktop is-size-6-touch   ">
       <div class="column ">
         <p  class="has-text-centered">
           No articles collected.
@@ -11,14 +11,14 @@
 
   </template>
   <template v-else>
-    <div class=" columns is-marginless is-size-5 pb-10  ">
-      <div class="column is-2 ">
+    <div class=" columns is-mobile is-marginless is-size-5-desktop is-size-6-touch pb-10  ">
+      <div class="column " :class="$mq != 'lg' ? 'is-3':'is-2'">
         ORDER
       </div>
-      <div class="column is-8 Aligner Aligner-left">
+      <div class="column Aligner Aligner-left" :class="$mq != 'lg' ? 'is-5':'is-2'">
         TITLE
       </div>
-      <div class="column is-2 has-text-right">
+      <div class="column is-2 has-text-right" :class="$mq != 'lg' ? 'is-4':'is-2'">
         REMOVE
       </div>
 
@@ -29,17 +29,17 @@
 
       <div class="sort singleitem list-complete-item" :key="postdata.id" v-for="(postdata, index) in myArray">
         <!-- <hr v-if="index === 0"/> -->
-        <div class="singleitemInner columns is-marginless is-size-5   ">
-          <div class="column is-2 ">
+        <div class="singleitemInner columns is-mobile is-marginless is-size-5-desktop is-size-6-touch  ">
+          <div class="column " :class="$mq != 'lg' ? 'is-3':'is-2'">
             <img class="rasl-icon" :src="'/icons/rasl_drag.svg'" />
           </div>
-          <div class="column is-8 Aligner Aligner-left">
-            <p class="is-size-4-desktop is-size-5-touch uppercase">
+          <div class="column Aligner Aligner-left" :class="$mq != 'lg' ? 'is-7':'is-2'">
+            <p class="is-size-4-desktop is-size-6-touch uppercase">
               <nuxt-link :to="'/read/'+postdata.type+'/'+postdata.slug">{{postdata.title.rendered}}</nuxt-link>
 
             </p>
           </div>
-          <div class="column is-2">
+          <div class="column " :class="$mq != 'lg' ? 'is-2':'is-2'">
             <selectpost class="is-pulled-right" :hidehelpers="true" v-on:removeprintitem="removethis(index)" :posttype="postdata.type" :postid="postdata.id"></selectpost>
           </div>
         </div>

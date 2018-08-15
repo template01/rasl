@@ -110,6 +110,10 @@ html {
 .disable {
   pointer-events: none;
 }
+.user-select-none {
+ user-select: none;
+}
+
 
 .opacity0 {
   opacity: 0;

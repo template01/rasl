@@ -1,13 +1,13 @@
 <template>
 <div class="pt-60">
   <!-- <div class="container"> -->
-  <div class=" columns is-marginless is-size-5 pb-10  ">
+  <div class=" columns is-marginless  pb-10  " :class="$mq != 'lg' ? 'is-size-6 pt-40':'is-size-5'">
     <div class="column">
       DOWNLOAD:
     </div>
   </div>
   <div class=" columns is-marginless is-size-4-desktop is-size-5-touch pb-10  ">
-    <div class="column">
+    <div class="column" style="padding-bottom:0px;">
       <div>
         <span class="uppercase underline pointer" @click="getPdf()">Collection (.pdf)</span>
       </div>
@@ -17,7 +17,7 @@
       </div>
 
     </div>
-    <div class="column">
+    <div class="column" style="padding-bottom:0px;">
       <div>
         <span class="uppercase underline pointer" @click="getPdf()">Cover (.pdf)</span>
       </div>

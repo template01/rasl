@@ -5,12 +5,15 @@
   <div>
     <!-- <div sticky-container> -->
     <pageheader></pageheader>
-        <indexintro v-once></indexintro>
-      <div class="" style="display:flex; margin-bottom:0;margin-top:0;">
+    <indexintro v-once></indexintro>
+    <div class="" v-if="$mq === 'lg'" style="display:flex; margin-bottom:0;margin-top:0;">
 
-        <postlistfeatured :displaydata="featuredPosts"></postlistfeatured>
+      <postlistfeatured :displaydata="featuredPosts"></postlistfeatured>
+    </div>
 
-        <!-- <div class="pl-40 pr-40">
+    <postlistfeaturedmobile class="white-background" v-else :displaydata="featuredPosts"></postlistfeaturedmobile>
+
+    <!-- <div class="pl-40 pr-40">
         <div class="columns ">
           <div class="column">
             <postlist :featured="true" :display="featuredPostsUneven"></postlist>
@@ -22,23 +25,22 @@
           </div>
         </div>
       </div> -->
-      </div>
 
   </div>
   <div>
-    <div sticky-container class="pt-40" :class="$mq != 'lg' ? 'white-background':''" id="library">
+    <div sticky-container class="pt-40 " :class="$mq != 'lg' ? 'white-background':''" id="library">
       <div class="backgroundBlockI is-hidden-touch" :style="getBackgroundStyleI">
       </div>
       <div class="backgroundBlockII is-hidden-touch" :style="getBackgroundStyleII">
       </div>
 
-      <div class=" pl-40 pr-40 ">
+      <div class="user-select-none  pl-40 pr-40 ">
         <h1 class="huge-letters uppercase ">Library</h1>
       </div>
       <!-- <div class=" pl-40 pr-40 ">
         <hr class="m-0" />
       </div> -->
-      <div v-sticky sticky-offset="0" sticky-side="top" class="librarynavwrapper pl-40 pr-40 "  :class="$mq != 'lg' ? 'white-background':''">
+      <div v-sticky sticky-offset="0" sticky-side="top" class="user-select-none librarynavwrapper pl-40 pr-40 " :class="$mq != 'lg' ? 'white-background':''">
         <librarynav class="pt-20"></librarynav>
         <hr class="m-0" />
         <div class="backgroundBlockI is-hidden-touch" :style="getBackgroundStyleI">
@@ -125,16 +127,16 @@
           </div>
         </div>
         <div class="columns is-marginless" v-else>
-            <div class="column is-marginless is-paddingless ">
-                <ul>
-                  <transition-group name="list-complete">
-                    <li class="is-size-4-desktop is-size-5-touch list-complete-item" :key="postdata.id" v-for="postdata in mergedOrderedPosts">
-                      <postindex :ignorepadding="ignorepadding" :left="true" :postdata="postdata"></postindex>
-                    </li>
-                  </transition-group>
-                </ul>
+          <div class="column is-marginless is-paddingless ">
+            <ul>
+              <transition-group name="list-complete">
+                <li class="is-size-4-desktop is-size-5-touch list-complete-item" :key="postdata.id" v-for="postdata in mergedOrderedPosts">
+                  <postindex :ignorepadding="ignorepadding" :left="true" :postdata="postdata"></postindex>
+                </li>
+              </transition-group>
+            </ul>
 
-            </div>
+          </div>
 
         </div>
 
@@ -169,6 +171,7 @@ import indexintro from '~/components/indexintro.vue'
 import filters from '~/components/filters.vue'
 import postlist from '~/components/postlist.vue'
 import postlistfeatured from '~/components/postlistfeatured.vue'
+import postlistfeaturedmobile from '~/components/postlistfeaturedmobile.vue'
 import postindex from '~/components/postIndex'
 import getmore from '~/components/getmore.vue'
 import getmoreall from '~/components/getmoreall.vue'
@@ -190,14 +193,15 @@ export default {
     getmoreall,
     postlist,
     postlistfeatured,
+    postlistfeaturedmobile,
     postindex,
     librarynav,
     pageheader
   },
   computed: {
-    mergedOrderedPosts: function(){
-        const concatinated = _.concat(this.reflectivePosts, this.practicePosts);
-        return _.orderBy(concatinated, ['date'], ['desc']);
+    mergedOrderedPosts: function() {
+      const concatinated = _.concat(this.reflectivePosts, this.practicePosts);
+      return _.orderBy(concatinated, ['date'], ['desc']);
 
     },
     featuredPostsEven: function() {

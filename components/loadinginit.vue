@@ -1,30 +1,30 @@
 <template>
 <transition name="fade">
-  <div v-if="!appinitated" class="loadinginit">
-    <div class="indexheader p-40">
-      <div class="indexheaderInner">
-
-
-        <div class="hr-header">
-          <!-- <hr :style="{'width':widthHr+'px'}" class="m-0" /> -->
-        </div>
-        <div class="indexheaderSticky">
-          <div class="columns is-marginless">
-            <div class="column is-2  logoWrapper">
-              <!-- <nuxt-link :to="'/'+windowsearch"> -->
-              <img class="logoHeader" :class="" :src="'/rasllogow.svg'" />
-              <!-- <p :class="hideLogo ? 'noDelay':'fadeDelay'" class="is-size-4-desktop is-size-5-touch logoText">
-                <span class="valign-middle">
-                RASL
-              </span>
-              </p>
-            </nuxt-link> -->
-            </div>
+  <div v-if="!appinitated" class="loadinginit huge-letters">
+    <div class="columns is-mobile halfHeight is-marginless">
+      <transition name="slide-fade-vertical">
+        <div v-if="top" class="column  pink-background">
+          <div>
+            PUBLICATIONS
           </div>
-
         </div>
-
-      </div>
+      </transition>
+    </div>
+    <div class="columns is-mobile halfHeight is-marginless">
+      <transition name="slide-fade-horizontal-left">
+        <div v-if="bottomLeft" class="column is-8 lightblue-background">
+          <div>
+            RASL
+          </div>
+        </div>
+      </transition>
+      <transition name="slide-fade-horizontal-right">
+        <div v-if="bottomRight" class="column is-4 green-background">
+          <div>
+            .NU
+          </div>
+        </div>
+      </transition>
     </div>
   </div>
 </transition>
@@ -43,7 +43,10 @@ export default {
   },
   data: function() {
     return {
-      genericData: 'generic component text'
+      genericData: 'generic component text',
+      top: true,
+      bottomLeft: true,
+      bottomRight: true,
     }
   },
   methods: {},
@@ -55,8 +58,17 @@ export default {
   mounted() {
     var vm = this
     setTimeout(function() {
+      vm.bottomRight = false
+    }, 2400)
+    setTimeout(function() {
+      vm.top = false
+    }, 2500)
+    setTimeout(function() {
+      vm.bottomLeft = false
+    }, 2700)
+    setTimeout(function() {
       vm.$store.commit('SET_APPINITIATED', true)
-    }, 500)
+    }, 3000)
   }
 
 }
@@ -73,7 +85,7 @@ export default {
 }
 
 .loadinginit {
-    background: $white;
+    background: transparent;
     z-index: 99999;
     position: fixed;
     top: 0;
@@ -82,43 +94,52 @@ export default {
     width: 100%;
 }
 
-.logoWrapper {
-    position: relative;
+.halfHeight {
+    height: 50%;
 }
 
-.logoHeader {
-    // background: $white;
-    padding: 20px 30px 20px 0;
-    // padding-left: 10px;
-    // padding-right: 15px;
-    position: absolute;
-    z-index: 9999;
-    // left: 0px;
-    // top:0px;
-    // height: 60px;
-    left: 0;
-    top: -2px;
-    height: 124px;
-    opacity: 1;
-    max-height: 124px;
-    overflow: hidden;
+/* Enter and leave animations can use different */
+/* durations and timing functions.              */
+.slide-fade-horizontal-right-enter-active {
+    transition: all 0.3s ease;
+}
+.slide-fade-horizontal-right-leave-active {
+    transition: all 0.3s ease-in-out;
+}
+/* .slide-fade-horizontal-right-leave-active below version 2.1.8 */
+.slide-fade-horizontal-right-enter,
+.slide-fade-horizontal-right-leave-to {
+    transform: translateX(20px);
+    opacity: 0;
 }
 
-.logoHeader {
-    animation-name: example;
-    animation-duration: 0.5s;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+.slide-fade-horizontal-left-enter-active {
+    transition: all 0.3s ease;
 }
-@keyframes example {
-    from {
-      // transform: translate3d(0px,0,0);
-      opacity: 0
-    }
+.slide-fade-horizontal-left-leave-active {
+    transition: all 0.3s ease-in-out;
+}
+/* .slide-fade-horizontal-right-leave-active below version 2.1.8 */
+.slide-fade-horizontal-left-enter,
+.slide-fade-horizontal-left-leave-to {
+    transform: translateX(-20px);
+    opacity: 0;
+}
 
-    to {
-      // transform: translate3d(0,-5px,0);
-      opacity: 1
-    }
+
+/* Enter and leave animations can use different */
+/* durations and timing functions.              */
+.slide-fade-vertical-enter-active {
+    transition: all 0.3s ease;
 }
+.slide-fade-vertical-leave-active {
+    transition: all 0.3s ease-in-out;
+}
+/* .slide-fade-horizontal-right-leave-active below version 2.1.8 */
+.slide-fade-vertical-enter,
+.slide-fade-vertical-leave-to {
+    transform: translateY(-20px);
+    opacity: 0;
+}
+
 </style>

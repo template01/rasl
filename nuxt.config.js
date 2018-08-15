@@ -29,13 +29,13 @@ module.exports = {
   // mode: 'spa',
 
 
-      //
-      // styleResources: {
-      //   scss: './assets/scss/variables.scss',
-      //   // scss: './assets/scss/colors.scss',
-      //   scss: './assets/scss/main.scss',
-      //   // scss: './assets/scss/underlines.scss'
-      // },
+  //
+  // styleResources: {
+  //   scss: './assets/scss/variables.scss',
+  //   // scss: './assets/scss/colors.scss',
+  //   scss: './assets/scss/main.scss',
+  //   // scss: './assets/scss/underlines.scss'
+  // },
 
 
   css: [{
@@ -73,6 +73,10 @@ module.exports = {
     '~/plugins/lodash-plugin.js',
     {
       src: '~/plugins/dragorderlist.js',
+    },
+    {
+      src: '~/plugins/vueswipe.js',
+      ssr: false
     },
     {
       src: '~/plugins/sticky.js',

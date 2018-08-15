@@ -30,7 +30,7 @@
     </li>
   </ul> -->
 </div>
-<div  @click="slideTo('next')" class="nav pointer Aligner Aligner-right"  :class="$mq != 'lg' ? 'navMobile':''">
+<div  @click="slideTo('next')" class="is-hidden-touch nav pointer Aligner Aligner-right"  :class="$mq != 'lg' ? 'navMobile':''">
   <p class="is-size-4-desktop is-size-5-touch">
     NEXT
   </p>
@@ -57,7 +57,7 @@ export default {
       slidepos: '0px',
       slidelocked: false,
       slidewidthDesktop: '80vw',
-      slidewidthMobile: '82vw',
+      slidewidthMobile: '100vw',
       slideindex: 0,
       mounted: false,
     }
