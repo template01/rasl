@@ -1,9 +1,9 @@
 <template>
   <span  class="outer">
     <!-- {{selectedLength}} -->
-      <span class="overlay"  :class="$mq != 'lg' ? 'is-size-6':'is-size-5'" :style="$mq != 'lg' ? {'padding-left': '6px','padding-top':'4px'}:{'padding-left': '7px','padding-top':'6px'}">{{selected.length}}</span>
+      <span class="overlay"  :class="$mq != 'lg' ? 'is-size-6':'is-size-5'" :style="[$mq != 'lg' ? {'padding-left': '6px','padding-top':'4px'}:{'padding-left': '7px','padding-top':'6px'}, isinmenu && $mq === 'lg' ? {'line-height':'48px'}:{}, isinmenu && $mq != 'lg' ? {'line-height':'34px'}:{}]"><span>{{selected.length}}</span></span>
       <transition name="bounce">
-    <img  v-if="!update" class=" rasl-icon" :src="'/icons/rasl_folder.svg'" />
+    <img :style="[isinmenu && $mq === 'lg' ? {'margin-top':'-6px'}:{}, isinmenu && $mq != 'lg' ? {'margin-top':'-4px'}:{}]" v-if="!update" class=" rasl-icon" :src="'/icons/rasl_folder.svg'" />
   </transition>
   </span>
 </template>
@@ -14,7 +14,7 @@ import {
 
 
 export default {
-  props: [],
+  props: ['isinmenu'],
   data: function() {
     return {
       genericData: 'generic component text',
