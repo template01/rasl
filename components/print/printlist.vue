@@ -39,13 +39,15 @@ export default {
 </script>
 <style lang="scss">
 .outerprintpost{
-  display: flow-root;
+  padding-bottom: 5px;
+  padding-top: 5px;
 }
+
 .outerprintpost:not(:last-child) {
     page-break-after: always;
 }
 
 *{
-  font-family: sans-serif !important;
+  font-family: 'TeX Gyre Heros' !important;
 }
 </style>

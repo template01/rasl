@@ -19,10 +19,10 @@
     </div>
     <div class="column" style="padding-bottom:0px;">
       <div>
-        <span class="uppercase underline pointer" @click="getPdf()">Cover (.pdf)</span>
+        <span class="uppercase underline pointer" @click="getCover()">Cover (.pdf)</span>
       </div>
       <div class="mt-10">
-      <div  v-if="progress<100 && progress > 5"  class="bar" :style="{'width':+progress+'%'}">
+      <div  v-if="progressCover<100 && progressCover > 5"  class="bar" :style="{'width':+progressCover+'%'}">
       </div>
       </div>
     </div>
@@ -62,11 +62,15 @@ export default {
   data: function() {
     return {
       sourceUrl: 'http://publications.rasl.nu/collection/print',
+      sourceUrlCover: 'http://publications.rasl.nu/collection/cover',
       pdf: '',
-      erros: [],
+      cover: '',
       error: false,
+      errorPdf: false,
       loadingpdf: false,
-      progress: 0
+      loadingCover: false,
+      progress: 0,
+      progressCover: 0
     }
   },
   computed: {
@@ -76,6 +80,77 @@ export default {
 
   },
   methods: {
+
+    getCover: function() {
+
+      this.loadingCover = true
+      this.progressCover = 0
+      var vm = this
+      var startSlow
+      var startTime = new Date().getTime()
+      var startFast = setInterval(function() {
+        vm.progressCover = vm.progressCover + 1
+        var currentTime = new Date().getTime()
+        console.log(currentTime - startTime)
+        if (currentTime - startTime > 3000) {
+          clearInterval(startFast);
+          var startSlow = setInterval(function() {
+            vm.progressCover = vm.progressCover + 1
+          }, 800);
+        }
+      }, 100);
+
+
+      axios.post(this.$store.state.printServer + '/v1/convert', {
+          headers: {
+            'Accept-Encoding': 'application/gzip',
+            'Cache-Control': 'no-cache',
+            'Content-Type': 'application/pdf'
+          },
+          "to": "pdf",
+          "converter": {
+            "uri": this.sourceUrlCover + this.windowsearch,
+            "extend": {
+              "image-dpi": "300",
+              "grayscale":"",
+              // "disable-smart-shrinking":"",
+              "image-quality": "80",
+              "javascript-delay": "1",
+              "margin-top": "5mm",
+              "margin-bottom": "5mm",
+              "margin-left": "45mm",
+              "margin-right": "10mm"
+            }
+          },
+          "template": "render-data"
+
+        })
+        .then(response => {
+
+          console.log(response.status);
+          console.log(response.statusText);
+          console.log(response.headers);
+          console.log(response.config);
+          this.loadingCover= false
+          this.progressCover = 100
+          clearInterval(startFast);
+          clearInterval(startSlow);
+
+          download('data:application/pdf;base64,' + response.data.result.data, this.sourceUrlCover + '.pdf', 'application/pdf');
+
+        })
+        .catch(e => {
+          // this.errors.push(e)
+          clearInterval(startFast);
+          clearInterval(startSlow);
+          this.loadingCover = false
+          this.errorCover = true
+          this.progressCover = 0
+
+        })
+    },
+
+
     getPdf: function() {
 
       this.loadingpdf = true
@@ -108,11 +183,12 @@ export default {
             "extend": {
               "image-dpi": "300",
               "grayscale":"",
+              // "disable-smart-shrinking":"",
               "image-quality": "80",
               "javascript-delay": "1",
               "margin-top": "5mm",
               "margin-bottom": "5mm",
-              "margin-left": "50mm",
+              "margin-left": "10mm",
               "margin-right": "10mm"
             }
           },
