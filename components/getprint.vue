@@ -12,7 +12,7 @@
         <span class="uppercase underline pointer" @click="getPdf()">Collection (.pdf)</span>
       </div>
       <div class="mt-10">
-      <div  v-if="progress<100 && progress > 5" class="bar" :style="{'width':+progress+'%'}">
+      <div  v-if="progress<100 && progress > 5" class="bar green-background" :style="{'width':+progress+'%'}">
       </div>
       </div>
 
@@ -22,7 +22,7 @@
         <span class="uppercase underline pointer" @click="getCover()">Cover (.pdf)</span>
       </div>
       <div class="mt-10">
-      <div  v-if="progressCover<100 && progressCover > 5"  class="bar" :style="{'width':+progressCover+'%'}">
+      <div  v-if="progressCover<100 && progressCover > 5"  class="bar green-background" :style="{'width':+progressCover+'%'}">
       </div>
       </div>
     </div>
@@ -111,14 +111,11 @@ export default {
           "converter": {
             "uri": this.sourceUrlCover + this.windowsearch,
             "extend": {
-              "image-dpi": "300",
-              "grayscale":"",
-              // "disable-smart-shrinking":"",
-              "image-quality": "80",
+              "orientation":"Landscape",
               "javascript-delay": "1",
-              "margin-top": "5mm",
-              "margin-bottom": "5mm",
-              "margin-left": "45mm",
+              "margin-top": "10mm",
+              "margin-bottom": "10mm",
+              "margin-left": "10mm",
               "margin-right": "10mm"
             }
           },
@@ -237,8 +234,7 @@ export default {
   /* width: 10px; */
   height: 10px;
   /* position: absolute; */
-  border-radius: 10px;
-  background: green;
+  /* border-radius: 10px; */
   transition: width 0.4s;
 }
 </style>
