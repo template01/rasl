@@ -118,6 +118,7 @@ export default {
   word-spacing: 0pt;
   span{
     margin-right: 35pt;
+    float: left;
   }
 }
 </style>
