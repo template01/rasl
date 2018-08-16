@@ -107,7 +107,7 @@ export default {
             "uri": this.sourceUrl + this.windowsearch,
             "extend": {
               "image-dpi": "300",
-              // "grayscale":"",
+              "grayscale":"",
               "image-quality": "80",
               "javascript-delay": "1",
               "margin-top": "5mm",

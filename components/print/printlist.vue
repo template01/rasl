@@ -38,6 +38,9 @@ export default {
 }
 </script>
 <style lang="scss">
+.outerprintpost{
+  display: flow-root;
+}
 .outerprintpost:not(:last-child) {
     page-break-after: always;
 }
