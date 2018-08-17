@@ -21,6 +21,8 @@
         <p class="is-size-3 uppercase">
           publications.rasl.nu
         </p>
+        {{getTitleArray}}
+        {{getRandomTitle}}
         <p class="coverTitle">
           <span v-for="word in getRandomTitle" v-html="word">
         </span>
@@ -42,7 +44,7 @@
         </p>
       </div>
     </div>
-    <div class="columnCustom is-size-4 pl-5mm">
+    <div class="columnCustom is-size-4 pl-15mm">
       <div>
         <p class="uppercase">
           Contents:
@@ -108,22 +110,32 @@ export default {
     },
 
     getRandomTitle: function() {
-      // create a copy of the array
-      var vm = this
+      // // create a copy of the array
+      // var newArray = []
+      // for (var i = 0; i <= vm.getTitleArray.length && i < maxWords; i++) {
+      //   newArray.push([vm.getTitleArray[i],i])
+      // }
+      //
+      //
+      // // then, each time pull from that array and remove the one you use
+      // if (newArray.length > 0) {
+      //   var index = Math.floor(Math.random() * newArray.length)
+      //   var randomImage = newArray[index];
+      //   newArray.splice(index, 1);
+      // }
+      // return newArray
       var maxWords = 7
-      var newArray = []
-      for (var i = 0; i < vm.getTitleArray.length && i < maxWords; i++) {
-        newArray.push(vm.getTitleArray[i])
+      var vm = this
+      var shuffled = _.shuffle(vm.getTitleArray).slice(0, maxWords)
+      // if sentence ends on THE, slice it off
+      if(shuffled[shuffled.length-1].toLowerCase() === 'the'){
+        shuffled = shuffled.slice(0,shuffled.length-1)
       }
 
+      // if shuffled is longer than 30 characters (in total) get rid of excess
+      shuffled = shuffled.join(" ").replace(/^(.{10}[^\s]*).*/, "$1").split(" ");
 
-      // then, each time pull from that array and remove the one you use
-      if (newArray.length > 0) {
-        var index = Math.floor(Math.random() * newArray.length)
-        var randomImage = newArray[index];
-        newArray.splice(index, 1);
-      }
-      return newArray
+      return shuffled;
 
     },
     getTitleArray: function() {
@@ -187,6 +199,12 @@ export default {
 }
 .pl-5mm {
     padding-left: 5mm;
+}
+.pl-10mm {
+    padding-left: 10mm;
+}
+.pl-15mm {
+    padding-left: 15mm;
 }
 .coverPage {
     min-height: 19.95cm;
