@@ -21,8 +21,6 @@
         <p class="is-size-3 uppercase">
           publications.rasl.nu
         </p>
-        {{getTitleArray}}
-        {{getRandomTitle}}
         <p class="coverTitle">
           <span v-for="word in getRandomTitle" v-html="word">
         </span>
