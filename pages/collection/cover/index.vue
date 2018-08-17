@@ -178,6 +178,9 @@ export default {
 * {
     font-family: 'Tex Gyre Heros';
 }
+.is-size-6{
+    font-size: 10pt !important;
+}
 .columnCustom {
     width: 50%;
     float: left;

@@ -115,10 +115,10 @@ export default {
               "disable-smart-shrinking":"",
               "run-script":"document.documentElement.style.backgroundColor = 'white';",
               "javascript-delay": "1",
-              "margin-top": "10mm",
-              "margin-bottom": "10mm",
-              "margin-left": "10mm",
-              "margin-right": "10mm"
+              "margin-top": "5mm",
+              "margin-bottom": "5mm",
+              "margin-left": "5mm",
+              "margin-right": "5mm"
             }
           },
           "template": "render-data"
