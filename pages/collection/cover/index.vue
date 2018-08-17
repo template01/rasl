@@ -126,12 +126,21 @@ export default {
       var vm = this
       var shuffled = _.shuffle(vm.getTitleArray).slice(0, maxWords)
       // if sentence ends on THE, slice it off
-      if(shuffled[shuffled.length-1].toLowerCase() === 'the'){
-        shuffled = shuffled.slice(0,shuffled.length-1)
+      var stripLastThe = function(input){
+        if(input[input.length-1].toLowerCase() === 'the'){
+          input = input.slice(0,input.length-1)
+        }
+        return input
       }
-
+      // if sentence ends on THE, slice it off
+      shuffled = stripLastThe(shuffled)
       // if shuffled is longer than 30 characters (in total) get rid of excess
-      shuffled = shuffled.join(" ").replace(/^(.{10}[^\s]*).*/, "$1").split(" ");
+      shuffled = shuffled.join(" ").replace(/^(.{30}[^\s]*).*/, "$1").split(" ");
+
+      // if sentence ends on THE, slice it off
+      shuffled = stripLastThe(shuffled)
+
+
 
       return shuffled;
 
