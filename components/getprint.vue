@@ -112,6 +112,8 @@ export default {
             "uri": this.sourceUrlCover + this.windowsearch,
             "extend": {
               "orientation":"Landscape",
+              "disable-smart-shrinking":"",
+              "run-script":"document.documentElement.style.backgroundColor = 'white';",
               "javascript-delay": "1",
               "margin-top": "10mm",
               "margin-bottom": "10mm",
@@ -181,6 +183,7 @@ export default {
               "image-dpi": "300",
               "grayscale":"",
               // "disable-smart-shrinking":"",
+              "run-script":"document.documentElement.style.backgroundColor = 'white';",
               "image-quality": "80",
               "javascript-delay": "1",
               "margin-top": "5mm",

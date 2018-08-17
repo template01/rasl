@@ -1,14 +1,7 @@
 <template>
-<div>
+<div class="">
       <nuxt/>
-      <script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-  <script>
-  // console.log($('p'))
-  // $('p').remove()
-  </script>
+
 </div>
 </template>
 
@@ -22,16 +15,27 @@ import {
 
 export default {
   // mounted(){
-  //   $(document).ready(function() {
-  //   $("*").hide()
-  //   })
+  //   var css = 'html { display: none; }',
+  //       head = document.head || document.getElementsByTagName('head')[0],
+  //       style = document.createElement('style');
+  //
+  //   style.type = 'text/css';
+  //   if (style.styleSheet){
+  //     // This is required for IE8 and below.
+  //     style.styleSheet.cssText = css;
+  //   } else {
+  //     style.appendChild(document.createTextNode(css));
+  //   }
+  //
+  //   head.appendChild(style);
   // }
 }
 </script>
 
 <style scoped lang="scss">
 *{
-   background: white;
+   background-color: white;
    overflow: hidden;
 }
+
 </style>
