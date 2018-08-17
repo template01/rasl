@@ -11,8 +11,11 @@
     <div class="columns is-mobile">
       <div class="column is-8">
 
-          <nuxt-link class="" :to="'/read/'+itemcontent.type+'/'+itemcontent.slug+windowsearch"><p :class="[itemcontent.type === 'practice' ? 'has-text-danger':'has-text-success']" class="is-size-3-desktop is-size-4-touch  uppercase mr-10" v-html="itemcontent.title.rendered"></p></nuxt-link>
-
+          <nuxt-link class="" :to="'/read/'+itemcontent.type+'/'+itemcontent.slug+windowsearch"><p :class="[itemcontent.type === 'practice' ? 'has-text-danger':'has-text-success']" class="is-size-1-desktop is-size-3-touch  uppercase mr-10" v-html="itemcontent.title.rendered"></p></nuxt-link>
+          <p v-show="itemcontent.acf.author" class="mt-10 is-size-3-desktop is-size-4-touch ">
+            <span>By </span>
+             <authorlinks :authors="itemcontent.acf.author"></authorlinks>
+          </p>
       </div>
       <div class="column is-hidden-desktop">
         <nuxt-link class=" is-pulled-right hover-animate-chilren-right" :to="'/read/'+itemcontent.type+'/'+itemcontent.slug+windowsearch"><img class="rasl-icon" :src="'/icons/rasl_arrow_right.svg'" /></nuxt-link>
@@ -30,10 +33,13 @@ import {
 } from 'vuex'
 
 import selectpost from '~/components/selectpost'
+import authorlinks from '~/components/authorLinks'
+
 
 export default {
   components: {
     selectpost,
+    authorlinks
   },
 
   props:['itemcontent'],

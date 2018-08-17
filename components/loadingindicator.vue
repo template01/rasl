@@ -32,7 +32,7 @@ export default {
     vertical-align: middle;
     border-radius: 100%;
     background: $black;
-    width: 33px;
+    width: 28px;
     color: $white;
     text-align: center;
     display: inline-block;

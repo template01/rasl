@@ -135,7 +135,7 @@ export default {
           clearInterval(startFast);
           clearInterval(startSlow);
 
-          download('data:application/pdf;base64,' + response.data.result.data, this.sourceUrlCover + '.pdf', 'application/pdf');
+          download('data:application/pdf;base64,' + response.data.result.data, 'RASL_COVER' + '.pdf', 'application/pdf');
 
         })
         .catch(e => {
@@ -206,7 +206,7 @@ export default {
           clearInterval(startFast);
           clearInterval(startSlow);
 
-          download('data:application/pdf;base64,' + response.data.result.data, this.sourceUrl + '.pdf', 'application/pdf');
+          download('data:application/pdf;base64,' + response.data.result.data, 'RASL_COLLECTION' + '.pdf', 'application/pdf');
 
         })
         .catch(e => {

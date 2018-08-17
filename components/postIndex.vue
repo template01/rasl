@@ -11,7 +11,7 @@
     <div :class="$mq != 'lg' ? 'pt-10':''" class="columns is-marginless is-mobile">
       <div class="column is-8 is-paddingless">
 
-        <h1 class="is-size-2-desktop is-size-3-touch uppercase" ><nuxt-link v-html="postdata.title.rendered" class="" :to="'read/'+postdata.type+'/'+postdata.slug+windowsearch">  </nuxt-link>
+        <h1 class="is-size-1-desktop is-size-3-touch uppercase" ><nuxt-link v-html="postdata.title.rendered" class="" :to="'read/'+postdata.type+'/'+postdata.slug+windowsearch">  </nuxt-link>
         </h1>
       </div>
       <div class="column mt-5 is-4 is-paddingless is-hidden-desktop">
@@ -19,9 +19,12 @@
         <selectpost class="pointer  is-pulled-right mr-5" :posttype="postdata.type" :postid="postdata.id"></selectpost>
       </div>
     </div>
-    <p class="ml-30 is-size-4-desktop is-size-5-touch mt-20" v-html="postdata.title.rendered">
+    <p class="ml-30 mr-30 is-size-3-desktop is-size-4-touch mt-20 mb-20" v-if="postdata.acf.abstract">
+      <span v-if="postdata.acf.abstract"  v-html="postdata.acf.abstract"></span>
+      <!-- <span v-else  v-html="'test'"></span> -->
     </p>
-    <p v-show="postdata.acf.author" class="mt-10 is-size-4-desktop is-size-5-touch ">
+    <p v-show="postdata.acf.author" class="mt-10 is-size-3-desktop is-size-4-touch ">
+      <span>By </span>
        <authorlinks :authors="postdata.acf.author"></authorlinks>
     </p>
 

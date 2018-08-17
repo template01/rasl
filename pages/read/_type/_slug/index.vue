@@ -9,7 +9,11 @@
           <div class="columns pb-40 is-marginless">
             <div :class="postdata.type === 'practice' ? 'has-text-danger':'has-text-info'">
               <div class="mt-40">
-                <h1 class="huge-letters pb-80" v-html="postdata.title.rendered"></h1>
+                <h1 class="huge-letters pb-40" v-html="postdata.title.rendered"></h1>
+                <div v-if="postdata.acf.subtitle" class=" is-size-1-desktop is-size-3-touch pb-80">
+                  <p v-html="postdata.acf.subtitle">
+                  </p>
+                </div>
                 <div class="pt-80 is-size-2-desktop is-size-3-touch">
                   <span>By</span>
                   <authorlinks :authors="postdata.acf.author"></authorlinks>

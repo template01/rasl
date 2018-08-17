@@ -9,7 +9,8 @@
             <div class="pt-20 pb-20">
               <postsingleindexfeatured :postdata="postdata"></postsingleindexfeatured>
             </div>
-            <p v-show="postdata.acf.author"  :class="$mq != 'lg' ? 'contentColumnAuthorclass':'contentColumnAuthorclass'" class="is-size-2-desktop is-size-3-touch pb-30">
+            <p v-show="postdata.acf.author"  :class="$mq != 'lg' ? 'contentColumnAuthorclass':'contentColumnAuthorclass'" class="is-size-3-desktop is-size-4-touch pb-30">
+              <span>By </span>
               <authorlinks :authors="postdata.acf.author"></authorlinks>
             </p>
         </div>
