@@ -201,6 +201,9 @@ export default {
     width: 100% !important;
     display: inline-block;
 }
+.topTitle{
+  min-height: 6cm
+}
 .belowTitle {
     padding-top: 5mm;
 }
@@ -278,7 +281,7 @@ export default {
             transform-origin: top left;
         }
         .stapleB {
-            top: 18.3cm;
+            top: 18.6cm;
         }
     }
     // }
