@@ -28,6 +28,7 @@
 		"smoothscroll-polyfill": "^0.4.0",
 		"urijs": "^1.19.1",
 		"v-debounce": "^0.1.2",
+		"vue-audio-visual": "^1.2.0",
 		"vue-awesome-swiper": "^3.1.0",
 		"vue-fixed-header": "^1.0.1",
 		"vue-lazyload": "^1.1.4",

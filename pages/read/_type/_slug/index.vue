@@ -30,16 +30,15 @@
   </div>
   <div class="pb-40 pt-40 white-background">
 
-    <div class="columns is-marginless ">
-      <div class="column is-marginless">
-        <div class=" pr-40 pl-40">
+    <div class=" is-marginless ">
+      <!-- <div class="column is-marginless"> -->
           <!-- <div class="columns is-marginless"> -->
-            <readcontent :contentlayout="postdata.acf.layout_picker" :content="postdata.acf.content"></readcontent>
+          <!-- {{postdata.acf.layout[0].contentpicker}} -->
+          <readcontent :content="postdata.acf.contentbuilder"></readcontent>
+            <!-- <readcontent :contentlayout="postdata.acf.layout_picker" :content="postdata.acf.content"></readcontent> -->
           <!-- </div> -->
 
-        </div>
-
-      </div>
+      <!-- </div> -->
 
     </div>
 
