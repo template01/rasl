@@ -17,7 +17,9 @@
       <authorlinks :authors="postdata.acf.author"></authorlinks>
     </p>
     <div class="inner-content">
-      <readcontent :printversion="true" :contentlayout="postdata.acf.layout_picker" :content="postdata.acf.content"></readcontent>
+      <readcontent :content="postdata.acf.contentbuilder"></readcontent>
+
+      <!-- <readcontent :printversion="true" :contentlayout="postdata.acf.layout_picker" :content="postdata.acf.content"></readcontent> -->
     </div>
 
   </div>
