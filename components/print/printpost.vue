@@ -17,7 +17,7 @@
       <authorlinks :authors="postdata.acf.author"></authorlinks>
     </p>
     <div class="inner-content">
-      <readcontent :content="postdata.acf.contentbuilder"></readcontent>
+      <readcontent :printversion="true" :content="postdata.acf.contentbuilder"></readcontent>
 
       <!-- <readcontent :printversion="true" :contentlayout="postdata.acf.layout_picker" :content="postdata.acf.content"></readcontent> -->
     </div>
@@ -120,6 +120,7 @@ export default {
             font-size: 14pt !important;
         }
         .inner-content {
+
             .is-size-6-touch {
                 line-height: 1.4;
             }

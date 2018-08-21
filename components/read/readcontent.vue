@@ -2,8 +2,8 @@
 <div class="contentwrapper">
   <div v-for="item in content">
     <contenttextphoto v-if="item.acf_fc_layout === 'textphoto'" :printversion="printversion" :content="item.content"></contenttextphoto>
-    <contentvideo :coverimage="item.coverimage" v-if="item.acf_fc_layout === 'video'" :printversion="printversion" :content="item.content"></contentvideo>
-    <contentaudio v-if="item.acf_fc_layout === 'audiopodcast'" :printversion="printversion" :content="item.content"></contentaudio>
+    <contentvideo :coverimage="item.coverimage" v-if="item.acf_fc_layout === 'video' && !printversion" :printversion="printversion" :content="item.content"></contentvideo>
+    <contentaudio v-if="item.acf_fc_layout === 'audiopodcast' && !printversion" :printversion="printversion" :content="item.content"></contentaudio>
     <contentsmalltextcolumn v-if="item.acf_fc_layout === 'smalltextcolumns'" :printversion="printversion" :content="item.content"></contentsmalltextcolumn>
   </div>
   <!-- <div :class="printversion ? 'is-12':'is-6 is-offset-3'">
