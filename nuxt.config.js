@@ -75,6 +75,10 @@ module.exports = {
       src: '~/plugins/dragorderlist.js',
     },
     {
+      src: '~plugins/vue-slider.js',
+      ssr: false
+    },
+    {
       src: '~/plugins/vueswipe.js',
       ssr: false
     },

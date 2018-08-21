@@ -6,7 +6,7 @@
         <iframe :src="videoUrl" frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
         <transition name="fade">
           <div v-if="!playTriggerHide" @click="playVimeo()" class="playTrigger duotone Aligner pointer" :style="coverimage ? { 'background-image': 'url(' + coverimage.sizes.large + ')' }:{}" :class="$route.params.type === 'practice' ? 'red-background-before':'green-background-before'">
-            <span class="playButton Aligner"><div class="arrow-right"></div></span>
+            <span class="playButton Aligner"><span class="is-size-2">PLAY</span></span>
           </div>
         </transition>
 
