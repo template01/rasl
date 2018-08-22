@@ -1,5 +1,6 @@
 <template>
 <div class="contentwrapper">
+  {{footnotes}}
   <div v-for="item in content">
     <contenttextphoto v-if="item.acf_fc_layout === 'textphoto'" :printversion="printversion" :content="item.content"></contenttextphoto>
     <contentvideo :coverimage="item.coverimage" v-if="item.acf_fc_layout === 'video' && !printversion" :printversion="printversion" :content="item.content"></contentvideo>
@@ -33,8 +34,13 @@ export default {
   props: ['content','printversion'],
   data: function() {
     return {
-      genericData: 'generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text generic component text '
+      footnotes:'no foot notes'
     }
+  },
+  mounted(){
+    // this.footnotes = 'test'
+    // alert()
+    // window.status='done'
   },
   methods: {},
   computed: {
