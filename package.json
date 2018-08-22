@@ -39,7 +39,8 @@
 		"vue-sticky-directive": "0.0.3",
 		"vue2-scrollspy": "^2.2.2",
 		"vue2-touch-events": "^1.0.0",
-		"vuedraggable": "^2.16.0"
+		"vuedraggable": "^2.16.0",
+		"xmldom": "^0.1.27"
 	},
 	"devDependencies": {
 		"node-sass": "^4.7.2",

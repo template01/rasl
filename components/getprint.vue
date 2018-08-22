@@ -98,7 +98,7 @@ export default {
             vm.progressCover = vm.progressCover + 1
           }, 800);
         }
-      }, 100);
+      }, 300);
 
 
       axios.post(this.$store.state.printServer + '/v1/convert', {
@@ -167,7 +167,7 @@ export default {
             vm.progress = vm.progress + 1
           }, 800);
         }
-      }, 100);
+      }, 300);
 
 
       axios.post(this.$store.state.printServer + '/v1/convert', {
