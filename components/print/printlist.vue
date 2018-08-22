@@ -2,9 +2,8 @@
 <div class="">
 
   <div>
-    <!-- {{display}} -->
-    <div class="outerprintpost is-size-5" :key="postdata.id" v-for="postdata in display">
-      <printpost :postdata="postdata"></printpost>
+    <div class="outerprintpost is-size-5" :key="postdata.id" v-for="(postdata,index) in display">
+      <printpost :footnoteSingle="footnotes[index]" :postdata="postdata"></printpost>
     </div>
   </div>
 </div>
@@ -17,7 +16,7 @@ import {
 
 
 export default {
-  props: ['display'],
+  props: ['display','footnotes'],
   data: function() {
     return {
       genericData: 'generic component text'

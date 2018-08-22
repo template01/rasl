@@ -31,17 +31,7 @@
   <div class="pb-40 pt-40 white-background">
 
     <div class=" is-marginless ">
-      <!-- <div class="column is-marginless"> -->
-      <!-- <div class="columns is-marginless"> -->
-      <!-- {{postdata.acf.layout[0].contentpicker}} -->
-
-      <readcontent :content="postdata.acf.contentbuilder"></readcontent>
-      {{footnotes}}
-      <!-- <readcontent :contentlayout="postdata.acf.layout_picker" :content="postdata.acf.content"></readcontent> -->
-      <!-- </div> -->
-
-      <!-- </div> -->
-
+      <readcontent :footnotes="footnotes" :content="postdata.acf.contentbuilder"></readcontent>
     </div>
 
   </div>
@@ -65,8 +55,7 @@ import axios from 'axios'
 import {
   mapGetters
 } from 'vuex'
-var cheerio = require('cheerio')
-
+import footnoteParser from '~/assets/js/footnoteParser.js';
 
 export default {
   components: {
@@ -128,43 +117,12 @@ export default {
       return axios.get(state.apiRoot + '/wp/v2/practice' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page=1');
     }
 
-    function footnotesSingleBlock(input) {
-      const $ = cheerio.load(input)
-      // var footnoteSelectors = $('.simple-footnote').attr('title')
-      var footnotesInBlock = []
-      $('.simple-footnote').each(function(){
-        const number = $(this).text()
-        const content = $(this).attr('title')
-        const returnNote = $(this).attr('id')
-        footnotesInBlock.push({'number':number,'content':content,'returnnote':returnNote})
-      })
-        return footnotesInBlock
-    }
-
-    function footnotesAll(input) {
-      var footnotesAll = []
-      for (var i = 0, len = input.length; i < len; i++) {
-        footnotesAll.push(footnotesSingleBlock(input[i].content))
-      }
-      return footnotesAll
-    }
-
 
     return axios.all([getPost(), getGeneric()])
       .then(axios.spread(function(post, generic) {
-        // commit('SET_FILTERREFLECTIVEBY', reflective.data)
-        // commit('SET_FILTERPRATICEBY', practice.data)
-        // commit('SET_REFLECTIVETOTALPAGINA',reflective.headers['x-wp-totalpages'])
-        // commit('SET_PRATICETOTALPAGINA', practice.headers['x-wp-totalpages'])
-        // var url = new URI(window.location.search).removeSearch("filter").removeSearch("filters").removeSearch("search").addSearch({
-        //   search: query.searchquery,
-        // });
-        // window.history.replaceState({}, '', '?' + url._parts.query);
-        // commit('SET_WINDOWSEARCH', location.search)
-
         return {
           postdata: post.data[0],
-          footnotes: footnotesAll(post.data[0].acf.contentbuilder)
+          footnotes: footnoteParser.footnotesAll(post.data[0].acf.contentbuilder)
         }
 
       }));

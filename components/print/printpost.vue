@@ -17,11 +17,8 @@
       <authorlinks :authors="postdata.acf.author"></authorlinks>
     </p>
     <div class="inner-content">
-      <readcontent :printversion="true" :content="postdata.acf.contentbuilder"></readcontent>
-
-      <!-- <readcontent :printversion="true" :contentlayout="postdata.acf.layout_picker" :content="postdata.acf.content"></readcontent> -->
+      <readcontent :footnotes="footnoteSingle" :printversion="true" :content="postdata.acf.contentbuilder"></readcontent>
     </div>
-
   </div>
 </div>
 </template>
@@ -35,7 +32,7 @@ import authorlinks from '~/components/authorLinks'
 
 
 export default {
-  props: ['postdata'],
+  props: ['postdata','footnoteSingle'],
   data: function() {
     return {
       genericData: 'generic component text'
