@@ -20,7 +20,9 @@
 	"dependencies": {
 		"axios": "^0.16.2",
 		"bulma": "^0.7.1",
+		"cheerio": "^1.0.0-rc.2",
 		"document-offset": "^1.0.4",
+		"dom-parser": "^0.1.5",
 		"downloadjs": "^1.4.7",
 		"lodash": "^4.17.4",
 		"nuxt-edge": "^2.0.0-25513462.d31aeaa",

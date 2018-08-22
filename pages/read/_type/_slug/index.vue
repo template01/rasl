@@ -32,11 +32,13 @@
 
     <div class=" is-marginless ">
       <!-- <div class="column is-marginless"> -->
-          <!-- <div class="columns is-marginless"> -->
-          <!-- {{postdata.acf.layout[0].contentpicker}} -->
-          <readcontent :content="postdata.acf.contentbuilder"></readcontent>
-            <!-- <readcontent :contentlayout="postdata.acf.layout_picker" :content="postdata.acf.content"></readcontent> -->
-          <!-- </div> -->
+      <!-- <div class="columns is-marginless"> -->
+      <!-- {{postdata.acf.layout[0].contentpicker}} -->
+
+      <readcontent :content="postdata.acf.contentbuilder"></readcontent>
+      {{footnotes}}
+      <!-- <readcontent :contentlayout="postdata.acf.layout_picker" :content="postdata.acf.content"></readcontent> -->
+      <!-- </div> -->
 
       <!-- </div> -->
 
@@ -63,6 +65,7 @@ import axios from 'axios'
 import {
   mapGetters
 } from 'vuex'
+var cheerio = require('cheerio')
 
 
 export default {
@@ -105,8 +108,6 @@ export default {
   }) {
 
 
-
-
     function getPost() {
       return axios.get(store.state.apiRoot + '/wp/v2/' + route.params.type + '?slug=' + route.params.slug);
       // return axios.get(state.apiRoot + '/swp_api/search?s=' + query.searchquery + '&post_type=reflective&posts_per_page=10');
@@ -127,6 +128,28 @@ export default {
       return axios.get(state.apiRoot + '/wp/v2/practice' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page=1');
     }
 
+    function footnotesSingleBlock(input) {
+      const $ = cheerio.load(input)
+      // var footnoteSelectors = $('.simple-footnote').attr('title')
+      var footnotesInBlock = []
+      $('.simple-footnote').each(function(){
+        const number = $(this).text()
+        const content = $(this).attr('title')
+        const returnNote = $(this).attr('id')
+        footnotesInBlock.push({'number':number,'content':content,'returnnote':returnNote})
+      })
+        return footnotesInBlock
+    }
+
+    function footnotesAll(input) {
+      var footnotesAll = []
+      for (var i = 0, len = input.length; i < len; i++) {
+        footnotesAll.push(footnotesSingleBlock(input[i].content))
+      }
+      return footnotesAll
+    }
+
+
     return axios.all([getPost(), getGeneric()])
       .then(axios.spread(function(post, generic) {
         // commit('SET_FILTERREFLECTIVEBY', reflective.data)
@@ -140,7 +163,8 @@ export default {
         // commit('SET_WINDOWSEARCH', location.search)
 
         return {
-          postdata: post.data[0]
+          postdata: post.data[0],
+          footnotes: footnotesAll(post.data[0].acf.contentbuilder)
         }
 
       }));
