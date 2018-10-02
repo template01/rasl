@@ -44,7 +44,7 @@ export const state = () => ({
 
 export const getters = {
 
-  GET_LOADING(state){
+  GET_LOADING(state) {
     return state.loading
   },
 
@@ -129,7 +129,7 @@ export const mutations = {
   //   state.camefrom = [state.camefrom[1],input]
   // },
   //
-  SET_LOADING(state,input){
+  SET_LOADING(state, input) {
     state.loading = input
   },
 
@@ -386,7 +386,7 @@ export const actions = {
     function getReflectivePosts(page) {
 
       if (state.searchquery.length > 0) {
-        return axios.get(state.apiRoot + '/wp/v2/practice' + '?search=' + state.searchquery + '&per_page=10&page='+ page);
+        return axios.get(state.apiRoot + '/wp/v2/practice' + '?search=' + state.searchquery + '&per_page=10&page=' + page);
       } else {
         return axios.get(state.apiRoot + '/wp/v2/reflective' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page=' + page);
       }
@@ -395,7 +395,7 @@ export const actions = {
     function getPraticePosts(page) {
 
       if (state.searchquery.length > 0) {
-        return axios.get(state.apiRoot + '/wp/v2/practice' + '?search=' + state.searchquery + '&per_page=10&page='+ page);
+        return axios.get(state.apiRoot + '/wp/v2/practice' + '?search=' + state.searchquery + '&per_page=10&page=' + page);
       } else {
         return axios.get(state.apiRoot + '/wp/v2/practice' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page=' + page);
       }
@@ -469,7 +469,7 @@ export const actions = {
     // SET WINDOWSEARCH QUERY
 
     var questionPos = route.fullPath.lastIndexOf('?');
-    if(questionPos>0){
+    if (questionPos > 0) {
       var queryResult = route.fullPath.substring(questionPos + 1);
       commit('SET_WINDOWSEARCH', '?' + queryResult)
     }
@@ -541,7 +541,9 @@ export const actions = {
         function(featuredPostSingle) {
           // CHECK IF POSTS HAS A LINK
           if ('ID' in featuredPostSingle.acf.postlink) {
-            return axios.get(state.apiRoot + `/wp/v2/${featuredPostSingle.acf.postlink.post_type}/${featuredPostSingle.acf.postlink.ID}`)
+            return axios.get(state.apiRoot + `/wp/v2/${featuredPostSingle.acf.postlink.post_type}/${featuredPostSingle.acf.postlink.ID}`).catch(function(error) {
+              return {}
+            })
           } else {
             return {}
           }
@@ -550,6 +552,8 @@ export const actions = {
     )).map(result => result.data)
 
     // RETURN RESULT AN FILTER OUT EMPTY OBJECTS
+
+
 
     state.featuredPosts = results.filter(function(n) {
       return n != undefined

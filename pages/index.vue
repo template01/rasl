@@ -8,10 +8,10 @@
     <indexintro v-once></indexintro>
     <div class="" v-if="$mq === 'lg'" style="display:flex; margin-bottom:0;margin-top:0;">
 
-      <postlistfeatured :displaydata="featuredPosts"></postlistfeatured>
+      <!-- <postlistfeatured :displaydata="featuredPosts"></postlistfeatured> -->
     </div>
 
-    <postlistfeaturedmobile class="white-background" v-else :displaydata="featuredPosts"></postlistfeaturedmobile>
+    <!-- <postlistfeaturedmobile class="white-background" v-else :displaydata="featuredPosts"></postlistfeaturedmobile> -->
 
     <!-- <div class="pl-40 pr-40">
         <div class="columns ">

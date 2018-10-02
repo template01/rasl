@@ -1,5 +1,5 @@
 <template>
-<div class="contentwrapper">
+<div class="contentwrapper readcontent">
   <div v-for="item in content">
     <contenttextphoto v-if="item.acf_fc_layout === 'textphoto'" :printversion="printversion" :content="item.content"></contenttextphoto>
     <contentvideo :coverimage="item.coverimage" v-if="item.acf_fc_layout === 'video' && !printversion" :printversion="printversion" :content="item.content"></contentvideo>
@@ -22,20 +22,18 @@ import contentsmalltextcolumn from "~/components/read/contentsmalltextcolumn"
 import footnotes from "~/components/read/footnotes"
 
 export default {
-  components:{
+  components: {
     contenttextphoto,
     contentaudio,
     contentvideo,
     contentsmalltextcolumn,
     footnotes,
   },
-  props: ['content','printversion','footnotes'],
+  props: ['content', 'printversion', 'footnotes'],
   data: function() {
-    return {
-    }
+    return {}
   },
-  mounted(){
-  },
+  mounted() {},
   methods: {},
   computed: {
     ...mapGetters({
@@ -45,3 +43,48 @@ export default {
 
 }
 </script>
+<style lang="scss">
+.readcontent {
+
+    *{
+      color: inherit !important;
+    }
+
+    b,
+    bold,
+    strong {
+        text-transform: uppercase;
+        font-weight: normal;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      text-decoration: underline;
+        // border-bottom: 2px solid black;
+        width: 100%;
+        margin-left: 20px;
+        -webkit-box-decoration-break: clone;
+        box-decoration-break: clone;
+        line-height: 1.2;
+        b,
+        bold,
+        strong {
+            text-transform: inherit;
+            font-weight: inherit;
+        }
+        & + * {
+            margin-top: 10px;
+        }
+
+    }
+
+    p {
+        line-height: 1.2;
+    }
+
+}
+</style>

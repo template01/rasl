@@ -3,7 +3,7 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    title: 'Nuxt boilerplate - bulma flavour',
+    title: 'PUBLICATIONS.RASL.NU',
     meta: [{
         charset: 'utf-8'
       },
@@ -14,7 +14,7 @@ module.exports = {
       {
         hid: 'description',
         name: 'description',
-        content: 'Nuxt boilerplate - bulma flavour'
+        content: 'PUBLICATIONS.RASL.NU'
       }
     ],
     link: [{
