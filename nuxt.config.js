@@ -142,11 +142,11 @@ module.exports = {
       // scss: './assets/scss/underlines.scss'
     },
 
-    postcss: {
-      plugins: {
-        'postcss-custom-properties': false
-      }
-    }
+    // postcss: {
+    //   plugins: {
+    //     'postcss-custom-properties': false
+    //   }
+    // }
     /*
      ** Run ESLint on save
      */

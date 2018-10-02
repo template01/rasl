@@ -134,58 +134,17 @@ export default {
     transform: translate3d(100%,0%,0);
 
 }
-,
 .slidedown-enter {
     transform: translate3d(-100%,0,0);
     // transform: translate3d(0,-100%,0);
 }
-
-//
-// .fade-enter-active,
-// .fade-leave-active {
-//     transition: all 0.25s;
-//     transform: translate3d(0%,0,0);
-// }
-/* .fade-leave-active below version 2.1.8 */
-// .fade-enter,
-// .fade-leave-to {
-//     transform: translate3d(-100%,0,0);
-// }
 
 .loadingLetters {
     color: $white;
     display: inline-block;
     align-self: center;
     font-style: italic;
-    // transition: 0.25s transform;
-    // animation-name: example;
-    // animation-duration: 0.5s;
-    // animation-iteration-count: infinite;
-    // animation-direction: alternate;
-    // width: 100%;
-    // span {
-    //     display: inline-block;
-    //     transition: 0.75s transform;
-    // }
-    // .slant {
-    //     transform: skewX(-30deg);
-    // }
-    //
-    // @keyframes example {
-    //     0% {
-    //         // opacity: 0;
-    //
-    //         // transform: translate3d(0px,0,0);
-    //         transform: skewX(0deg);
-    //     }
-    //
-    //     100% {
-    //         // opacity: 1;
-    //
-    //         // transform: translate3d(0,-5px,0);
-    //         transform: skewX(-20deg);
-    //     }
-    // }
+
 }
 
 .loading-page {
@@ -230,17 +189,7 @@ export default {
         animation-iteration-count: infinite;
         animation-direction: alternate;
     }
-    // @keyframes example {
-    //     from {
-    //         // transform: translate3d(0px,0,0);
-    //         opacity: 0;
-    //     }
-    //
-    //     to {
-    //         // transform: translate3d(0,-5px,0);
-    //         opacity: 1;
-    //     }
-    // }
+
 }
 
 .animateLoading4 {
