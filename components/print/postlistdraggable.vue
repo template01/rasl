@@ -40,7 +40,7 @@
             </p>
           </div>
           <div class="column " :class="$mq != 'lg' ? 'is-2':'is-3'">
-            <selectpost class="is-pulled-right" :hidehelpers="true" v-on:removeprintitem="removethis(index)" :posttype="postdata.type" :postid="postdata.id"></selectpost>
+            <selectpost class="is-pulled-right" :listview="true" :hidehelpers="true" v-on:removeprintitem="removethis(index)" :posttype="postdata.type" :postid="postdata.id"></selectpost>
           </div>
         </div>
         <hr v-if="index < myArray.length - 1"/>

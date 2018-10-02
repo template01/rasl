@@ -1,11 +1,16 @@
 <template>
 <div class="">
   <div @click="toggleSelected(); $emit('removeprintitem')"   class="pointer hoverselect is-size-4-desktop is-size-6-touch">
-    <input  id="checkBox" type="checkbox" :value="postid" :id="postid" v-model="isselected">
-    <label v-if="isselected.length===0" :for="postid" class=""><img class="rasl-icon pointer" :src="'/icons/rasl_plus.svg'" /></label>
-    <label v-else :for="postid"><img class="rasl-icon pointer" :src="'/icons/rasl_minus.svg'" /></label>
-    <span v-if="!hidehelpers" :class="isselected.length===0 ? '':'hideit' " class="addtoselection is-hidden-touch" style=""><span class="hinter mr-5 pr-10 pl-10 is-size-5" style=""><span class="inner">Collect Article</span></span>
-    </span>
+    <template v-if="!listview">
+      <input  id="checkBox" type="checkbox" :value="postid" :id="postid" v-model="isselected">
+      <label v-if="isselected.length===0" :for="postid" class=""><img class="rasl-icon pointer" :src="'/icons/rasl_plus.svg'" /></label>
+      <label v-else :for="postid"><img class="rasl-icon pointer" :src="'/icons/rasl_minus.svg'" /></label>
+      <span v-if="!hidehelpers" :class="isselected.length===0 ? '':'hideit' " class="addtoselection is-hidden-touch" style=""><span class="hinter mr-5 pr-10 pl-10 is-size-5" style=""><span class="inner">Collect Article</span></span></span>
+    </template>
+    <template v-else>
+      <input  id="checkBox" type="checkbox disable-action" >
+      <label ><img class="rasl-icon pointer disable-action" :src="'/icons/rasl_minus.svg'" /></label>
+    </template>
   </div>
 </div>
 </template>
@@ -17,7 +22,7 @@ import _ from 'lodash'
 
 
 export default {
-  props: ['postid', 'posttype', 'hidehelpers'],
+  props: ['postid', 'posttype', 'hidehelpers','listview'],
   data: function() {
     return {
       genericData: 'generic component text',
@@ -116,5 +121,9 @@ input {
             line-height: 34px;
         }
     }
+}
+
+.disable-action{
+  pointer-events: none;
 }
 </style>
