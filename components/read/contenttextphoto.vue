@@ -116,9 +116,9 @@ export default {
           // }
           img {
               margin-right: 0;
-              margin-left: -5cm;
-              width: calc(100% + 5cm);
-              max-width: calc(100% + 5cm);
+              margin-left: -6cm;
+              width: calc(100% + 6cm);
+              max-width: calc(100% + 6cm);
           }
       }
 
@@ -131,9 +131,9 @@ export default {
           }
 
 
-          margin-left: 0cm;
-          width: 10cm;
-          max-width: 10cm;
+            margin-left: -1cm;
+          width: 8cm;
+          max-width: 8cm;
 
           margin-right: 5mm;
           &.alignleft{

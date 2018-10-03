@@ -8,11 +8,11 @@
     </div>
   </div>
   <div class="printpost">
-    <p class="is-size-3-desktop is-size-6-touch" v-html="postdata.type">
+    <p class="is-size-3-desktop is-size-6-touch uppercase" v-html="postdata.type">
     </p>
-    <p class="is-size-1-desktop is-size-1-touch uppercase" v-html="postdata.title.rendered">
+    <p class="margin-left-compensation is-size-1-desktop is-size-1-touch uppercase" v-html="postdata.title.rendered">
     </p>
-    <p class="is-size-1-desktop is-size-1-touch">
+    <p class="margin-left-compensation is-size-2-desktop is-size-2-touch">
       <span>By</span>
       <authorlinks :authors="postdata.acf.author"></authorlinks>
     </p>
@@ -62,6 +62,11 @@ export default {
 }
 </script>
 <style lang="scss">
+
+.margin-left-compensation{
+  margin-left: -1mm;
+}
+
 .printpostOuter {
     position: relative;
     min-height: 26cm;
@@ -121,8 +126,8 @@ export default {
             .is-size-6-touch {
                 line-height: 1.4;
             }
-    
-            padding-top: 1cm;
+
+            padding-top: 2cm;
             margin: 0 auto 0 0;
             text-align: left;
             p {
@@ -130,6 +135,7 @@ export default {
             }
             h1,h2,h3,h4,h5,h6{
               margin-left: 5.5cm;
+              margin-top: 5mm;
             }
             pre{
               margin-left: 5cm;
