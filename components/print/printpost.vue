@@ -134,7 +134,7 @@ export default {
                 margin-left: 5cm;
             }
             h1,h2,h3,h4,h5,h6{
-              margin-left: 5cm;
+              margin-left: 5.5cm;
             }
             pre{
               margin-left: 5cm;

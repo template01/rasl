@@ -1,5 +1,5 @@
 <template>
-<div class="contenttextphoto columns is-marginless ">
+<div  :class="printversion ? 'printversion':''"  class="contenttextphoto columns is-marginless ">
   <div class="column is-marginless">
     <div class=" pr-40 pl-40">
       <div :class="printversion ? 'is-12':'is-6 is-offset-3'" class=" column">
@@ -42,7 +42,8 @@ export default {
     * {
         color: inherit !important;
     }
-    p {
+    &:not(.printversion){
+      p {
         margin-bottom: 20px;
         img {
             margin-left: -20%;
@@ -98,8 +99,61 @@ export default {
           width: 100%;
         }
     }
+  }
+    &.printversion{
+      p {
+          margin-bottom: 20px;
+          img {
+              // margin-left: -20%;
+              // margin-right: -20%;
+              // width: 140%;
+              // max-width: 140%;
+              clear: both;
+              &.alignleft{
+                float: left;
+                // max-width: 60%;
+                // margin-right: 20px;
+                // margin-top: 15px;
+                // margin-bottom: 5px;
+              }
+              &.alignright{
+                float: right;
+                // max-width: 60%;
+                // margin-left: 20px;
+                // margin-top: 15px;
+                // margin-bottom: 5px;
+              }
+              &.aligncenter{
+                // margin: 0 auto;
+                // margin-top: 20px;
+              }
+          }
+      }
 
+      .wp-caption {
+        clear: both;
+        
+          p{
+            margin-left: 0px !important;
+          }
+          width: 10cm !important;
+          margin-right: 5mm;
+          &.alignleft{
+            float: left;
+          }
+          &.alignright{
+            float: left;
+          }
+          &.aligncenter{
+            // margin: 0 auto;
+            // margin-top: 20px;
+          }
+          img{
+            width: 100%;
+          }
+      }
 
+    }
 
 }
 </style>
