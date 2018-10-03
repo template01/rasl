@@ -1,5 +1,5 @@
 <template>
-<div v-if="contentClean.lenght>0" class="columns is-marginless">
+<div v-if="contentClean.length>0" class="columns is-marginless">
   <!-- <span v-html="content"></span> -->
   <div class="column is-marginless">
     <div class=" pr-40 pl-40">

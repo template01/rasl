@@ -31,7 +31,7 @@
   <div class="pb-40 pt-40 white-background">
 
     <div class=" is-marginless ">
-      <readcontent :footnotes="footnotes" :content="postdata.acf.contentbuilder"></readcontent>
+      <readcontent :type="postdata.type" :footnotes="footnotes" :content="postdata.acf.contentbuilder"></readcontent>
     </div>
 
   </div>

@@ -8,10 +8,10 @@
     <indexintro v-once></indexintro>
     <div class="" v-if="$mq === 'lg'" style="display:flex; margin-bottom:0;margin-top:0;">
 
-      <!-- <postlistfeatured :displaydata="featuredPosts"></postlistfeatured> -->
+      <postlistfeatured :displaydata="featuredPosts"></postlistfeatured>
     </div>
 
-    <!-- <postlistfeaturedmobile class="white-background" v-else :displaydata="featuredPosts"></postlistfeaturedmobile> -->
+    <postlistfeaturedmobile class="white-background" v-else :displaydata="featuredPosts"></postlistfeaturedmobile>
 
     <!-- <div class="pl-40 pr-40">
         <div class="columns ">
@@ -40,8 +40,8 @@
       <!-- <div class=" pl-40 pr-40 ">
         <hr class="m-0" />
       </div> -->
-      <div v-sticky sticky-offset="0" sticky-side="top" class="user-select-none librarynavwrapper pl-40 pr-40 " :class="$mq != 'lg' ? 'white-background':''">
-        <librarynav class="pt-20"></librarynav>
+      <div v-sticky sticky-offset="0" sticky-side="top" class="user-select-none librarynavwrapper pl-40 pr-40" :class="$mq != 'lg' ? 'white-background':''">
+        <librarynav class="pt-20 pb-10"></librarynav>
         <hr class="m-0" />
         <div class="backgroundBlockI is-hidden-touch" :style="getBackgroundStyleI">
         </div>

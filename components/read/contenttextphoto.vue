@@ -8,6 +8,7 @@
       </div>
     </div>
   </div>
+
 </div>
 </template>
 <script>
@@ -48,8 +49,57 @@ export default {
             margin-right: -20%;
             width: 140%;
             max-width: 140%;
+            clear: both;
+            &.alignleft{
+              float: left;
+              max-width: 60%;
+              margin-right: 20px;
+              margin-top: 15px;
+              margin-bottom: 5px;
+            }
+            &.alignright{
+              float: right;
+              max-width: 60%;
+              margin-left: 20px;
+              margin-top: 15px;
+              margin-bottom: 5px;
+            }
+            &.aligncenter{
+              // margin: 0 auto;
+              // margin-top: 20px;
+            }
         }
     }
+
+    .wp-caption {
+        margin-left: -20%;
+        margin-right: -20%;
+        width: 140%;
+        max-width: 140%;
+        &.alignleft{
+          float: left;
+          max-width: 60%;
+          margin-right: 20px;
+          margin-top: 20px;
+          margin-bottom: 10px;
+        }
+        &.alignright{
+          float: right;
+          max-width: 60%;
+          margin-left: 20px;
+          margin-top: 20px;
+          margin-bottom: 10px;
+        }
+        &.aligncenter{
+          // margin: 0 auto;
+          // margin-top: 20px;
+        }
+        img{
+          width: 100%;
+        }
+    }
+
+
 
 }
 </style>
