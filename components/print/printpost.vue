@@ -121,12 +121,7 @@ export default {
             .is-size-6-touch {
                 line-height: 1.4;
             }
-            p img {
-                margin-right: 0;
-                margin-left: -5cm;
-                width: calc(100% + 5cm);
-                max-width: calc(100% + 5cm);
-            }
+    
             padding-top: 1cm;
             margin: 0 auto 0 0;
             text-align: left;

@@ -102,24 +102,26 @@ export default {
   }
     &.printversion{
       p {
-          margin-bottom: 20px;
+          // margin-bottom: 20px;
+          // img {
+          //     clear: both;
+          //     &.alignleft{
+          //       float: left;
+          //     }
+          //     &.alignright{
+          //       float: right;
+          //     }
+          //     &.aligncenter{
+          //     }
+          // }
           img {
               margin-right: 0;
               margin-left: -5cm;
               width: calc(100% + 5cm);
               max-width: calc(100% + 5cm);
-              
-              clear: both;
-              &.alignleft{
-                float: left;
-              }
-              &.alignright{
-                float: left;
-              }
-              &.aligncenter{
-              }
           }
       }
+
 
       .wp-caption {
         clear: both;
@@ -128,9 +130,10 @@ export default {
             margin-left: 0px !important;
           }
 
-          margin-left: -10cm;
-          width: calc(10cm);
-          max-width: calc(10cm);
+
+          margin-left: 0cm;
+          width: 10cm;
+          max-width: 10cm;
 
           margin-right: 5mm;
           &.alignleft{
@@ -140,6 +143,8 @@ export default {
             float: left;
           }
           &.aligncenter{
+            // margin: 0 auto;
+            // margin-top: 20px;
           }
           img{
             width: 100%;
