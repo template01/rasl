@@ -104,39 +104,34 @@ export default {
       p {
           margin-bottom: 20px;
           img {
-              // margin-left: -20%;
-              // margin-right: -20%;
-              // width: 140%;
-              // max-width: 140%;
+              margin-right: 0;
+              margin-left: -5cm;
+              width: calc(100% + 5cm);
+              max-width: calc(100% + 5cm);
+              
               clear: both;
               &.alignleft{
                 float: left;
-                // max-width: 60%;
-                // margin-right: 20px;
-                // margin-top: 15px;
-                // margin-bottom: 5px;
               }
               &.alignright{
-                float: right;
-                // max-width: 60%;
-                // margin-left: 20px;
-                // margin-top: 15px;
-                // margin-bottom: 5px;
+                float: left;
               }
               &.aligncenter{
-                // margin: 0 auto;
-                // margin-top: 20px;
               }
           }
       }
 
       .wp-caption {
         clear: both;
-        
+
           p{
             margin-left: 0px !important;
           }
-          width: 10cm !important;
+
+          margin-left: -10cm;
+          width: calc(10cm);
+          max-width: calc(10cm);
+
           margin-right: 5mm;
           &.alignleft{
             float: left;
@@ -145,8 +140,6 @@ export default {
             float: left;
           }
           &.aligncenter{
-            // margin: 0 auto;
-            // margin-top: 20px;
           }
           img{
             width: 100%;
