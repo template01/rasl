@@ -253,16 +253,18 @@ export default {
 }
 
 .centerLine {
+  z-index: -1;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     .dashedLine {
-        width: 50%;
+        width: calc(50% - 1px);
         height: 100%;
         position: absolute;
-        box-shadow: inset -1px 0px 0px 0px black;
+        border-right: 2px solid black;
+        // box-shadow: inset -1px 0px 0px 0px black;
     }
     // .metaWrapperSide {
     //     position: absolute;
