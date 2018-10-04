@@ -224,6 +224,7 @@ export default {
 }
 .belowTitle,
 .topTitle {
+    z-index: 2;
     width: 100% !important;
     display: inline-block;
 }
@@ -231,6 +232,7 @@ export default {
   min-height: 6cm
 }
 .belowTitle {
+    z-index: 2;
     padding-top: 5mm;
     line-height: 1.1;
 }
@@ -253,7 +255,7 @@ export default {
 }
 
 .centerLine {
-  z-index: -1;
+  z-index: 1;
     position: fixed;
     top: 0;
     left: 0;
