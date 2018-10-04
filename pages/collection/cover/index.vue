@@ -197,8 +197,9 @@ export default {
 * {
     font-family: 'Tex Gyre Heros';
 }
-.is-size-6{
-    font-size: 10pt !important;
+
+.is-size-6-touch, .is-size-6 {
+  font-size: 14pt !important;
 }
 .columnCustom {
     width: 50%;
@@ -231,6 +232,7 @@ export default {
 }
 .belowTitle {
     padding-top: 5mm;
+    line-height: 1.1;
 }
 .coverTitle {
     font-size: 90pt;
@@ -260,7 +262,7 @@ export default {
         width: 50%;
         height: 100%;
         position: absolute;
-        border-right: 2px solid black;
+        border-right: 1px solid black;
     }
     // .metaWrapperSide {
     //     position: absolute;

@@ -82,7 +82,7 @@ export default {
             -webkit-transform: rotate(90deg);
             transform: rotate(90deg);
             // EQAL HOOGTE VAN WRAPPER
-            margin-left: 50px;
+            margin-left: 52px;
 
             -webkit-transform-origin: top left;
             transform-origin: top left;
@@ -114,7 +114,7 @@ export default {
     //     }
     // }
 
-    .is-size-6-touch {
+    .is-size-6-touch, .is-size-6 {
       font-size: 14pt !important;
     }
 
