@@ -115,7 +115,7 @@ export default {
     // }
 
     .is-size-6-touch {
-      font-size: 14pt !important;
+      font-size: 16pt !important;
     }
 
     .printpost {
