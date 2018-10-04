@@ -312,7 +312,7 @@ export default {
             transform-origin: top left;
         }
         .stapleB {
-            top: 18.4cm;
+            top: 18.3cm;
         }
     }
     // }
