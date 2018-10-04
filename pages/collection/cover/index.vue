@@ -262,7 +262,7 @@ export default {
         width: 50%;
         height: 100%;
         position: absolute;
-        border-right: 1px solid black;
+        box-shadow: inset -1px 0px 0px 0px black;
     }
     // .metaWrapperSide {
     //     position: absolute;
@@ -308,7 +308,7 @@ export default {
             transform-origin: top left;
         }
         .stapleB {
-            top: 18.6cm;
+            top: 18.5cm;
         }
     }
     // }
