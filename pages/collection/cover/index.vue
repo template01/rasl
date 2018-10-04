@@ -262,10 +262,10 @@ export default {
     width: 100%;
     height: 100%;
     .dashedLine {
-        width: calc(50% - 1px);
+        width: 50%;
         height: 100%;
         position: absolute;
-        border-right: 2px solid black;
+        border-right: 1px solid black;
         // box-shadow: inset -1px 0px 0px 0px black;
     }
     // .metaWrapperSide {
