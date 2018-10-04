@@ -95,7 +95,7 @@ export default {
       background: black;
       width: 8mm;
       height: 8mm;
-      margin-right: 44px;
+      margin-right: 40px;
       border-radius: 100%;
       float: right;
     }
