@@ -7,6 +7,8 @@
     <contentsmalltextcolumn v-if="item.acf_fc_layout === 'smalltextcolumns'" :printversion="printversion" :content="item.content"></contentsmalltextcolumn>
   </div>
   <footnotes :printversion="printversion" :content="footnotes"></footnotes>
+  <div v-if="printversion" class="endCircle">
+  </div>
   <style v-if="type ==='practice'">.readcontent .wp-caption{ color: red !important; }
   </style>
   <style v-if="type ==='reflective'">.readcontent .wp-caption{ color: #44ae7b !important; }
@@ -89,5 +91,13 @@ export default {
         line-height: 1.2;
     }
 
+    .endCircle{
+      background: black;
+      width: 8mm;
+      height: 8mm;
+      margin-right: 44px;
+      border-radius: 100%;
+      float: right;
+    }
 }
 </style>

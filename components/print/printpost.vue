@@ -1,7 +1,7 @@
 <template>
 <div class="printpostOuter">
   <div class="metaWrapperSide">
-    <div class="metaRotate is-size-6-touch uppercase">
+    <div class="metaRotate is-size-3-desktop is-size-6-touch uppercase">
       <span>
       {{'publications.rasl.nu'+ '/' + 'read' + '/' + postdata.type + '/' + postdata.slug}}
     </span>
@@ -18,6 +18,7 @@
     </p>
     <div class="inner-content">
       <readcontent :footnotes="footnoteSingle" :printversion="true" :content="postdata.acf.contentbuilder"></readcontent>
+
     </div>
   </div>
 </div>
@@ -113,14 +114,14 @@ export default {
     //     }
     // }
 
+    .is-size-6-touch {
+      font-size: 12pt !important;
+    }
 
     .printpost {
 
         margin-left: 3.5cm;
 
-        .is-size-6-touch {
-            font-size: 14pt !important;
-        }
         .inner-content {
 
             .is-size-6-touch {
@@ -144,5 +145,7 @@ export default {
         }
 
     }
+
+
 }
 </style>
