@@ -199,7 +199,7 @@ export default {
 }
 
 .is-size-6-touch, .is-size-6 {
-  font-size: 12pt !important;
+  font-size: 11pt !important;
 }
 .columnCustom {
     width: 50%;
@@ -302,7 +302,7 @@ export default {
             -webkit-transform: rotate(90deg);
             transform: rotate(90deg);
             // EQAL HOOGTE VAN WRAPPER
-            margin-left: 23px;
+            margin-left: 33px;
 
             -webkit-transform-origin: top left;
             transform-origin: top left;
