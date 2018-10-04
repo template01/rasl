@@ -199,7 +199,7 @@ export default {
 }
 
 .is-size-6-touch, .is-size-6 {
-  font-size: 14pt !important;
+  font-size: 12pt !important;
 }
 .columnCustom {
     width: 50%;
