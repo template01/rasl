@@ -107,8 +107,8 @@ export default {
         p {
             img {
                 margin: 5mm 0 5mm -6cm;
-                width: 19.6cm;
-                max-width: 19.6cm;
+                width: 19.7cm;
+                max-width: 19.7cm;
 
                 &.alignleft {
                     float: left;
@@ -141,8 +141,8 @@ export default {
             }
 
             margin: 5mm 0 5mm -1cm;
-            width:19.8cm;
-            max-width:19.8cm;
+            width:19.7cm;
+            max-width:19.7cm;
 
             &.alignleft {
                 float: left;
