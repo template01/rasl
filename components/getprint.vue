@@ -14,6 +14,7 @@
       <div class="mt-10">
       <div  v-if="progress<100 && progress > 1" class="bar green-background" :style="{'width':+progress+'%'}">
       </div>
+      <div  v-else class="bar"> </div>
       </div>
 
     </div>
@@ -24,6 +25,7 @@
       <div class="mt-10">
       <div  v-if="progressCover<100 && progressCover > 1"  class="bar green-background" :style="{'width':+progressCover+'%'}">
       </div>
+      <div  v-else class="bar"> </div>
       </div>
     </div>
   </div>
@@ -235,7 +237,7 @@ export default {
 
 .bar {
   /* width: 10px; */
-  height: 10px;
+  height: 25px;
   /* position: absolute; */
   /* border-radius: 10px; */
   transition: width 0.4s;
