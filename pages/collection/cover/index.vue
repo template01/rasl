@@ -15,7 +15,7 @@
 
     <div class="columns is-marginless is-mobile">
       <div class="column is-paddingless">
-        <p class="is-size-4 uppercase">
+        <p class="is-size-4 pb-20 uppercase">
           publications.rasl.nu
         </p>
         <p class="coverTitle">
@@ -29,7 +29,7 @@
 
   <div class="belowTitle">
 
-    <div class="columnCustom is-size-4">
+    <div class="columnCustom pt-15 is-size-4">
       <div>
         <p class="uppercase">
           Tags:
@@ -39,7 +39,7 @@
         </p>
       </div>
     </div>
-    <div class="columnCustom is-size-4 pl-15mm">
+    <div class="columnCustom pt-15 is-size-4 pl-15mm">
       <div>
         <p class="uppercase">
           Contents:
@@ -198,6 +198,9 @@ export default {
 .is-size-6-touch, .is-size-6 {
   font-size: 11pt !important;
 }
+.is-size-4{
+  font-size: 22px;
+}
 
 .columnCustom {
     width: 50%;
@@ -234,13 +237,13 @@ export default {
     line-height: 1.1;
 }
 .coverTitle {
-    letter-spacing: -1.5mm;
+    letter-spacing: -2mm;
     font-size: 80pt;
     text-transform: uppercase;
     line-height: 0.9;
     word-spacing: 0;
     span {
-        margin-right: 35pt;
+        margin-right: 25pt;
         float: left;
     }
 }
@@ -260,6 +263,7 @@ export default {
     width: 100%;
     height: 100%;
     .dashedLine {
+          margin-top: 1.5mm;
         width: 50%;
         height: 100%;
         position: absolute;
