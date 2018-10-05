@@ -99,6 +99,8 @@ export default {
       border-radius: 100%;
       float: right;
       page-break-inside: avoid;
+      page-break-before: avoid;
+      page-break-after: avoid;
     }
 }
 </style>
