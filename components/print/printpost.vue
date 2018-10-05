@@ -33,7 +33,7 @@ import authorlinks from '~/components/authorLinks'
 
 
 export default {
-  props: ['postdata','footnoteSingle'],
+  props: ['postdata', 'footnoteSingle'],
   data: function() {
     return {
       genericData: 'generic component text'
@@ -63,9 +63,8 @@ export default {
 }
 </script>
 <style lang="scss">
-
-.margin-left-compensation{
-  margin-left: -1mm;
+.margin-left-compensation {
+    margin-left: -1mm;
 }
 
 .printpostOuter {
@@ -77,7 +76,13 @@ export default {
         left: 0;
         top: 3.5cm;
         text-align: right;
+        .is-size-6,
+        .is-size-6-touch {
+          font-size: 14pt !important;
+          line-height: 1.3 !important;
+        }
         .metaRotate {
+
 
             -webkit-transform: rotate(90deg);
             transform: rotate(90deg);
@@ -114,10 +119,10 @@ export default {
     //     }
     // }
 
-    .is-size-1-desktop,.is-size-1-touch{
-      line-height: 0.9;
+    .is-size-1-desktop,
+    .is-size-1-touch {
+        line-height: 0.9;
     }
-
 
     .printpost {
 
@@ -125,9 +130,10 @@ export default {
 
         .inner-content {
 
-            .is-size-6-touch, .is-size-6 {
-              font-size: 14pt !important;
-              line-height: 1.3 !important;
+            .is-size-6,
+            .is-size-6-touch {
+                font-size: 14pt !important;
+                line-height: 1.3 !important;
 
             }
 
@@ -139,18 +145,22 @@ export default {
                 line-height: 1.4 !important;
                 letter-spacing: 0 !important;
             }
-            h1,h2,h3,h4,h5,h6{
-              margin-left: 5.5cm;
-              margin-top: 5mm;
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                margin-left: 5.5cm;
+                margin-top: 5mm;
             }
-            pre{
-              margin-left: 5cm;
+            pre {
+                margin-left: 5cm;
             }
 
         }
 
     }
-
 
 }
 </style>
