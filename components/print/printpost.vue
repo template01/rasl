@@ -127,7 +127,7 @@ export default {
 
             .is-size-6-touch, .is-size-6 {
               font-size: 14pt !important;
-              line-height: 1.4 !important;
+              line-height: 1.3 !important;
 
             }
 
