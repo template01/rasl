@@ -170,7 +170,7 @@ export default {
           contentsTitles = contentsTitles +this.selectedPosts[i].title.rendered
       }
 
-      return contentsTitles.substr(0, 525).trim() + '...';
+      return contentsTitles.substr(0, 530).trim() + '...';
 
     }
   },
