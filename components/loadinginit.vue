@@ -59,16 +59,16 @@ export default {
     var vm = this
     setTimeout(function() {
       vm.bottomRight = false
-    }, 2400)
+    }, 1400)
     setTimeout(function() {
       vm.top = false
-    }, 2500)
+    }, 1500)
     setTimeout(function() {
       vm.bottomLeft = false
-    }, 2700)
+    }, 1700)
     setTimeout(function() {
       vm.$store.commit('SET_APPINITIATED', true)
-    }, 3000)
+    }, 2000)
   }
 
 }
