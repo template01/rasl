@@ -127,8 +127,8 @@ export default {
 
             .is-size-6-touch, .is-size-6 {
               font-size: 14pt !important;
-              line-height: 1.25 !important;
-              
+              line-height: 1.4 !important;
+
             }
 
             padding-top: 2cm;
@@ -136,7 +136,7 @@ export default {
             text-align: left;
             p {
                 margin-left: 5cm;
-                line-height: 1.25 !important;
+                line-height: 1.4 !important;
                 letter-spacing: 0 !important;
             }
             h1,h2,h3,h4,h5,h6{
