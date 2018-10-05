@@ -35,7 +35,7 @@
           Tags:
         </p>
         <p>
-          <span class=" is-capitalized" v-for="(tag, index) in detailsTags" v-html="tag.name + (index!=detailsTags.length-1 ? ';&nbsp;' : '')"></span>
+          <span class=" is-capitalized" v-for="(tag, index) in detailsTags" v-html="tag.name + (index!=detailsTags.length-1 ? ' ●&nbsp;' : '')"></span>
         </p>
       </div>
     </div>
@@ -44,9 +44,10 @@
         <p class="uppercase">
           Contents:
         </p>
-        <p>
-          <span v-for="(post, index) in selectedPosts" v-html="post.title.rendered + (index!=selectedPosts.length-1 ? ';&nbsp;' : '')">
-            </span>
+        <p id="post-titles-collected" v-html="computeContents">
+
+          <!-- <span class="post-title" v-for="(post, index) in selectedPosts" v-html="post.title.rendered + (index!=selectedPosts.length-1 ? ' ●&nbsp;' : '')"> -->
+            <!-- </span> -->
         </p>
       </div>
     </div>
@@ -159,6 +160,18 @@ export default {
       // for each(post in this.selectedPosts) {
       //   vm.titles.push(post.title.rendered)
       // }
+    },
+    computeContents: function(){
+      var contentsTitles = ''
+      for (var i = 0, len = this.selectedPosts.length; i < len; i++) {
+          if(i>0){
+            contentsTitles = contentsTitles +' ● '
+          }
+          contentsTitles = contentsTitles +this.selectedPosts[i].title.rendered
+      }
+
+      return contentsTitles.substr(0, 500).trim() + '...';
+
     }
   },
   methods: {},
@@ -235,6 +248,9 @@ export default {
 .belowTitle {
     padding-top: 5mm;
     line-height: 1.1;
+
+    .post-title{
+    }
 }
 .coverTitle {
     letter-spacing: -2mm;

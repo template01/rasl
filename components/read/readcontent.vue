@@ -98,6 +98,7 @@ export default {
       margin-right: 40px;
       border-radius: 100%;
       float: right;
+      page-break-inside: avoid;
     }
 }
 </style>
