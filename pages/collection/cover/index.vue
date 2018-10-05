@@ -263,7 +263,7 @@ export default {
     width: 100%;
     height: 100%;
     .dashedLine {
-          margin-top: 1.5mm;
+          margin-top: 0.5mm;
         width: 50%;
         height: 100%;
         position: absolute;

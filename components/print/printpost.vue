@@ -10,7 +10,7 @@
   <div class="printpost">
     <p class="is-size-3-desktop is-size-6-touch uppercase" v-html="postdata.type">
     </p>
-    <p class="margin-left-compensation is-size-1-desktop is-size-1-touch uppercase" v-html="postdata.title.rendered">
+    <p class="pt-10 pb-10 margin-left-compensation is-size-1-desktop is-size-1-touch uppercase" v-html="postdata.title.rendered">
     </p>
     <p class="margin-left-compensation is-size-3-desktop is-size-3-touch">
       <span>By</span>
@@ -114,8 +114,13 @@ export default {
     //     }
     // }
 
+    .is-size-1-desktop,.is-size-1-touch{
+      line-height: 0.9;
+    }
+
     .is-size-6-touch, .is-size-6 {
       font-size: 14pt !important;
+      line-height: 1.25;
     }
 
     .printpost {
