@@ -76,11 +76,6 @@ export default {
         left: 0;
         top: 3.5cm;
         text-align: right;
-        .is-size-6,
-        .is-size-6-touch {
-          font-size: 14pt !important;
-          line-height: 1.3 !important;
-        }
         .metaRotate {
 
 
@@ -119,6 +114,12 @@ export default {
     //     }
     // }
 
+    .is-size-6,
+    .is-size-6-touch {
+      font-size: 14pt !important;
+    }
+
+
     .is-size-1-desktop,
     .is-size-1-touch {
         line-height: 0.9;
@@ -130,19 +131,12 @@ export default {
 
         .inner-content {
 
-            .is-size-6,
-            .is-size-6-touch {
-                font-size: 14pt !important;
-                line-height: 1.3 !important;
-
-            }
-
             padding-top: 2cm;
             margin: 0 auto 0 0;
             text-align: left;
             p {
                 margin-left: 5cm;
-                line-height: 1.4 !important;
+                line-height: 1.3 !important;
                 letter-spacing: 0 !important;
             }
             h1,
