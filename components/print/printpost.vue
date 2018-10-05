@@ -120,7 +120,8 @@ export default {
 
     .is-size-6-touch, .is-size-6 {
       font-size: 14pt !important;
-      line-height: 1.25;
+      line-height: 1.5;
+      letter-spacing: 0;
     }
 
     .printpost {
