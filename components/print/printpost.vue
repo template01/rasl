@@ -118,11 +118,6 @@ export default {
       line-height: 0.9;
     }
 
-    .is-size-6-touch, .is-size-6 {
-      font-size: 14pt !important;
-      line-height: 1.5;
-      letter-spacing: 0;
-    }
 
     .printpost {
 
@@ -130,8 +125,10 @@ export default {
 
         .inner-content {
 
-            .is-size-6-touch {
-                line-height: 1.4;
+            .is-size-6-touch, .is-size-6 {
+              font-size: 14pt !important;
+              line-height: 1.5 !important;
+              letter-spacing: 0 !important;
             }
 
             padding-top: 2cm;

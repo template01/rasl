@@ -12,7 +12,7 @@
         <span class="uppercase underline pointer" @click="getPdf()">Collection (.pdf)</span>
       </div>
       <div class="mt-10">
-      <div  v-if="progress<100 && progress > 2" class="bar green-background" :style="{'width':+progress+'%'}">
+      <div  v-if="progress<100 && progress > 1" class="bar green-background" :style="{'width':+progress+'%'}">
       </div>
       </div>
 
@@ -22,7 +22,7 @@
         <span class="uppercase underline pointer" @click="getCover()">Cover (.pdf)</span>
       </div>
       <div class="mt-10">
-      <div  v-if="progressCover<100 && progressCover > 2"  class="bar green-background" :style="{'width':+progressCover+'%'}">
+      <div  v-if="progressCover<100 && progressCover > 1"  class="bar green-background" :style="{'width':+progressCover+'%'}">
       </div>
       </div>
     </div>
