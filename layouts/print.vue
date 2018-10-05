@@ -34,7 +34,7 @@ export default {
 
 <style scoped lang="scss">
 *{
-   background-color: white;
+   // background-color: white;
    overflow: hidden;
 }
 

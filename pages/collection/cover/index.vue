@@ -4,10 +4,7 @@
     <div class="dashedLine">
     </div>
     <div class="foldHereOuter">
-    <!-- <div class="foldHere"> -->
       <div class="foldHereTypo uppercase is-size-6"><span class="white-background p-5">fold Here</span></div>
-
-    <!-- </div> -->
     </div>
     <div class="staples">
       <div class="stapleA uppercase is-size-6"><span>STAPLE</span></div>
@@ -18,7 +15,7 @@
 
     <div class="columns is-marginless is-mobile">
       <div class="column is-paddingless">
-        <p class="is-size-3 uppercase">
+        <p class="is-size-4 uppercase">
           publications.rasl.nu
         </p>
         <p class="coverTitle">
@@ -201,6 +198,7 @@ export default {
 .is-size-6-touch, .is-size-6 {
   font-size: 11pt !important;
 }
+
 .columnCustom {
     width: 50%;
     float: left;
@@ -215,8 +213,8 @@ export default {
     padding-left: 15mm;
 }
 .coverPage {
-    min-height: 19.95cm;
-    max-height: 19.95cm;
+    min-height: 19.85cm;
+    max-height: 19.85cm;
     overflow: hidden;
     // position: absolute;
     // height: 100%;
@@ -224,7 +222,7 @@ export default {
 }
 .belowTitle,
 .topTitle {
-    z-index: 2;
+    z-index: 9999;
     width: 100% !important;
     display: inline-block;
 }
@@ -232,12 +230,12 @@ export default {
   min-height: 6cm
 }
 .belowTitle {
-    z-index: 2;
     padding-top: 5mm;
     line-height: 1.1;
 }
 .coverTitle {
-    font-size: 90pt;
+    letter-spacing: -1.5mm;
+    font-size: 80pt;
     text-transform: uppercase;
     line-height: 0.9;
     word-spacing: 0;
@@ -255,7 +253,7 @@ export default {
 }
 
 .centerLine {
-  z-index: 1;
+  z-index: -1;
     position: fixed;
     top: 0;
     left: 0;

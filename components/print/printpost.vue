@@ -12,7 +12,7 @@
     </p>
     <p class="margin-left-compensation is-size-1-desktop is-size-1-touch uppercase" v-html="postdata.title.rendered">
     </p>
-    <p class="margin-left-compensation is-size-2-desktop is-size-2-touch">
+    <p class="margin-left-compensation is-size-3-desktop is-size-3-touch">
       <span>By</span>
       <authorlinks :authors="postdata.acf.author"></authorlinks>
     </p>
