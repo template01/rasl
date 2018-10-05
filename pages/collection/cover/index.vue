@@ -169,8 +169,11 @@ export default {
           }
           contentsTitles = contentsTitles +this.selectedPosts[i].title.rendered
       }
-
-      return contentsTitles.substr(0, 570).trim() + '...';
+      if(contentsTitles.length>=570){
+        return contentsTitles.substr(0, 570).trim() + '...';
+      }else{
+        return contentsTitles;
+      }
 
     }
   },
