@@ -23,7 +23,7 @@
         <span class="uppercase underline pointer" @click="getCover()">Cover (.pdf)</span>
       </div>
       <div class="mt-10">
-      <div  v-if="progressCover<100 && progressCover > 1"  class="bar green-background" :style="{'width':+progressCover+'%'}">
+      <div  v-if="progressCover<100 && progressCover > 1"  class="bar pink-background" :style="{'width':+progressCover+'%'}">
       </div>
       <div  v-else class="bar"> </div>
       </div>
