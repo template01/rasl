@@ -169,8 +169,8 @@ export default {
           }
           contentsTitles = contentsTitles +this.selectedPosts[i].title.rendered
       }
-      if(contentsTitles.length>=570){
-        return contentsTitles.substr(0, 570).trim() + '...';
+      if(contentsTitles.length>=530){
+        return contentsTitles.substr(0, 530).trim() + '...';
       }else{
         return contentsTitles;
       }
