@@ -1,5 +1,5 @@
 <template>
-<div v-if="contentClean.length>0" class="columns is-marginless">
+<div v-if="contentClean.length>0" class="footnotes columns is-marginless">
   <!-- <span v-html="content"></span> -->
   <div class="column is-marginless">
     <div class=" pr-40 pl-40">
@@ -9,8 +9,10 @@
         </p>
         <p v-for="(item,index) in contentClean" :key="'note' + index">
           <a class="" :href="'#'+item.returnnote" :id="item.returnnote.replace(/return-/g,'')">
-            <span v-html="item.id" class="mr-5"></span>
-            <span v-html="item.content"></span>
+            <span v-html="item.id+':'" class="mr-5"></span>
+          </a>
+          <a class="ignoreUnderline" :href="'#'+item.returnnote" :id="item.returnnote.replace(/return-/g,'')">
+            <span class="" v-html="item.content"></span>
           </a>
         </p>
 
@@ -57,6 +59,10 @@ export default {
 
 }
 </script>
-<style scoped lang="scss">
-
+<style lang="scss">
+.footnotes{
+  .ignoreUnderline{
+    text-decoration: none !important;
+  }
+}
 </style>

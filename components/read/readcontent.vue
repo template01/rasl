@@ -51,6 +51,26 @@ export default {
 <style lang="scss">
 .readcontent {
 
+    a{
+
+        /* These are technically the same, but use both */
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+
+        -ms-word-break: break-all;
+        /* This is the dangerous one in WebKit, as it breaks things wherever */
+        word-break: break-all;
+        /* Instead use this non-standard one: */
+        word-break: break-word;
+
+        /* Adds a hyphen where the word breaks, if supported (No Blink) */
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+        text-decoration: underline;
+    }
+
     * {
         color: inherit !important;
     }
@@ -74,7 +94,7 @@ export default {
         margin-left: 20px;
         -webkit-box-decoration-break: clone;
         box-decoration-break: clone;
-        line-height: 1.2;
+        line-height: 1.4;
         b,
         bold,
         strong {
@@ -88,7 +108,9 @@ export default {
     }
 
     p {
-        line-height: 1.2;
+        line-height: 1.4;
+        letter-spacing: 1 !important;
+        word-spacing: 20% !important;
     }
 
     .endCircle{
