@@ -8,7 +8,7 @@
     </div>
   </div>
   <div class="columns is-marginless is-mobile">
-    <div class="column is-7 is-paddingless">
+    <div class="column is-12 is-paddingless">
 
       <h1 class="is-size-1-desktop is-size-3-touch uppercase" ><nuxt-link v-html="postdata.title.rendered" class="" :to="'read/'+postdata.type+'/'+postdata.slug+windowsearch">  </nuxt-link>
       </h1>

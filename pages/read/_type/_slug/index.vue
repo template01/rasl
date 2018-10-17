@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="readArticle" lang="en">
 
   <div :class="[postdata.type === 'practice' ? 'pink-background':'', postdata.type === 'reflective' ? 'green-background':'', postdata.type === 'general' ? 'white-background':'']">
     <pageheader :selectpost="{'type':postdata.type,'id':postdata.id}" :title="postdata.title.rendered"></pageheader>

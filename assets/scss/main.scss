@@ -71,7 +71,7 @@ html {
 .is-size-3-desktop,
 .is-size-4-touch,
 .is-size-4-desktop {
-  line-height: 1.1;
+  line-height: 1;
 }
 
 .pointer {
@@ -193,6 +193,8 @@ hr {
 
 .huge-letters {
   font-size: 10vw;
+  letter-spacing: -0.5vw;
+  // hyphens: manual;
   line-height: 0.86;
   text-transform: uppercase;
 }
