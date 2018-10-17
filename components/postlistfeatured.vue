@@ -203,14 +203,16 @@ export default {
     background: white;
 
     width: 100%;
-    min-height: 600px;
+    min-height: 450px;
+    // height: 50vh;
     .columnWrapper{
 
     }
     .contentWrapper{
       width: 50%;
       float: left;
-      min-height: 600px;
+      // height: 50vh;
+      min-height: 450px;
       position: relative;
 
       .contentColumnAuthor{
@@ -233,9 +235,9 @@ export default {
 .featuredImageWrapper{
   width: 50%;
   float: left;
-  min-height: 600px;
+  min-height: 450px;
   overflow: hidden;
-  height: 100%;
+  height: 50vh;
 
   position: relative;
   // padding: 0.75rem 0 0.75rem 0 ;

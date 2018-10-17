@@ -5,7 +5,7 @@
   <div class="backgroundBlockII">
   </div>
   <div class="contentWrapperIntro pb-20 pt-60" :class="$mq != 'lg'? 'mt-40':''">
-    <h1 class="" :class="$mq != 'lg'? 'mt-5':''" >
+    <h1 class="huge-letters" :class="$mq != 'lg'? 'mt-5':''" >
         <span>PUBLICATIONS</span>
           <span class="">
             <img class="" src="/rasllogow.svg"/>
@@ -111,9 +111,9 @@ export default {
     }
 
     h1 {
-        font-size: 10vw;
-        line-height: 9vw;
-        letter-spacing: -0.5vw;
+        // font-size: 10vw;
+        // line-height: 9vw;
+        // letter-spacing: -0.5vw;
     }
     .animateHeight {
         line-height: 80vh;

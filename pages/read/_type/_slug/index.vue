@@ -1,15 +1,15 @@
 <template>
-<div class="readArticle" lang="en">
+<div class="readArticle">
 
   <div :class="[postdata.type === 'practice' ? 'pink-background':'', postdata.type === 'reflective' ? 'green-background':'', postdata.type === 'general' ? 'white-background':'']">
     <pageheader :selectpost="{'type':postdata.type,'id':postdata.id}" :title="postdata.title.rendered"></pageheader>
-    <div class="columns is-marginless pt-60">
+    <div class="columns is-marginless pt-60" lang="en">
       <div class="column is-marginless">
         <div class="" :class="$mq != 'lg' ? 'pt-40':' pr-40 pl-40'">
           <div class="columns pb-40 is-marginless">
             <div :class="[postdata.type === 'practice' ? 'has-text-danger':'', postdata.type === 'reflective' ? 'has-text-info':'', postdata.type === 'general' ? '':'']">
               <div class="mt-40">
-                <h1 class="huge-letters pb-40" v-html="postdata.title.rendered"></h1>
+                <h1  class="hyphenate huge-letters pb-40" v-html="postdata.title.rendered"></h1>
                 <div v-if="postdata.acf.subtitle" class=" is-size-1-desktop is-size-3-touch pb-80">
                   <p v-html="postdata.acf.subtitle">
                   </p>
@@ -85,6 +85,16 @@ export default {
         return []
       }
     }
+  },
+  mounted(){
+    this.$store.commit('SET_READINGID',this.postdata.id)
+
+    Hyphenator.config({
+        minwordlength : 4
+    });
+    Hyphenator.run();
+
+
   },
 
   async asyncData({

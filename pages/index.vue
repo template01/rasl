@@ -366,7 +366,7 @@ export default {
 }
 
 #library {
-
+    z-index: 1;
     position: relative;
     // min-height: 110vh;
     .backgroundBlockI,

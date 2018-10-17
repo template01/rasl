@@ -1,5 +1,5 @@
 <template>
-<div>
+<div lang="en">
   <loadinginit></loadinginit>
   <!-- <transition name="fader"> -->
   <!-- <div v-if="!loading"> -->
@@ -12,18 +12,29 @@
     <transition name="fade">
       <div v-if="appinitated" class="menuToggle pt-20">
         <div class="column " :class="$mq != 'lg' ? 'is-paddingless':''">
-          <span class="fixedMenu" :style="$mq != 'lg' ? {'margin-right':'12px'}: {'margin-right':'40px'}">
-          <transition name="slide-fade" mode="out-in">
-           <span key="1" class="pointer" v-if="update" @click="$store.commit('menu/SET_TOGGLE',true)">
-             <buttoncounter  ></buttoncounter>
-           </span>
-          <span key="2" v-else>
-         <span class="pointer" v-if="!$store.state.menu.toggle" @click="$store.commit('menu/SET_TOGGLE',true)"><img class="rasl-icon" :src="'/icons/rasl_menu.svg'" /> </span>
-          <span class="pointer" v-else @click=" $store.commit('menu/SET_TOGGLE',false)"><img class="rasl-icon" :src="'/icons/rasl_close.svg'" /></span>
-          </span>
-    </transition>
-    </span>
-    </div>
+          <span class="fixedMenu" >
+
+
+            <div class="is-pulled-left" v-if="$route.params.type ==='reflective' || $route.params.type ==='practice'">
+
+              <!-- <p class="is-size-3-desktop is-size-5-touch has-text-right logoText"> -->
+                <selectpost class="pointer pr-5" :posttype="$route.params.type" :postid="$store.state.readingId"></selectpost>
+              <!-- </p> -->
+            </div>
+            <div class="is-pulled-right" :style="$mq != 'lg' ? {'margin-right':'12px'}: {'margin-right':'40px'}">
+
+              <transition name="slide-fade" mode="out-in">
+              <span key="1" class="pointer" v-if="update" @click="$store.commit('menu/SET_TOGGLE',true)">
+                <buttoncounter  ></buttoncounter>
+              </span>
+              <span key="2" v-else>
+                <span class="pointer" v-if="!$store.state.menu.toggle" @click="$store.commit('menu/SET_TOGGLE',true)"><img class="rasl-icon" :src="'/icons/rasl_menu.svg'" /> </span>
+                <span class="pointer" v-else @click=" $store.commit('menu/SET_TOGGLE',false)"><img class="rasl-icon" :src="'/icons/rasl_close.svg'" /></span>
+              </span>
+              </transition>
+            </div>
+        </span>
+        </div>
     </div>
     </transition>
     <div :class="$mq!='lg' ? 'menuMobile':''" class="menu lightgrey-background" :style="{'z-index':zindexMenu}">
@@ -44,6 +55,7 @@
 
 <script>
 import menucontent from '~/components/menucontent'
+import selectpost from '~/components/selectpost'
 import loadinginit from '~/components/loadinginit'
 import buttoncounter from '~/components/buttoncounter'
 import pagefooter from '~/components/pagefooter'
@@ -54,6 +66,7 @@ import {
 
 export default {
   components: {
+    selectpost,
     loadinginit,
     buttoncounter,
     pagefooter,

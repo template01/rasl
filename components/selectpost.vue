@@ -5,7 +5,7 @@
       <input  id="checkBox" type="checkbox" :value="postid" :id="postid" v-model="isselected">
       <label v-if="isselected.length===0" :for="postid" class=""><img class="rasl-icon pointer" :src="'/icons/rasl_plus.svg'" /></label>
       <label v-else :for="postid"><img class="rasl-icon pointer" :src="'/icons/rasl_minus.svg'" /></label>
-      <span v-if="!hidehelpers" :class="isselected.length===0 ? '':'hideit' " class="addtoselection is-hidden-touch" style=""><span class="hinter mr-5 pr-10 pl-10 is-size-5" style=""><span class="inner">Collect Article</span></span></span>
+      <span v-if="!hidehelpers" :class="isselected.length===0 ? '':'hideit' " class="addtoselection is-hidden-touch" style=""><span class="hinter mr-5 pr-10 pl-10 is-size-5" style=""><span class="inner">add to collection</span></span></span>
     </template>
     <template v-else>
       <input  id="checkBox" type="checkbox disable-action" >
@@ -118,7 +118,7 @@ input {
         border-radius: 20px;
         .inner {
             vertical-align: top;
-            line-height: 34px;
+            line-height: 33px;
         }
     }
 }

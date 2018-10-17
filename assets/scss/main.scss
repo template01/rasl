@@ -3,10 +3,25 @@
 $tablet: 1024px;
 $mobile: 1024px;
 $desktop: 1024px;
-$size-3: 2rem; // /* Smartphones (portrait and landscape) ----------- */
-// @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-// /* Styles */
-// }
+
+
+$size-1: 2.7rem;
+$size-3: 1.7rem;
+
+.is-size-1 {
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.huge-letters {
+  font-size: 8vw;
+  letter-spacing: -0.25vw;
+  // hyphens: manual;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+
 $body-line-height: 1.4;
 $link-hover: inherit;
 $text: $black;
@@ -183,18 +198,4 @@ hr {
 .underline {
   border-bottom: 2px solid;
   border-color: inherit;
-}
-
-.is-size-1 {
-  font-size: 4rem !important;
-  line-height: 1;
-  letter-spacing: -1px;
-}
-
-.huge-letters {
-  font-size: 10vw;
-  letter-spacing: -0.5vw;
-  // hyphens: manual;
-  line-height: 0.86;
-  text-transform: uppercase;
 }

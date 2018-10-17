@@ -17,12 +17,12 @@
           </nuxt-link>
           </p>
         </div>
-        <div v-if="$route.params.type ==='reflective' || $route.params.type ==='practice'" class="column  logoWrapper" :class="$mq != 'lg' ? 'is-paddingless mr-10':''">
+        <!-- <div v-if="$route.params.type ==='reflective' || $route.params.type ==='practice'" class="column  logoWrapper" :class="$mq != 'lg' ? 'is-paddingless mr-10':''">
 
           <p class="is-size-3-desktop is-size-5-touch has-text-right logoText">
             <selectpost class="pointer mr-40 pr-5" :posttype="selectpost.type" :postid="selectpost.id"></selectpost>
           </p>
-        </div>
+        </div> -->
 
       </div>
 

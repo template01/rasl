@@ -25,7 +25,8 @@ export const state = () => ({
   showfiltersdesktop: false,
   scrollpos: [],
   viewing: '',
-  loading: false
+  loading: false,
+  readingId: 'x'
   // camefrom:['','']
   // MOCK SELECTED
   // selected: [{'postid': 1801,'posttype': 'practice'}]
@@ -43,6 +44,12 @@ export const state = () => ({
 
 
 export const getters = {
+
+
+  GET_READINGID(state) {
+    return state.readingId
+  },
+
 
   GET_LOADING(state) {
     return state.loading
@@ -131,6 +138,10 @@ export const mutations = {
   //
   SET_LOADING(state, input) {
     state.loading = input
+  },
+
+  SET_READINGID(state, input) {
+    state.readingId = input
   },
 
   SET_VIEWING(state, input) {
