@@ -1,8 +1,8 @@
 <template>
 <div :class="printversion ? 'printversion':''" class="contenttextphoto columns is-marginless ">
   <div class="column is-marginless">
-    <div class=" pr-40 pl-40">
-      <div :class="printversion ? 'is-12':'is-6 is-offset-3'" class=" column">
+    <div class="" :class="$mq != 'lg' ? '':' pr-40 pl-40'">
+      <div :class="[printversion ? 'is-12':'is-6 is-offset-3',$mq != 'lg' ? 'is-paddingless':'']" class=" column">
         <div class="is-size-4-desktop is-size-6-touch" v-html="content">
           <!-- <div class="is-size-4-desktop is-size-6-touch" style="  border: 2px solid black;" v-html="content"> -->
         </div>
@@ -44,63 +44,86 @@ export default {
         color: inherit !important;
     }
     &:not(.printversion) {
-        p {
-            margin-bottom: 20px;
-            img {
+
+        @media only screen and (min-width: 801px) {
+
+            p {
+                margin-bottom: 20px;
+                img {
+                    margin-left: -20%;
+                    margin-right: -20%;
+                    width: 140%;
+                    max-width: 140%;
+                    clear: both;
+                    &.alignleft {
+                        float: left;
+                        max-width: 60%;
+                        margin-right: 20px;
+                        margin-top: 15px;
+                        margin-bottom: 5px;
+                    }
+                    &.alignright {
+                        float: right;
+                        max-width: 60%;
+                        margin-left: 20px;
+                        margin-top: 15px;
+                        margin-bottom: 5px;
+                    }
+                    &.aligncenter {
+                        // margin: 0 auto;
+                        // margin-top: 20px;
+                    }
+                }
+            }
+
+            .wp-caption {
+
                 margin-left: -20%;
                 margin-right: -20%;
-                width: 140%;
-                max-width: 140%;
-                clear: both;
+                width: 140% !important;
+                max-width: 140% !important;
                 &.alignleft {
                     float: left;
                     max-width: 60%;
                     margin-right: 20px;
-                    margin-top: 15px;
-                    margin-bottom: 5px;
+                    margin-top: 20px;
+                    margin-bottom: 10px;
                 }
                 &.alignright {
                     float: right;
                     max-width: 60%;
                     margin-left: 20px;
-                    margin-top: 15px;
-                    margin-bottom: 5px;
+                    margin-top: 20px;
+                    margin-bottom: 10px;
                 }
                 &.aligncenter {
                     // margin: 0 auto;
                     // margin-top: 20px;
                 }
+                img {
+                    width: 100%;
+                }
             }
         }
 
-        .wp-caption {
+        @media only screen and (max-width: 800px) {
 
-            margin-left: -20%;
-            margin-right: -20%;
-            width: 140%;
-            max-width: 140%;
-            &.alignleft {
-                float: left;
-                max-width: 60%;
-                margin-right: 20px;
-                margin-top: 20px;
-                margin-bottom: 10px;
+            p {
+                margin-bottom: 20px;
+                img {
+                  width: 100%;
+
+                }
             }
-            &.alignright {
-                float: right;
-                max-width: 60%;
-                margin-left: 20px;
-                margin-top: 20px;
-                margin-bottom: 10px;
-            }
-            &.aligncenter {
-                // margin: 0 auto;
-                // margin-top: 20px;
-            }
-            img {
-                width: 100%;
+
+            .wp-caption {
+                width: 100% !important;
+                img {
+                    width: 100%;
+                }
             }
         }
+
     }
     &.printversion {
 
@@ -111,6 +134,7 @@ export default {
                 max-width: 19.7cm;
 
                 &.alignleft {
+                  clear: both;
                     float: left;
                     margin-left: -6cm;
                     width: 8cm;
@@ -120,6 +144,7 @@ export default {
                     margin-bottom: 0;
                 }
                 &.alignright {
+                  clear: both;
                     float: left;
                     margin-left: -6cm;
                     width: 8cm;
@@ -141,8 +166,8 @@ export default {
             }
 
             margin: 5mm 0 5mm -1cm;
-            width:19.7cm;
-            max-width:19.7cm;
+            width: 19.7cm;
+            max-width: 19.7cm;
 
             &.alignleft {
                 float: left;

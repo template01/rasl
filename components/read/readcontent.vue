@@ -107,10 +107,13 @@ export default {
 
     }
 
-    p {
+    p,ol {
         line-height: 1.4;
         letter-spacing: 1 !important;
         word-spacing: 20% !important;
+        li{
+          margin-bottom: 15px;
+        }
     }
 
     .endCircle{

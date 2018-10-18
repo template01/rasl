@@ -41,7 +41,7 @@
         <hr class="m-0" />
       </div> -->
       <div v-sticky sticky-offset="0" sticky-side="top" class="user-select-none librarynavwrapper pl-40 pr-40" :class="$mq != 'lg' ? 'white-background':''">
-        <librarynav class="pt-20 pb-10"></librarynav>
+        <librarynav class="pt-20" :class="$mq != 'lg' ? '':''"></librarynav>
         <hr class="m-0" />
         <div class="backgroundBlockI is-hidden-touch" :style="getBackgroundStyleI">
         </div>
