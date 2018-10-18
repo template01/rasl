@@ -215,7 +215,7 @@ export default {
   font-size: 11pt !important;
 }
 .is-size-4{
-  font-size: 22px;
+  font-size: 19px;
 }
 
 .columnCustom {
