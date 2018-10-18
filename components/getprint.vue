@@ -188,8 +188,8 @@ export default {
               "run-script":"document.documentElement.style.backgroundColor = 'white';",
               "image-quality": "80",
               "javascript-delay": "1",
-              "margin-top": "8mm",
-              "margin-bottom": "8mm",
+              "margin-top": "5mm",
+              "margin-bottom": "5mm",
               "margin-left": "10mm",
               "margin-right": "10mm"
             }
