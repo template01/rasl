@@ -189,7 +189,7 @@ export default {
               "image-quality": "80",
               "javascript-delay": "1",
               "margin-top": "8mm",
-              "margin-bottom": "10mm",
+              "margin-bottom": "8mm",
               "margin-left": "10mm",
               "margin-right": "10mm"
             }
