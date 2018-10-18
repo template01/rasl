@@ -137,8 +137,8 @@ export default {
                   clear: both;
                     float: left;
                     margin-left: -6cm;
-                    width: 8cm;
-                    max-width: 8cm;
+                    width: 8cm !important;
+                    max-width: 8cm !important;
                     margin-right: 5mm;
                     margin-top: 10px;
                     margin-bottom: 0;
@@ -147,8 +147,8 @@ export default {
                   clear: both;
                     float: left;
                     margin-left: -6cm;
-                    width: 8cm;
-                    max-width: 8cm;
+                    width: 8cm !important;
+                    max-width: 8cm !important;
                     margin-right: 5mm;
                     margin-top: 10px;
                     margin-bottom: 0;
