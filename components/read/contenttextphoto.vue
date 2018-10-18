@@ -43,6 +43,7 @@ export default {
     * {
         color: inherit !important;
     }
+
     &:not(.printversion) {
 
         @media only screen and (min-width: 801px) {

@@ -51,7 +51,7 @@ export default {
 <style lang="scss">
 .readcontent {
 
-    a{
+    a {
 
         /* These are technically the same, but use both */
         overflow-wrap: break-word;
@@ -90,8 +90,8 @@ export default {
     h6 {
         text-decoration: underline;
         // border-bottom: 2px solid black;
-        width: 100%;
-        margin-left: 20px;
+        // width: 100%;
+        margin-left: 40px;
         -webkit-box-decoration-break: clone;
         box-decoration-break: clone;
         line-height: 1.4;
@@ -107,25 +107,46 @@ export default {
 
     }
 
-    p,ol {
+    h1 + p,
+    h2 + p,
+    h3 + p,
+    h4 + p,
+    h5 + p,
+    h6 + p {
+
+      text-indent: 0px;
+
+        }
+
+    p {
+        text-indent: 40px;
+    }
+
+    p:first-of-type{
+      text-indent: 0;
+    }
+
+
+    ol,
+    p {
         line-height: 1.4;
         letter-spacing: 1 !important;
         word-spacing: 20% !important;
-        li{
-          margin-bottom: 15px;
+        li {
+            margin-bottom: 15px;
         }
     }
 
-    .endCircle{
-      background: black;
-      width: 8mm;
-      height: 8mm;
-      margin-right: 40px;
-      border-radius: 100%;
-      float: right;
-      page-break-inside: avoid;
-      page-break-before: avoid;
-      page-break-after: avoid;
+    .endCircle {
+        background: black;
+        width: 8mm;
+        height: 8mm;
+        margin-right: 40px;
+        border-radius: 100%;
+        float: right;
+        page-break-inside: avoid;
+        page-break-before: avoid;
+        page-break-after: avoid;
     }
 }
 </style>

@@ -78,7 +78,6 @@ export default {
         text-align: right;
         .metaRotate {
 
-
             -webkit-transform: rotate(90deg);
             transform: rotate(90deg);
             // EQAL HOOGTE VAN WRAPPER
@@ -116,9 +115,8 @@ export default {
 
     .is-size-6,
     .is-size-6-touch {
-      font-size: 14pt !important;
+        font-size: 14pt !important;
     }
-
 
     .is-size-1-desktop,
     .is-size-1-touch {
@@ -145,11 +143,31 @@ export default {
             h4,
             h5,
             h6 {
-                margin-left: 5.5cm;
+                margin-left: 6cm;
                 margin-top: 5mm;
+                // text-indent: 6cm;
+
             }
             pre {
                 margin-left: 5cm;
+            }
+
+            h1 + p,
+            h2 + p,
+            h3 + p,
+            h4 + p,
+            h5 + p,
+            h6 + p {
+
+                text-indent: 0;
+
+            }
+            p:first-of-type{
+              text-indent: 0;
+            }
+
+            p {
+                text-indent: 1cm;
             }
 
         }
