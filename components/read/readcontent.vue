@@ -6,7 +6,7 @@
     <contentaudio v-if="item.acf_fc_layout === 'audiopodcast' && !printversion" :printversion="printversion" :content="item.content"></contentaudio>
     <contentsmalltextcolumn v-if="item.acf_fc_layout === 'smalltextcolumns'" :printversion="printversion" :content="item.content"></contentsmalltextcolumn>
   </div>
-  <footnotes :printversion="printversion" :content="footnotes"></footnotes>
+  <footnotes v-if="footnotes" :printversion="printversion" :content="footnotes"></footnotes>
   <div v-if="printversion" class="endCircle">
   </div>
   <style v-if="type ==='practice'">.readcontent .wp-caption{ color: red !important; }
@@ -112,7 +112,8 @@ export default {
     h3 + p,
     h4 + p,
     h5 + p,
-    h6 + p {
+    h6 + p,
+    blockquote + p {
 
       text-indent: 0px;
 
@@ -137,6 +138,10 @@ export default {
         }
     }
 
+    blockquote{
+      margin-left: 40px;
+      margin-right: 40px;
+    }
     .endCircle {
         background: black;
         width: 8mm;

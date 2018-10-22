@@ -2,7 +2,8 @@
 <div class="readArticle">
 
   <div :class="[postdata.type === 'practice' ? 'pink-background':'', postdata.type === 'reflective' ? 'green-background':'', postdata.type === 'general' ? 'white-background':'']">
-    <pageheader :selectpost="{'type':postdata.type,'id':postdata.id}" :title="postdata.title.rendered"></pageheader>
+    <pageheader :pagename="postdata.type"  :selectpost="{'type':postdata.type,'id':postdata.id}" :title="postdata.title.rendered"></pageheader>
+
     <div class="columns is-marginless pt-60" lang="en">
       <div class="column is-marginless">
         <div class="" :class="$mq != 'lg' ? 'pt-40':' pr-40 pl-40'">

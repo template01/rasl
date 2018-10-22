@@ -26,7 +26,7 @@ export const state = () => ({
   scrollpos: [],
   viewing: '',
   loading: false,
-  readingId: 'x'
+  readingId: null
   // camefrom:['','']
   // MOCK SELECTED
   // selected: [{'postid': 1801,'posttype': 'practice'}]

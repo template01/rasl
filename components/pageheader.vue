@@ -1,37 +1,40 @@
 <template>
-    <transition name="fade">
-<div v-show="appinitated" class="indexheader pr-40 pl-40 pt-20">
+<transition name="fade">
+  <div v-show="appinitated" class="indexheader pt-20" :class=" $mq != 'lg' ? 'pr-20 pl-20':'pr-40 pl-40'">
 
-  <div class="indexheaderInner">
+    <div class="indexheaderInner">
 
-    <div>
-      <div class="columns is-mobile is-marginless">
-        <div class="column  logoWrapper" :class="$mq != 'lg' ? 'is-paddingless mt-5':''">
-          <nuxt-link :to="'/'+windowsearch">
+      <div>
+        <div class="columns is-mobile is-marginless">
+          <div class="column  logoWrapper" :class="$mq != 'lg' ? 'is-paddingless mt-5':''">
             <p class="is-size-3-desktop is-size-5-touch logoText">
-              <span class="">
-              PUBLICATIONS.RASL.NU
-            </span>
+              <nuxt-link :to="'/'+windowsearch">
+                <span class="">
+                  PUBLICATIONS.RASL.NU
+                </span>
+              </nuxt-link>
+              <span style="text-transform:capitalize" v-if="pagename && $mq != 'sm'" v-html="' &mdash; '+pagename"></span>
             </p>
 
-          </nuxt-link>
-          </p>
-        </div>
-        <!-- <div v-if="$route.params.type ==='reflective' || $route.params.type ==='practice'" class="column  logoWrapper" :class="$mq != 'lg' ? 'is-paddingless mr-10':''">
+            <span class="">
+        </span>
+            </p>
+          </div>
+          <!-- <div v-if="$route.params.type ==='reflective' || $route.params.type ==='practice'" class="column  logoWrapper" :class="$mq != 'lg' ? 'is-paddingless mr-10':''">
 
           <p class="is-size-3-desktop is-size-5-touch has-text-right logoText">
             <selectpost class="pointer mr-40 pr-5" :posttype="selectpost.type" :postid="selectpost.id"></selectpost>
           </p>
         </div> -->
 
+        </div>
+
+
       </div>
 
 
     </div>
-
-
   </div>
-</div>
 </transition>
 </template>
 <script>
@@ -47,14 +50,13 @@ import {
 
 
 export default {
-  props: ['title', 'selectpost','initload'],
+  props: ['title', 'selectpost', 'initload', 'pagename'],
   components: {
     buttoncounter,
     selectpost,
     menucontent
   },
-  directives: {
-  },
+  directives: {},
 
   data: function() {
     return {
@@ -162,21 +164,24 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-.indexheader{
-  // transform: translateY(-40px);
-  position: absolute;
-  z-index: 100;
-  width: 100%;
-  .fixedMenu{
-    position: fixed;
-    right: calc(40px + 0.75rem)
-  }
+.indexheader {
+    // transform: translateY(-40px);
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    .fixedMenu {
+        position: fixed;
+        right: calc(40px + 0.75rem);
+    }
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
+/* .fade-leave-active below version 2.1.8 */
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
 }
 </style>

@@ -11,7 +11,7 @@
       <div>
         <span class="uppercase underline pointer" @click="getPdf()">Collection (.pdf)</span>
       </div>
-      <div class="mt-10">
+      <div class="" style="margin-top:12px">
       <div  v-if="progress<100 && progress > 1" class="bar green-background" :style="{'width':+progress+'%'}">
       </div>
       <div  v-else class="bar"> </div>
@@ -21,12 +21,13 @@
     <div class="column" style="padding-bottom:0px;">
       <div>
         <span class="uppercase underline pointer" @click="getCover()">Cover (.pdf)</span>
+        <p class="pt-10 is-size-5-desktop is-size-6-touch">Generates a cover, with a randomized title based on your article selection.</p>
       </div>
-      <div class="mt-10">
+      <!-- <div class="mt-10">
       <div  v-if="progressCover<100 && progressCover > 1"  class="bar pink-background" :style="{'width':+progressCover+'%'}">
       </div>
       <div  v-else class="bar"> </div>
-      </div>
+      </div> -->
     </div>
   </div>
 

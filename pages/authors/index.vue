@@ -1,6 +1,6 @@
 <template>
 <div class="white-background fullHeight">
-  <pageheader></pageheader>
+  <pageheader :pagename="'Authors'"></pageheader>
   <div class="columns is-marginless  pt-60">
     <div class="column">
 

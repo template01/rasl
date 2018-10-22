@@ -1,6 +1,6 @@
 <template>
 <div class="fullHeight white-background">
-  <pageheader title="Collection"></pageheader>
+  <pageheader :pagename="'Collection'" title="Collection"></pageheader>
   <div class="columns is-marginless  pt-60">
     <div class="column">
 
@@ -8,38 +8,12 @@
         <div class="columns pb-40 is-marginless">
           <div class="">
             <div class="mt-40">
-              <h1 class="huge-letters pb-80">Print Collection</h1>
+              <h1 class="huge-letters pb-80">Collection</h1>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- <div class="columns">
-        <div class="column  is-6 has-border-right">
-          <p class="is-size-1-desktop is-size-2-touch-desktop is-size-2-touch pb-20">
-
-          </p>
-          <div class="pb-20">
-            <p class="is-size-4-desktop is-size-5-touch">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-              in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-          </div>
-          <div>
-            <p class="is-size-1-desktop is-size-2-touch-desktop is-size-2-touch">
-              Tags:
-              <br />
-              <span v-for="tag in detailsTags" v-html="' '+ tag.name"></span>
-            </p>
-
-          </div>
-        </div>
-
-        <div class="column is-6 ignore-pt">
-          <postlistdraggable :display="selectedPosts"></postlistdraggable>
-          <getprint></getprint>
-        </div>
-      </div> -->
     </div>
 
   </div>
@@ -63,7 +37,7 @@
 // import genericcomp from '~/components/_genericComp.vue'
 import postlistdraggable from '~/components/print/postlistdraggable.vue'
 import pageheader from '~/components/pageheader.vue'
-import getprint from '~/components/getprint.vue'
+import getprint from '~/components/print/getprint.vue'
 import _ from 'lodash'
 
 import axios from 'axios'

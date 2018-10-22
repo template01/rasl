@@ -1,6 +1,6 @@
 <template>
 <div class="white-background">
-  <pageheader></pageheader>
+  <pageheader  :pagename="'Author'"></pageheader>
 
   <div class="columns is-marginless  pt-60">
     <div class="column">
