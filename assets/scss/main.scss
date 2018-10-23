@@ -1,5 +1,6 @@
 @import '~bulma/sass/utilities/initial-variables';
 @import '~bulma/sass/utilities/functions'; // customize styles
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Serif:400i');
 $tablet: 1024px;
 $mobile: 1024px;
 $desktop: 1024px;
@@ -8,6 +9,10 @@ $desktop: 1024px;
 $size-1: 2.7rem;
 $size-3: 1.7rem;
 
+i,em{
+  font-family: 'IBM Plex Serif', serif !important;
+  color: green !important;
+}
 
 .is-size-1 {
   line-height: 1;

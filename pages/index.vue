@@ -92,7 +92,7 @@
         <hr class="m-0" />
       </div>
 
-      <div :class="$mq != 'lg' ? '':'pl-40 pr-40'">
+      <div :class="$mq != 'lg' ? '':'pt-20 pl-40 pr-40'">
 
         <!-- {{practiceHide}} -->
         <div v-if="$mq === 'lg'" class="animateWidthColumns pb-40 columns is-marginless" :style="getColumnStyle">

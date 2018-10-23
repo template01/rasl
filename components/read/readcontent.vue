@@ -1,10 +1,11 @@
 <template>
-<div class="contentwrapper readcontent">
+<div class="contentwrapper readcontent" :class="printversion?'printversion':''">
   <div v-for="(item,index) in content">
-    <contenttextphoto v-if="item.acf_fc_layout === 'textphoto'" :printversion="printversion" :content="item.content"></contenttextphoto>
-    <contentvideo :coverimage="item.coverimage" v-if="item.acf_fc_layout === 'video' && !printversion" :printversion="printversion" :content="item.content"></contentvideo>
-    <contentaudio v-if="item.acf_fc_layout === 'audiopodcast' && !printversion" :printversion="printversion" :content="item.content"></contentaudio>
-    <contentsmalltextcolumn v-if="item.acf_fc_layout === 'smalltextcolumns'" :printversion="printversion" :content="item.content"></contentsmalltextcolumn>
+    <contentslideshow :type="type" v-if="item.acf_fc_layout === 'slideshow'"  :printversion="printversion" :content="item.content"></contentslideshow>
+    <contenttextphoto class="pt-40" v-if="item.acf_fc_layout === 'textphoto'" :printversion="printversion" :content="item.content"></contenttextphoto>
+    <contentvideo class="pt-40" :coverimage="item.coverimage" v-if="item.acf_fc_layout === 'video' && !printversion" :printversion="printversion" :content="item.content"></contentvideo>
+    <contentaudio class="pt-40" v-if="item.acf_fc_layout === 'audiopodcast' && !printversion" :printversion="printversion" :content="item.content"></contentaudio>
+    <contentsmalltextcolumn class="pt-40" v-if="item.acf_fc_layout === 'smalltextcolumns'" :printversion="printversion" :content="item.content"></contentsmalltextcolumn>
   </div>
   <footnotes v-if="footnotes" :printversion="printversion" :content="footnotes"></footnotes>
   <div v-if="printversion" class="endCircle">
@@ -21,6 +22,7 @@ import {
 } from 'vuex'
 
 import contenttextphoto from "~/components/read/contenttextphoto"
+import contentslideshow from "~/components/read/contentslideshow"
 import contentaudio from "~/components/read/contentaudio"
 import contentvideo from "~/components/read/contentvideo"
 import contentsmalltextcolumn from "~/components/read/contentsmalltextcolumn"
@@ -28,6 +30,7 @@ import footnotes from "~/components/read/footnotes"
 
 export default {
   components: {
+    contentslideshow,
     contenttextphoto,
     contentaudio,
     contentvideo,
@@ -49,6 +52,13 @@ export default {
 }
 </script>
 <style lang="scss">
+
+.printversion{
+  blockquote{
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
 .readcontent {
 
     a {

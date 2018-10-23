@@ -38,7 +38,8 @@ export default {
     error,
     store,
     route,
-    redirect
+    redirect,
+    app
   }) {
 
     // function footnotesSingleBlock(input) {
@@ -85,7 +86,7 @@ export default {
 
     return {
       selectedPosts: results,
-      selectedPostsFootnotes: footnoteParser.footnotesAllPosts(results)
+      selectedPostsFootnotes: app.footnotesAllPosts(results)
     }
 
 

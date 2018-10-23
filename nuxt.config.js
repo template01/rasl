@@ -134,7 +134,9 @@ module.exports = {
   // },
 
 
-  css: [{
+  css: [
+    'swiper/dist/css/swiper.css',
+    {
       src: '~assets/css/marginpaddinghelpers.css',
       lang: 'css'
     },
@@ -165,7 +167,7 @@ module.exports = {
 
     //GLOBAL MIXINS
     // '~/mixins/computedresizerglobalmixin.js',
-
+    '~/plugins/parsefootnotes-inject.js',
     '~/plugins/lodash-plugin.js',
     {
       src: '~/plugins/dragorderlist.js',

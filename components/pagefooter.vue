@@ -3,35 +3,28 @@
   <div v-if="footerContent" v-show="appinitated" class="pagefooter lightgrey-background pr-40 pl-40 pt-20 pb-20">
 
     <div class="">
-
+<!--
       <div class="columns is-marginless is-size-4-desktop is-size-5-touch">
         <div class="column">
-          <!-- <nuxt-link :to="'/'+windowsearch">
-            <p class="is-size-3-desktop is-size-5-touch logoText">
-              <span class="">
-              PUBLICATIONS.RASL.NU
-            </span>
-            </p>
-          </nuxt-link> -->
           <div v-html="footerContent.acf.content">
           </div>
         </div>
 
 
-      </div>
-      <div class="columns is-marginless is-size-4-desktop is-size-5-touch">
-        <div class="column">
-          <div class="logoWrapperOuter">
-            <span class="logo mr-40" v-for="link in footerContent.acf.logoslinks">
+      </div> -->
+      <div  style="display:flex" class=" is-size-4-desktop is-size-5-touch" :class="$mq != 'lg' ? '':'mt-20'">
+            <div class="is-pulled-left  logo" v-for="link in footerContent.acf.logoslinks">
                 <a v-if="link.link.length>0":href="link.link">
                   <img :src="link.logo.url"/>
                 </a>
                 <span v-else>
                   <img :src="link.logo.url"/>
                 </span>
-            </span>
+            </div>
+          <div class="is-pulled-left pl-40 footerText" v-html="footerContent.acf.content">
           </div>
-        </div>
+        <!-- <div class="column is-10">
+        </div> -->
 
 
       </div>
@@ -106,11 +99,13 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-.logoWrapperOuter {
-    display: flex;
-}
+// .logoWrapperOuter {
+//     display: flex;
+// }
 .logo {
+
     img {
+        min-width: 50px;
         max-height: 100px;
     }
 }

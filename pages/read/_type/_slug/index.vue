@@ -29,7 +29,7 @@
 
     </div>
   </div>
-  <div class="pb-40 pt-40 white-background">
+  <div class="pb-40 white-background">
 
     <div class=" is-marginless ">
       <readcontent :type="postdata.type" :footnotes="footnotes" :content="postdata.acf.contentbuilder"></readcontent>
@@ -45,6 +45,7 @@
 // import genericcomp from '~/components/_genericComp.vue'
 // import postlistdraggable from '~/components/print/postlistdraggable.vue'
 // import getprint from '~/components/getprint.vue'
+
 import readcontent from '~/components/read/readcontent'
 import buttoncounter from '~/components/buttoncounter'
 import selectpost from '~/components/selectpost'
@@ -56,7 +57,7 @@ import axios from 'axios'
 import {
   mapGetters
 } from 'vuex'
-import footnoteParser from '~/assets/js/footnoteParser.js';
+// import footnoteParser from '~/assets/js/footnoteParser.js';
 
 export default {
   components: {
@@ -89,7 +90,6 @@ export default {
   },
   mounted(){
     this.$store.commit('SET_READINGID',this.postdata.id)
-
     Hyphenator.config({
         minwordlength : 4
     });
@@ -104,8 +104,12 @@ export default {
     error,
     store,
     route,
-    redirect
+    redirect,
+    app
   }) {
+
+    console.log(app)
+
 
 
     function getPost() {
@@ -128,12 +132,15 @@ export default {
       return axios.get(state.apiRoot + '/wp/v2/practice' + '?filter[' + state.filterby + ']=' + state.filters + '&per_page=10&page=1');
     }
 
-
+    var vm = this
     return axios.all([getPost(), getGeneric()])
       .then(axios.spread(function(post, generic) {
+        // console.log(app)
+        app.myInjectedFunction('async')
+
         return {
           postdata: post.data[0],
-          footnotes: footnoteParser.footnotesAll(post.data[0].acf.contentbuilder)
+          footnotes:  app.footnotesAll(post.data[0].acf.contentbuilder)
         }
 
       }));

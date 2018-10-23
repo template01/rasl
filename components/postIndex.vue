@@ -1,7 +1,6 @@
 <template>
 <div  :class="[$mq != 'lg' ? 'pl-40 pr-40':'', postBackgroundColor]">
-
-  <div class="column" :class="$mq != 'lg' ? 'is-paddingless':''" :style="$mq != 'lg' ? {'padding-left':0,'padding-right':0} : getPaddingStyle">
+  <div class="column" :class="[$mq != 'lg' ? 'is-paddingless':'',left ? 'mr-30':'ml-30']" :style="$mq != 'lg' ? {'padding-left':0,'padding-right':0} : getPaddingStyle">
     <div class="columns is-hidden-touch" style="margin-bottom:0;">
       <div class="column mt-10">
         <selectpost class="pointer  is-pulled-left mr-0" :posttype="postdata.type" :postid="postdata.id"></selectpost>
