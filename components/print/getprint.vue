@@ -103,7 +103,6 @@ export default {
         }
       }, 300);
 
-
       axios.post(this.$store.state.printServer + '/v1/convert', {
           headers: {
             'Accept-Encoding': 'application/gzip',
@@ -154,7 +153,6 @@ export default {
 
 
     getPdf: function() {
-
       this.loadingpdf = true
       this.progress = 0
       var vm = this
