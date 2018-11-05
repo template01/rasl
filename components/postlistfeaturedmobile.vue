@@ -29,7 +29,7 @@
         </div>
         <div class="column nav Aligner" @click="swipeLeft()">
 
-          <p class="is-size-4-touch has-text-centered pr-10" @click="swipeLeft()">
+          <p class="is-size-5-touch has-text-centered pr-10" @click="swipeLeft()">
             N<br/>E<br/>X<br/>T
           </p>
         </div>
@@ -54,7 +54,7 @@
               <div class="pt-20 pb-20">
                 <postsingleindexfeatured :postdata="postdata"></postsingleindexfeatured>
               </div>
-              <p v-show="postdata.acf.author"  :class="$mq != 'lg' ? 'contentColumnAuthorclass':'contentColumnAuthorclass'" class="is-size-2-desktop is-size-3-touch pb-30">
+              <p v-show="postdata.acf.author"  :class="$mq != 'lg' ? 'contentColumnAuthorclass':'contentColumnAuthorclass'" class="is-size-2-desktop is-size-4-touch pb-30">
                 <authorlinks :authors="postdata.acf.author"></authorlinks>
               </p>
           </div>
@@ -71,7 +71,7 @@
 
   </div>
   <!-- <div  @click="slideTo('next')" class=" nav pointer Aligner Aligner-right"  :class="$mq != 'lg' ? 'navMobile':''">
-  <p class="is-size-4-desktop is-size-5-touch">
+  <p class="is-size-4-desktop is-size-6-touch">
     NEXT
   </p>
 </div> -->

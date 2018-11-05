@@ -9,7 +9,7 @@
             <div class="pt-20 pb-20">
               <postsingleindexfeatured :postdata="postdata"></postsingleindexfeatured>
             </div>
-            <p v-show="postdata.acf.author"  :class="$mq != 'lg' ? 'contentColumnAuthorclass':'contentColumnAuthorclass'" class="is-size-3-desktop is-size-4-touch pb-30">
+            <p v-show="postdata.acf.author"  :class="$mq != 'lg' ? 'contentColumnAuthorclass':'contentColumnAuthorclass'" class="is-size-3-desktop is-size-6-touch pb-30">
               <span>By </span>
               <authorlinks :authors="postdata.acf.author"></authorlinks>
             </p>
@@ -32,7 +32,7 @@
   </ul> -->
 </div>
 <div  @click="slideTo('next')" class="is-hidden-touch nav pointer Aligner Aligner-right"  :class="$mq != 'lg' ? 'navMobile':''">
-  <p class="is-size-4-desktop is-size-5-touch">
+  <p class="is-size-4-desktop is-size-6-touch">
     NEXT
   </p>
 </div>

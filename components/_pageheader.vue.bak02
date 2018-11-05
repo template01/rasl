@@ -13,7 +13,7 @@
         <div class="column is-8  logoWrapper">
           <nuxt-link :to="'/'+windowsearch">
             <!-- <img class="logoHeader" :class="!hideLogo ? 'noDelay':'fadeDelay'" :src="'/rasllogow.svg'" /> -->
-            <p class="is-size-3-desktop is-size-5-touch logoText">
+            <p class="is-size-3-desktop is-size-6-touch logoText">
               <span class="">
               PUBLICATIONS.RASL.NU
             </span>
@@ -21,14 +21,14 @@
           </nuxt-link>
         </div>
         <!-- <div class="column is-6 is-offset-1">
-          <p class="has-text-centered is-size-4-desktop is-size-5-touch">
+          <p class="has-text-centered is-size-4-desktop is-size-6-touch">
             <span class="valign-middle">
             COMPOSITIONS
           </span>
           </p>
         </div> -->
         <div class="column headerheight">
-          <p class="has-text-right is-size-4-desktop is-size-5-touch ">
+          <p class="has-text-right is-size-4-desktop is-size-6-touch ">
             <span><nuxt-link :to="'/collection'+windowsearch"><span class="mr-10"><buttoncounter></buttoncounter></span></nuxt-link>
             </span>
             <span>
@@ -47,7 +47,7 @@
         </div> -->
 
         <div class="columns is-marginless">
-          <div class="column is-12 is-size-4-desktop is-size-5-touch">
+          <div class="column is-12 is-size-4-desktop is-size-6-touch">
             <menucontent>
             </menucontent>
           </div>
@@ -62,7 +62,7 @@
 
     <!-- <div class="columns headerheight  is-marginless">
       <div class="column pageheaderTitle is-12">
-        <p class="has-text-centered is-size-4-desktop is-size-5-touch">
+        <p class="has-text-centered is-size-4-desktop is-size-6-touch">
           <span v-html="title"></span>
         </p>
         <span class="column pageheaderTitleSelect">

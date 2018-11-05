@@ -14,7 +14,7 @@
         <div class="column is-2  logoWrapper">
           <nuxt-link :to="'/'+windowsearch">
             <!-- <img v-show="!hideLogo" class="logoHeader" :src="'/rasllogow.svg'" /> -->
-            <p class="is-size-4-desktop is-size-5-touch logoText">
+            <p class="is-size-4-desktop is-size-6-touch logoText">
               <span class="valign-middle">
               RASL
             </span>
@@ -22,14 +22,14 @@
           </nuxt-link>
         </div>
         <div class="column is-6 is-offset-1">
-          <p class="has-text-centered is-size-4-desktop is-size-5-touch">
+          <p class="has-text-centered is-size-4-desktop is-size-6-touch">
             <span class="valign-middle">
             COMPOSITIONS
           </span>
           </p>
         </div>
         <div class="column headerheight">
-          <p class="has-text-right is-size-4-desktop is-size-5-touch ">
+          <p class="has-text-right is-size-4-desktop is-size-6-touch ">
             <span><nuxt-link :to="'/'+windowsearch"><img class="rasl-icon mr-10" :src="'/icons/rasl_library.svg'" /></nuxt-link>
         </span>
             <span><nuxt-link :to="'/collection'+windowsearch"><span class="mr-10"><buttoncounter></buttoncounter></span></nuxt-link>
@@ -47,7 +47,7 @@
 
     <div class="columns is-marginless">
       <div class="column is-8 is-offset-2 ">
-        <p class="has-text-centered is-size-4-desktop is-size-5-touch" v-html="title">
+        <p class="has-text-centered is-size-4-desktop is-size-6-touch" v-html="title">
 
         </p>
       </div>

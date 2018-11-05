@@ -2,17 +2,8 @@
 <transition name="fade">
   <div v-if="footerContent" v-show="appinitated" class="pagefooter lightgrey-background pr-40 pl-40 pt-20 pb-20">
 
-    <div class="">
-<!--
-      <div class="columns is-marginless is-size-4-desktop is-size-5-touch">
-        <div class="column">
-          <div v-html="footerContent.acf.content">
-          </div>
-        </div>
 
-
-      </div> -->
-      <div  style="display:flex" class=" is-size-4-desktop is-size-5-touch" :class="$mq != 'lg' ? '':'mt-20'">
+      <div  v-if="$mq === 'lg'"  style="display:flex" class=" is-size-4-desktop is-size-6-touch" :class="$mq != 'lg' ? '':'mt-20'">
             <div class="is-pulled-left  logo" v-for="link in footerContent.acf.logoslinks">
                 <a v-if="link.link.length>0":href="link.link">
                   <img :src="link.logo.url"/>
@@ -23,39 +14,33 @@
             </div>
           <div class="is-pulled-left pl-40 footerText" v-html="footerContent.acf.content">
           </div>
-        <!-- <div class="column is-10">
-        </div> -->
-
-
       </div>
 
-
-
-    </div>
+      <div  v-else  class=" is-size-4-desktop is-size-6-touch">
+            <div class="" v-html="footerContent.acf.content">
+            </div>
+            <div class="mt-10" v-for="link in footerContent.acf.logoslinks">
+                <a v-if="link.link.length>0":href="link.link">
+                  <img width="60px":src="link.logo.url"/>
+                </a>
+                <span v-else>
+                  <img width="60px":src="link.logo.url"/>
+                </span>
+            </div>
+      </div>
   </div>
 </transition>
 </template>
 <script>
 import axios from 'axios'
 
-// import _ from 'lodash'
-
-// import selectpost from '~/components/selectpost'
-
-// import buttoncounter from '~/components/buttoncounter'
-// import menucontent from '~/components/menucontent'
 import {
   mapGetters
 } from 'vuex'
 
 
 export default {
-  // props: ['title', 'selectpost','initload'],
-  components: {
-    // buttoncounter,
-    // selectpost,
-    // menucontent
-  },
+
   directives: {},
 
   data: function() {

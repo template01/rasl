@@ -51,7 +51,7 @@
       <div class="pl-40 pr-40 is-hidden-touch">
         <div class="animateWidthColumns columns is-marginless" :style="getColumnStyle">
           <div class="column is-marginless ">
-            <p class="has-text-centered is-size-4-desktop is-size-5-touch">
+            <p class="has-text-centered is-size-4-desktop is-size-6-touch">
               <span class="pointer">
               <span  @click="hide('practice')" v-if="!practiceHide">
                 <img class="rasl-icon" :src="'icons/rasl_arrow_simple_left.svg'" />
@@ -70,7 +70,7 @@
 
           </div>
           <div class="column is-marginless ">
-            <p class="has-text-centered is-size-4-desktop is-size-5-touch">
+            <p class="has-text-centered is-size-4-desktop is-size-6-touch">
               <span class="pointer">
               <span  @click="hide('reflective')" v-if="!reflectiveHide">
                 <img class="rasl-icon" :src="'icons/rasl_arrow_simple_left.svg'" />
@@ -102,7 +102,7 @@
               <!-- {{$mq}} -->
               <ul>
                 <transition-group name="list-complete">
-                  <li class="is-size-4-desktop is-size-5-touch list-complete-item" :key="postdata.id" v-for="postdata in reflectivePosts">
+                  <li class="is-size-4-desktop is-size-6-touch list-complete-item" :key="postdata.id" v-for="postdata in reflectivePosts">
                     <postindex :ignorepadding="ignorepadding" :left="true" :postdata="postdata"></postindex>
                   </li>
                 </transition-group>
@@ -116,7 +116,7 @@
             <div v-if="!practiceHide" class=" ">
               <ul>
                 <transition-group name="list-complete">
-                  <li class="is-size-4-desktop is-size-5-touch list-complete-item" :key="postdata.id" v-for="postdata in practicePosts">
+                  <li class="is-size-4-desktop is-size-6-touch list-complete-item" :key="postdata.id" v-for="postdata in practicePosts">
                     <postindex :ignorepadding="ignorepadding" :left="false" :postdata="postdata"></postindex>
                   </li>
                 </transition-group>
@@ -130,7 +130,7 @@
           <div class="column is-marginless is-paddingless ">
             <ul>
               <transition-group name="list-complete">
-                <li class="is-size-4-desktop is-size-5-touch list-complete-item" :key="postdata.id" v-for="postdata in mergedOrderedPosts">
+                <li class="is-size-4-desktop is-size-6-touch list-complete-item" :key="postdata.id" v-for="postdata in mergedOrderedPosts">
                   <postindex :ignorepadding="ignorepadding" :left="true" :postdata="postdata"></postindex>
                 </li>
               </transition-group>

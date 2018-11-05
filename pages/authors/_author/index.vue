@@ -19,7 +19,7 @@
   <div class="columns is-marginless">
     <div class="pr-40 pb-40  pl-40">
       <div class="column is-12">
-        <div class="is-size-3-desktop is-size-5-touch" v-html="authorData.acf.bio">
+        <div class="is-size-3-desktop is-size-6-touch" v-html="authorData.acf.bio">
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@
 
     <div class="columns">
 
-  <div class="column is-size-1-desktop  is-size-3-touch uppercase ">
+  <div class="column is-size-1-desktop  is-size-4-touch uppercase ">
     <div :class="$mq != 'lg' ? 'pl-0':'pl-20'" >
       <p  :class="$mq != 'lg' ? 'pt-0':'pt-20'">
         <span class="pointer" v-if="$route.path==='/'" @click="scrollToIndex()">Home</span>

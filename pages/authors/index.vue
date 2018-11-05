@@ -21,7 +21,7 @@
       <div class="column is-12 pr-40 pl-40 ">
         <authorListSingle :slug="author.slug" :id="author.id" :title="author.title.rendered"></authorListSingle>
         <!-- <nuxt-link class="" :to="'/authors/'+author.slug+windowsearch">
-          <p class="is-size-3-desktop is-size-5-touch has-text-centered" v-html="author.title.rendered">
+          <p class="is-size-3-desktop is-size-6-touch has-text-centered" v-html="author.title.rendered">
 
           </p>
           {{getArticles(author.id)}}

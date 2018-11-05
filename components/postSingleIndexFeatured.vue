@@ -10,7 +10,7 @@
   <div class="columns is-marginless is-mobile">
     <div class="column is-12 is-paddingless">
 
-      <h1 class="is-size-1-desktop is-size-3-touch uppercase" ><nuxt-link v-html="postdata.title.rendered" class="" :to="'read/'+postdata.type+'/'+postdata.slug+windowsearch">  </nuxt-link>
+      <h1 class="is-size-1-desktop is-size-4-touch uppercase" ><nuxt-link v-html="postdata.title.rendered" class="" :to="'read/'+postdata.type+'/'+postdata.slug+windowsearch">  </nuxt-link>
       </h1>
     </div>
     <div class="column mt-5 is-5 is-paddingless is-hidden-desktop">
@@ -21,9 +21,9 @@
   <!--
   <h1 class="is-size-1-desktop is-size-2-touch-desktop is-size-2-touch hover-animate-skew dont-break-out uppercase"><nuxt-link v-html="postdata.title.rendered" class="" :to="'read/'+postdata.type+'/'+postdata.slug+windowsearch">  </nuxt-link>
         </h1> -->
-  <!-- <p class="is-size-4-desktop is-size-5-touch  mt-20" style="text-transform:capitalize" v-html="postdata.type">
+  <!-- <p class="is-size-4-desktop is-size-6-touch  mt-20" style="text-transform:capitalize" v-html="postdata.type">
   </p>
-  <p v-show="postdata.acf.author" class="is-size-4-desktop is-size-5-touch ">
+  <p v-show="postdata.acf.author" class="is-size-4-desktop is-size-6-touch ">
     <authorlinks :authors="postdata.acf.author"></authorlinks>
   </p> -->
 </div>

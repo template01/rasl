@@ -3,19 +3,19 @@
 
   <div class="columns">
     <div class="column">
-      <p class="is-size-4-desktop is-size-5-touch">
+      <p class="is-size-4-desktop is-size-6-touch">
         tags
       </p>
       <filtersingle :filtertype="tags" :filtername="'tag'"></filtersingle>
     </div>
     <div class="column">
-      <p class="is-size-4-desktop is-size-5-touch">
+      <p class="is-size-4-desktop is-size-6-touch">
         types
       </p>
       <filtersingle :filtertype="contenttypes" :filtername="'contenttype'"></filtersingle>
     </div>
     <div class="column">
-      <p class="is-size-4-desktop is-size-5-touch">
+      <p class="is-size-4-desktop is-size-6-touch">
         search
       </p>
       <search></search>

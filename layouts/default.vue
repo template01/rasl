@@ -17,7 +17,7 @@
 
             <div class="is-pulled-left" v-if="$route.params.type ==='reflective' || $route.params.type ==='practice'">
 
-              <!-- <p class="is-size-3-desktop is-size-5-touch has-text-right logoText"> -->
+              <!-- <p class="is-size-3-desktop is-size-6-touch has-text-right logoText"> -->
                 <selectpost class="pointer pr-5" :posttype="$route.params.type" :postid="$store.state.readingId"></selectpost>
               <!-- </p> -->
             </div>

@@ -11,8 +11,8 @@
     <div class="columns is-mobile">
       <div class="column is-8">
 
-          <nuxt-link class="" :to="'/read/'+itemcontent.type+'/'+itemcontent.slug+windowsearch"><p :class="[itemcontent.type === 'practice' ? 'has-text-danger':'has-text-success']" class="is-size-1-desktop is-size-3-touch  uppercase mr-10" v-html="itemcontent.title.rendered"></p></nuxt-link>
-          <p v-show="itemcontent.acf.author" class="mt-10 is-size-3-desktop is-size-4-touch ">
+          <nuxt-link class="" :to="'/read/'+itemcontent.type+'/'+itemcontent.slug+windowsearch"><p :class="[itemcontent.type === 'practice' ? 'has-text-danger':'has-text-success']" class="is-size-1-desktop is-size-4-touch  uppercase mr-10" v-html="itemcontent.title.rendered"></p></nuxt-link>
+          <p v-show="itemcontent.acf.author" class="mt-10 is-size-3-desktop is-size-5-touch ">
             <span>By </span>
              <authorlinks :authors="itemcontent.acf.author"></authorlinks>
           </p>

@@ -6,7 +6,7 @@
       DOWNLOAD:
     </div>
   </div>
-  <div class=" columns is-marginless is-size-4-desktop is-size-5-touch pb-10  ">
+  <div class=" columns is-marginless is-size-4-desktop is-size-6-touch pb-10  ">
     <div class="column" style="padding-bottom:0px;">
       <div>
         <span class="uppercase underline pointer" @click="getPdf()">Collection (.pdf)</span>

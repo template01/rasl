@@ -7,7 +7,7 @@
       <div>
         <div class="columns is-mobile is-marginless">
           <div class="column  logoWrapper" :class="$mq != 'lg' ? 'is-paddingless mt-5':''">
-            <p class="is-size-3-desktop is-size-5-touch logoText">
+            <p class="is-size-3-desktop is-size-6-touch logoText">
               <nuxt-link :to="'/'+windowsearch">
                 <span class="">
                   PUBLICATIONS.RASL.NU
@@ -22,7 +22,7 @@
           </div>
           <!-- <div v-if="$route.params.type ==='reflective' || $route.params.type ==='practice'" class="column  logoWrapper" :class="$mq != 'lg' ? 'is-paddingless mr-10':''">
 
-          <p class="is-size-3-desktop is-size-5-touch has-text-right logoText">
+          <p class="is-size-3-desktop is-size-6-touch has-text-right logoText">
             <selectpost class="pointer mr-40 pr-5" :posttype="selectpost.type" :postid="selectpost.id"></selectpost>
           </p>
         </div> -->
