@@ -5,7 +5,7 @@ import _ from 'lodash'
 export const state = () => ({
   appinitated: false,
   apiRoot: 'https://publications-backend.rasl.nu/index.php/wp-json',
-  printServer: 'http://194.61.64.171:3001',
+  printServer: 'https://publications-backend.rasl.nu/print',
   posts: [],
   contenttypes: [],
   tags: [],
