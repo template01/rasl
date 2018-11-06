@@ -2,6 +2,7 @@
 <div class="contentwrapper readcontent" :class="printversion?'printversion':''">
   <div v-for="(item,index) in content">
     <contentslideshow :type="type" v-if="item.acf_fc_layout === 'slideshow'"  :printversion="printversion" :content="item.content"></contentslideshow>
+    <contentquote :type="type" v-if="item.acf_fc_layout === 'largequote'"  :printversion="printversion" :content="item.content"></contentquote>
     <contenttextphoto class="pt-40" v-if="item.acf_fc_layout === 'textphoto'" :printversion="printversion" :content="item.content"></contenttextphoto>
     <contentvideo class="pt-40" :coverimage="item.coverimage" v-if="item.acf_fc_layout === 'video' && !printversion" :printversion="printversion" :content="item.content"></contentvideo>
     <contentaudio class="pt-40" v-if="item.acf_fc_layout === 'audiopodcast' && !printversion" :printversion="printversion" :content="item.content"></contentaudio>
@@ -10,9 +11,9 @@
   <footnotes v-if="footnotes" :printversion="printversion" :content="footnotes"></footnotes>
   <div v-if="printversion" class="endCircle">
   </div>
-  <style v-if="type ==='practice'">.readcontent .wp-caption{ color: red !important; }
+  <style v-if="type ==='practice'">.readcontent .wp-caption, .readcontent .contentquote{ color: red !important; }
   </style>
-  <style v-if="type ==='reflective'">.readcontent .wp-caption{ color: #44ae7b !important; }
+  <style v-if="type ==='reflective'">.readcontent .wp-caption, .readcontent .contentquote{ color: #44ae7b !important; }
   </style>
 </div>
 </template>
@@ -22,6 +23,7 @@ import {
 } from 'vuex'
 
 import contenttextphoto from "~/components/read/contenttextphoto"
+import contentquote from "~/components/read/contentquote"
 import contentslideshow from "~/components/read/contentslideshow"
 import contentaudio from "~/components/read/contentaudio"
 import contentvideo from "~/components/read/contentvideo"
@@ -32,6 +34,7 @@ export default {
   components: {
     contentslideshow,
     contenttextphoto,
+    contentquote,
     contentaudio,
     contentvideo,
     contentsmalltextcolumn,
