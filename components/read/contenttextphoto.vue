@@ -85,14 +85,14 @@ export default {
                 max-width: 140% !important;
                 &.alignleft {
                     float: left;
-                    max-width: 60%;
+                    max-width: 60% !important;
                     margin-right: 20px;
                     margin-top: 20px;
                     margin-bottom: 10px;
                 }
                 &.alignright {
                     float: right;
-                    max-width: 60%;
+                    max-width: 60% !important;
                     margin-left: 20px;
                     margin-top: 20px;
                     margin-bottom: 10px;
