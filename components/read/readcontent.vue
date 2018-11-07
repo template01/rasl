@@ -1,6 +1,6 @@
 <template>
 <div class="contentwrapper readcontent" :class="printversion?'printversion':''">
-  <div v-for="(item,index) in content">
+  <div class="readcontentItem" v-for="(item,index) in content">
     <contentslideshow :type="type" v-if="item.acf_fc_layout === 'slideshow'"  :printversion="printversion" :content="item.content"></contentslideshow>
     <contentquote :type="type" v-if="item.acf_fc_layout === 'largequote'"  :printversion="printversion" :content="item.content"></contentquote>
     <contenttextphoto class="pt-40" v-if="item.acf_fc_layout === 'textphoto'" :printversion="printversion" :content="item.content"></contenttextphoto>
@@ -60,6 +60,9 @@ export default {
   blockquote{
     margin-top: 20px;
     margin-bottom: 20px;
+  }
+  .readcontentItem{
+    display: inline-block;
   }
 }
 .readcontent {
