@@ -15,7 +15,7 @@
                   <p v-html="postdata.acf.subtitle">
                   </p>
                 </div>
-                <div class="pt-80 is-size-2-desktop is-size-4-touch">
+                <div v-show="postdata.acf.author" class="pt-80 is-size-2-desktop is-size-4-touch">
                   <span>By</span>
                   <authorlinks :authors="postdata.acf.author"></authorlinks>
                 </div>
