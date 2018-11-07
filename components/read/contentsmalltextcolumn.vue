@@ -1,5 +1,5 @@
 <template>
-<div class="contentsmalltextcolumn columns is-marginless " :class="printversion ? 'is-printversion':''" >
+<div class="contentsmalltextcolumn columns is-marginless " :class="printversion ? 'printversion':''" >
   <div class="column is-marginless">
     <div :class="printversion ? '':'pr-40 pl-40'">
       <div :class="printversion ? 'is-12 is-paddingless':'is-8 is-offset-2'" class=" column">
@@ -35,13 +35,12 @@ export default {
 <style lang="scss">
 .contentsmalltextcolumn {
 
-  &.is-printversion{
+  &.printversion{
 
     p{
       // mar
-      margin-left: 0cm !important;
+      margin-left: -0.25cm !important;
       margin-right: 5cm !important;
-
     }
     .contentsmalltextcolumn-columns {
         column-count: 0;
@@ -49,7 +48,7 @@ export default {
     }
   }
 
-  &:not(.is-printversion){
+  &:not(.printversion){
     * {
         text-indent: 0 !important;
     }
