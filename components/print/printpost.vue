@@ -75,7 +75,7 @@ export default {
         position: absolute;
         left: 0;
         top: 3.5cm;
-        min-width: 26cm;
+        min-width: 29cm;
         text-align: left;
         .metaRotate {
 
