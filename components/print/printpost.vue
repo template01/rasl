@@ -75,7 +75,8 @@ export default {
         position: absolute;
         left: 0;
         top: 3.5cm;
-        text-align: right;
+        min-width: 26cm;
+        text-align: left;
         .metaRotate {
 
             -webkit-transform: rotate(90deg);
