@@ -1,21 +1,6 @@
 <template>
-<div class="contentwrapper readcontent" :class="printversion?'printversion':''">
-  <div class="readcontentItem" v-for="(item,index) in content">
-    <contentslideshow :type="type" v-if="item.acf_fc_layout === 'slideshow'"  :printversion="printversion" :content="item.content"></contentslideshow>
-    <contentquote :type="type" v-if="item.acf_fc_layout === 'largequote'"  :printversion="printversion" :content="item.content"></contentquote>
-    <contenttextphoto class="pt-40" v-if="item.acf_fc_layout === 'textphoto'" :printversion="printversion" :content="item.content"></contenttextphoto>
-    <contentvideo class="pt-40" :coverimage="item.coverimage" v-if="item.acf_fc_layout === 'video' && !printversion" :printversion="printversion" :content="item.content"></contentvideo>
-    <contentaudio class="pt-40" v-if="item.acf_fc_layout === 'audiopodcast' && !printversion" :printversion="printversion" :content="item.content"></contentaudio>
-    <contentsmalltextcolumn class="pt-40" v-if="item.acf_fc_layout === 'smalltextcolumns'" :printversion="printversion" :content="item.content"></contentsmalltextcolumn>
-  </div>
-  <footnotes v-if="footnotes" :printversion="printversion" :content="footnotes"></footnotes>
-  <references v-if="references" :type="type" :printversion="printversion" :content="references"></references>
-  <div v-if="printversion" class="endCircle">
-  </div>
-  <style v-if="type ==='practice'">.readcontent .wp-caption, .readcontent .contentquote{ color: red !important; }
-  </style>
-  <style v-if="type ==='reflective'">.readcontent .wp-caption, .readcontent .contentquote{ color: #44ae7b !important; }
-  </style>
+<div :class="printversion?'printversion':''">
+  <contentsmalltextcolumn class="" :printversion="printversion" :content="'REFERENCES:<br />'+content"></contentsmalltextcolumn>
 </div>
 </template>
 <script>
@@ -23,27 +8,13 @@ import {
   mapGetters
 } from 'vuex'
 
-import contenttextphoto from "~/components/read/contenttextphoto"
-import contentquote from "~/components/read/contentquote"
-import contentslideshow from "~/components/read/contentslideshow"
-import contentaudio from "~/components/read/contentaudio"
-import contentvideo from "~/components/read/contentvideo"
 import contentsmalltextcolumn from "~/components/read/contentsmalltextcolumn"
-import footnotes from "~/components/read/footnotes"
-import references from "~/components/read/references"
 
 export default {
   components: {
-    contentslideshow,
-    contenttextphoto,
-    contentquote,
-    contentaudio,
-    contentvideo,
     contentsmalltextcolumn,
-    footnotes,
-    references,
   },
-  props: ['content', 'printversion', 'footnotes','references', 'type'],
+  props: ['content', 'printversion', 'type'],
   data: function() {
     return {}
   },
@@ -60,15 +31,9 @@ export default {
 <style lang="scss">
 
 .printversion{
-  blockquote{
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-  .readcontentItem{
-    display: inline-block;
-  }
+
 }
-.readcontent {
+.references {
 
     a {
 

@@ -1,5 +1,6 @@
 <template>
-  <div class="column" :class="[itemcontent.type === 'practice' ? 'pink-background':'lightblue-background', itemcontent.type === 'practice' ? 'has-text-danger':'has-text-success']">
+
+  <div class="column" :class="[itemcontent.type === 'practice' ? 'pink-background has-text-danger':'', itemcontent.type === 'reflective' ? 'lightblue-background has-text-success':'', itemcontent.type === 'general' ? '':'']">
     <div class=" p-50">
 
     <div class="columns ignore-mb is-hidden-touch">
@@ -11,8 +12,8 @@
     <div class="columns is-mobile">
       <div class="column is-8">
 
-          <nuxt-link class="" :to="'/read/'+itemcontent.type+'/'+itemcontent.slug+windowsearch"><p :class="[itemcontent.type === 'practice' ? 'has-text-danger':'has-text-success']" class="is-size-1-desktop is-size-4-touch  uppercase mr-10" v-html="itemcontent.title.rendered"></p></nuxt-link>
-          <p v-show="itemcontent.acf.author" class="mt-10 is-size-3-desktop is-size-5-touch ">
+          <nuxt-link class="" :to="'/read/'+itemcontent.type+'/'+itemcontent.slug+windowsearch"><p :class="[itemcontent.type === 'practice' ? 'has-text-danger':'', itemcontent.type === 'reflective' ? 'has-text-success':'', itemcontent.type === 'general' ? '':'']" class="is-size-1-desktop is-size-4-touch  uppercase mr-10" v-html="itemcontent.title.rendered"></p></nuxt-link>
+          <p v-show="itemcontent.acf.author" class="mt-10 is-size-4-desktop is-size-5-touch ">
             <span>By </span>
              <authorlinks :authors="itemcontent.acf.author"></authorlinks>
           </p>

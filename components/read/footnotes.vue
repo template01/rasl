@@ -3,7 +3,7 @@
   <!-- <span v-html="content"></span> -->
   <div class="column is-marginless">
     <div class=" pr-40 pl-40">
-      <div :class="printversion ? 'is-12':'is-6 is-offset-3'" class="column is-size-4-desktop is-size-6-touch">
+      <div :class="printversion ? 'is-12':'is-6 is-offset-3'" class="column is-size-6-desktop is-size-6-touch">
         <p class="uppercase">
           footnotes:
         </p>

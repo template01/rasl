@@ -592,11 +592,11 @@ export const actions = {
     }
 
     function getContentTypes() {
-      return axios.get(state.apiRoot + '/wp/v2/contenttype');
+      return axios.get(state.apiRoot + '/wp/v2/contenttype?hide_empty=true&per_page=100');
     }
 
     function getTags() {
-      return axios.get(state.apiRoot + '/wp/v2/tags');
+      return axios.get(state.apiRoot + '/wp/v2/tags?hide_empty=true&per_page=100');
     }
 
 
@@ -608,15 +608,15 @@ export const actions = {
     state.reflectivetotalpagina = reflective.headers['x-wp-totalpages']
 
     // FILTER OUT contenttypes WITH NO ATTACHED POSTS (COUNT:0)
-    state.contenttypes = _.filter(contenttypes.data, function(v) {
-      return v.count > 0
-    });
-
+    // state.contenttypes = _.filter(contenttypes.data, function(v) {
+    //   return v.count > 0
+    // });
+    state.contenttypes = contenttypes.data
     // FILTER OUT tags WITH NO ATTACHED POSTS (COUNT:0)
-    state.tags = _.filter(tags.data, function(v) {
-      return v.count > 0
-    });
-
+    // state.tags = _.filter(tags.data, function(v) {
+    //   return v.count > 0
+    // });
+    state.tags = tags.data
   },
 
   // LOAD INITIAL DATA (SPA)

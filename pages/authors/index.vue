@@ -16,34 +16,10 @@
     </div>
   </div>
   <div class="pb-80">
-    <div class="columns is-marginless" v-for="(author, index) in raslAuthors">
+    <div class="columns is-marginless" v-for="(author, index) in raslAuthorsAlpha">
 
       <div class="column is-12 pr-40 pl-40 ">
         <authorListSingle :slug="author.slug" :id="author.id" :title="author.title.rendered"></authorListSingle>
-        <!-- <nuxt-link class="" :to="'/authors/'+author.slug+windowsearch">
-          <p class="is-size-3-desktop is-size-6-touch has-text-centered" v-html="author.title.rendered">
-
-          </p>
-          {{getArticles(author.id)}}
-        </nuxt-link> -->
-        <!-- <div class="column">
-            <div v-for="(author, index) in raslAuthorsEven">
-              <div class="column">
-                  <img :src="author.acf.featured_image.sizes.large" />
-                  <p v-html="author.title.rendered"></p>
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div v-for="(author, index) in raslAuthorsUneven">
-              <div class="column">
-                <nuxt-link class="is-size-1-desktop is-size-2-touch-desktop is-size-2-touch" :to="'/authors/'+author.slug+windowsearch">
-                  <img :src="author.acf.featured_image.sizes.large" />
-                  <p v-html="author.title.rendered"></p>
-                </nuxt-link>
-              </div>
-            </div> -->
-        <!-- </div> -->
       </div>
     </div>
 
@@ -91,31 +67,9 @@ export default {
     },
 
     raslAuthorsAlpha: function() {
-      // return this.raslAuthors
-      const users = [{
-          name: 'A',
-          age: 48
-        },
-        {
-          name: 'B',
-          age: 34
-        },
-        {
-          name: 'b',
-          age: 40
-        },
-        {
-          name: 'a',
-          age: 36
-        }
-      ];
 
-
-      // const sortedUsers = _.orderBy(users, [user => user.name.toLowerCase()], ['asc']);
-      // const sortedUsers = _.orderBy(users, [user => this.raslAuthors.acf.surname.toLowerCase()], ['asc']);
       const sortedUsers = _.orderBy(this.raslAuthors, [user => user.acf.surname], ['asc']);
       return sortedUsers;
-      // return this.raslAuthors;
 
     }
   },
@@ -150,16 +104,6 @@ export default {
 
     return axios.all([getAuthors(), getGeneric()])
       .then(axios.spread(function(raslauthors, generic) {
-        // commit('SET_FILTERREFLECTIVEBY', reflective.data)
-        // commit('SET_FILTERPRATICEBY', practice.data)
-        // commit('SET_REFLECTIVETOTALPAGINA',reflective.headers['x-wp-totalpages'])
-        // commit('SET_PRATICETOTALPAGINA', practice.headers['x-wp-totalpages'])
-        // var url = new URI(window.location.search).removeSearch("filter").removeSearch("filters").removeSearch("search").addSearch({
-        //   search: query.searchquery,
-        // });
-        // window.history.replaceState({}, '', '?' + url._parts.query);
-        // commit('SET_WINDOWSEARCH', location.search)
-
         return {
           raslAuthors: raslauthors.data
         }

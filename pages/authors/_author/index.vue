@@ -1,6 +1,6 @@
 <template>
 <div class="white-background">
-  <pageheader  :pagename="'Author'"></pageheader>
+  <pageheader :pagename="'Author'"></pageheader>
 
   <div class="columns is-marginless  pt-60">
     <div class="column">
@@ -16,10 +16,15 @@
       </div>
     </div>
   </div>
-  <div class="columns is-marginless">
-    <div class="pr-40 pb-40  pl-40">
-      <div class="column is-12">
-        <div class="is-size-3-desktop is-size-6-touch" v-html="authorData.acf.bio">
+  <div :class="$mq != 'lg' ? '':'pr-40 pb-40  pl-40'">
+    <div class="columns is-marginless">
+      <div  class="column is-3">
+        <div v-if="authorData.acf.featured_image" style="border-radius:100%; background-position: center; background-size: cover; width: 100%;  padding-top: 100%;" :style="{ backgroundImage: 'url(' + authorData.acf.featured_image.sizes.large + ')' }">
+        </div>
+      </div>
+
+      <div class="column is-6">
+        <div class="is-size-4-desktop is-size-6-touch has-text-margin authorBio" v-html="authorData.acf.bio">
         </div>
       </div>
     </div>
@@ -55,7 +60,7 @@ export default {
       windowsearch: "GET_WINDOWSEARCH"
     }),
     articlesWrittenByAuthorMerged: function() {
-      const concatinated = _.concat(this.practiceArticlesWrittenByAuthor, this.reflectiveArticlesWrittenByAuthor);
+      const concatinated = _.concat(this.practiceArticlesWrittenByAuthor, this.reflectiveArticlesWrittenByAuthor, this.generalArticlesWrittenByAuthor);
       return _.orderBy(concatinated, ['date'], ['desc']);
 
     },
@@ -110,10 +115,31 @@ export default {
       }, [])
 
 
+    const generalResults = (await axios.all(
+        authorData.map(category => axios.get(store.state.apiRoot + `/wp/v2/general?raslauthor=${category.id}`))
+      ))
+      .map(result => result.data)
+      .reduce((acc, curr) => {
+        acc.push(...curr)
+        return acc
+      }, [])
+
+    //
+    // const generalResults = (await axios.all(
+    //     authorData.map(category => axios.get(store.state.apiRoot + `/wp/v2/practice?raslauthor=${category.id}`))
+    //   ))
+    //   .map(result => result.data)
+    //   .reduce((acc, curr) => {
+    //     acc.push(...curr)
+    //     return acc
+    //   }, [])
+
+
     return {
       authorData: authorData[0],
       reflectiveArticlesWrittenByAuthor: reflectiveResults,
-      practiceArticlesWrittenByAuthor: practiceResults
+      practiceArticlesWrittenByAuthor: practiceResults,
+      generalArticlesWrittenByAuthor: generalResults
       // articlesWrittenByAuthor: [1,2,3,4]
 
     }
@@ -123,7 +149,13 @@ export default {
 
 }
 </script>
-
+<style lang="scss">
+    .authorBio{
+      a{
+        text-decoration: underline;
+      }
+    }
+</style>
 <style lang="scss" scoped>
 hr {
     color: $black;

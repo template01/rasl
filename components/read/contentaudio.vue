@@ -1,5 +1,5 @@
 <template>
-<div class="contentaudio">
+<div v-if="content" class="contentaudio">
   <!-- {{content}} -->
   <!-- <av-line
   :line-width="2"
@@ -102,45 +102,13 @@ export default {
     fancyTimeFormat: function(d) {
       d = Number(d);
 
-         var h = Math.floor(d / 3600);
-         var m = Math.floor(d % 3600 / 60);
-         var s = Math.floor(d % 3600 % 60);
+      var h = Math.floor(d / 3600);
+      var m = Math.floor(d % 3600 / 60);
+      var s = Math.floor(d % 3600 % 60);
 
-         return ('0' + h).slice(-2) + ":" + ('0' + m).slice(-2) + ":" + ('0' + s).slice(-2);
+      return ('0' + h).slice(-2) + ":" + ('0' + m).slice(-2) + ":" + ('0' + s).slice(-2);
     },
-    // handleActivated() {
-    //   this.text = "I am ready for great things!";
-    // },
-    // handleDragging() {
-    //   this.text = "Weeee!";
-    //   this.dragging = true;
-    //
-    //   // console.log(this.$el.querySelectorAll('.drag-it-dude')[0].style.left)
-    //   var left = this.$el.querySelectorAll('.drag-it-dude')[0].style.left
-    //
-    //   var hasPx = left.indexOf('px') >= 0;
-    //   var hasPct = left.indexOf('%') >= 0;
-    //   if(hasPct){
-    //     left = left.slice(0, -1)
-    //   }
-    //   if(hasPx){
-    //     var widthParent = this.$el.querySelectorAll('.timeScrobbler')[0].offsetWidth
-    //     var widthScrobble = this.$el.querySelectorAll('.drag-it-dude')[0].offsetWidth
-    //     left = left.slice(0, -2)
-    //     left = (left/(widthParent - widthScrobble))*100
-    //   }
-    //   console.log((this.duration/100)*left)
-    //   this.audio.pause()
-    //   this.audio.currentTime = (this.duration/100)*left;
-    //   this.currentTime = (this.duration/100)*left;
-    //
-    // },
-    // handleDropped() {
-    //   this.dragging = false
-    //   setTimeout(() => {
-    //     // this.text = "Just move me!";
-    //   }, 100);
-    // }
+
   },
   watch: {
 
@@ -159,72 +127,73 @@ export default {
   },
   mounted() {
 
+    if (this.content) {
 
-    var vm = this
-    var emptyArrays = []
+      var vm = this
+      var emptyArrays = []
 
-    for (var i = 0, len = vm.dataPoints; i < len; i++) {
-      // someFn(arr[i]);
-      vm.freqsSelected.push([])
-    }
-    // vm.freqsSelected = emptyArrays;
-
-    var AudioContext = (window.AudioContext || window.webkitAudioContext),
-      audioContext, audioProcess, audioSource, didConnect;
-    vm.audio = vm.$el.querySelectorAll('.audioPodcast')[0]
-
-
-    function connect() {
-
-
-
-      if (didConnect) {
-        return false;
+      for (var i = 0, len = vm.dataPoints; i < len; i++) {
+        // someFn(arr[i]);
+        vm.freqsSelected.push([])
       }
+      // vm.freqsSelected = emptyArrays;
 
-      if (!AudioContext) {
-        console.log('No AudioContext / webkitAudioContext detected.');
-        return false;
-      }
+      var AudioContext = (window.AudioContext || window.webkitAudioContext),
+        audioContext, audioProcess, audioSource, didConnect;
+      vm.audio = vm.$el.querySelectorAll('.audioPodcast')[0]
 
-      var audioContext,
-        audioSource,
-        audioAnalyser;
-      // console.log('Audio fired canplay, connecting...');
-      // console.log('Creating audio context');
-      audioContext = new AudioContext();
-      // console.log('Creating mediaElementSource');
-      audioSource = audioContext.createMediaElementSource(vm.audio);
-      // console.log('Creating analyser');
-      audioAnalyser = audioContext.createAnalyser();
-      // console.log('Connecting...');
-      audioSource.connect(audioAnalyser);
-      audioAnalyser.connect(audioContext.destination);
-      // console.log('Connect OK');
-      // console.log('Adding getByteFrequencyData() interval...');
-      window.setInterval(function() {
-        var freqByteData = new Uint8Array(audioAnalyser.frequencyBinCount);
-        audioAnalyser.getByteFrequencyData(freqByteData);
-        vm.freqs = freqByteData
-        // console.log(freqByteData[5])
-        for (var i = 0, len = vm.dataPoints; i < len; i++) {
-          // someFn(arr[i]);
-          vm.freqsSelected[i].push(freqByteData[i])
-          vm.freqsSelected[i] = vm.freqsSelected[i].slice(-1 * vm.dataPoints)
-          if (!vm.dragging) {
-            vm.currentTime = vm.audio.currentTime
-          }
+
+      function connect() {
+
+
+
+        if (didConnect) {
+          return false;
         }
-      }, 50);
-      didConnect = true;
-      vm.duration = vm.audio.duration
+
+        if (!AudioContext) {
+          console.log('No AudioContext / webkitAudioContext detected.');
+          return false;
+        }
+
+        var audioContext,
+          audioSource,
+          audioAnalyser;
+        // console.log('Audio fired canplay, connecting...');
+        // console.log('Creating audio context');
+        audioContext = new AudioContext();
+        // console.log('Creating mediaElementSource');
+        audioSource = audioContext.createMediaElementSource(vm.audio);
+        // console.log('Creating analyser');
+        audioAnalyser = audioContext.createAnalyser();
+        // console.log('Connecting...');
+        audioSource.connect(audioAnalyser);
+        audioAnalyser.connect(audioContext.destination);
+        // console.log('Connect OK');
+        // console.log('Adding getByteFrequencyData() interval...');
+        window.setInterval(function() {
+          var freqByteData = new Uint8Array(audioAnalyser.frequencyBinCount);
+          audioAnalyser.getByteFrequencyData(freqByteData);
+          vm.freqs = freqByteData
+          // console.log(freqByteData[5])
+          for (var i = 0, len = vm.dataPoints; i < len; i++) {
+            // someFn(arr[i]);
+            vm.freqsSelected[i].push(freqByteData[i])
+            vm.freqsSelected[i] = vm.freqsSelected[i].slice(-1 * vm.dataPoints)
+            if (!vm.dragging) {
+              vm.currentTime = vm.audio.currentTime
+            }
+          }
+        }, 50);
+        didConnect = true;
+        vm.duration = vm.audio.duration
+      }
+
+      window.setTimeout(function() {
+        connect();
+      }, 1000);
+
     }
-
-    window.setTimeout(function() {
-      connect();
-    }, 1000);
-
-
   },
 
   computed: {

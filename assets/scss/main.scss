@@ -11,7 +11,7 @@ $size-3: 1.7rem;
 
 i,em{
   font-family: 'IBM Plex Serif', serif !important;
-  color: green !important;
+  // color: green !important;
 }
 
 .is-size-1 {
@@ -92,15 +92,18 @@ html {
   border-right: 2px solid $black;
 }
 
+
 .is-size-1-touch,
-.is-size-1-desktop,
+.is-size-1-desktop{
+  line-height: 1.1 !important;
+}
 .is-size-2-touch,
 .is-size-2-desktop,
 .is-size-3-touch,
 .is-size-3-desktop,
 .is-size-4-touch,
 .is-size-4-desktop {
-  line-height: 1;
+  line-height: 1.2;
 }
 
 .pointer {
@@ -213,3 +216,26 @@ hr {
   border-bottom: 2px solid;
   border-color: inherit;
 }
+
+.has-text-margin{
+      // margin-top: 10px;
+      // margin-bottom: 10px;
+        p{
+          margin-top: 10px;
+          margin-bottom: 10px;
+        }
+}
+
+p.has-text-margin{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+// .is-size-4-desktop,.is-size-5-desktop,.is-size-6-desktop{
+//   p{
+//     margin-top: 10px;
+//     margin-bottom: 10px;
+//   }
+//   margin-top: 10px;
+//   margin-bottom: 10px;
+// }

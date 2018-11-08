@@ -3,7 +3,7 @@
   <div class="column is-marginless">
     <div class="" :class="$mq != 'lg' ? '':' pr-40 pl-40'">
       <div :class="[printversion ? 'is-12':'is-6 is-offset-3',$mq != 'lg' ? 'is-paddingless':'']" class=" column">
-        <div class="is-size-4-desktop is-size-6-touch" v-html="content">
+        <div class="is-size-5-desktop is-size-6-touch" v-html="content">
           <!-- <div class="is-size-4-desktop is-size-6-touch" style="  border: 2px solid black;" v-html="content"> -->
         </div>
       </div>

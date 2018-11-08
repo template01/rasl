@@ -50,7 +50,7 @@ export default {
 
   &:not(.printversion){
     * {
-        text-indent: 0 !important;
+        // text-indent: 0 !important;
     }
     .contentsmalltextcolumn-columns {
         column-count: 3;

@@ -15,9 +15,15 @@
                   <p v-html="postdata.acf.subtitle">
                   </p>
                 </div>
-                <div v-show="postdata.acf.author" class="pt-80 is-size-2-desktop is-size-4-touch">
+                <div v-show="postdata.acf.author" class="pt-80 is-size-2-desktop is-size-6-touch">
                   <span>By</span>
                   <authorlinks :authors="postdata.acf.author"></authorlinks>
+                </div>
+                  <div class="pt-20 is-size-3-desktop is-size-6-touch" v-if="postdata.pure_taxonomies">
+                    <span v-for="(item,index) in postdata.pure_taxonomies.tags">
+                    {{item.name}}
+                    {{index< postdata.pure_taxonomies.tags.length-1 ? '●':''}}
+                  </span>
                 </div>
               </div>
             </div>
@@ -32,7 +38,7 @@
   <div class="pb-40 white-background">
 
     <div class=" is-marginless ">
-      <readcontent :type="postdata.type" :footnotes="footnotes" :content="postdata.acf.contentbuilder"></readcontent>
+      <readcontent :type="postdata.type" :footnotes="footnotes" :references="postdata.acf.references" :content="postdata.acf.contentbuilder"></readcontent>
     </div>
 
   </div>
