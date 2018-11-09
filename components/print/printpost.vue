@@ -15,6 +15,12 @@
     <p v-show="postdata.acf.author" class="margin-left-compensation is-size-3-desktop is-size-4-touch">
       <span>By</span>
       <authorlinks :authors="postdata.acf.author"></authorlinks>
+      <div class="pt-20 is-size-3-desktop is-size-6-touch" v-if="postdata.pure_taxonomies">
+        <span v-for="(item,index) in postdata.pure_taxonomies.tags">
+        {{item.name}}
+        {{index< postdata.pure_taxonomies.tags.length-1 ? '●':''}}
+      </span>
+    </div>
     </p>
     <div class="inner-content">
       <readcontent :footnotes="footnoteSingle" :printversion="true" :content="postdata.acf.contentbuilder"></readcontent>

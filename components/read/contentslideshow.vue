@@ -116,7 +116,7 @@ export default {
   display: inline-block;
   img{
     float: left !important;
-    width: 8cm !important;
+    width: 5cm !important;
     margin-top: 10px;
     margin-right: 10px;
   }
