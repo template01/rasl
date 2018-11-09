@@ -44,7 +44,7 @@ export default {
 }
 
 .outerprintpost:not(:last-child) {
-    // page-break-after: always;
+    page-break-after: always;
 }
 
 *{
