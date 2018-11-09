@@ -89,30 +89,6 @@ export default {
         }
     }
 
-    //  ATTAMPT with bottom align
-
-    // position: relative;
-    // min-height: 35.2cm;
-    //
-    // .metaWrapperSide {
-    //     position: absolute;
-    //     left: 0;
-    //     // top: 0cm;
-    //     width: 35.2cm;
-    // top: 35.2cm;
-    //     // width: 37.7cm;
-    //     // text-align: right;
-    //     .metaRotate {
-    //
-    //         -webkit-transform: rotate(-90deg);
-    //         transform: rotate(-90deg);
-    //         // EQAL HOOGTE VAN WRAPPER
-    //         // margin-left: 23px;
-    //
-    //         -webkit-transform-origin: top left;
-    //         transform-origin: top left;
-    //     }
-    // }
 
     .is-size-6,
     .is-size-6-touch {
@@ -133,7 +109,9 @@ export default {
             padding-top: 2cm;
             margin: 0 auto 0 0;
             text-align: left;
+
             p {
+                // display: none !important;
                 margin-left: 5cm;
                 line-height: 1.3 !important;
                 letter-spacing: 0 !important;
@@ -168,7 +146,7 @@ export default {
             }
 
             p {
-                text-indent: 1cm;
+              text-indent: 1cm;
             }
 
         }

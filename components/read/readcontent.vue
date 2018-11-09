@@ -1,5 +1,5 @@
 <template>
-<div class="contentwrapper readcontent" :class="printversion?'printversion':''">
+<div class="contentwrapper readcontent container is-fullhd" :class="printversion?'printversion':''">
   <div class="readcontentItem" v-for="(item,index) in content">
     <contentslideshow :type="type" v-if="item.acf_fc_layout === 'slideshow'"  :printversion="printversion" :content="item.content"></contentslideshow>
     <contentquote :type="type" v-if="item.acf_fc_layout === 'largequote'"  :printversion="printversion" :content="item.content"></contentquote>
@@ -12,9 +12,9 @@
   <references v-if="references" :type="type" :printversion="printversion" :content="references"></references>
   <div v-if="printversion" class="endCircle">
   </div>
-  <style v-if="type ==='practice'">.readcontent .wp-caption, .readcontent .contentquote{ color: red !important; }
+  <style v-if="type ==='practice'">.readcontent .wp-caption, .readcontent .contentquote, .readcontent .largecolorblock, .readcontent .colorblock{ color: red !important; }
   </style>
-  <style v-if="type ==='reflective'">.readcontent .wp-caption, .readcontent .contentquote{ color: #44ae7b !important; }
+  <style v-if="type ==='reflective'">.readcontent .wp-caption, .readcontent .contentquote, .readcontent .largecolorblock, .readcontent .colorblock{ color: #44ae7b !important; }
   </style>
 </div>
 </template>
@@ -64,11 +64,15 @@ export default {
     margin-top: 20px;
     margin-bottom: 20px;
   }
-  .readcontentItem{
-    display: inline-block;
-  }
+  // .readcontentItem{
+  //   display: inline-block;
+  // }
 }
 .readcontent {
+
+    .simple-footnote{
+      margin-left: -5px;
+    }
 
     a {
 

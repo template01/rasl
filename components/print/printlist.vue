@@ -4,6 +4,7 @@
   <div>
     <div class="outerprintpost is-size-5" :key="postdata.id" v-for="(postdata,index) in display">
       <printpost :footnoteSingle="footnotes[index]" :postdata="postdata"></printpost>
+
     </div>
   </div>
 </div>
@@ -43,7 +44,7 @@ export default {
 }
 
 .outerprintpost:not(:last-child) {
-    page-break-after: always;
+    // page-break-after: always;
 }
 
 *{

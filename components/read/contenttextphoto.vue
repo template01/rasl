@@ -2,7 +2,7 @@
 <div :class="printversion ? 'printversion':''" class="contenttextphoto columns is-marginless ">
   <div class="column is-marginless">
     <div class="" :class="$mq != 'lg' ? '':' pr-40 pl-40'">
-      <div :class="[printversion ? 'is-12':'is-6 is-offset-3',$mq != 'lg' ? 'is-paddingless':'']" class=" column">
+      <div :class="[printversion ? 'is-12':'is-8-desktop is-offset-2-desktop is-6-widescreen is-offset-3-widescreen',$mq != 'lg' ? 'is-paddingless':'']" class=" column">
         <div class="is-size-5-desktop is-size-6-touch" v-html="content">
           <!-- <div class="is-size-4-desktop is-size-6-touch" style="  border: 2px solid black;" v-html="content"> -->
         </div>
@@ -44,7 +44,24 @@ export default {
         color: inherit !important;
     }
 
+    .largecolorblock{
+      // font-size:
+      clear: both;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .colorblock{
+      // font-size:
+      clear: both;
+      column-count: 2;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+
     &:not(.printversion) {
+
 
         @media only screen and (min-width: 801px) {
 
