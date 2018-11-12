@@ -3,7 +3,7 @@
   <div class="column is-marginless">
     <div :class="[printversion ? '':'', $mq != 'lg' ? '':' pr-40 pl-40']">
       <div :class="[printversion ? 'is-12':'is-8 is-offset-2', $mq != 'lg' ? 'is-paddingless':'']" class=" column">
-        <div  class="contentsmalltextcolumn-columns is-size-6-desktop is-size-6-touch" v-html="content">
+        <div :class="referencestyle ? 'referencestyle':''" class="contentsmalltextcolumn-columns is-size-6-desktop is-size-6-touch" v-html="content">
         </div>
       </div>
     </div>
@@ -17,7 +17,7 @@ import {
 
 
 export default {
-  props: ['content', 'printversion'],
+  props: ['content', 'printversion','referencestyle'],
   data: function() {
     return {
       genericData: 'generic component text'
@@ -34,6 +34,12 @@ export default {
 </script>
 <style lang="scss">
 .contentsmalltextcolumn {
+  .referencestyle{
+    p{
+      text-indent: -20px !important;
+      margin-left: 20px;
+    }
+  }
 
   &.printversion{
 

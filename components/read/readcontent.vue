@@ -115,7 +115,7 @@ export default {
         text-decoration: none;
         // border-bottom: 2px solid black;
         // width: 100%;
-        margin-left: 40px;
+        margin-left: 20px;
         -webkit-box-decoration-break: clone;
         box-decoration-break: clone;
         line-height: 1.4;
@@ -163,7 +163,7 @@ export default {
         }
 
     p {
-        text-indent: 40px;
+        text-indent: 20px;
     }
 
     p:first-of-type{
@@ -182,14 +182,14 @@ export default {
     }
 
     blockquote{
-      margin-left: 40px;
-      margin-right: 40px;
+      margin-left: 20px;
+      margin-right: 20px;
     }
     .endCircle {
         background: black;
         width: 8mm;
         height: 8mm;
-        margin-right: 40px;
+        margin-right: 20px;
         border-radius: 100%;
         float: right;
         page-break-inside: avoid;
