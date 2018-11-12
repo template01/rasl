@@ -64,6 +64,14 @@ export default {
     margin-top: 20px;
     margin-bottom: 20px;
   }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+      font-size: 24px !important;
+  }
   // .readcontentItem{
   //   display: inline-block;
   // }

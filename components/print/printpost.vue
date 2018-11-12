@@ -128,7 +128,7 @@ export default {
             h4,
             h5,
             h6 {
-                margin-left: 6cm;
+                margin-left: 5.5cm;
                 margin-top: 5mm;
                 // text-indent: 6cm;
 
@@ -152,7 +152,7 @@ export default {
             }
 
             p {
-              text-indent: 1cm;
+              text-indent: 5mm;
             }
 
         }

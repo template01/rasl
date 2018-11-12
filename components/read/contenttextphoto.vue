@@ -180,6 +180,19 @@ export default {
             }
         }
 
+
+        .colorblock{
+          // font-size:
+          clear: both;
+          column-count: 1;
+          margin-right: 5cm;
+
+          p{
+            margin-left: 0 !important;
+          }
+        }
+
+
         .wp-caption {
             clear: both;
             page-break-inside: avoid;
