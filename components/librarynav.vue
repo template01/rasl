@@ -57,7 +57,7 @@ import _ from 'lodash'
 
 
 import filtersingle from '~/components/filtersingle.vue'
-import filters from '~/components/filters'
+// import filters from '~/components/filters'
 import search from '~/components/search'
 import buttoncounter from '~/components/buttoncounter'
 import loadingindicator from '~/components/loadingindicator'
@@ -72,7 +72,7 @@ export default {
     filtersingle,
     loadingindicator,
     search,
-    filters,
+    // filters,
     buttoncounter
   },
 
@@ -130,11 +130,13 @@ export default {
       prettyname: 'Tag',
       name: 'tag',
       type: this.tags
-    }, {
-      prettyname: 'Type',
-      name: 'contenttype',
-      type: this.contenttypes
-    }]
+    }
+    // , {
+    //   prettyname: 'Type',
+    //   name: 'contenttype',
+    //   type: this.contenttypes
+    // }
+  ]
   }
 
 }

@@ -168,7 +168,7 @@ if (process.browser) {
 
 // import genericcomp from '~/components/_genericComp.vue'
 import indexintro from '~/components/indexintro.vue'
-import filters from '~/components/filters.vue'
+// import filters from '~/components/filters.vue'
 import postlist from '~/components/postlist.vue'
 import postlistfeatured from '~/components/postlistfeatured.vue'
 import postlistfeaturedmobile from '~/components/postlistfeaturedmobile.vue'
@@ -188,7 +188,7 @@ export default {
   components: {
     // genericcomp,
     indexintro,
-    filters,
+    // filters,
     getmore,
     getmoreall,
     postlist,

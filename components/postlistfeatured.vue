@@ -237,7 +237,7 @@ export default {
   float: left;
   min-height: 450px;
   overflow: hidden;
-  height: 50vh;
+  height: 57vh;
 
   position: relative;
   // padding: 0.75rem 0 0.75rem 0 ;
