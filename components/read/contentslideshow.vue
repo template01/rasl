@@ -146,7 +146,7 @@ export default {
     }
     img {
         float: left !important;
-        width: 6.4cm !important;
+        width: 6.45cm !important;
         margin-top: 10px;
         margin-right: 10px;
     }
