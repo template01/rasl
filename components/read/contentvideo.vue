@@ -123,7 +123,7 @@ export default {
     }
 
     .green-background-before::after {
-        background-color: $lightblue;
+        background-color: $green;
     }
 
     .red-background-before::before {

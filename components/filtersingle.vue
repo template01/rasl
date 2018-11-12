@@ -1,7 +1,7 @@
 <template>
-<div class="pt-20">
-  <div  class="wrapper  mt-5 mb-5" v-for="filteritem in filtertype">
-    <div class="pr-10 mb-10">
+<div class="pt-10">
+  <div  class="wrapper" :style="$mq != 'lg' ? 'margin-bottom:2px; margin-top:2px':''" :class="[$mq != 'lg' ? '':' mt-5 mb-5']" v-for="filteritem in filtertype">
+    <div class="mb-10"  :class="[$mq != 'lg' ? 'pr-5':'pr-10 ']">
     <label class="pointer">
         <input @click="setfilterby(filtername)" v-model="selectedItems" :value="filteritem.slug" id="checkBox" type="checkbox">
         <span  class="pr-10 pl-10 pb-5 outer-filter is-size-5-desktop is-size-6-touch" style="padding-top:3px" v-html="filteritem.name"></span>

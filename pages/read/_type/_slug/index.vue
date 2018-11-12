@@ -97,7 +97,9 @@ export default {
   mounted(){
     this.$store.commit('SET_READINGID',this.postdata.id)
     Hyphenator.config({
-        minwordlength : 4
+        minwordlength : 6,
+        leftmin: 5,
+        rightmin: 5
     });
     Hyphenator.run();
 

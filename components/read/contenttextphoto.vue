@@ -63,7 +63,7 @@ export default {
     &:not(.printversion) {
 
 
-        @media only screen and (min-width: 801px) {
+        @media only screen and (min-width: 1024px) {
 
             p {
                 margin-bottom: 20px;
@@ -124,7 +124,7 @@ export default {
             }
         }
 
-        @media only screen and (max-width: 800px) {
+        @media only screen and (max-width: 1023px) {
 
             p {
                 margin-bottom: 20px;
@@ -140,6 +140,11 @@ export default {
                     width: 100%;
                 }
             }
+
+            .colorblock{
+              column-count: 1;
+            }
+
         }
 
     }

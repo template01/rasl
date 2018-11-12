@@ -1,7 +1,7 @@
 <template>
 <div class="contentwrapper readcontent container is-fullhd" :class="printversion?'printversion':''">
   <div class="readcontentItem" v-for="(item,index) in content">
-    <contentslideshow :type="type" v-if="item.acf_fc_layout === 'slideshow'"  :printversion="printversion" :content="item.content"></contentslideshow>
+    <contentslideshow :type="type" v-if="item.acf_fc_layout === 'slideshow'"  :printversion="printversion" :captioncredit="item.captioncredit" :content="item.content"></contentslideshow>
     <contentquote :type="type" v-if="item.acf_fc_layout === 'largequote'"  :printversion="printversion" :content="item.content"></contentquote>
     <contenttextphoto class="pt-40" v-if="item.acf_fc_layout === 'textphoto'" :printversion="printversion" :content="item.content"></contenttextphoto>
     <contentvideo class="pt-40" :coverimage="item.coverimage" v-if="item.acf_fc_layout === 'video' && !printversion" :printversion="printversion" :content="item.content"></contentvideo>
@@ -111,7 +111,8 @@ export default {
     h4,
     h5,
     h6 {
-        text-decoration: underline;
+        font-size: 27.2px;
+        text-decoration: none;
         // border-bottom: 2px solid black;
         // width: 100%;
         margin-left: 40px;
@@ -128,6 +129,25 @@ export default {
             margin-top: 10px;
         }
 
+    }
+
+    @media screen and (max-width: 1023px){
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+          font-size: 16px;
+          text-transform: uppercase;
+          margin-left: 0px;
+
+      }
+
+      p {
+          text-indent: 0px !important;
+      }
     }
 
     h1 + p,

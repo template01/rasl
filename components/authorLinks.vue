@@ -11,7 +11,7 @@
     <span v-for="(author, index) in authors" :to="'/authors/'+author.post_name+windowsearch">
       <span v-if="index===authors.length-1 && authors.length>1"> and </span>
       <nuxt-link :to="'/authors/'+author.post_name+windowsearch">
-        <span ><span v-html="author.post_title"></span><span v-if="index>0 && index<authors.length-1">,</span></span>
+        <span ><span v-html="author.post_title"></span><span v-if="index<authors.length-2">,</span></span>
 
       </nuxt-link>
 

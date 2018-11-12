@@ -10,7 +10,7 @@
     </div> -->
 
     <!-- <div v-if="showfilters" class="column is-6 "> -->
-    <div class="column is-6" :class="$mq!='lg' ? 'is-paddingless mb-5':''">
+    <div class="column is-6"  :class="$mq!='lg' ? 'is-paddingless mb-5':''">
       <p class="is-size-4-desktop is-size-6-touch">
         <span class="pr-10 valign-middle">FILTER:</span>
         <!-- <input type="checkbox" id="mike" v-model="checkedNames"> -->
@@ -42,7 +42,7 @@
   <template v-if="filterby.length>0">
     <div class="filters" :class="[filterby.length>0, $mq!='lg' ? 'is-inline-block ':''] ">
     <hr class="m-0" />
-      <div class="columns pb-10">
+      <div class="columns">
         <div class="column">
             <filtersingle v-show="filterby[0].name === filter.name" v-for="filter in filtertypes"  :filtertype="filter.type" :filtername="filter.name"></filtersingle>
         </div>

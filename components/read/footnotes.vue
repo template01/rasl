@@ -1,9 +1,9 @@
 <template>
-<div v-if="contentClean.length>0" class="footnotes pb-40 columns is-marginless">
+<div v-if="contentClean.length>0" class="footnotes pb-0 columns is-marginless">
   <!-- <span v-html="content"></span> -->
   <div class="column is-marginless">
-    <div class=" pr-40 pl-40">
-      <div :class="printversion ? 'is-12':'is-8-desktop is-offset-2-desktop is-6-widescreen is-offset-3-widescreen'" class="column is-size-6-desktop is-size-6-touch">
+    <div :class="[printversion ? '':'', $mq != 'lg' ? '':' pr-40 pl-40']">
+      <div :class="[printversion ? 'is-12':'is-8-desktop is-offset-2-desktop is-6-widescreen is-offset-3-widescreen',$mq != 'lg' ? 'is-paddingless':'']"class="column is-size-6-desktop is-size-6-touch">
         <p class="uppercase">
           footnotes:
         </p>

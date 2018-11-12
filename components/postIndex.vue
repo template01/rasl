@@ -18,9 +18,11 @@
         <selectpost class="pointer  is-pulled-right mr-5" :posttype="postdata.type" :postid="postdata.id"></selectpost>
       </div>
     </div>
-    <p :class="[$mq != 'lg' ? ' mt-5':'mr-30 ml-30  mt-20']" class="is-size-4-desktop is-size-6-touch mb-20" v-if="postdata.acf.abstract">
+    <!-- <p :class="[$mq != 'lg' ? ' mt-5':'mr-30 ml-30  mt-20']" class="is-size-4-desktop is-size-6-touch mb-20" v-if="postdata.acf.abstract">
       <span v-if="postdata.acf.abstract"  v-html="postdata.acf.abstract"></span>
-      <!-- <span v-else  v-html="'test'"></span> -->
+    </p> -->
+    <p :class="[$mq != 'lg' ? ' mt-5':'mt-20']" class="is-size-4-desktop is-size-6-touch mb-20" v-if="postdata.acf.subtitle">
+      <span v-if="postdata.acf.subtitle"  v-html="postdata.acf.subtitle"></span>
     </p>
     <p v-show="postdata.acf.author" class="mt-10 is-size-4-desktop is-size-6-touch ">
       <span>By </span>
