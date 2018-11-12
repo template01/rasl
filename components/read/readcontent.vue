@@ -154,7 +154,7 @@ export default {
       }
 
       p {
-          text-indent: 0px !important;
+          // text-indent: 0px !important;
       }
     }
 

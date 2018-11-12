@@ -130,14 +130,18 @@ export default {
                 margin-bottom: 20px;
                 img {
                   width: 100%;
-
+                  display: block;
+                  margin-bottom: 15px;
                 }
             }
 
             .wp-caption {
                 width: 100% !important;
+                display: block;
+                margin-bottom: 15px;
                 img {
                     width: 100%;
+
                 }
             }
 

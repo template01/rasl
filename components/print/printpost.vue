@@ -152,7 +152,7 @@ export default {
             }
 
             p {
-              text-indent: 0.5cm;
+              text-indent: 0.5cm !important;
             }
 
         }
