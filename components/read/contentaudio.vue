@@ -22,7 +22,7 @@
 
           </div>
           <audio class="audioPodcast is-hidden" crossOrigin="anonymous" ref="foo" :src="content"></audio>
-          <div class="Aligner circleWrapper"  :class="[$mq != 'lg' ? 'small':'']">
+          <div class="Aligner circleWrapper" :class="[$mq != 'lg' ? 'small':'']">
 
             <div class="circle" :class="[$mq != 'lg' ? 'small':'',$route.params.type === 'practice' ? 'pink-background':'',$route.params.type === 'reflective' ? 'green-background':'',$route.params.type === 'general' ? 'white-background':'']" :style="$mq != 'lg' ? {'width':freqs[0]*1.25+'px','height':freqs[0]*1.25+'px'} : {'width':freqs[0]*2.5+'px','height':freqs[0]*2.5+'px'}">
               <span class="playButton Aligner pointer" @click="playing = !playing; duration = audio.duration">
@@ -35,8 +35,8 @@
 
           <div class="timeScrobbler pt-40">
             <!-- {{currentTime}} -->
-            <vue-slider :sliderStyle="{'box-shadow':'none','height':'40px','top':'-18px','width':'120px','backgroundColor':routeColor,'borderRadius':'0'}" :processStyle="{'backgroundColor': routeColor}" :bg-style="{'backgroundColor': routeColor, 'height':'2px'}" @drag-start="playing = false; dragging = true"
-              @drag-end="audio.currentTime = currentTime; playing = true;  dragging = false" :max="duration" v-model="currentTime">
+            <vue-slider :sliderStyle="{'box-shadow':'none','height':'40px','top':'-18px','width':'120px','backgroundColor':routeColor,'borderRadius':'0'}" :processStyle="{'backgroundColor': routeColor}" :bg-style="{'backgroundColor': routeColor, 'height':'2px'}"
+              @drag-start="playing = false; dragging = true" @drag-end="audio.currentTime = currentTime; playing = true;  dragging = false" :max="duration" v-model="currentTime">
               <div class="diy-tooltip" slot="tooltip" slot-scope="{ value }">
                 <!-- {{ value }} -->
                 <span class="is-size-2-desktop is-size-4-mobile" style="line-height:40px">DRAG</span>
@@ -197,21 +197,21 @@ export default {
   },
 
   computed: {
-    routeColor: function(){
-      if(this.$route.params.type === 'practice' || this.$route.params.type === 'reflective' || this.$route.params.type === 'general'){
+    routeColor: function() {
+      if (this.$route.params.type === 'practice' || this.$route.params.type === 'reflective' || this.$route.params.type === 'general') {
 
-        if(this.$route.params.type === 'practice'){
+        if (this.$route.params.type === 'practice') {
           return colorvariables.red
 
         }
-        if(this.$route.params.type === 'reflective'){
+        if (this.$route.params.type === 'reflective') {
           return colorvariables.green
         }
-        if(this.$route.params.type === 'general'){
+        if (this.$route.params.type === 'general') {
           return colorvariables.black
 
         }
-      }else{
+      } else {
         return colorvariables.black
 
       }
@@ -228,15 +228,15 @@ audio {
     padding-top: 60px;
 }
 .audioBorder {
-  &.green{
-    border: 2px solid $green;
-  }
-  &.red{
-    border: 2px solid red;
-  }
-  &.black{
-    border: 2px solid black;
-  }
+    &.green {
+        border: 2px solid $green;
+    }
+    &.red {
+        border: 2px solid red;
+    }
+    &.black {
+        border: 2px solid black;
+    }
 }
 
 .audioBorderTransparent {
@@ -249,12 +249,13 @@ audio {
 
 .circleWrapper {
     height: 540px;
-    &.small{
-      height: 340px;
+    &.small {
+        height: 340px;
 
     }
 }
 .circle {
+    user-select: none;
     border-radius: 100%;
     min-width: 200px;
     min-height: 200px;
@@ -267,11 +268,11 @@ audio {
         height: 100%;
         width: 100%;
     }
-    &.small{
-      min-width: 100px;
-      min-height: 100px;
-      max-width: 300px;
-      max-height: 300px;
+    &.small {
+        min-width: 100px;
+        min-height: 100px;
+        max-width: 300px;
+        max-height: 300px;
     }
 }
 

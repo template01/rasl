@@ -15,7 +15,7 @@
           <span class="fixedMenu" >
 
 
-            <div class="is-pulled-left" v-if="$route.params.type ==='reflective' || $route.params.type ==='practice' || $route.params.type ==='general'">
+            <div class="is-pulled-left" v-if="$mq === 'lg' && ($route.params.type ==='reflective' || $route.params.type ==='practice' || $route.params.type ==='general')">
 
               <!-- <p class="is-size-3-desktop is-size-6-touch has-text-right logoText"> -->
                 <selectpost class="pointer pr-5" :posttype="$route.params.type" :postid="$store.state.readingId"></selectpost>

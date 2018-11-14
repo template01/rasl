@@ -9,18 +9,18 @@
         <span class="pointer" v-if="$route.path==='/'" @click="scrollToIndex()">Home</span>
         <nuxt-link v-else :to="'/'+windowsearch">Home</nuxt-link>
       </p>
-      <p class="pt-10">
+      <p :class="$mq != 'lg' ? 'pt-5':'pt-10'">
         <span class="pointer" v-if="$route.path==='/'" @click="scrollToLibrary()">Library</span>
         <nuxt-link v-else :to="windowsearch.length>0 ?'/'+windowsearch+'&library=true' : '/?library=true'">Library</nuxt-link>
 
       </p>
-      <p class="pt-10">
+      <p :class="$mq != 'lg' ? 'pt-5':'pt-10'">
         <nuxt-link :to="'/authors'+windowsearch">Authors</nuxt-link>
       </p>
-      <p class="pt-10">
+      <p v-if="$mq === 'lg'" class="pt-10">
         <nuxt-link :to="'/collection'+windowsearch">Collection <span class=""><buttoncounter :isinmenu="true"></buttoncounter></span></nuxt-link>
       </p>
-      <p class="pt-10">
+      <p :class="$mq != 'lg' ? 'pt-5':'pt-10'">
         <nuxt-link :to="'/about'+windowsearch">About</nuxt-link>
       </p>
 
