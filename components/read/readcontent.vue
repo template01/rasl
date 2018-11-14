@@ -198,6 +198,8 @@ export default {
         width: 8mm;
         height: 8mm;
         margin-right: 20px;
+        margin-top: 6mm;
+        margin-bottom: 6mm;
         border-radius: 100%;
         float: right;
         page-break-inside: avoid;
