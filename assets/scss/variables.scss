@@ -38,3 +38,10 @@ $red: red;
 
 // brown
 $brown: #DEBF73;
+
+
+:export {
+  green: $green;
+  red: $red;
+  black: $black;
+}

@@ -1,6 +1,6 @@
 <template>
 
-  <div class="column" :class="[itemcontent.type === 'practice' ? 'pink-background has-text-danger':'', itemcontent.type === 'reflective' ? 'lightblue-background has-text-success':'', itemcontent.type === 'general' ? '':'']">
+  <div class="column" :class="[itemcontent.type === 'practice' ? 'pink-background has-text-danger':'', itemcontent.type === 'reflective' ? 'lightblue-background has-text-success':'', itemcontent.type === 'general' ? 'white-background':'']">
     <div class=" p-50">
 
     <div class="columns ignore-mb is-hidden-touch">

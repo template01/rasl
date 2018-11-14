@@ -34,6 +34,17 @@ export default {
 </script>
 <style lang="scss">
 .contentsmalltextcolumn {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: inherit !important;
+    text-decoration: underline !important;
+    margin-left: 0px !important;
+  }
+
   .referencestyle{
     p{
       text-indent: -20px !important;

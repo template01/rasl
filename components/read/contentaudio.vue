@@ -8,26 +8,26 @@
 ></av-line> -->
 
 
-  <div :class="$route.params.type === 'practice' ? 'has-text-danger':'has-text-info'" class="columns pb-40 pt-40 is-marginless ">
+  <div :class="$route.params.type === 'practice' ? 'has-text-danger':'has-text-info'" class="columns pt-40 is-marginless ">
     <div class="column is-10 is-offset-1 ">
-      <div class=" pr-40 pl-40 ">
-        <div class=" p-20" :class="playing ? 'audioBorder audioBorderTransparent':'audioBorder'">
-          <div :style="playing ? {'opacity':'0'}:{}" class=" columns is-mobile is-marginless audioTitle is-size-2 ">
+      <div :class="$mq != 'lg' ? '':'pr-40 pl-40'">
+        <div class="" :class="[$mq != 'lg' ? 'p-20':'p-20', playing ? 'audioBorder audioBorderTransparent':'audioBorder', $route.params.type === 'practice' ? 'red':'',$route.params.type === 'reflective' ? 'green':'',$route.params.type === 'general' ? 'black':'']">
+          <div :style="playing ? {'opacity':'0'}:{}" class=" columns is-marginless audioTitle is-size-2-desktop is-size-4-mobile">
             <div class="column is-6 is-paddingless">
               <span>Podcast: Practices in the Age </span>
             </div>
-            <div class="column is-6 is-paddingless has-text-right">
+            <div class="column is-6 is-paddingless " :class="$mq != 'lg' ? '':'has-text-right'">
               <span> {{fancyTimeFormat(currentTime)}} / {{fancyTimeFormat(duration)}}</span>
             </div>
 
           </div>
           <audio class="audioPodcast is-hidden" crossOrigin="anonymous" ref="foo" :src="content"></audio>
-          <div class="Aligner circleWrapper">
+          <div class="Aligner circleWrapper"  :class="[$mq != 'lg' ? 'small':'']">
 
-            <div class="circle pink-background" :class="$route.params.type === 'practice' ? 'pink-background':'green-background'" :style="{'width':freqs[0]*2.5+'px','height':freqs[0]*2.5+'px'}">
+            <div class="circle" :class="[$mq != 'lg' ? 'small':'',$route.params.type === 'practice' ? 'pink-background':'',$route.params.type === 'reflective' ? 'green-background':'',$route.params.type === 'general' ? 'white-background':'']" :style="$mq != 'lg' ? {'width':freqs[0]*1.25+'px','height':freqs[0]*1.25+'px'} : {'width':freqs[0]*2.5+'px','height':freqs[0]*2.5+'px'}">
               <span class="playButton Aligner pointer" @click="playing = !playing; duration = audio.duration">
-            <span class="is-size-2" v-if="!playing">PLAY</span>
-              <span class="is-size-2" v-else>PAUSE</span>
+            <span class="is-size-2-desktop is-size-4-mobile" v-if="!playing">PLAY</span>
+              <span class="is-size-2-desktop is-size-4-mobile" v-else>PAUSE</span>
               </span>
 
             </div>
@@ -35,11 +35,11 @@
 
           <div class="timeScrobbler pt-40">
             <!-- {{currentTime}} -->
-            <vue-slider :sliderStyle="{'box-shadow':'none','height':'40px','top':'-18px','width':'120px','backgroundColor':'red','borderRadius':'0'}" :processStyle="{'backgroundColor': 'red'}" :bg-style="{'backgroundColor': 'red', 'height':'2px'}" @drag-start="playing = false; dragging = true"
+            <vue-slider :sliderStyle="{'box-shadow':'none','height':'40px','top':'-18px','width':'120px','backgroundColor':routeColor,'borderRadius':'0'}" :processStyle="{'backgroundColor': routeColor}" :bg-style="{'backgroundColor': routeColor, 'height':'2px'}" @drag-start="playing = false; dragging = true"
               @drag-end="audio.currentTime = currentTime; playing = true;  dragging = false" :max="duration" v-model="currentTime">
               <div class="diy-tooltip" slot="tooltip" slot-scope="{ value }">
                 <!-- {{ value }} -->
-                <span class="is-size-2">DRAG</span>
+                <span class="is-size-2-desktop is-size-4-mobile" style="line-height:40px">DRAG</span>
               </div>
             </vue-slider>
             <!-- <div class="scrobble" :style="{'left':((currentTime/duration)*100)+'%'}"></div> -->
@@ -79,6 +79,7 @@
 import {
   mapGetters
 } from 'vuex'
+import colorvariables from '~/assets/scss/variables.scss'
 
 export default {
 
@@ -120,7 +121,6 @@ export default {
       }
     },
     currentTime: function() {
-      console.log('go')
       // this.audio.currentTime = this.currentTime
       // this.audio.play()
     }
@@ -191,12 +191,31 @@ export default {
 
       window.setTimeout(function() {
         connect();
-      }, 1000);
+      }, 2000);
 
     }
   },
 
   computed: {
+    routeColor: function(){
+      if(this.$route.params.type === 'practice' || this.$route.params.type === 'reflective' || this.$route.params.type === 'general'){
+
+        if(this.$route.params.type === 'practice'){
+          return colorvariables.red
+
+        }
+        if(this.$route.params.type === 'reflective'){
+          return colorvariables.green
+        }
+        if(this.$route.params.type === 'general'){
+          return colorvariables.black
+
+        }
+      }else{
+        return colorvariables.black
+
+      }
+    },
     ...mapGetters({
       appinitated: "GET_APP_INITIATED",
     }),
@@ -209,7 +228,15 @@ audio {
     padding-top: 60px;
 }
 .audioBorder {
+  &.green{
+    border: 2px solid $green;
+  }
+  &.red{
     border: 2px solid red;
+  }
+  &.black{
+    border: 2px solid black;
+  }
 }
 
 .audioBorderTransparent {
@@ -222,6 +249,10 @@ audio {
 
 .circleWrapper {
     height: 540px;
+    &.small{
+      height: 340px;
+
+    }
 }
 .circle {
     border-radius: 100%;
@@ -235,6 +266,12 @@ audio {
         position: absolute;
         height: 100%;
         width: 100%;
+    }
+    &.small{
+      min-width: 100px;
+      min-height: 100px;
+      max-width: 300px;
+      max-height: 300px;
     }
 }
 
@@ -270,7 +307,7 @@ audio {
         // width: 40px;
         // height: 40px;
         color: black;
-        background: red;
+        // background: red;
         // margin-top: 80px;
         // margin-bottom: 80px;
         // margin-left: 80px;

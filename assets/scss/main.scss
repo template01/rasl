@@ -77,7 +77,13 @@ $family-primary: $family-serif;
 
 html {
   background-color: $lightgrey;
+  // overflow-x: hidden;
 }
+
+body {
+  // overflow-x: hidden; 
+}
+
 
 .fullHeight {
   min-height: 100vh;

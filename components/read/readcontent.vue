@@ -1,5 +1,5 @@
 <template>
-<div class="contentwrapper readcontent container is-fullhd" :class="printversion?'printversion':''">
+<div class="contentwrapper readcontent container is-fullhd" :class="printversion?'printversion':'pb-40'">
   <div class="readcontentItem" v-for="(item,index) in content">
     <contentslideshow :type="type" v-if="item.acf_fc_layout === 'slideshow'"  :printversion="printversion" :captioncredit="item.captioncredit" :content="item.content"></contentslideshow>
     <contentquote :type="type" v-if="item.acf_fc_layout === 'largequote'"  :printversion="printversion" :content="item.content"></contentquote>
@@ -126,7 +126,7 @@ export default {
         margin-left: 20px;
         -webkit-box-decoration-break: clone;
         box-decoration-break: clone;
-        line-height: 1.4;
+        line-height: 1.2;
         b,
         bold,
         strong {

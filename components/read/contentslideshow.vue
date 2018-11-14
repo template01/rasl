@@ -30,6 +30,9 @@
             <div :style="$mq != 'lg' ? 'display: block; margin: 0 auto; width: 100%; ':''" class="swiper-pagination swiper-pagination-bullets is-size-6-desktop is-size-6-touch pointer"></div>
           </p>
         </div>
+        <style v-if="type ==='general'">
+          .swiper-pagination-bullet-active { background: black !important; color: white !important;} .swiper-container{ background: white !important}
+        </style>
         <style v-if="type ==='practice'">
           .swiper-pagination-bullet-active { background: red !important} .swiper-container{ background: red !important}
         </style>
@@ -42,8 +45,7 @@
   <div v-else>
     <div class="printwrapper">
       <img :src="img.sizes.medium" v-for="img in content">
-      <p style="clear:both" class=" is-size-6" v-html="captioncredit"></p>
-      </p>
+      <span style="clear:both" class=" is-size-6" v-html="captioncredit"></span>
     </div>
   </div>
 </div>
@@ -117,6 +119,7 @@ export default {
     background: white;
     border: 2px solid black;
     box-sizing: content-box;
+    outline: none;
 }
 .swiper-pagination-bullet-active {
     color: #fff;
@@ -146,7 +149,7 @@ export default {
     }
     img {
         float: left !important;
-        width: 6.45cm !important;
+        width: 6.5cm !important;
         margin-top: 10px;
         margin-right: 10px;
     }
