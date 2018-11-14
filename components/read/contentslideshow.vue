@@ -143,13 +143,13 @@ export default {
 
 .printwrapper {
     display: inline-block;
-    p {
+    span {
         margin-left: 0 !important;
         margin-right: 5cm;
     }
     img {
         float: left !important;
-        width: 6.5cm !important;
+        width: 6.48cm !important;
         margin-top: 10px;
         margin-right: 10px;
     }
