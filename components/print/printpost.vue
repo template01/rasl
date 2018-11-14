@@ -23,7 +23,7 @@
     </div>
     </p>
     <div class="inner-content">
-      <readcontent :footnotes="footnoteSingle" :printversion="true" :content="postdata.acf.contentbuilder"></readcontent>
+      <readcontent  :references="postdata.acf.references" :footnotes="footnoteSingle" :printversion="true" :content="postdata.acf.contentbuilder"></readcontent>
 
     </div>
   </div>
@@ -81,7 +81,7 @@ export default {
         position: absolute;
         left: 0;
         top: 3.5cm;
-        min-width: 29cm;
+        min-width: 33cm;
         text-align: left;
         .metaRotate {
 
