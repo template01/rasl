@@ -2,7 +2,7 @@
 <nuxt-link class="" :to="'/authors/'+slug+windowsearch">
   <p class="is-size-2-desktop is-size-4-touch has-text-centered">
     <span  v-html="title"></span>
-    <template v-if="articlesWritten>0">(<span  v-html="articlesWritten"></span>)</template>
+    <!-- <template v-if="articlesWritten>0">(<span  v-html="articlesWritten"></span>)</template> -->
   </p>
 
 </nuxt-link>
