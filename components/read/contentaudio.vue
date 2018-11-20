@@ -14,7 +14,7 @@
         <div class="" :class="[$mq != 'lg' ? 'p-20':'p-20', playing ? 'audioBorder audioBorderTransparent':'audioBorder', $route.params.type === 'practice' ? 'red':'',$route.params.type === 'reflective' ? 'green':'',$route.params.type === 'general' ? 'black':'']">
           <div :style="playing ? {'opacity':'0'}:{}" class=" columns is-marginless audioTitle is-size-2-desktop is-size-4-mobile">
             <div class="column is-6 is-paddingless">
-              <span>Podcast: Practices in the Age </span>
+              <span>Podcast: {{title}} </span>
             </div>
             <div class="column is-6 is-paddingless " :class="$mq != 'lg' ? '':'has-text-right'">
               <span> {{fancyTimeFormat(currentTime)}} / {{fancyTimeFormat(duration)}}</span>
@@ -83,7 +83,7 @@ import colorvariables from '~/assets/scss/variables.scss'
 
 export default {
 
-  props: ['content', 'printversion'],
+  props: ['content', 'printversion','title'],
   data: function() {
     return {
       genericData: 'generic component text',
