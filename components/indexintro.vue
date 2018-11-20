@@ -91,6 +91,7 @@ export default {
             }
         }
     }
+    z-index: 1;
     position: relative;
     .backgroundBlockI,
     .backgroundBlockII {
